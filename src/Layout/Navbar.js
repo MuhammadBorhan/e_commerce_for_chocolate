@@ -40,7 +40,7 @@ const Navbar = () => {
         <AiOutlineMenu style={{ width: "30px", fontSize: "23px" }} />
       </div>
 
-      {/* modelMenu */}
+      {/* model view Menu start*/}
       {modelMenu && (
         <div
           style={{
@@ -51,21 +51,44 @@ const Navbar = () => {
             zIndex: "999",
           }}
         >
-          <ImCross
-            onClick={() => setModelMenu(false)}
-            style={{
-              cursor: "pointer",
-              color: "red",
-              padding: "10px 0 0 10px",
-              marginRight: "10px",
-              fontSize: "30px",
-            }}
-          />
-          <h1 className="d-flex justify-content-center text-primary">
-            Borhan Uddin
-          </h1>
+          <div className="">
+            <div
+              onClick={() => setModelMenu(!modelMenu)}
+              className="float-start text-white p-3  d-none d-sm-block "
+              style={{
+                height: "60px",
+                backgroundColor: "#900C3F",
+                cursor: "pointer",
+              }}
+            >
+              <ImCross
+                onClick={() => setModelMenu(false)}
+                style={{
+                  cursor: "pointer",
+                  color: "white",
+                  fontSize: "20px",
+                }}
+              />
+            </div>
+            <div
+              className="d-flex justify-content-between align-items-center px-4 "
+              style={{ height: "60px", backgroundColor: "#7B3F00" }}
+            >
+              {/* logo */}
+              <div className="">
+                <p className="text-white mt-3">Title</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h1 className="d-flex justify-content-center text-primary">
+              Borhan Uddin
+            </h1>
+          </div>
         </div>
       )}
+      {/* model view Menu end*/}
 
       {/* navbar */}
       <div
