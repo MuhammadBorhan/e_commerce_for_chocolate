@@ -56,9 +56,9 @@ const CategorySwiper = () => {
           clickable: true,
         }}
         modules={[EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container heroSlider"
+        className="cswiperr"
       >
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/birthday_gifts_igp_lenses_20220627.png"
             alt="slide_image"
@@ -66,7 +66,7 @@ const CategorySwiper = () => {
           />
           <p>Birthday Gifts</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/disney_igp_lenses_20221028.jpg"
             alt="slide_image"
@@ -74,7 +74,7 @@ const CategorySwiper = () => {
           />
           <p>Disney Collection</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/marvel_igp_lenses_20221028.jpg"
             alt="slide_image"
@@ -82,7 +82,7 @@ const CategorySwiper = () => {
           />
           <p>Morvel Collection</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/gourmet_igp_lenses_20221004.jpeg"
             alt="slide_image"
@@ -90,7 +90,7 @@ const CategorySwiper = () => {
           />
           <p>Gourmet</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/new_arrivals_igp_lenses_20221004.jpeg"
             alt="slide_image"
@@ -98,7 +98,7 @@ const CategorySwiper = () => {
           />
           <p>New Arrivals</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/anniversary_gifts_igp_lenses_20220627.png"
             alt="slide_image"
@@ -106,7 +106,7 @@ const CategorySwiper = () => {
           />
           <p>Anniversary Gifts</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/plants_igp_lenses_20220705.png"
             alt="slide_image"
@@ -114,7 +114,7 @@ const CategorySwiper = () => {
           />
           <p>Plants</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/home_living_igp_lenses_20220627.png"
             alt="slide_image"
@@ -122,7 +122,7 @@ const CategorySwiper = () => {
           />
           <p>Home & Living</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/jewellery_igp_lenses_20220627.png"
             alt="slide_image"
@@ -130,7 +130,7 @@ const CategorySwiper = () => {
           />
           <p>Jwellery</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/fashion_lifestyle_gifts_igp_lenses_20220627.png"
             alt="slide_image"
@@ -138,7 +138,7 @@ const CategorySwiper = () => {
           />
           <p>Fashion & Lifestyle</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/wedding_gifts_igp_lenses_20220709.jpg"
             alt="slide_image"
@@ -146,7 +146,7 @@ const CategorySwiper = () => {
           />
           <p>Weeding Gifts</p>
         </SwiperSlide>
-        <SwiperSlide className="CatSwiperSlide">
+        <SwiperSlide className="cswiper-sliderr">
           <img
             src="https://cdn.igp.com/f_auto,q_auto,t_pnopt1prodlp/banners/international_igp_lenses_20230118.jpg"
             alt="slide_image"

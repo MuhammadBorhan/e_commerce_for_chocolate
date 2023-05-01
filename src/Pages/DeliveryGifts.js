@@ -11,7 +11,7 @@ const DeliveryGifts = () => {
       <div className="">
         <div className="row">
           {sameDayDeliveryData.map((datas) => {
-            const { id, image, name, price, attiribute, desc } = datas;
+            const { image, name, price } = datas;
             return (
               <div className="col-6 col-lg-3">
                 <Link

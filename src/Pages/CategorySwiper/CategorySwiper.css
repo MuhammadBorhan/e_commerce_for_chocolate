@@ -1,9 +1,8 @@
-.swiper_container {
+/* .swiper_container {
   height: 25rem;
   padding: 2rem 0;
   text-align: center;
   position: relative;
-  /* background-color: blue; */
 }
 
 .CatSwiperSlide {
@@ -50,4 +49,23 @@
 
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
+} */
+
+.cswiperr {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.cswiper-sliderr {
+  background-position: center;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+}
+
+.cswiper-sliderr img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
 }
