@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AiOutlineMenu,
   AiOutlineDollarCircle,
@@ -7,14 +7,17 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { MdOutlineLocationOn } from "react-icons/md";
+import { ImCross } from "react-icons/im";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [modelMenu, setModelMenu] = useState(false);
   return (
     <div className="fixed-top">
       {/* menu icon for mobile device */}
       <div
+        onClick={() => setModelMenu(!modelMenu)}
         className="float-start text-white p-3 d-block d-sm-none "
         style={{ height: "60px", backgroundColor: "#7B3F00" }}
       >
@@ -26,14 +29,43 @@ const Navbar = () => {
 
       {/* menu icon for desktop device */}
       <div
+        onClick={() => setModelMenu(!modelMenu)}
         className="float-start text-white p-3  d-none d-sm-block "
-        style={{ height: "60px", backgroundColor: "#900C3F " }}
+        style={{
+          height: "60px",
+          backgroundColor: "#900C3F",
+          cursor: "pointer",
+        }}
       >
-        <AiOutlineMenu
-          className=""
-          style={{ width: "30px", fontSize: "23px" }}
-        />
+        <AiOutlineMenu style={{ width: "30px", fontSize: "23px" }} />
       </div>
+
+      {/* modelMenu */}
+      {modelMenu && (
+        <div
+          style={{
+            backgroundColor: "#ebedf0",
+            position: "absolute",
+            width: "100%",
+            height: "100vh",
+            zIndex: "999",
+          }}
+        >
+          <ImCross
+            onClick={() => setModelMenu(false)}
+            style={{
+              cursor: "pointer",
+              color: "red",
+              padding: "10px 0 0 10px",
+              marginRight: "10px",
+              fontSize: "30px",
+            }}
+          />
+          <h1 className="d-flex justify-content-center text-primary">
+            Borhan Uddin
+          </h1>
+        </div>
+      )}
 
       {/* navbar */}
       <div
