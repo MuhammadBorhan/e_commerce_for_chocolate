@@ -1,0 +1,10 @@
+.menu_icon {
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.menu_icon:hover {
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  transform: scale(1.1);
+}
