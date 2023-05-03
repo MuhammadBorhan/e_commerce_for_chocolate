@@ -58,7 +58,7 @@ const Navbar = () => {
           <div className="">
             <div
               onClick={() => setModelMenu(!modelMenu)}
-              className="float-start text-white p-3  d-none d-sm-block "
+              className="float-left text-white p-4 "
               style={{
                 height: "60px",
                 backgroundColor: "#900C3F",
@@ -79,16 +79,14 @@ const Navbar = () => {
               style={{ height: "60px", backgroundColor: "#7B3F00" }}
             >
               {/* logo */}
-              <div className="">
-                <p className="text-white mt-3">Title</p>
+              <div className="flex items-center h-full">
+                <p className="text-white ml-4">Title</p>
               </div>
             </div>
           </div>
 
           <div>
-            <h1 className="d-flex justify-content-center text-primary">
-              Borhan Uddin
-            </h1>
+            <h1 className="flex justify-center ">Borhan Uddin</h1>
           </div>
         </div>
       )}
