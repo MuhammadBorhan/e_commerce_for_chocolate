@@ -5,6 +5,7 @@ import Contact from "../Pages/Contact";
 import NotFound from "../Pages/NotFound";
 import DeliveryGifts from "../Pages/DeliveryGifts";
 import DeliveryGiftsDetails from "../Pages/DeliveryGiftsDetails";
+import CartProducts from "../Pages/CartProduct/CartProducts";
 
 const routes = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const routes = createBrowserRouter([
       {
         path: "/delivery/:name",
         element: <DeliveryGiftsDetails />,
+      },
+      {
+        path: "/carts",
+        element: <CartProducts />,
       },
     ],
   },

@@ -2,8 +2,11 @@ import React from "react";
 import { sameDayDeliveryData } from "../data";
 import { Link } from "react-router-dom";
 import DeliveryGiftsDetails from "./DeliveryGiftsDetails";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cart/cartSlice";
 
 const DeliveryGifts = () => {
+  const dispatch = useDispatch();
   return (
     <div className="p-4 lg:p-12">
       <p className="pb-6 text-xl lg:text-2xl font-bold">
@@ -23,7 +26,10 @@ const DeliveryGifts = () => {
                     <h6 class="card-title">{name}</h6>
                     <h4 class="text-orange-500 font-bold">{price}$</h4>
                   </div>
-                  <button className="bg-[#9A583B] text-white font-bold px-4 py-1 mx-auto block mb-2 rounded">
+                  <button
+                    onClick={() => dispatch(addToCart(datas))}
+                    className="bg-[#9A583B] text-white font-bold px-4 py-1 mx-auto block mb-2 rounded"
+                  >
                     Add To Cart
                   </button>
                 </div>

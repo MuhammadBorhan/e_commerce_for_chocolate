@@ -12,9 +12,11 @@ import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [modelMenu, setModelMenu] = useState(false);
+  const cart = useSelector((state) => state?.cart?.cart);
   return (
     <div className="sticky top-0 z-50">
       {/* menu icon for mobile device */}
@@ -134,8 +136,13 @@ const Navbar = () => {
           <p>
             <AiOutlineHeart />
           </p>
-          <p>
-            <AiOutlineShoppingCart />
+          <p className="relative">
+            <Link to="/carts">
+              <AiOutlineShoppingCart />
+              <span className="absolute top-[-15px] text-sm bg-blue-600 p-1 w-6 h-6 flex justify-center items-center rounded-full left-[12px] lg:left-[20px]">
+                {cart?.length}
+              </span>
+            </Link>
           </p>
           <p>
             <AiOutlineUser />
