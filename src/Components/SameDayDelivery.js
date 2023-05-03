@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 const SameDayDelivery = () => {
   return (
-    <div className="pb-5">
-      <div className="px-5">
-        <h3>Trending Gifts</h3>
+    <div className="pb-12 pr-4 lg:pr-12 pl-4 lg:pl-12 lg:pt-6">
+      <div className="py-6 text-center">
+        <h3 className="text-xl lg:text-2xl font-bold">Trending Gifts</h3>
         <p>Handpicked for your gifting needs</p>
       </div>
-      <div className="px-5">
+      <div className="">
         <div
-          className="d-flex justify-content-between mb-2"
+          className="flex justify-between pb-2 mb-2"
           style={{ borderBottom: "1px solid gray" }}
         >
           <h6>Same Day Delivery</h6>
@@ -21,84 +21,63 @@ const SameDayDelivery = () => {
             View All
           </Link>
         </div>
-        <div className="row inline-block d-lg-none">
-          <div className="col-4 col-lg-2">
+
+        {/* images for desktop device */}
+        <div className="hidden lg:block">
+          <div className="grid lg:grid-cols-6 ">
             <img
               src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
-              style={{ width: "90px", borderRadius: "0 0 10px 10px" }}
-            ></img>
-          </div>
-          <div className="col-4 col-lg-2">
+              style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
+            />
             <img
               src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
-              style={{ width: "90px", borderRadius: "0 0 10px 10px" }}
-            ></img>
-          </div>
-          <div className="col-4 col-lg-2">
+              style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
+            />
             <img
               src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/personalized_d_igp_frames_20230131.jpg"
-              style={{ width: "90px", borderRadius: "0 0 10px 10px" }}
-            ></img>
-          </div>
-          <div className="col-4 col-lg-2">
+              style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
+            />
             <img
               src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/hampers_d_igp_frames_20230131.jpg"
-              style={{ width: "90px", borderRadius: "0 0 10px 10px" }}
-            ></img>
-          </div>
-          <div className="col-4 col-lg-2">
+              style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
+            />
             <img
               src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
-              style={{ width: "90px", borderRadius: "0 0 10px 10px" }}
-            ></img>
-          </div>
-          <div className="col-4 col-lg-2">
+              style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
+            />
             <img
               src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
-              style={{ width: "90px", borderRadius: "0 0 10px 10px" }}
-            ></img>
+              style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
+            />
           </div>
         </div>
 
-        <div className="d-none d-lg-block">
-          <div className="row ">
-            <div className="col-4 col-lg-2">
-              <img
-                src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
-                style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
-              ></img>
-            </div>
-            <div className="col-4 col-lg-2">
-              <img
-                src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
-                style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
-              ></img>
-            </div>
-            <div className="col-4 col-lg-2">
-              <img
-                src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/personalized_d_igp_frames_20230131.jpg"
-                style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
-              ></img>
-            </div>
-            <div className="col-4 col-lg-2">
-              <img
-                src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/hampers_d_igp_frames_20230131.jpg"
-                style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
-              ></img>
-            </div>
-            <div className="col-4 col-lg-2">
-              <img
-                src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
-                style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
-              ></img>
-            </div>
-            <div className="col-4 col-lg-2">
-              <img
-                src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
-                style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
-              ></img>
-            </div>
-          </div>
+        {/* images for mobile device */}
+        <div className="grid grid-cols-3 gap-2 lg:hidden">
+          <img
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
+            style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
+          />
+          <img
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
+            style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
+          />
+          <img
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/personalized_d_igp_frames_20230131.jpg"
+            style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
+          />
+          <img
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/hampers_d_igp_frames_20230131.jpg"
+            style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
+          />
+          <img
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
+            style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
+          />
+          <img
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
+            style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
+          />
         </div>
       </div>
     </div>

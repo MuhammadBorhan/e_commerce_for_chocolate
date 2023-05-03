@@ -21,29 +21,32 @@ const DeliveryGiftsDetails = () => {
   const location = useLocation();
   const data = location?.state;
   return (
-    <div className="p-3 p-lg-0" style={{ marginTop: "75px" }}>
-      <div className="row py-3">
-        <div className="col-12 col-lg-6 d-flex justify-content-center">
+    <div className="">
+      <div className="flex flex-col lg:flex-row lg:gap-12 p-4 lg:p-12">
+        <div className="flex justify-center">
           <img
-            className="d-none d-lg-block"
+            className="hidden lg:block"
             src={data.image}
-            style={{ width: "400px" }}
+            style={{ width: "600px" }}
           />
           <img
-            className="d-block d-lg-none"
+            className="block lg:hidden"
             src={data.image}
             style={{ width: "300px" }}
           />
         </div>
         <div className="col-12 col-lg-6 d-flex justify-content-center pe-4 flex-column pt-3 pt-lg-0">
-          <p className="fw-bold text-primary">Same Day Delivery</p>
-          <p className="fs-4">{data.name}</p>
-          <h4 className="fw-bold fs-3 text-danger">{data.price}$</h4>
-          <h6>Description</h6>
-          <p className="fw-light">{data.desc}</p>
+          <p className="text-blue-300 font-bold">Same Day Delivery</p>
+          <p className="text-xl font-bold">{data.name}</p>
+          <h4 className="text-orange-500 font-bold text-3xl py-2">
+            {data.price}$
+          </h4>
+          <h6 className="text-xl">Description</h6>
+          <p className="mb-4">{data.desc}</p>
 
           <div>
             <h6
+              className="text-xl"
               style={{
                 borderBottom: "1px solid lightblue",
                 paddingBottom: "8px",

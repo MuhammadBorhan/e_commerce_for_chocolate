@@ -14,12 +14,12 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [modelMenu, setModelMenu] = useState(false);
   return (
-    <div className="fixed-top">
+    <div className="sticky top-0 z-50">
       {/* menu icon for mobile device */}
       <div
         onClick={() => setModelMenu(!modelMenu)}
-        className="float-start text-white p-3 d-block d-sm-none "
-        style={{ height: "60px", backgroundColor: "#7B3F00" }}
+        className="float-left text-white px-3 flex items-center lg:hidden "
+        style={{ height: "60px", backgroundColor: "#9A583B" }}
       >
         <AiOutlineMenu
           className=""
@@ -30,7 +30,7 @@ const Navbar = () => {
       {/* menu icon for desktop device */}
       <div
         onClick={() => setModelMenu(!modelMenu)}
-        className="float-start text-white p-3  d-none d-sm-block "
+        className="float-left text-white px-3 lg:flex items-center hidden  "
         style={{
           height: "60px",
           backgroundColor: "#900C3F",
@@ -92,8 +92,8 @@ const Navbar = () => {
 
       {/* navbar */}
       <div
-        className="d-flex justify-content-between align-items-center px-4 "
-        style={{ height: "60px", backgroundColor: "#7B3F00" }}
+        className="flex justify-between items-center px-4 "
+        style={{ height: "60px", backgroundColor: "#9A583B" }}
       >
         {/* logo */}
         <div>
@@ -106,24 +106,26 @@ const Navbar = () => {
         </div>
 
         {/* search bar */}
-        <div className="d-none d-lg-block">
-          <div className="position-relative">
-            <input
-              className="form-control ps-5"
-              type="search"
-              placeholder="Search For Gifts"
-              aria-label="Search"
-              style={{ width: "400px" }}
-            />
-            <FaSearch
-              className="position-absolute top-50 start-0 ms-3 translate-middle-y"
-              style={{ cursor: "pointer" }}
-            />
-          </div>
+        <div class="relative hidden lg:block text-gray-600">
+          <input
+            class="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
+            type="search"
+            name="search"
+            placeholder="Search"
+          />
+          <button type="submit" class="absolute right-0 top-0 mt-2 mr-4 ">
+            <svg
+              class="h-4 w-4 fill-current"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M11.656 10.562c-1.031.813-2.344 1.313-3.75 1.313-3.313 0-6-2.688-6-6s2.687-6 6-6 6 2.688 6 6c0 1.406-.5 2.719-1.313 3.75l3.563 3.563-1.406 1.407-3.563-3.563zM6 8c0 1.656 1.344 3 3 3s3-1.344 3-3-1.344-3-3-3-3 1.344-3 3z" />
+            </svg>
+          </button>
         </div>
 
         {/* icon */}
-        <div className="d-flex align-items-center  gap-4 gap-lg-5 pt-2 text-white fs-3">
+        <div className="flex gap-4 lg:gap-5 text-white text-xl lg:text-3xl">
           <p>
             <AiOutlineDollarCircle />
           </p>

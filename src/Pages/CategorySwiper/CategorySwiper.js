@@ -15,21 +15,19 @@ import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
 const CategorySwiper = () => {
   return (
     <div className="py-5">
-      <div className="d-flex align-items-center justify-content-center gap-2">
+      <div className="flex items-center justify-center gap-6 px-4 lg:px-0">
         <img
           src="https://cdn.igp.com/raw/upload/assets/svg-icons/gift-sets-20220610.svg"
-          className="d-none d-lg-block"
+          className="hidden lg:block"
         />
         <img
           src="https://cdn.igp.com/raw/upload/assets/svg-icons/gift-sets-20220610.svg"
           style={{ width: "100px" }}
-          className="d-block d-lg-none"
+          className="block lg:hidden"
         />
         <div>
-          <h3>Unique Gifts Online</h3>
-          <p className="fw-light pe-1">
-            Curated to make every special moment a celebration
-          </p>
+          <h3 className="text-xl lg:text-2xl font-bold">Unique Gifts Online</h3>
+          <p className="">Curated to make every special moment a celebration</p>
         </div>
       </div>
 

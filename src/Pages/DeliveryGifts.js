@@ -1,32 +1,32 @@
 import React from "react";
 import { sameDayDeliveryData } from "../data";
 import { Link } from "react-router-dom";
+import DeliveryGiftsDetails from "./DeliveryGiftsDetails";
 
 const DeliveryGifts = () => {
   return (
-    <div className="p-2 p-lg-5" style={{ marginTop: "60px" }}>
-      <p className="pb-4 fw-bold">
+    <div className="p-4 lg:p-12">
+      <p className="pb-6 text-xl lg:text-2xl font-bold">
         Same Day Delivery Gifts ({sameDayDeliveryData.length} Products)
       </p>
       <div className="">
-        <div className="row">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
           {sameDayDeliveryData.map((datas) => {
             const { image, name, price } = datas;
             return (
-              <div className="col-6 col-lg-3">
-                <Link
-                  to={`/delivery/${name}`}
-                  state={datas}
-                  className="text-decoration-none"
-                >
-                  <div class="card">
-                    <img src={image} class="card-img-top" alt="..." />
-                    <div class="card-body">
-                      <h6 class="card-title">{name}</h6>
-                      <h4 class="card-text">{price}$</h4>
-                    </div>
+              <div className="shadow-lg">
+                <div class="p-2">
+                  <Link to={`/delivery/${name}`} state={datas} className="">
+                    <img src={image} class="w-full" alt="..." />
+                  </Link>
+                  <div class="h-[100px] py-4">
+                    <h6 class="card-title">{name}</h6>
+                    <h4 class="text-orange-500 font-bold">{price}$</h4>
                   </div>
-                </Link>
+                  <button className="bg-[#9A583B] text-white font-bold px-4 py-1 mx-auto block mb-2 rounded">
+                    Add To Cart
+                  </button>
+                </div>
               </div>
             );
           })}
