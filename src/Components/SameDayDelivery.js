@@ -26,27 +26,27 @@ const SameDayDelivery = () => {
         <div className="hidden lg:block">
           <div className="grid lg:grid-cols-6 ">
             <img
-              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
+              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-royal-purple-chocolate-bouquet-178336-m.jpg"
               style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
             />
             <img
-              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
+              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-chocolaty-goodness-191630-m.jpg"
               style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
             />
             <img
-              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/personalized_d_igp_frames_20230131.jpg"
+              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-rochers-galore-gift-178334-m.jpg"
               style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
             />
             <img
-              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/hampers_d_igp_frames_20230131.jpg"
+              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-premium-couverture-chocolate-hamper-191990-m.jpg"
               style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
             />
             <img
-              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
+              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-chocolates-aplenty-gift-tray-170162-m.jpg"
               style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
             />
             <img
-              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
+              src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-health-conscious-gourmet-box-203911-m.jpg"
               style={{ width: "200px", borderRadius: "0 0 10px 10px" }}
             />
           </div>
@@ -55,27 +55,27 @@ const SameDayDelivery = () => {
         {/* images for mobile device */}
         <div className="grid grid-cols-3 gap-2 lg:hidden">
           <img
-            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-royal-purple-chocolate-bouquet-178336-m.jpg"
             style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
           />
           <img
-            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-chocolaty-goodness-191630-m.jpg"
             style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
           />
           <img
-            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/personalized_d_igp_frames_20230131.jpg"
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-rochers-galore-gift-178334-m.jpg"
             style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
           />
           <img
-            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/hampers_d_igp_frames_20230131.jpg"
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-premium-couverture-chocolate-hamper-191990-m.jpg"
             style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
           />
           <img
-            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/flowers_d_igp_frames_20230131.jpg"
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-chocolates-aplenty-gift-tray-170162-m.jpg"
             style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
           />
           <img
-            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt4prodlp/banners/cakes_d_igp_frames_20230131.jpg"
+            src="https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-health-conscious-gourmet-box-203911-m.jpg"
             style={{ width: "150px", borderRadius: "0 0 10px 10px" }}
           />
         </div>

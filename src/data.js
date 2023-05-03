@@ -45,7 +45,7 @@ export const sameDayDeliveryData = [
       "Capacity : 300ml",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-birthday-sprinkles-personalized-magic-mug-19292-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-health-conscious-gourmet-box-203911-m.jpg",
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ export const sameDayDeliveryData = [
     desc: "Even Cupid will hype you while you send your beloved the Love Blooms From A Box. It's a lovely adornment of freshly-picked Roses, and a cute Teddy Bear placed lovingly in a box. It's hand-tied with a beautiful red ribbon.",
     attiribute: ["IGP Flower Box", "3inch Beige Teddy with beige", "Flowers"],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-love-blooms-from-a-box-202442-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-gift-tray-of-deliciousness-170171-m.jpg",
   },
   {
     id: 3,
@@ -69,7 +69,7 @@ export const sameDayDeliveryData = [
       "Country of Origin : India",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-gourmet-treats-in-gift-basket-hamper-141360-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-premium-couverture-chocolate-hamper-191990-m.jpg",
   },
   {
     id: 4,
@@ -83,7 +83,7 @@ export const sameDayDeliveryData = [
       "Type : Eggless",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-delicious-truffle-cake-half-kg--145982-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-chocolaty-goodness-191630-m.jpg",
   },
   {
     id: 5,
@@ -92,7 +92,7 @@ export const sameDayDeliveryData = [
     desc: "Say happy birthday to a loved one with this cheerful floral arrangement. The hot pink colour of these roses will surely transcend onto your loved one's face as they blush with happiness. The flowers are arranged in a pink ceramic mug with a golden happy birthday tag.",
     attiribute: ["Pink Ceramic Mug", "Flowers", "Happy Birthday Round Acrylic"],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-birthday-beauty-floral-arrangement-203946-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-personalized-birthday-special-chocolates-170516-m.jpg",
   },
   {
     id: 6,
@@ -108,7 +108,7 @@ export const sameDayDeliveryData = [
       "Country of Origin : India",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-special-personalized-led-cushion-73302-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-scrumptious-affair-hamper-187837-m.jpg",
   },
   {
     id: 7,
@@ -123,7 +123,7 @@ export const sameDayDeliveryData = [
       "Peri Peri Almonds 50gm",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-sweet-and-nut-hamper-198160-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-temptations-couverture-chocolate-hamper-191987-m.jpg",
   },
   {
     id: 8,
@@ -138,7 +138,7 @@ export const sameDayDeliveryData = [
       "Capacity : 300ml",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-sunshine-mango-cake-half-kg--206187-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-strawberry-burst-199944-m.jpg",
   },
   {
     id: 9,
@@ -153,7 +153,7 @@ export const sameDayDeliveryData = [
       "Capacity : 300ml",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-special-butterscotch-cake-half-kg--109218-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-happiness-chocolate-gift-tray-with-personalized-card-155257-m.jpg",
   },
   {
     id: 10,
@@ -168,7 +168,7 @@ export const sameDayDeliveryData = [
       "Capacity : 300ml",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-heavenly-red-velvet-cake-600-gm--190852-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-chocolates-and-cookies-in-gift-tray-154640-m.jpg",
   },
   {
     id: 11,
@@ -183,7 +183,7 @@ export const sameDayDeliveryData = [
       "Capacity : 300ml",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-floral-enchantment-bouquet-132891-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-healthy-and-chocolatey-gift-tray-170163-m.jpg",
   },
   {
     id: 12,
@@ -198,6 +198,6 @@ export const sameDayDeliveryData = [
       "Capacity : 300ml",
     ],
     image:
-      "https://cdn.igp.com/f_auto,q_auto,t_pnopt9prodlp/products/p-stars-chocolate-cake-half-kg--4784-m.jpg",
+      "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-pink-and-green-sweet-treats-hamper-170160-m.jpg",
   },
 ];

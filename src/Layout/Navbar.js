@@ -11,6 +11,8 @@ import { ImCross } from "react-icons/im";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+import logo from "../assets/images/logo/logo.png";
+
 const Navbar = () => {
   const [modelMenu, setModelMenu] = useState(false);
   return (
@@ -98,10 +100,7 @@ const Navbar = () => {
         {/* logo */}
         <div>
           <Link to="/">
-            <img
-              src="https://cdn.igp.com/raw/upload/assets/images/igp_updated_logo.png"
-              style={{ width: "100px" }}
-            />
+            <img src={logo} style={{ width: "100px" }} />
           </Link>
         </div>
 
