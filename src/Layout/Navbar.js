@@ -125,14 +125,14 @@ const Navbar = () => {
 
         {/* icon */}
         <div className="flex gap-4 lg:gap-5 text-white text-xl lg:text-3xl">
-          <p>
+          <p className="hidden">
             <AiOutlineDollarCircle />
           </p>
           <p className="d-none d-lg-block">
             <MdOutlineLocationOn />
           </p>
           <p>
-            <AiOutlineHeart />
+            <AiOutlineHeart className="hidden" />
           </p>
           <p className="relative">
             <Link to="/carts">

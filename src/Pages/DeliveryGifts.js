@@ -22,7 +22,7 @@ const DeliveryGifts = () => {
                   <Link to={`/delivery/${name}`} state={datas} className="">
                     <img src={image} class="w-full" alt="..." />
                   </Link>
-                  <div class="h-[100px] py-4">
+                  <div class=" py-4">
                     <h6 class="card-title">{name}</h6>
                     <h4 class="text-orange-500 font-bold">{price}$</h4>
                   </div>

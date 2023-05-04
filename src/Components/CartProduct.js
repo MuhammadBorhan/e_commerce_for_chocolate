@@ -10,7 +10,7 @@ const CartProduct = ({ data }) => {
       <div className="shadow-lg">
         <div class="p-2">
           <img src={image} class="w-full" alt="..." />
-          <div class="h-[100px] py-4">
+          <div class=" py-4">
             <h6 class="card-title">{name}</h6>
             <h4 class="text-orange-500 font-bold">{price}$</h4>
             <h4 class=" font-bold">Quantity: {quantity}</h4>

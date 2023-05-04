@@ -4,16 +4,20 @@ import bg from "../../assets/images/loginBg.jpg";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const styles = {
-    backgroundImage: `url(${bg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    height: "100vh",
-  };
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState("");
   return (
-    <div className="flex  h-screen justify-center items-center" style={styles}>
+    <div
+      className="flex  h-screen justify-center items-center"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        position: "fixed",
+        width: "100%",
+      }}
+    >
       <div className="card  bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-xl font-bold">Sign in to complete your order</h2>
