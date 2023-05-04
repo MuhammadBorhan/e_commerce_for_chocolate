@@ -105,16 +105,16 @@ const Navbar = () => {
         </div>
 
         {/* search bar */}
-        <div class="relative hidden lg:block text-gray-600">
+        <div className="relative hidden lg:block text-gray-600">
           <input
-            class="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
+            className="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
             type="search"
             name="search"
             placeholder="Search"
           />
-          <button type="submit" class="absolute right-0 top-0 mt-2 mr-4 ">
+          <button type="submit" className="absolute right-0 top-0 mt-2 mr-4 ">
             <svg
-              class="h-4 w-4 fill-current"
+              className="h-4 w-4 fill-current"
               viewBox="0 0 16 16"
               xmlns="http://www.w3.org/2000/svg"
             >
