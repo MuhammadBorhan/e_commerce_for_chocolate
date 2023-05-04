@@ -6,6 +6,8 @@ import NotFound from "../Pages/NotFound";
 import DeliveryGifts from "../Pages/DeliveryGifts";
 import DeliveryGiftsDetails from "../Pages/DeliveryGiftsDetails";
 import CartProducts from "../Pages/CartProduct/CartProducts";
+import Login from "../Pages/Login/Login";
+import SignUp from "../Pages/Login/SignUp";
 
 const routes = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const routes = createBrowserRouter([
       {
         path: "/carts",
         element: <CartProducts />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },
