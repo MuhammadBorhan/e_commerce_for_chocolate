@@ -1,0 +1,29 @@
+[
+  {
+    "_id": 1,
+    "name": "Dhaka",
+    "img": "https://images.deliveryhero.io/image/fd-bd/city-title/city-title-Dhaka.jpg?width=720",
+    "districID": 1
+  },
+  {
+    "_id": 2,
+    "name": "Chittagong",
+    "img": "https://images.deliveryhero.io/image/fd-bd/city-title/city-title-Chittagong.jpg?width=720",
+    "districID": 2
+  },
+  {
+    "_id": 3,
+    "name": "Cumilla",
+    "img": "https://images.deliveryhero.io/image/fd-bd/city-title/city-tile-cumilla.jpg?width=720"
+  },
+  {
+    "_id": 4,
+    "name": "Sylhet",
+    "img": "https://images.deliveryhero.io/image/fd-bd/city-title/city-title-sylhet.jpg?width=720"
+  },
+  {
+    "_id": 5,
+    "name": "Khulna",
+    "img": "https://images.deliveryhero.io/image/fd-bd/city-title/city-tile-Khulna.jpg?width=720"
+  }
+]

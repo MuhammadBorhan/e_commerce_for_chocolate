@@ -4,6 +4,7 @@ import HeaderMenu from "../Components/HeaderMenu";
 import MobileSearch from "../Components/MobileSearch";
 import CategorySwiper from "./CategorySwiper/CategorySwiper";
 import SameDayDelivery from "../Components/SameDayDelivery";
+import Regions from "../Components/Regions";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <HeaderMenu />
       <HeroSlider />
       <CategorySwiper />
+      <Regions />
       <SameDayDelivery />
     </>
   );
