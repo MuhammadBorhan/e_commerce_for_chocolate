@@ -1,13 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const SameDayDelivery = () => {
   return (
     <div className="pb-12 pr-4 lg:pr-12 pl-4 lg:pl-12 lg:pt-6">
-      <div className="py-6 text-center">
+      {/* <div className="py-6 text-center">
         <h3 className="text-xl lg:text-2xl font-bold">Trending Gifts</h3>
         <p>Handpicked for your gifting needs</p>
-      </div>
+      </div> */}
       <div className="">
         <div
           className="flex justify-between pb-2 mb-2"
