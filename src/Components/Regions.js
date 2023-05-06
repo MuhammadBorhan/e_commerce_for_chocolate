@@ -1,37 +1,103 @@
 import React, { useEffect, useState } from "react";
 
 const Regions = () => {
+  const brands = [
+    { name: "borhan", title: "uddin", district: "Laksham" },
+    { name: "ashraf", title: "khan", district: "Lalmai" },
+  ];
   const [regions, setRegions] = useState([]);
-  // const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0);
+  const [allBrand, setAllBrand] = useState([]);
+  console.log(allBrand);
+
+  const handleBrand = (d) => {
+    const rest = brands.filter((brand) => brand.district === d);
+    setAllBrand(rest);
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/regions")
       .then((res) => res.json())
       .then((data) => setRegions(data?.data));
   }, []);
   const [selectedRegion, setSelectedRegion] = useState(null);
-  console.log(selectedRegion);
 
-  const handleRegionClick = (region) => {
+  const handleRegionClick = (region, index) => {
     setSelectedRegion(region);
-    // setActive(index);
+    setActive(index);
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-6">
-        {regions.map((r, index) => {
-          // console.log(r);
-          return (
-            <button key={r.region} onClick={() => handleRegionClick(r)}>
-              {r.region}
-            </button>
-          );
-        })}
+    <div className="p-12">
+      <div className="pb-6 text-center">
+        <h3 className="text-xl lg:text-2xl font-bold">Trending Gifts</h3>
+        <p>Handpicked for your gifting needs</p>
       </div>
-      <ul>
-        {selectedRegion &&
-          selectedRegion?.district?.map((d) => <li key={d}>{d}</li>)}
-      </ul>
+      <div className="">
+        <h3 className="float-left mt-4">Region:</h3>
+        <div className="grid grid-cols-6 gap-4 pb-8">
+          {regions.map((r, index) => {
+            // console.log(r);
+            return (
+              <button
+                key={index}
+                onClick={() => handleRegionClick(r, index)}
+                className={`${
+                  active === index ? "bg-orange-700 text-white font-bold" : ""
+                } cursor-pointer capitalize m-4 `}
+                style={{ boxShadow: "1px 1px 2px 1px gray" }}
+              >
+                {r.region}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div>
+        {selectedRegion ? (
+          <div className="">
+            <h2 className="float-left mr-4">District:</h2>
+            <div className=" grid grid-cols-4 justify-center text-center gap-4">
+              {selectedRegion?.district?.map((d) => (
+                <button
+                  onClick={() => handleBrand(d)}
+                  className=" bg-blue-900 text-white"
+                  key={d}
+                  style={{ boxShadow: "1px 1px 2px 1px gray" }}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <h2 className="float-left mr-4">District:</h2>
+            <div className=" grid grid-cols-4 justify-center text-center gap-4">
+              {regions[0]?.district?.map((d) => (
+                <button
+                  className=" bg-indigo-200"
+                  key={d}
+                  style={{ boxShadow: "1px 1px 2px 1px gray" }}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      <div>
+        {allBrand && (
+          <div>
+            {allBrand.map((brand) => (
+              <div>
+                <h2>{brand.name}</h2>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
