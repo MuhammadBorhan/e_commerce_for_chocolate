@@ -5,6 +5,7 @@ import MobileSearch from "../Components/MobileSearch";
 import CategorySwiper from "./CategorySwiper/CategorySwiper";
 import SameDayDelivery from "../Components/SameDayDelivery";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import Regions from "../Components/Regions";
 
 const Home = () => {
   const { pathname } = useLocation();
@@ -14,6 +15,7 @@ const Home = () => {
       <HeaderMenu />
       <HeroSlider />
       <CategorySwiper />
+      <Regions />
       <SameDayDelivery />
       <div>
         <div className="flex gap-12 justify-center">
