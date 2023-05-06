@@ -8,6 +8,10 @@ import DeliveryGiftsDetails from "../Pages/DeliveryGiftsDetails";
 import CartProducts from "../Pages/CartProduct/CartProducts";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
+import Dhaka from "../Pages/TrendingGifts/Dhaka";
+import Chittagong from "../Pages/TrendingGifts/Chittagong";
+import Comilla from "../Pages/TrendingGifts/Comilla";
+import Rajshahi from "../Pages/TrendingGifts/Rajshahi";
 
 const routes = createBrowserRouter([
   {
@@ -17,6 +21,24 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        children: [
+          {
+            path: "/dhaka",
+            element: <Dhaka />,
+          },
+          {
+            path: "/chittagong",
+            element: <Chittagong />,
+          },
+          {
+            path: "/comilla",
+            element: <Comilla />,
+          },
+          {
+            path: "/rajshahi",
+            element: <Rajshahi />,
+          },
+        ],
       },
       {
         path: "/contact",
