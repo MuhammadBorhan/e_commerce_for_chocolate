@@ -8,19 +8,18 @@ const SignUp = () => {
   const [data, setData] = useState("");
   return (
     <div
-      className="flex  h-screen justify-center items-center"
+      className="flex lg:h-screen justify-center overflow-auto items-center"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
+        // height: "100%",
         position: "fixed",
-        // top: "70px",
         width: "100%",
-        overflow: "scroll",
+        // overflow: "scroll",
       }}
     >
-      <div className="card bg-base-100 shadow-xl mb-12">
+      <div className="card bg-base-100 overflow-auto shadow-xl mb-12">
         <div className="card-body">
           <div className="text-center">
             <h2 className="text-xl font-bold">

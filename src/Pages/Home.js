@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeroSlider from "../Components/HeroSlider";
 import HeaderMenu from "../Components/HeaderMenu";
 import MobileSearch from "../Components/MobileSearch";
