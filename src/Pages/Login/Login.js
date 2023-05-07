@@ -1,11 +1,18 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const handleLogin = (data) => {
+    console.log(data);
+  };
+
   return (
     <div
       className="flex  h-screen justify-center items-center"
@@ -27,9 +34,7 @@ const Login = () => {
               Sign up
             </Link>
           </p>
-          <form
-            onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
-          >
+          <form onSubmit={handleSubmit(handleLogin)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -38,8 +43,13 @@ const Login = () => {
                 type="email"
                 placeholder="Your Email"
                 className="input input-bordered w-full max-w-xs"
-                {...register("email")}
+                {...register("email", { required: "Email is Required" })}
               />
+              {errors.email && (
+                <p role="alert" className="text-red-600">
+                  {errors.email?.message}
+                </p>
+              )}
             </div>
             <div className="form-control w-full max-w-xs">
               <label className="label">
@@ -49,8 +59,13 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 className="input input-bordered w-full max-w-xs"
-                {...register("password")}
+                {...register("password", { required: "Password is required" })}
               />
+              {errors.email && (
+                <p role="alert" className="text-red-600">
+                  {errors.password?.message}
+                </p>
+              )}
             </div>
 
             <input
@@ -60,6 +75,7 @@ const Login = () => {
               value="Login"
             />
           </form>
+
           <div className="divider">OR</div>
           <button
             className="btn btn-outline"

@@ -8,6 +8,7 @@ import DeliveryGiftsDetails from "../Pages/DeliveryGiftsDetails";
 import CartProducts from "../Pages/CartProduct/CartProducts";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
+import AddRegion from "../Pages/AddRegion/AddRegion";
 
 const routes = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const routes = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/addregion",
+        element: <AddRegion />,
       },
     ],
   },

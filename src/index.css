@@ -15,3 +15,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.selected-region {
+  background-color: rgb(66, 15, 15);
+  color: white;
+}
