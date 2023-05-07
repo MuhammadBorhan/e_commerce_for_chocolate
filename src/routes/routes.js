@@ -8,6 +8,7 @@ import DeliveryGiftsDetails from "../Pages/DeliveryGiftsDetails";
 import CartProducts from "../Pages/CartProduct/CartProducts";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
+import BrandsItem from "../Pages/BrandsItem/BrandsItem";
 
 const routes = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/brands/:name",
+        element: <BrandsItem />,
       },
       {
         path: "/contact",

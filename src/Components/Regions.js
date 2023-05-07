@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Regions = () => {
-  // const brands = [
-  //   { name: "borhan", title: "uddin", district: "Laksham" },
-  //   { name: "ashraf", title: "khan", district: "Lalmai" },
-  // ];
   const [regions, setRegions] = useState([]);
   const [active, setActive] = useState(0);
   const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
-  // console.log(brands);
-  console.log(selectedBrands);
 
+  // onClick handler of distrcit button for showing brands item
   const handleBrand = (d) => {
     const rest = brands.filter((brand) => brand.district === d);
     setSelectedBrands(rest);
   };
 
+  // fetching brands data
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/brands")
       .then((res) => res.json())
       .then((data) => setBrands(data?.data));
   }, []);
 
+  // fetching regions data
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/regions")
       .then((res) => res.json())
@@ -30,6 +28,7 @@ const Regions = () => {
   }, []);
   const [selectedRegion, setSelectedRegion] = useState(null);
 
+  // onClick handler of region button for showing district list
   const handleRegionClick = (region, index) => {
     setSelectedRegion(region);
     setActive(index);
@@ -41,11 +40,12 @@ const Regions = () => {
         <h3 className="text-xl lg:text-2xl font-bold">Trending Gifts</h3>
         <p>Handpicked for your gifting needs</p>
       </div>
+
+      {/* Region list */}
       <div className="">
         <h3 className="float-left mt-4">Region:</h3>
-        <div className="grid grid-cols-6 gap-4 pb-8">
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-4 pb-8">
           {regions.map((r, index) => {
-            // console.log(r);
             return (
               <button
                 key={index}
@@ -61,6 +61,8 @@ const Regions = () => {
           })}
         </div>
       </div>
+
+      {/* District List */}
       <div>
         {selectedRegion ? (
           <div className="">
@@ -96,16 +98,22 @@ const Regions = () => {
           </div>
         )}
       </div>
+
+      {/* Brands List */}
       <div className="py-6">
         {selectedBrands && (
           <div className="grid grid-cols-3 gap-4 text-center p-6 bg-gray-200">
             {selectedBrands.map((brand) => (
-              <div className="shadow-lg bg-white flex flex-col justify-center items-center">
+              <Link
+                to={`/brands/${brand.name}`}
+                state={brand}
+                className="shadow-lg bg-white flex flex-col justify-center items-center"
+              >
                 <div>
                   <img className="w-[200px]" src={brand.image} />
                 </div>
                 <h2>{brand.name}</h2>
-              </div>
+              </Link>
             ))}
           </div>
         )}
