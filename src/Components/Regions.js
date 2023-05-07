@@ -44,7 +44,7 @@ const Regions = () => {
       {/* Region list */}
       <div className="">
         <h3 className="float-left mt-4">Region:</h3>
-        <div className="grid grid-cols-3 lg:grid-cols-6 gap-4 pb-8">
+        <div className="grid grid-cols-3 lg:grid-cols-6 lg:gap-4 pb-8">
           {regions.map((r, index) => {
             return (
               <button
@@ -52,7 +52,7 @@ const Regions = () => {
                 onClick={() => handleRegionClick(r, index)}
                 className={`${
                   active === index ? "bg-orange-700 text-white font-bold" : ""
-                } cursor-pointer capitalize m-4 `}
+                } cursor-pointer capitalize m-1 lg:m-4 `}
                 style={{ boxShadow: "1px 1px 2px 1px gray" }}
               >
                 {r.region}
@@ -67,7 +67,7 @@ const Regions = () => {
         {selectedRegion ? (
           <div className="">
             <h2 className="float-left mr-4">District:</h2>
-            <div className=" grid grid-cols-4 justify-center text-center gap-4">
+            <div className=" grid grid-cols-3 lg:grid-cols-4 justify-center text-center gap-2 lg:gap-4">
               {selectedRegion?.district?.map((d) => (
                 <button
                   onClick={() => handleBrand(d)}
@@ -102,17 +102,21 @@ const Regions = () => {
       {/* Brands List */}
       <div className="py-6">
         {selectedBrands && (
-          <div className="grid grid-cols-3 gap-4 text-center p-6 bg-gray-200">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
             {selectedBrands.map((brand) => (
-              <Link
-                to={`/brands/${brand.name}`}
-                state={brand}
-                className="shadow-lg bg-white flex flex-col justify-center items-center"
-              >
-                <div>
-                  <img className="w-[200px]" src={brand.image} />
+              <Link to={`/brands/${brand.name}`} state={brand}>
+                <div className="card card-compact shadow-xl">
+                  <figure>
+                    <img
+                      className="h-[100px] lg:h-[200px]"
+                      src={brand.image}
+                      alt="Shoes"
+                    />
+                  </figure>
+                  <div className="card-body text-center items-center">
+                    <h2 className="card-title">{brand.name}</h2>
+                  </div>
                 </div>
-                <h2>{brand.name}</h2>
               </Link>
             ))}
           </div>
