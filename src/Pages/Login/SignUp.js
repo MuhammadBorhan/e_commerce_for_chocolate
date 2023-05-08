@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+  const onSubmit = (data) => {};
   return (
     <div
       className="flex lg:h-screen justify-center overflow-auto items-center"
@@ -32,9 +32,7 @@ const SignUp = () => {
               </Link>
             </p>
           </div>
-          <form
-            onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
-          >
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid lg:grid-cols-2 gap-x-8">
               <div className="form-control w-full max-w-xs">
                 <label className="label">
