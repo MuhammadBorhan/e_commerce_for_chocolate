@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+
+  const onSubmit = (data) => {
+    console.log(data);
+    axios
+      .post(`http://localhost:4000/api/v1/signup`, data)
+      .then((res) => console.log(res));
+  };
   return (
     <div
       className="flex lg:h-screen justify-center overflow-auto items-center"
@@ -32,22 +39,31 @@ const SignUp = () => {
               </Link>
             </p>
           </div>
-          <form
-            onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
-          >
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid lg:grid-cols-2 gap-x-8">
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Full Name</span>
+                  <span className="label-text">First Name</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="Full Name"
+                  placeholder="First Name"
                   className="input input-bordered w-full max-w-xs"
-                  {...register("name")}
+                  {...register("firstName")}
                 />
               </div>
               <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Last Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="input input-bordered w-full max-w-xs"
+                  {...register("lastName")}
+                />
+              </div>
+              {/* <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Country</span>
                 </label>
@@ -57,8 +73,8 @@ const SignUp = () => {
                   className="input input-bordered w-full max-w-xs"
                   {...register("country")}
                 />
-              </div>
-              <div className="form-control w-full max-w-xs">
+              </div> */}
+              {/* <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Mobile Number</span>
                 </label>
@@ -68,10 +84,10 @@ const SignUp = () => {
                   className="input input-bordered w-full max-w-xs"
                   {...register("phone")}
                 />
-              </div>
+              </div> */}
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Email Id</span>
+                  <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
@@ -93,13 +109,13 @@ const SignUp = () => {
               </div>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Date of Birth</span>
+                  <span className="label-text">Confirm Password</span>
                 </label>
                 <input
-                  type="date"
-                  placeholder="Pick Your Date"
+                  type="password"
+                  placeholder="Confirm Password"
                   className="input input-bordered w-full max-w-xs"
-                  {...register("date")}
+                  {...register("confirmPassword")}
                 />
               </div>
             </div>

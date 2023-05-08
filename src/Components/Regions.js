@@ -15,14 +15,14 @@ const Regions = () => {
 
   // fetching brands data
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/brands")
+    fetch("http://localhost:4000/api/v1/brands")
       .then((res) => res.json())
       .then((data) => setBrands(data?.data));
   }, []);
 
   // fetching regions data
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/regions")
+    fetch("http://localhost:4000/api/v1/regions")
       .then((res) => res.json())
       .then((data) => setRegions(data?.data));
   }, []);
