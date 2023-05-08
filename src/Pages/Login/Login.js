@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
-    axios
-      .post(`http://localhost:4000/api/v1/login`, data)
-      .then((res) => console.log(res));
+    axios.post(`http://localhost:5000/api/v1/login`, data).then((res) => {
+      console.log(res?.data?.data);
+      if (res) {
+        navigate("/");
+      }
+    });
   };
   return (
     <div
