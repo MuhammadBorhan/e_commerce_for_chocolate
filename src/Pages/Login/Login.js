@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+  const onSubmit = (data) => {
+    console.log(data);
+    axios
+      .post(`http://localhost:4000/api/v1/login`, data)
+      .then((res) => console.log(res))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div
       className="flex  h-screen justify-center items-center"
@@ -27,9 +36,7 @@ const Login = () => {
               Sign up
             </Link>
           </p>
-          <form
-            onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
-          >
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
