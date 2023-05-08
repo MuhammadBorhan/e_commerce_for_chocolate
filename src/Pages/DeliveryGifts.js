@@ -18,13 +18,13 @@ const DeliveryGifts = () => {
             const { image, name, price } = datas;
             return (
               <div className="shadow-lg">
-                <div class="p-2">
+                <div className="p-2">
                   <Link to={`/delivery/${name}`} state={datas} className="">
-                    <img src={image} class="w-full" alt="..." />
+                    <img src={image} className="w-full" alt="..." />
                   </Link>
-                  <div class=" py-4">
-                    <h6 class="card-title">{name}</h6>
-                    <h4 class="text-orange-500 font-bold">{price}$</h4>
+                  <div className=" py-4">
+                    <h6 className="card-title">{name}</h6>
+                    <h4 className="text-orange-500 font-bold">{price}$</h4>
                   </div>
                   <button
                     onClick={() => dispatch(addToCart(datas))}

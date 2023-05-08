@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGetAllRegionQuery } from "../features/api/regionApi";
+import { useGetAllBrandQuery } from "../features/api/brandsApi";
 
 const Regions = () => {
-  const [regions, setRegions] = useState([]);
+  // fetching regions data
+  const {
+    data: regionData,
+    isLoading: regionLoading,
+    error: regionError,
+  } = useGetAllRegionQuery();
+  const regions = regionData?.data;
+
+  // fetching brands data
+  const {
+    data: brandData,
+    isLoading: brandLoading,
+    error: brandError,
+  } = useGetAllBrandQuery();
+  const brands = brandData?.data;
+
   const [active, setActive] = useState(0);
-  const [brands, setBrands] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
 
   // onClick handler of distrcit button for showing brands item
@@ -13,19 +29,6 @@ const Regions = () => {
     setSelectedBrands(rest);
   };
 
-  // fetching brands data
-  useEffect(() => {
-    fetch("http://localhost:4000/api/v1/brands")
-      .then((res) => res.json())
-      .then((data) => setBrands(data?.data));
-  }, []);
-
-  // fetching regions data
-  useEffect(() => {
-    fetch("http://localhost:4000/api/v1/regions")
-      .then((res) => res.json())
-      .then((data) => setRegions(data?.data));
-  }, []);
   const [selectedRegion, setSelectedRegion] = useState(null);
 
   // onClick handler of region button for showing district list
@@ -33,6 +36,18 @@ const Regions = () => {
     setSelectedRegion(region);
     setActive(index);
   };
+
+  if (regionLoading || brandLoading) {
+    return (
+      <div className="absolute left-[45%] text-red-500 font-bold text-2xl">
+        Loading...
+      </div>
+    );
+  }
+
+  if (regionError || brandError) {
+    return <div>Error: {regionError?.message || brandError?.message}</div>;
+  }
 
   return (
     <div className="p-12">
@@ -45,7 +60,7 @@ const Regions = () => {
       <div className="">
         <h3 className="float-left mt-4">Region:</h3>
         <div className="grid grid-cols-3 lg:grid-cols-6 lg:gap-4 pb-8">
-          {regions.map((r, index) => {
+          {regions?.map((r, index) => {
             return (
               <button
                 key={index}
@@ -84,7 +99,7 @@ const Regions = () => {
           <div>
             <h2 className="float-left mr-4">District:</h2>
             <div className=" grid grid-cols-4 justify-center text-center gap-4">
-              {regions[0]?.district?.map((d) => (
+              {regions?.[0].district?.map((d) => (
                 <button
                   onClick={() => handleBrand(d)}
                   className=" bg-indigo-200"

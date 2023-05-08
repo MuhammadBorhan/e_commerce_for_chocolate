@@ -13,10 +13,6 @@ const BrandsItem = () => {
         </figure>
         <div className="card-body text-center items-center">
           <h2 className="card-title">{brand.name}</h2>
-          {/* <p>{brand.district}</p> */}
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
-          </div>
         </div>
       </div>
     </div>

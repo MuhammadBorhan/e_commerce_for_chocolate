@@ -5,16 +5,19 @@ const MobileSearch = () => {
   return (
     <div className="py-6">
       {/* search bar */}
-      <div class="relative flex justify-center lg:hidden text-gray-600">
+      <div className="relative flex justify-center lg:hidden text-gray-600">
         <input
-          class="bg-white h-8 border px-5 pr-10 rounded-full text-sm focus:outline-none "
+          className="bg-white h-8 border px-5 pr-10 rounded-full text-sm focus:outline-none "
           type="search"
           name="search"
           placeholder="Search"
         />
-        <button type="submit" class="absolute right-[100px] top-0 mt-3 mr-4">
+        <button
+          type="submit"
+          className="absolute right-[100px] top-0 mt-3 mr-4"
+        >
           <svg
-            class="h-4 w-4 fill-current"
+            className="h-4 w-4 fill-current"
             viewBox="0 0 16 16"
             xmlns="http://www.w3.org/2000/svg"
           >
