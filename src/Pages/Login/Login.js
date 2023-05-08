@@ -10,10 +10,7 @@ const Login = () => {
     console.log(data);
     axios
       .post(`http://localhost:4000/api/v1/login`, data)
-      .then((res) => console.log(res))
-      .catch((error) => {
-        console.log(error);
-      });
+      .then((res) => console.log(res));
   };
   return (
     <div
