@@ -128,8 +128,8 @@ const Regions = () => {
       <div className="py-6">
         {selectedBrands && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
-            {selectedBrands.map((brand) => (
-              <Link to={`/brands/${brand.name}`} state={brand}>
+            {selectedBrands.map((brand, index) => (
+              <Link to={`/brands/${brand.name}`} state={brand} key={index}>
                 <div className="card card-compact shadow-xl">
                   <figure>
                     <img
