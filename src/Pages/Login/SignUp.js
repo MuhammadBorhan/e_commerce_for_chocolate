@@ -16,10 +16,10 @@ const SignUp = () => {
     } else if (password.length < 6) {
       alert("Password is less than 6");
     } else {
-      axios.post(`http://localhost:5000/api/v1/signup`, data).then((res) => {
+      axios.post(`http://localhost:4000/api/v1/signup`, data).then((res) => {
         console.log(res);
         if (res.status === 200) {
-          navigate("/login");
+          navigate("/");
         }
       });
     }
