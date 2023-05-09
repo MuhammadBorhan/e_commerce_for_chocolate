@@ -9,9 +9,11 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     axios.post(`http://localhost:5000/api/v1/login`, data).then((res) => {
-      console.log(res?.data?.data);
+      const accessToken = res?.data?.data?.token;
+      localStorage.setItem("accessToken", accessToken);
       if (res) {
         navigate("/");
+        window.location.reload();
       }
     });
   };

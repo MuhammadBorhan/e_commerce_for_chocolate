@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,9 +17,12 @@ const SignUp = () => {
       alert("Password is less than 6");
     } else {
       axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
-        console.log(res?.data?.data);
+        console.log(res?.data?.token);
+        const accessToken = res?.data?.token;
+        localStorage.setItem("accessToken", accessToken);
         if (res.status === 200) {
           navigate("/");
+          window.location.reload();
         }
       });
     }
