@@ -21,12 +21,14 @@ const Regions = () => {
   const brands = brandData?.data;
 
   const [active, setActive] = useState(0);
+  const [disActive, setDisActive] = useState(0);
   const [selectedBrands, setSelectedBrands] = useState([]);
 
   // onClick handler of distrcit button for showing brands item
-  const handleBrand = (d) => {
+  const handleBrand = (d, index) => {
     const rest = brands.filter((brand) => brand.district === d);
     setSelectedBrands(rest);
+    setDisActive(index);
   };
 
   const [selectedRegion, setSelectedRegion] = useState(null);
@@ -83,11 +85,15 @@ const Regions = () => {
           <div className="">
             <h2 className="float-left mr-4">District:</h2>
             <div className=" grid grid-cols-3 lg:grid-cols-4 justify-center text-center gap-2 lg:gap-4">
-              {selectedRegion?.district?.map((d) => (
+              {selectedRegion?.district?.map((d, index) => (
                 <button
-                  onClick={() => handleBrand(d)}
-                  className=" bg-blue-900 text-white"
-                  key={d}
+                  onClick={() => handleBrand(d, index)}
+                  className={`${
+                    disActive === index
+                      ? "bg-orange-700 text-white font-bold"
+                      : "bg-blue-900 text-white"
+                  }  `}
+                  key={index}
                   style={{ boxShadow: "1px 1px 2px 1px gray" }}
                 >
                   {d}
@@ -99,11 +105,15 @@ const Regions = () => {
           <div>
             <h2 className="float-left mr-4">District:</h2>
             <div className=" grid grid-cols-4 justify-center text-center gap-4">
-              {regions?.[0].district?.map((d) => (
+              {regions?.[0].district?.map((d, index) => (
                 <button
-                  onClick={() => handleBrand(d)}
-                  className=" bg-indigo-200"
-                  key={d}
+                  onClick={() => handleBrand(d, index)}
+                  className={`${
+                    disActive === index
+                      ? "bg-orange-700 text-white font-bold"
+                      : "bg-blue-900 text-white"
+                  }  `}
+                  key={index}
                   style={{ boxShadow: "1px 1px 2px 1px gray" }}
                 >
                   {d}
@@ -118,8 +128,8 @@ const Regions = () => {
       <div className="py-6">
         {selectedBrands && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
-            {selectedBrands.map((brand) => (
-              <Link to={`/brands/${brand.name}`} state={brand}>
+            {selectedBrands.map((brand, index) => (
+              <Link to={`/brands/${brand.name}`} state={brand} key={index}>
                 <div className="card card-compact shadow-xl">
                   <figure>
                     <img

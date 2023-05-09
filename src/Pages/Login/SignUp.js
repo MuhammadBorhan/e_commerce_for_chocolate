@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,16 +10,27 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    const { confirmPassword: cfw, ...others } = data;
     const { password, confirmPassword } = data;
     if (password !== confirmPassword) {
       alert("Password did not match");
     } else if (password.length < 6) {
       alert("Password is less than 6");
     } else {
+<<<<<<< HEAD
       axios.post(`http://localhost:4000/api/v1/signup`, data).then((res) => {
         console.log(res);
         if (res.status === 200) {
           navigate("/");
+=======
+      axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
+        console.log(res?.data?.token);
+        const accessToken = res?.data?.token;
+        localStorage.setItem("accessToken", accessToken);
+        if (res.status === 200) {
+          navigate("/");
+          window.location.reload();
+>>>>>>> 83466e52a759b36cdf3a231996e38014d1f9dc99
         }
       });
     }

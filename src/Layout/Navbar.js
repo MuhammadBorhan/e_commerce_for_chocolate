@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineMenu,
   AiOutlineDollarCircle,
@@ -10,12 +10,35 @@ import {
 import { MdOutlineLocationOn } from "react-icons/md";
 import { ImCross } from "react-icons/im";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
 import { useSelector } from "react-redux";
+import { useGetUserQuery } from "../features/api/loginApi";
 
 const Navbar = () => {
+  const { data } = useGetUserQuery();
+  const user = data?.data;
+
+  // const [user, setUser] = useState({});
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/api/v1/me", {
+  //     method: "GET",
+  //     headers: {
+  //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setUser(data?.data));
+  // }, []);
+
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/login");
+    window.location.reload();
+  };
+
   const [modelMenu, setModelMenu] = useState(false);
   const cart = useSelector((state) => state?.cart?.cart);
   return (
@@ -126,6 +149,16 @@ const Navbar = () => {
 
         {/* icon */}
         <div className="flex gap-4 lg:gap-5 text-white text-xl lg:text-3xl">
+          {user ? (
+            <button onClick={logOut} className="text-xl">
+              Logout
+            </button>
+          ) : (
+            <button className="text-xl">
+              <Link to={"/login"}>Login</Link>
+            </button>
+          )}
+          <p className="text-sm">{user?.firstName}</p>
           <p className="hidden">
             <AiOutlineDollarCircle />
           </p>
