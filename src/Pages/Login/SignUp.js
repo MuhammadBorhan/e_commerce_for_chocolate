@@ -9,16 +9,17 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    const { confirmPassword: cfw, ...others } = data;
     const { password, confirmPassword } = data;
     if (password !== confirmPassword) {
       alert("Password did not match");
     } else if (password.length < 6) {
       alert("Password is less than 6");
     } else {
-      axios.post(`http://localhost:5000/api/v1/signup`, data).then((res) => {
-        console.log(res);
+      axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
+        console.log(res?.data?.data);
         if (res.status === 200) {
-          navigate("/login");
+          navigate("/");
         }
       });
     }
