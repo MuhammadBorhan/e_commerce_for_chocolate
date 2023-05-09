@@ -13,6 +13,7 @@ const Login = () => {
       localStorage.setItem("accessToken", accessToken);
       if (res) {
         navigate("/");
+        window.location.reload();
       }
     });
   };
