@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useGetAllBrandItemQuery } from "../../features/api/brandsItemApi";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -16,6 +18,8 @@ const BrandsItem = () => {
       brandItem?.district === brands?.district
     );
   });
+
+  const dispatch = useDispatch();
   return (
     <div className="p-4 lg:p-12">
       <div className="flex justify-center pb-8">
@@ -52,7 +56,10 @@ const BrandsItem = () => {
                   <h2 className="card-title">{brandItem.name}</h2>
                   <h2 className="card-title">{brandItem.price}$</h2>
                 </div>
-                <button className="px-2 py-1 bg-[#9A583B] text-white">
+                <button
+                  onClick={() => dispatch(addToCart(brandItem))}
+                  className="px-2 py-1 bg-[#9A583B] text-white"
+                >
                   Add To Cart
                 </button>
               </div>

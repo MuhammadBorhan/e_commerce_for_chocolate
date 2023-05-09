@@ -60,8 +60,8 @@ const Regions = () => {
 
       {/* Region list */}
       <div className="">
-        <h3 className="float-left mt-4">Region:</h3>
-        <div className="grid grid-cols-3 lg:grid-cols-6 lg:gap-4 pb-8">
+        <h3 className="float-left mr-4">Region:</h3>
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
           {regions?.map((r, index) => {
             return (
               <button
@@ -69,7 +69,7 @@ const Regions = () => {
                 onClick={() => handleRegionClick(r, index)}
                 className={`${
                   active === index ? "bg-orange-700 text-white font-bold" : ""
-                } cursor-pointer capitalize m-1 lg:m-4 `}
+                } cursor-pointer capitalize m-1 lg:m-0 `}
                 style={{ boxShadow: "1px 1px 2px 1px gray" }}
               >
                 {r.region}

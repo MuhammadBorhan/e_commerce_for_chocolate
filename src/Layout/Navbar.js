@@ -157,7 +157,7 @@ const Navbar = () => {
               <Link to={"/login"}>Login</Link>
             </button>
           )}
-          <p className="text-sm">{user?.firstName}</p>
+          <p className="text-sm">{user?.email}</p>
           <p className="hidden">
             <AiOutlineDollarCircle />
           </p>
