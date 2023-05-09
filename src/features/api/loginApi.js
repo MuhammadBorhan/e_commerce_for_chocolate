@@ -2,6 +2,12 @@ import apiSlice from "./apiSlice";
 
 const loginApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getAllUser: builder.query({
+      query: () => ({
+        url: "/users",
+      }),
+      providesTags: ["logins"],
+    }),
     getUser: builder.query({
       query: () => ({
         url: "/me",
@@ -10,9 +16,9 @@ const loginApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
-      providesTags: ["login"],
+      providesTags: ["logins"],
     }),
   }),
 });
 
-export const { useGetUserQuery } = loginApi;
+export const { useGetAllUserQuery, useGetUserQuery } = loginApi;

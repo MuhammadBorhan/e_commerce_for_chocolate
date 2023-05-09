@@ -22,6 +22,7 @@ const SignUp = () => {
         localStorage.setItem("accessToken", accessToken);
         if (res.status === 200) {
           navigate("/");
+          window.location.reload();
         }
       });
     }
