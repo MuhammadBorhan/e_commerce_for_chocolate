@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { sameDayDeliveryData } from "../data";
 import { Link } from "react-router-dom";
 import DeliveryGiftsDetails from "./DeliveryGiftsDetails";
@@ -7,6 +7,7 @@ import { addToCart } from "../features/cart/cartSlice";
 
 const DeliveryGifts = () => {
   const dispatch = useDispatch();
+
   return (
     <div className="p-4 lg:p-12">
       <p className="pb-6 text-xl lg:text-2xl font-bold">

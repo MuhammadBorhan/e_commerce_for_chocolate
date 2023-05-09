@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const SameDayDelivery = () => {
+  const [user, setUser] = useState({});
+  console.log("user", user);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/v1/me", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setUser(data?.data));
+  }, []);
   return (
     <div className="pb-12 pr-4 lg:pr-12 pl-4 lg:pl-12 lg:pt-6">
       {/* <div className="py-6 text-center">
@@ -12,7 +25,7 @@ const SameDayDelivery = () => {
           className="flex justify-between pb-2 mb-2"
           style={{ borderBottom: "1px solid gray" }}
         >
-          <h6>Same Day Delivery</h6>
+          <h6>Same Day Delivery {user?.email}</h6>
           <Link
             to="/same-day-delivery-gifts"
             style={{ textDecoration: "none", color: "gray" }}

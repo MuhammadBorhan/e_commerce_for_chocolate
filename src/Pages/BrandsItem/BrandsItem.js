@@ -10,13 +10,6 @@ const BrandsItem = () => {
   const { data } = useGetAllBrandItemQuery();
   const brandsItem = data?.data;
 
-  // const [brandsItem, setBrandsItem] = useState([]);
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/api/v1/brandsItem")
-  //     .then((res) => res.json())
-  //     .then((data) => setBrandsItem(data?.data));
-  // }, []);
-
   const selectedProduct = brandsItem?.filter((brandItem) => {
     return (
       brandItem?.brand === brands?.name &&
