@@ -17,6 +17,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
 
   const handleProductChange = (index, field, value) => {
+    console.log(index, field, value);
     const updatedProducts = [...products];
     updatedProducts[index][field] = value;
     setProducts(updatedProducts);
@@ -58,6 +59,7 @@ const Home = () => {
       // Handle error or show an error message
     }
   };
+
   return (
     <>
       <MobileSearch />
