@@ -1,6 +1,3 @@
-export const dhaka = ["mohammadpur", "Dhanmondi", "gulshan", "Rampura"];
-export const comilla = ["laksam", "monohorgonj", "gulshan", "Rampura"];
-
 export const heroSlider = [
   {
     id: 1,

@@ -20,13 +20,34 @@ const Regions = () => {
   } = useGetAllBrandQuery();
   const brands = brandData?.data;
 
+  // fetching brands product data
+  const [brandProducts, setBrandProducts] = useState([]);
+  // console.log(brandProducts);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/v1/brandproduct")
+      .then((res) => res.json())
+      .then((data) => setBrandProducts(data?.data));
+  }, []);
+
   const [active, setActive] = useState(0);
   const [disActive, setDisActive] = useState(0);
   const [selectedBrands, setSelectedBrands] = useState([]);
 
+  const removeDuplicates = (arr) => {
+    return arr.filter((obj, index, self) => {
+      return (
+        index ===
+        self.findIndex(
+          (el) => el.brandName === obj.brandName && el.district === obj.district
+        )
+      );
+    });
+  };
+  const uniqueBrandProducts = removeDuplicates(selectedBrands);
+
   // onClick handler of distrcit button for showing brands item
   const handleBrand = (d, index) => {
-    const rest = brands.filter((brand) => brand.district === d);
+    const rest = brandProducts?.filter((brand) => brand?.district === d);
     setSelectedBrands(rest);
     setDisActive(index);
   };
@@ -60,8 +81,8 @@ const Regions = () => {
 
       {/* Region list */}
       <div className="">
-        <h3 className="float-left mt-4">Region:</h3>
-        <div className="grid grid-cols-3 lg:grid-cols-6 lg:gap-4 pb-8">
+        <h3 className="float-left mr-4">Region:</h3>
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
           {regions?.map((r, index) => {
             return (
               <button
@@ -69,7 +90,7 @@ const Regions = () => {
                 onClick={() => handleRegionClick(r, index)}
                 className={`${
                   active === index ? "bg-orange-700 text-white font-bold" : ""
-                } cursor-pointer capitalize m-1 lg:m-4 `}
+                } cursor-pointer capitalize m-1 lg:m-0 `}
                 style={{ boxShadow: "1px 1px 2px 1px gray" }}
               >
                 {r.region}
@@ -126,20 +147,20 @@ const Regions = () => {
 
       {/* Brands List */}
       <div className="py-6">
-        {selectedBrands && (
+        {uniqueBrandProducts && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
-            {selectedBrands.map((brand, index) => (
+            {uniqueBrandProducts?.map((brand, index) => (
               <Link to={`/brands/${brand.name}`} state={brand} key={index}>
                 <div className="card card-compact shadow-xl">
                   <figure>
                     <img
                       className="h-[100px] lg:h-[200px]"
-                      src={brand.image}
-                      alt="Shoes"
+                      src={brand.brandUrl}
+                      alt={brand.brandName}
                     />
                   </figure>
                   <div className="card-body text-center items-center">
-                    <h2 className="card-title">{brand.name}</h2>
+                    <h2 className="card-title">{brand.brandName}</h2>
                   </div>
                 </div>
               </Link>
@@ -147,6 +168,27 @@ const Regions = () => {
           </div>
         )}
       </div>
+
+      {/* <div className="py-6">
+        {selecetOne && (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
+            <Link to={`/brands/${selecetOne?.brandName}`} state={selecetOne}>
+              <div className="card card-compact shadow-xl">
+                <figure>
+                  <img
+                    className="h-[100px] lg:h-[200px]"
+                    src={selecetOne?.brandUrl}
+                    alt={selecetOne?.brandName}
+                  />
+                </figure>
+                <div className="card-body text-center items-center">
+                  <h2 className="card-title">{selecetOne?.brandName}</h2>
+                </div>
+              </div>
+            </Link>
+          </div>
+        )}
+      </div> */}
     </div>
   );
 };
