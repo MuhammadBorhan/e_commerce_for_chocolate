@@ -13,24 +13,12 @@ const Regions = () => {
   const regions = regionData?.data;
 
   // fetching products data with district and brand
-  const { data } = useGetAllProductsQuery();
+  const { data, isLoading: productsLoading } = useGetAllProductsQuery();
   const products = data?.data;
 
   const [active, setActive] = useState(0);
   const [disActive, setDisActive] = useState(0);
   const [selectedProducts, setSelectedProducts] = useState([]);
-
-  /*   const removeDuplicates = (arr) => {
-    return arr.filter((obj, index, self) => {
-      return (
-        index ===
-        self.findIndex(
-          (el) => el.brandName === obj.brandName && el.district === obj.district
-        )
-      );
-    });
-  };
-  const uniqueBrandProducts = removeDuplicates(selectedBrands); */
 
   // onClick handler of distrcit button for showing brands item
   const handleBrand = (d, index) => {
@@ -47,7 +35,7 @@ const Regions = () => {
     setActive(index);
   };
 
-  if (regionLoading) {
+  if (regionLoading || productsLoading) {
     return (
       <div className="absolute left-[45%] text-red-500 font-bold text-2xl">
         Loading...
