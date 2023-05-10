@@ -147,17 +147,18 @@ const Navbar = () => {
         </div>
 
         {/* icon */}
-        <div className="flex gap-4 lg:gap-5 text-white text-xl lg:text-3xl">
-          {user ? (
-            <button onClick={logOut} className="text-xl">
-              Logout
-            </button>
-          ) : (
-            <button className="text-xl">
-              <Link to={"/login"}>Login</Link>
-            </button>
-          )}
-          <p className="text-sm">{user?.email}</p>
+        <div className="flex gap-2 lg:gap-5 text-white text-xl lg:text-3xl">
+          <p>
+            {user ? (
+              <button onClick={logOut} className="text-xl">
+                Logout <span className="text-sm">({user?.firstName})</span>
+              </button>
+            ) : (
+              <button className="text-xl">
+                <Link to={"/login"}>Login</Link>
+              </button>
+            )}
+          </p>
           <p className="hidden">
             <AiOutlineDollarCircle />
           </p>

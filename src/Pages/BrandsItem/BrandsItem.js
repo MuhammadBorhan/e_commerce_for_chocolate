@@ -12,9 +12,17 @@ const BrandsItem = () => {
   const { data } = useGetAllBrandItemQuery();
   const brandsItem = data?.data;
 
-  const selectedProduct = brandsItem?.filter((brandItem) => {
+  // fetching brands product data
+  const [brandProducts, setBrandProducts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/v1/brandproduct")
+      .then((res) => res.json())
+      .then((data) => setBrandProducts(data?.data));
+  }, []);
+
+  const selectedProduct = brandProducts?.filter((brandItem) => {
     return (
-      brandItem?.brand === brands?.name &&
+      brandItem?.brandName === brands?.brandName &&
       brandItem?.district === brands?.district
     );
   });
@@ -27,19 +35,19 @@ const BrandsItem = () => {
           <figure>
             <img
               className="w-[250px] h-[200px]"
-              src={brands.image}
+              src={brands.brandUrl}
               alt="Shoes"
             />
           </figure>
           <div className="card-body text-center items-center">
-            <h2 className="card-title">Brand: {brands.name}</h2>
+            <h2 className="card-title">Brand: {brands.brandName}</h2>
           </div>
         </div>
       </div>
 
       <div>
         <h3 className="text-center text-xl font-bold mb-6">
-          {brands?.name} Chocolate items {selectedProduct?.length}
+          {brands?.brandName} Chocolate items {selectedProduct?.length}
         </h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
           {selectedProduct?.map((brandItem) => {
@@ -48,12 +56,12 @@ const BrandsItem = () => {
                 <figure>
                   <img
                     className="h-[200px]"
-                    src={brandItem.image}
-                    alt="Shoes"
+                    src={brandItem.productUrl}
+                    alt={brandItem.productName}
                   />
                 </figure>
                 <div className="card-body text-center items-center">
-                  <h2 className="card-title">{brandItem.name}</h2>
+                  <h2 className="card-title">{brandItem.productName}</h2>
                   <h2 className="card-title">{brandItem.price}$</h2>
                 </div>
                 <button
