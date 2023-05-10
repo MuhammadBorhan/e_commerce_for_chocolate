@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
-import { useGetAllBrandQuery } from "../features/api/brandsApi";
+import { useGetAllProductsQuery } from "../features/api/products";
 
 const Regions = () => {
   // fetching regions data
@@ -12,43 +12,18 @@ const Regions = () => {
   } = useGetAllRegionQuery();
   const regions = regionData?.data;
 
-  // fetching brands data
-  const {
-    data: brandData,
-    isLoading: brandLoading,
-    error: brandError,
-  } = useGetAllBrandQuery();
-  const brands = brandData?.data;
-
-  // fetching brands product data
-  const [brandProducts, setBrandProducts] = useState([]);
-  // console.log(brandProducts);
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/brandproduct")
-      .then((res) => res.json())
-      .then((data) => setBrandProducts(data?.data));
-  }, []);
+  // fetching products data with district and brand
+  const { data, isLoading: productsLoading } = useGetAllProductsQuery();
+  const products = data?.data;
 
   const [active, setActive] = useState(0);
   const [disActive, setDisActive] = useState(0);
-  const [selectedBrands, setSelectedBrands] = useState([]);
-
-  const removeDuplicates = (arr) => {
-    return arr.filter((obj, index, self) => {
-      return (
-        index ===
-        self.findIndex(
-          (el) => el.brandName === obj.brandName && el.district === obj.district
-        )
-      );
-    });
-  };
-  const uniqueBrandProducts = removeDuplicates(selectedBrands);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   // onClick handler of distrcit button for showing brands item
   const handleBrand = (d, index) => {
-    const rest = brandProducts?.filter((brand) => brand?.district === d);
-    setSelectedBrands(rest);
+    const rest = products?.filter((brand) => brand?.district === d);
+    setSelectedProducts(rest);
     setDisActive(index);
   };
 
@@ -60,7 +35,7 @@ const Regions = () => {
     setActive(index);
   };
 
-  if (regionLoading || brandLoading) {
+  if (regionLoading || productsLoading) {
     return (
       <div className="absolute left-[45%] text-red-500 font-bold text-2xl">
         Loading...
@@ -68,8 +43,8 @@ const Regions = () => {
     );
   }
 
-  if (regionError || brandError) {
-    return <div>Error: {regionError?.message || brandError?.message}</div>;
+  if (regionError) {
+    return <div>Error: {regionError?.message}</div>;
   }
 
   return (
@@ -147,20 +122,24 @@ const Regions = () => {
 
       {/* Brands List */}
       <div className="py-6">
-        {uniqueBrandProducts && (
+        {selectedProducts && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
-            {uniqueBrandProducts?.map((brand, index) => (
-              <Link to={`/brands/${brand.name}`} state={brand} key={index}>
+            {selectedProducts?.map((brand, index) => (
+              <Link
+                to={`/brands/${brand?.brandName}`}
+                state={brand}
+                key={index}
+              >
                 <div className="card card-compact shadow-xl">
                   <figure>
                     <img
                       className="h-[100px] lg:h-[200px]"
-                      src={brand.brandUrl}
-                      alt={brand.brandName}
+                      src={brand?.brandImage}
+                      alt={brand?.brandName}
                     />
                   </figure>
                   <div className="card-body text-center items-center">
-                    <h2 className="card-title">{brand.brandName}</h2>
+                    <h2 className="card-title">{brand?.brandName}</h2>
                   </div>
                 </div>
               </Link>
@@ -168,27 +147,6 @@ const Regions = () => {
           </div>
         )}
       </div>
-
-      {/* <div className="py-6">
-        {selecetOne && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
-            <Link to={`/brands/${selecetOne?.brandName}`} state={selecetOne}>
-              <div className="card card-compact shadow-xl">
-                <figure>
-                  <img
-                    className="h-[100px] lg:h-[200px]"
-                    src={selecetOne?.brandUrl}
-                    alt={selecetOne?.brandName}
-                  />
-                </figure>
-                <div className="card-body text-center items-center">
-                  <h2 className="card-title">{selecetOne?.brandName}</h2>
-                </div>
-              </div>
-            </Link>
-          </div>
-        )}
-      </div> */}
     </div>
   );
 };
