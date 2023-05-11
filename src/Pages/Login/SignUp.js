@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
@@ -76,28 +77,7 @@ const SignUp = () => {
                   {...register("lastName")}
                 />
               </div>
-              {/* <div className="form-control w-full max-w-xs">
-                <label className="label">
-                  <span className="label-text">Country</span>
-                </label>
-                <input
-                  type="country"
-                  placeholder="Country"
-                  className="input input-bordered w-full max-w-xs"
-                  {...register("country")}
-                />
-              </div> */}
-              {/* <div className="form-control w-full max-w-xs">
-                <label className="label">
-                  <span className="label-text">Mobile Number</span>
-                </label>
-                <input
-                  type="tel"
-                  placeholder="Mobile Number"
-                  className="input input-bordered w-full max-w-xs"
-                  {...register("phone")}
-                />
-              </div> */}
+
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -140,12 +120,7 @@ const SignUp = () => {
             />
           </form>
           <div className="divider">OR</div>
-          <button
-            className="btn "
-            // style={{ backgroundColor: "#9A583B" }}
-          >
-            Continue with Google
-          </button>
+          <SocialLogin />
         </div>
       </div>
     </div>
