@@ -49,7 +49,11 @@ const AllUsers = () => {
             {users.map((user, i) => (
               <tr key={user._id}>
                 <th>{i + 1}</th>
-                <td>{user.firstName + " " + user.lastName}</td>
+                <td>
+                  {user?.firstName +
+                    " " +
+                    (user?.lastName ? user?.lastName : "")}
+                </td>
                 <td>{user.email}</td>
                 <td>
                   <button className="px-2 bg-green-600 text-white rounded-full">
