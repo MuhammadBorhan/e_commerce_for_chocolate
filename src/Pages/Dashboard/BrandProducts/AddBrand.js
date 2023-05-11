@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { AiOutlineDelete } from "react-icons/ai";
+import { useGetAllRegionQuery } from "../../../features/api/regionApi";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddBrand = () => {
+  // fetch region and district data
+  const { data } = useGetAllRegionQuery();
+  const regions = data?.data;
+
+  const [selectRegion, setSelectRegion] = useState("");
+  // fetch district data by region
+  const [districts, setDistricts] = useState({});
+  const getDistrict = districts[0]?.district;
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/region?region=${selectRegion}`)
+      .then((res) => res.json())
+      .then((data) => setDistricts(data?.data));
+  }, [selectRegion]);
+
   const [district, setDistrict] = useState("");
   const [brandName, setBrandName] = useState("");
   const [brandImage, setBrandImage] = useState("");
@@ -36,21 +54,25 @@ const AddBrand = () => {
       brandImage,
       products,
     };
-    console.log(newData);
     try {
       await axios.post("http://localhost:5000/api/v1/products", newData);
 
       // Reset the form inputs
-      setDistrict("");
+      // setDistrict("");
+      // setSelectRegion("");
       setBrandName("");
       setBrandImage("");
       setProducts([]);
-
-      alert("Insert success");
+      toast.success("Insert Successfully!");
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      toast.error(error.message);
     }
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
+
   return (
     <div className="flex justify-center overflow-auto items-center mt-12">
       <div
@@ -66,21 +88,43 @@ const AddBrand = () => {
           {
             <form onSubmit={handleSubmit} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
-                <input
+                <select
+                  onChange={(e) => setSelectRegion(e.target.value)}
+                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                >
+                  <option disabled selected>
+                    Select Region
+                  </option>
+                  {regions?.map((region, index) => (
+                    <option key={index}>{region?.region}</option>
+                  ))}
+                </select>
+                <select
+                  onChange={(e) => setDistrict(e.target.value)}
+                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                >
+                  <option disabled selected>
+                    Select District
+                  </option>
+                  {getDistrict?.map((district, index) => (
+                    <option key={index}>{district}</option>
+                  ))}
+                </select>
+                {/* <input
                   type="text"
                   value={district}
                   onChange={(e) => setDistrict(e.target.value)}
                   placeholder="District"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                />
-                <input
-                  type="text"
-                  value={brandName}
-                  onChange={(e) => setBrandName(e.target.value)}
-                  placeholder="Brand Name"
-                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                />
+                /> */}
               </div>
+              <input
+                type="text"
+                value={brandName}
+                onChange={(e) => setBrandName(e.target.value)}
+                placeholder="Brand Name"
+                className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+              />
               <input
                 type="text"
                 value={brandImage}
@@ -91,7 +135,7 @@ const AddBrand = () => {
               <div>
                 <h1 className="text-xl font-bold my-2">Products</h1>
                 {products.map((product, index) => (
-                  <div className="flex flex-col items-center gap-2">
+                  <div className="flex flex-col items-center gap-2" key={index}>
                     <input
                       type="text"
                       value={product.name}
