@@ -9,6 +9,12 @@ import CartProducts from "../Pages/CartProduct/CartProducts";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
 import BrandsItem from "../Pages/BrandsItem/BrandsItem";
+import DashboardLayout from "../Layout/DashboardLayout";
+// import Dashboard from "../Pages/Dashboard/Dashboard";
+import AddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AddBrand from "../Pages/Dashboard/AddBrand/AddBrand";
+import NewAddRegion from "../Pages/Dashboard/AddRegion/NewAddRegion";
 
 const routes = createBrowserRouter([
   {
@@ -46,6 +52,24 @@ const routes = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: "/dashboard/addregion",
+            element: <NewAddRegion />,
+          },
+          {
+            path: "/dashboard/alluser",
+            element: <AllUsers />,
+          },
+          {
+            path: "/dashboard/addbrand",
+            element: <AddBrand />,
+          },
+        ],
       },
     ],
   },

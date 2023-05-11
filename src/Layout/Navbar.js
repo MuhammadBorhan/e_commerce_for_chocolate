@@ -5,6 +5,7 @@ import {
   AiOutlineHeart,
   AiOutlineShoppingCart,
   AiOutlineUser,
+  FiLogOut,
 } from "react-icons/ai";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { ImCross } from "react-icons/im";
@@ -180,6 +181,16 @@ const Navbar = () => {
             <AiOutlineUser />
           </p>
         </div>
+        <label
+          htmlFor="dashboard-drawer"
+          tabIndex={2}
+          className="btn text-white btn-ghost lg:hidden"
+        >
+          <AiOutlineMenu
+            className=""
+            style={{ width: "30px", fontSize: "23px" }}
+          />
+        </label>
       </div>
     </div>
   );

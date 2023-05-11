@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
@@ -140,12 +141,7 @@ const SignUp = () => {
             />
           </form>
           <div className="divider">OR</div>
-          <button
-            className="btn "
-            // style={{ backgroundColor: "#9A583B" }}
-          >
-            Continue with Google
-          </button>
+          <SocialLogin />
         </div>
       </div>
     </div>
