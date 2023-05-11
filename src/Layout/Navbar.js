@@ -177,7 +177,7 @@ const Navbar = () => {
               <li>
                 {user ? (
                   <button onClick={logOut} className="">
-                    Logout
+                    Logout ({user?.role})
                   </button>
                 ) : (
                   <button className="">

@@ -21,7 +21,7 @@ const SignUp = () => {
         const accessToken = res?.data?.token;
         localStorage.setItem("accessToken", accessToken);
         if (res.status === 200) {
-          navigate("/");
+          navigate("/dashboard");
           window.location.reload();
         }
       });
@@ -62,7 +62,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   placeholder="First Name"
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full h-8 rounded-none focus:border-none max-w-xs"
                   {...register("firstName")}
                 />
               </div>
@@ -73,22 +73,23 @@ const SignUp = () => {
                 <input
                   type="text"
                   placeholder="Last Name"
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full h-8 rounded-none focus:border-none max-w-xs"
                   {...register("lastName")}
                 />
               </div>
-
-              <div className="form-control w-full max-w-xs">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="input input-bordered w-full max-w-xs"
-                  {...register("email")}
-                />
-              </div>
+            </div>
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="input input-bordered w-full h-8 rounded-none focus:border-none "
+                {...register("email")}
+              />
+            </div>
+            <div className="grid lg:grid-cols-2 gap-x-8">
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Paswoord</span>
@@ -96,7 +97,7 @@ const SignUp = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full h-8 rounded-none focus:border-none max-w-xs"
                   {...register("password")}
                 />
               </div>
@@ -107,19 +108,20 @@ const SignUp = () => {
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full h-8 rounded-none focus:border-none max-w-xs"
                   {...register("confirmPassword")}
                 />
               </div>
             </div>
+
             <input
-              className="btn mt-6 block m-auto w-full text-white"
+              className="btn mt-6 block m-auto w-full border-none text-white"
               style={{ backgroundColor: "#9A583B" }}
               type="submit"
               value="Login"
             />
           </form>
-          <div className="divider">OR</div>
+          <div className="divider ">OR</div>
           <SocialLogin />
         </div>
       </div>

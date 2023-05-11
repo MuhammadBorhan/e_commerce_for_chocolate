@@ -20,8 +20,11 @@ const SocialLogin = () => {
       });
   };
   return (
-    <div className=" block mx-auto w-2/4">
-      <button onClick={handleGoogleSignIn} className="btn btn-outline  ">
+    <div className="">
+      <button
+        onClick={handleGoogleSignIn}
+        className="btn btn-outline w-full bg-black text-white hover:bg-black "
+      >
         Continue with Google
       </button>
     </div>

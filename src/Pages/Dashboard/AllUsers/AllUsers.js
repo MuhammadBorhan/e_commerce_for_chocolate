@@ -1,5 +1,9 @@
 import React from "react";
-import { useGetAllUserQuery } from "../../../features/api/loginApi";
+import {
+  useGetAllUserQuery,
+  useGetUserQuery,
+  useRemoveUserMutation,
+} from "../../../features/api/loginApi";
 import {
   AiOutlineDelete,
   AiTwotoneEdit,
@@ -10,14 +14,15 @@ const AllUsers = () => {
   const { data, isLoading } = useGetAllUserQuery();
   const users = data?.data;
 
+  const { data: me } = useGetUserQuery();
+  const getMe = me?.data;
+
+  const [removeUser] = useRemoveUserMutation();
+
   const deleteUser = (id) => {
     const confirm = window.confirm("Are you want do delete?");
     if (confirm) {
-      fetch(`http://localhost:5000/api/v1/user/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      removeUser(id);
     }
   };
   if (isLoading) {
@@ -37,7 +42,7 @@ const AllUsers = () => {
               <th>Username</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Action</th>
+              {getMe?.role === "admin" && <th>Action</th>}
             </tr>
           </thead>
           <tbody>
@@ -51,16 +56,18 @@ const AllUsers = () => {
                     {user.role}
                   </button>
                 </td>
-                <td>
-                  {" "}
-                  <button
-                    onClick={() => deleteUser(user._id)}
-                    className="text-red-500 flex justify-center"
-                    style={{ width: "40px", fontSize: "25px" }}
-                  >
-                    <AiTwotoneDelete></AiTwotoneDelete>
-                  </button>
-                </td>
+                {getMe?.role === "admin" && (
+                  <td>
+                    {" "}
+                    <button
+                      onClick={() => deleteUser(user._id)}
+                      className="text-red-500 flex justify-center"
+                      style={{ width: "40px", fontSize: "25px" }}
+                    >
+                      <AiTwotoneDelete></AiTwotoneDelete>
+                    </button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

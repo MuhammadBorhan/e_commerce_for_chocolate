@@ -18,7 +18,15 @@ const loginApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["logins"],
     }),
+    removeUser: builder.mutation({
+      query: (id) => ({
+        url: `/user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["logins"],
+    }),
   }),
 });
 
-export const { useGetAllUserQuery, useGetUserQuery } = loginApi;
+export const { useGetAllUserQuery, useGetUserQuery, useRemoveUserMutation } =
+  loginApi;

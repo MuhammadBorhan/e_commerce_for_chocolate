@@ -10,7 +10,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
 import BrandsItem from "../Pages/BrandsItem/BrandsItem";
 import DashboardLayout from "../Layout/DashboardLayout";
-// import Dashboard from "../Pages/Dashboard/Dashboard";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddBrand from "../Pages/Dashboard/AddBrand/AddBrand";
@@ -57,6 +57,10 @@ const routes = createBrowserRouter([
         path: "/dashboard",
         element: <DashboardLayout />,
         children: [
+          {
+            path: "/dashboard",
+            element: <Dashboard />,
+          },
           {
             path: "/dashboard/addregion",
             element: <NewAddRegion />,
