@@ -14,6 +14,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import AddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddBrand from "../Pages/Dashboard/AddBrand/AddBrand";
+import NewAddRegion from "../Pages/Dashboard/AddRegion/NewAddRegion";
 
 const routes = createBrowserRouter([
   {
@@ -58,7 +59,7 @@ const routes = createBrowserRouter([
         children: [
           {
             path: "/dashboard/addregion",
-            element: <AddRegion />,
+            element: <NewAddRegion />,
           },
           {
             path: "/dashboard/alluser",
