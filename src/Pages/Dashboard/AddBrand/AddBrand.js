@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { AiOutlineDelete } from "react-icons/ai";
+import { useGetAllRegionQuery } from "../../../features/api/regionApi";
+import { json } from "body-parser";
 
 const AddBrand = () => {
   const [district, setDistrict] = useState("");
@@ -51,6 +53,19 @@ const AddBrand = () => {
       console.error(error);
     }
   };
+
+  // fetch region and district data
+  const { data } = useGetAllRegionQuery();
+  const regions = data?.data;
+
+  // fetch district data
+  const [districts, setDistricts] = useState({});
+  console.log(districts);
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/region?region=Comilla`)
+      .then((res) => res.json())
+      .then((data) => setDistricts(data));
+  }, []);
   return (
     <div className="flex justify-center overflow-auto items-center mt-12">
       <div
@@ -66,21 +81,37 @@ const AddBrand = () => {
           {
             <form onSubmit={handleSubmit} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
-                <input
+                <select className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto">
+                  <option disabled selected>
+                    Select Region
+                  </option>
+                  {regions?.map((region) => (
+                    <option>{region?.region}</option>
+                  ))}
+                </select>
+                <select className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto">
+                  <option disabled selected>
+                    Select District
+                  </option>
+                  {regions?.map((region) => (
+                    <option>{region?.region}</option>
+                  ))}
+                </select>
+                {/* <input
                   type="text"
                   value={district}
                   onChange={(e) => setDistrict(e.target.value)}
                   placeholder="District"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                />
-                <input
-                  type="text"
-                  value={brandName}
-                  onChange={(e) => setBrandName(e.target.value)}
-                  placeholder="Brand Name"
-                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                />
+                /> */}
               </div>
+              <input
+                type="text"
+                value={brandName}
+                onChange={(e) => setBrandName(e.target.value)}
+                placeholder="Brand Name"
+                className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+              />
               <input
                 type="text"
                 value={brandImage}
@@ -91,7 +122,7 @@ const AddBrand = () => {
               <div>
                 <h1 className="text-xl font-bold my-2">Products</h1>
                 {products.map((product, index) => (
-                  <div className="flex flex-col items-center gap-2">
+                  <div className="flex flex-col items-center gap-2" key={index}>
                     <input
                       type="text"
                       value={product.name}
