@@ -18,7 +18,6 @@ const SignUp = () => {
       alert("Password is less than 6");
     } else {
       axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
-        console.log(res?.data?.token);
         const accessToken = res?.data?.token;
         localStorage.setItem("accessToken", accessToken);
         if (res.status === 200) {

@@ -1,15 +1,105 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HeroSlider from "../Components/HeroSlider";
 import HeaderMenu from "../Components/HeaderMenu";
 import MobileSearch from "../Components/MobileSearch";
 import CategorySwiper from "./CategorySwiper/CategorySwiper";
 import SameDayDelivery from "../Components/SameDayDelivery";
 import Regions from "../Components/Regions";
-import { useGetAllUserQuery } from "../features/api/loginApi";
+
+import axios from "axios";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const Home = () => {
-  const { data } = useGetAllUserQuery();
-  const allUsers = data?.data;
+  const [district, setDistrict] = useState("");
+  const [brandName, setBrandName] = useState("");
+  const [brandImage, setBrandImage] = useState("");
+  const [products, setProducts] = useState([]);
+
+  const handleProductChange = (index, field, value) => {
+    console.log(index, field, value);
+    const updatedProducts = [...products];
+    updatedProducts[index][field] = value;
+    setProducts(updatedProducts);
+  };
+
+  const handleAddProduct = () => {
+    const newProduct = { name: "", image: "", price: 0, quantity: 0 };
+    setProducts([...products, newProduct]);
+  };
+
+  const handleRemoveProduct = (index) => {
+    const updatedProducts = [...products];
+    updatedProducts.splice(index, 1);
+    setProducts(updatedProducts);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newData = {
+      district,
+      brandName,
+      brandImage,
+      products,
+    };
+    console.log(newData);
+    try {
+      await axios.post("http://localhost:5000/api/v1/products", newData);
+
+      // Reset the form inputs
+      setDistrict("");
+      setBrandName("");
+      setBrandImage("");
+      setProducts([]);
+
+      alert("Insert success");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // for region
+  /* const [region, setRegion] = useState("");
+  const [district, setDistricts] = useState([]);
+
+  const handleDistrictChange = (index, value) => {
+    console.log(index, value);
+    const updatedDistrict = [...district];
+    updatedDistrict[index] = value;
+    setDistricts(updatedDistrict);
+  };
+
+  const handleAddDistrict = () => {
+    const newDistrict = {};
+    setDistricts([...district, newDistrict]);
+  };
+
+  const handleRemoveDistrict = (index) => {
+    const updatedDistrcit = [...district];
+    updatedDistrcit.splice(index, 1);
+    setDistricts(updatedDistrcit);
+  };
+
+  const handleSubmitDist = async (e) => {
+    e.preventDefault();
+
+    const newDistrictData = {
+      region,
+      district,
+    };
+    try {
+      await axios.post("http://localhost:5000/api/v1/region", newDistrictData);
+
+      // Reset the form inputs
+      setRegion("");
+      setDistricts([]);
+
+      // Handle success or show a success message
+    } catch (error) {
+      // Handle error or show an error message
+    }
+  }; */
+
   return (
     <>
       <MobileSearch />
@@ -18,6 +108,191 @@ const Home = () => {
       <CategorySwiper />
       <Regions />
       <SameDayDelivery />
+
+      <div className="flex justify-center overflow-auto items-center">
+        <div
+          className="card bg-base-100 overflow-auto mb-12 rounded-none"
+          style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
+        >
+          <div className="card-body">
+            <div className="text-center">
+              <h2 className="text-xl font-bold">
+                Added New Product With Brand and District
+              </h2>
+            </div>
+            {
+              <form onSubmit={handleSubmit} className="text-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
+                  <input
+                    type="text"
+                    value={district}
+                    onChange={(e) => setDistrict(e.target.value)}
+                    placeholder="District"
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                  />
+                  <input
+                    type="text"
+                    value={brandName}
+                    onChange={(e) => setBrandName(e.target.value)}
+                    placeholder="Brand Name"
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                  />
+                </div>
+                <input
+                  type="text"
+                  value={brandImage}
+                  onChange={(e) => setBrandImage(e.target.value)}
+                  placeholder="Brand Image URL"
+                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                />
+                <div>
+                  <h1 className="text-xl font-bold my-2">Products</h1>
+                  {products.map((product, index) => (
+                    <div className="flex flex-col items-center gap-2">
+                      <input
+                        type="text"
+                        value={product.name}
+                        onChange={(e) =>
+                          handleProductChange(index, "name", e.target.value)
+                        }
+                        placeholder="Name"
+                        className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
+                      />
+                      <div className="flex gap-x-16 items-center">
+                        <label>Price:</label>
+                        <input
+                          type="number"
+                          value={product.price}
+                          onChange={(e) =>
+                            handleProductChange(
+                              index,
+                              "price",
+                              parseFloat(e.target.value)
+                            )
+                          }
+                          placeholder="Price"
+                          className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
+                        />
+                      </div>
+                      <div className="flex gap-x-10 items-center">
+                        <label>Quantity:</label>
+                        <input
+                          type="number"
+                          value={product.quantity}
+                          onChange={(e) =>
+                            handleProductChange(
+                              index,
+                              "quantity",
+                              parseFloat(e.target.value)
+                            )
+                          }
+                          placeholder="Quantity"
+                          className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
+                        />
+                      </div>
+                      <input
+                        type="text"
+                        value={product.image}
+                        onChange={(e) =>
+                          handleProductChange(index, "image", e.target.value)
+                        }
+                        placeholder="Product Image URL"
+                        className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveProduct(index)}
+                      >
+                        <AiOutlineDelete className="text-red-500 font-bold" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex justify-around pt-6">
+                  <button
+                    type="button"
+                    onClick={handleAddProduct}
+                    className="bg-green-500 px-2 py-1 font-bold text-white"
+                  >
+                    Add
+                  </button>
+
+                  <button
+                    type="submit"
+                    className="bg-blue-500 px-2 py-1 font-bold text-white "
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            }
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="flex justify-center overflow-auto items-center">
+        <div
+          className="card bg-base-100 overflow-auto mb-12 rounded-none"
+          style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
+        >
+          <div className="card-body">
+            <div className="text-center">
+              <h2 className="text-xl font-bold">Add Region And District</h2>
+            </div>
+            <form onSubmit={handleSubmitDist}>
+              <div className="grid grid-cols-1  my-2">
+                <input
+                  type="text"
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
+                  placeholder="Region"
+                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
+                />
+              </div>
+
+              <div>
+                <h1 className="text-xl font-bold my-2">District</h1>
+                {district.map((district, index) => (
+                  <div className="flex flex-col items-center gap-2" key={index}>
+                    <input
+                      type="text"
+                      value={district?.name}
+                      onChange={(e) =>
+                        handleDistrictChange(index, e.target.value)
+                      }
+                      placeholder="District"
+                      className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveDistrict(index)}
+                    >
+                      <AiOutlineDelete className="text-red-500 font-bold" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="flex justify-around pt-6">
+                <button
+                  type="button"
+                  onClick={handleAddDistrict}
+                  className="bg-green-500 px-2 py-1 font-bold text-white"
+                >
+                  Add
+                </button>
+
+                <button
+                  type="submit"
+                  className="bg-blue-500 px-2 py-1 font-bold text-white "
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div> */}
     </>
   );
 };
