@@ -17,12 +17,6 @@ const SignUp = () => {
     } else if (password.length < 6) {
       alert("Password is less than 6");
     } else {
-<<<<<<< HEAD
-      axios.post(`http://localhost:4000/api/v1/signup`, data).then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          navigate("/");
-=======
       axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
         console.log(res?.data?.token);
         const accessToken = res?.data?.token;
@@ -30,7 +24,6 @@ const SignUp = () => {
         if (res.status === 200) {
           navigate("/");
           window.location.reload();
->>>>>>> 83466e52a759b36cdf3a231996e38014d1f9dc99
         }
       });
     }

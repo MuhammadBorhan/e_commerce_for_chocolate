@@ -1,33 +1,29 @@
-import React, { useEffect } from "react";
-
-import { useSignInWithGithub } from "react-firebase-hooks/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import app from "./../../firebase/firebase.init.js";
 import { useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
+
+const auth = getAuth(app);
 
 const SocialLogin = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGithub(auth);
-
   const navigate = useNavigate();
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user]);
-  let errorElement;
-  if (error) {
-    errorElement = (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    );
-  }
 
+  const provider = new GoogleAuthProvider();
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
   return (
-    <div>
-      {errorElement}
+    <div className=" block mx-auto w-2/4">
       <button
-        onClick={() => signInWithGoogle()}
-        className="btn block m-auto w-2/4 "
+        onClick={handleGoogleSignIn}
+        className="btn btn-outline  "
         // style={{ backgroundColor: "#9A583B" }}
       >
         Continue with Google
