@@ -14,7 +14,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import AddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddBrand from "../Pages/Dashboard/AddBrand/AddBrand";
-import NewAddRegion from "../Pages/Dashboard/AddRegion/NewAddRegion";
+import NewAddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 
 const routes = createBrowserRouter([
   {
