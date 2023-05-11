@@ -57,7 +57,7 @@ const Regions = () => {
       {/* Region list */}
       <div className="">
         <h3 className="float-left mr-4">Region:</h3>
-        <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
           {regions?.map((r, index) => {
             return (
               <button
@@ -80,7 +80,7 @@ const Regions = () => {
         {selectedRegion ? (
           <div className="">
             <h2 className="float-left mr-4">District:</h2>
-            <div className=" grid grid-cols-3 lg:grid-cols-4 justify-center text-center gap-2 lg:gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-6 justify-center text-center gap-2 lg:gap-4">
               {selectedRegion?.district?.map((d, index) => (
                 <button
                   onClick={() => handleBrand(d, index)}
@@ -100,7 +100,7 @@ const Regions = () => {
         ) : (
           <div>
             <h2 className="float-left mr-4">District:</h2>
-            <div className=" grid grid-cols-4 justify-center text-center gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-6 justify-center text-center gap-2 lg:gap-4">
               {regions?.[0].district?.map((d, index) => (
                 <button
                   onClick={() => handleBrand(d, index)}
