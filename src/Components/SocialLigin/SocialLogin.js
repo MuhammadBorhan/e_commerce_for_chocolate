@@ -21,11 +21,7 @@ const SocialLogin = () => {
   };
   return (
     <div className=" block mx-auto w-2/4">
-      <button
-        onClick={handleGoogleSignIn}
-        className="btn btn-outline  "
-        // style={{ backgroundColor: "#9A583B" }}
-      >
+      <button onClick={handleGoogleSignIn} className="btn btn-outline  ">
         Continue with Google
       </button>
     </div>
