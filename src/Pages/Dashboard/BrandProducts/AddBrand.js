@@ -3,9 +3,25 @@ import axios from "axios";
 
 import { AiOutlineDelete } from "react-icons/ai";
 import { useGetAllRegionQuery } from "../../../features/api/regionApi";
-import { json } from "body-parser";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddBrand = () => {
+  // fetch region and district data
+  const { data } = useGetAllRegionQuery();
+  const regions = data?.data;
+
+  const [selectRegion, setSelectRegion] = useState("");
+  // fetch district data by region
+  const [districts, setDistricts] = useState({});
+  const getDistrict = districts[0]?.district;
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/region?region=${selectRegion}`)
+      .then((res) => res.json())
+      .then((data) => setDistricts(data?.data));
+  }, [selectRegion]);
+
   const [district, setDistrict] = useState("");
   const [brandName, setBrandName] = useState("");
   const [brandImage, setBrandImage] = useState("");
@@ -38,34 +54,25 @@ const AddBrand = () => {
       brandImage,
       products,
     };
-    console.log(newData);
     try {
       await axios.post("http://localhost:5000/api/v1/products", newData);
 
       // Reset the form inputs
-      setDistrict("");
+      // setDistrict("");
+      // setSelectRegion("");
       setBrandName("");
       setBrandImage("");
       setProducts([]);
-
-      alert("Insert success");
+      toast.success("Insert Successfully!");
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      toast.error(error.message);
     }
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
-  // fetch region and district data
-  const { data } = useGetAllRegionQuery();
-  const regions = data?.data;
-
-  // fetch district data
-  const [districts, setDistricts] = useState({});
-  console.log(districts);
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/region?region=Comilla`)
-      .then((res) => res.json())
-      .then((data) => setDistricts(data));
-  }, []);
   return (
     <div className="flex justify-center overflow-auto items-center mt-12">
       <div
@@ -81,20 +88,26 @@ const AddBrand = () => {
           {
             <form onSubmit={handleSubmit} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
-                <select className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto">
+                <select
+                  onChange={(e) => setSelectRegion(e.target.value)}
+                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                >
                   <option disabled selected>
                     Select Region
                   </option>
-                  {regions?.map((region) => (
-                    <option>{region?.region}</option>
+                  {regions?.map((region, index) => (
+                    <option key={index}>{region?.region}</option>
                   ))}
                 </select>
-                <select className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto">
+                <select
+                  onChange={(e) => setDistrict(e.target.value)}
+                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                >
                   <option disabled selected>
                     Select District
                   </option>
-                  {regions?.map((region) => (
-                    <option>{region?.region}</option>
+                  {getDistrict?.map((district, index) => (
+                    <option key={index}>{district}</option>
                   ))}
                 </select>
                 {/* <input

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
-import { useGetAllProductsQuery } from "../../features/api/products";
+import { useGetAllProductsQuery } from "../../features/api/productsApi";
 
 const BrandsItem = () => {
   const location = useLocation();

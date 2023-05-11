@@ -13,8 +13,9 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-import AddBrand from "../Pages/Dashboard/AddBrand/AddBrand";
+import AddBrand from "../Pages/Dashboard/BrandProducts/AddBrand";
 import NewAddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
+import ManageProducts from "../Pages/Dashboard/BrandProducts/ManageProducts";
 
 const routes = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/addbrand",
             element: <AddBrand />,
+          },
+          {
+            path: "/dashboard/allproducts",
+            element: <ManageProducts />,
           },
         ],
       },
