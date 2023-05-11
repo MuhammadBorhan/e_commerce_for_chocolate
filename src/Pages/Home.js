@@ -63,7 +63,6 @@ const Home = () => {
   const [district, setDistricts] = useState([]);
 
   const handleDistrictChange = (index, value) => {
-    console.log(index, value);
     const updatedDistrict = [...district];
     updatedDistrict[index] = value;
     setDistricts(updatedDistrict);
