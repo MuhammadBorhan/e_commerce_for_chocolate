@@ -148,28 +148,8 @@ const Navbar = () => {
         </div>
 
         {/* icon */}
-        <div className="flex gap-2 lg:gap-5 text-white text-xl lg:text-3xl">
-          <p>
-            {user ? (
-              <button onClick={logOut} className="text-xl">
-                Logout <span className="text-sm">({user?.firstName})</span>
-              </button>
-            ) : (
-              <button className="text-xl">
-                <Link to={"/login"}>Login</Link>
-              </button>
-            )}
-          </p>
-          <p className="hidden">
-            <AiOutlineDollarCircle />
-          </p>
-          <p className="d-none d-lg-block">
-            <MdOutlineLocationOn />
-          </p>
-          <p>
-            <AiOutlineHeart className="hidden" />
-          </p>
-          <p className="relative">
+        <div className="flex lg:gap-5 text-white items-center text-xl lg:text-3xl">
+          <p className="relative mr-6 lg:mr-0">
             <Link to="/carts">
               <AiOutlineShoppingCart />
               <span className="absolute top-[-15px] text-sm bg-blue-600 p-1 w-6 h-6 flex justify-center items-center rounded-full left-[12px] lg:left-[20px]">
@@ -177,9 +157,36 @@ const Navbar = () => {
               </span>
             </Link>
           </p>
-          <p>
-            <AiOutlineUser />
-          </p>
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              {user ? (
+                <span className="text-sm">{user?.firstName}</span>
+              ) : (
+                <div className="w-10 rounded-full">
+                  <img src="https://borhanportfolio.netlify.app/static/media/borhan.d87b28879c1a50ffbd3f.png" />
+                </div>
+              )}
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-52"
+            >
+              <li>
+                <Link to="/dashboard">Dashborad</Link>
+              </li>
+              <li>
+                {user ? (
+                  <button onClick={logOut} className="">
+                    Logout ({user?.role})
+                  </button>
+                ) : (
+                  <button className="">
+                    <Link to={"/login"}>Login</Link>
+                  </button>
+                )}
+              </li>
+            </ul>
+          </div>
         </div>
         <label
           htmlFor="dashboard-drawer"

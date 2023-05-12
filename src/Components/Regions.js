@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
-import { useGetAllProductsQuery } from "../features/api/products";
+import { useGetAllProductsQuery } from "../features/api/productsApi";
 
 const Regions = () => {
   // fetching regions data
