@@ -171,9 +171,11 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-52"
             >
-              <li>
-                <Link to="/dashboard">Dashborad</Link>
-              </li>
+              {user && (
+                <li>
+                  <Link to="/dashboard">Dashborad</Link>
+                </li>
+              )}
               <li>
                 {user ? (
                   <button onClick={logOut} className="">
