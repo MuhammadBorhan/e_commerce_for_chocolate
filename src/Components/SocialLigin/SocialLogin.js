@@ -1,6 +1,7 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "./../../firebase/firebase.init.js";
 import { useNavigate } from "react-router-dom";
+import google from "../../../src/assets/images/google.png";
 
 const auth = getAuth(app);
 
@@ -20,12 +21,13 @@ const SocialLogin = () => {
       });
   };
   return (
-    <div className=" block mx-auto w-2/4">
+    <div className=" block mx-auto w-3/4">
       <button
         onClick={handleGoogleSignIn}
-        className="btn btn-outline  "
+        className="btn btn-outline flex justify-center items-center "
         // style={{ backgroundColor: "#9A583B" }}
       >
+        <img style={{ width: "30px" }} src={google} alt="Google" />
         Continue with Google
       </button>
     </div>
