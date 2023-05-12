@@ -4,19 +4,26 @@ import bg from "../../assets/images/loginBg.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    axios.post(`http://localhost:5000/api/v1/login`, data).then((res) => {
-      const accessToken = res?.data?.data?.token;
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/login`,
+        data
+      );
+      const accessToken = response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
-      if (res) {
-        navigate("/");
+      if (response) {
+        navigate("/dashboard");
         window.location.reload();
       }
-    });
+    } catch (error) {
+      toast.error(error.response?.data?.error);
+    }
   };
   return (
     <div

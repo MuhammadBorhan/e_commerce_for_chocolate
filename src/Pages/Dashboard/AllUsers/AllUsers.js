@@ -46,7 +46,7 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, i) => (
+            {users?.map((user, i) => (
               <tr key={user._id}>
                 <th>{i + 1}</th>
                 <td>
@@ -57,14 +57,14 @@ const AllUsers = () => {
                 <td>{user.email}</td>
                 <td>
                   <button className="px-2 bg-green-600 text-white rounded-full">
-                    {user.role}
+                    {user?.role}
                   </button>
                 </td>
                 {getMe?.role === "admin" && (
                   <td>
                     {" "}
                     <button
-                      onClick={() => deleteUser(user._id)}
+                      onClick={() => deleteUser(user?._id)}
                       className="text-red-500 flex justify-center"
                       style={{ width: "40px", fontSize: "25px" }}
                     >
