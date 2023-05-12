@@ -17,9 +17,7 @@ const AddBrand = () => {
   const [districts, setDistricts] = useState({});
   const getDistrict = districts[0]?.district;
   useEffect(() => {
-    fetch(
-      `https://server-murex-one.vercel.app/api/v1/region?region=${selectRegion}`
-    )
+    fetch(`http://localhost:5000/api/v1/region?region=${selectRegion}`)
       .then((res) => res.json())
       .then((data) => setDistricts(data?.data));
   }, [selectRegion]);
@@ -57,10 +55,7 @@ const AddBrand = () => {
       products,
     };
     try {
-      await axios.post(
-        "https://server-murex-one.vercel.app/api/v1/products",
-        newData
-      );
+      await axios.post("http://localhost:5000/api/v1/products", newData);
 
       // Reset the form inputs
       // setDistrict("");

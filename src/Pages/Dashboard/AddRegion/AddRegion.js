@@ -31,10 +31,7 @@ const NewAddRegion = () => {
       district,
     };
     try {
-      await axios.post(
-        "https://server-murex-one.vercel.app/api/v1/region",
-        newDistrictData
-      );
+      await axios.post("http://localhost:5000/api/v1/region", newDistrictData);
 
       // Reset the form inputs
       setRegion("");
