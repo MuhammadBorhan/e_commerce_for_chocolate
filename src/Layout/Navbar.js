@@ -158,45 +158,43 @@ const Navbar = () => {
             </Link>
           </p>
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <label tabIndex={0} className="btn btn-ghost">
               {user ? (
                 <span className="text-sm">{user?.firstName}</span>
               ) : (
                 // <div className="w-10 rounded-full">
                 //   <img src="https://borhanportfolio.netlify.app/static/media/borhan.d87b28879c1a50ffbd3f.png" />
                 // </div>
-                <div className="avatar placeholder">
-                  <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-                    <span className="text-xs">M</span>
-                  </div>
-                </div>
+                // <div className="avatar placeholder">
+                //   <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
+                //     <span className="text-xs">M</span>
+                //   </div>
+                // </div>
+                <Link
+                  to={"/login"}
+                  className="p-0 bg-transparent m-0 text-center"
+                >
+                  {" "}
+                  <button className="">Login</button>
+                </Link>
               )}
             </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-52"
-            >
-              {user && (
+            {user && (
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-52"
+              >
                 <li>
                   <Link to="/dashboard">Dashborad</Link>
                 </li>
-              )}
-              <li>
-                {user ? (
+                <li>
+                  {" "}
                   <button onClick={logOut} className="">
                     Logout ({user?.role})
-                  </button>
-                ) : (
-                  <Link
-                    to={"/login"}
-                    className="p-0 bg-transparent m-0 text-center"
-                  >
-                    {" "}
-                    <button className="">Login</button>
-                  </Link>
-                )}
-              </li>
-            </ul>
+                  </button>{" "}
+                </li>
+              </ul>
+            )}
           </div>
         </div>
         <label
