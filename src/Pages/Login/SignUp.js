@@ -4,27 +4,44 @@ import bg from "../../assets/images/loginBg.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const { confirmPassword: cfw, ...others } = data;
     const { password, confirmPassword } = data;
     if (password !== confirmPassword) {
-      alert("Password did not match");
+      toast.error("Password did not match");
     } else if (password.length < 6) {
-      alert("Password is less than 6");
+      toast.error("Password is less than 6");
     } else {
-      axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
-        const accessToken = res?.data?.token;
+      // axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
+      //   console.log(res);
+      //   const accessToken = res?.data?.token;
+      //   localStorage.setItem("accessToken", accessToken);
+      //   if (res.status === 200) {
+      //     // navigate("/dashboard");
+      //     // window.location.reload();
+      //   }
+      // });
+      try {
+        const response = await axios.post(
+          `http://localhost:5000/api/v1/signup`,
+          others
+        );
+        const accessToken = response?.data?.token;
         localStorage.setItem("accessToken", accessToken);
-        if (res.status === 200) {
+        if (response) {
           navigate("/dashboard");
           window.location.reload();
         }
-      });
+      } catch (error) {
+        console.log(error);
+        toast.error(error?.response?.data?.error);
+      }
     }
   };
   return (
