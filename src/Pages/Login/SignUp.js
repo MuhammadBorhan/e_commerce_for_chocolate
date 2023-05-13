@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import bg from "../../assets/images/loginBg.jpg";
+import bg from "../../assets/images/loginBg.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
@@ -17,7 +17,7 @@ const SignUp = () => {
     } else if (password.length < 6) {
       alert("Password is less than 6");
     } else {
-      axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
+      axios.post(`http://localhost:4000/api/v1/signup`, others).then((res) => {
         const accessToken = res?.data?.token;
         localStorage.setItem("accessToken", accessToken);
         if (res.status === 200) {

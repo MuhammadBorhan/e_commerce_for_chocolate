@@ -19,7 +19,7 @@ const SocialLogin = () => {
         };
 
         console.log(user);
-        axios.post(`http://localhost:5000/api/v1/signup`, gUser).then((res) => {
+        axios.post(`http://localhost:4000/api/v1/signup`, gUser).then((res) => {
           console.log(res?.data?.token);
           const accessToken = res?.data?.token;
           localStorage.setItem("accessToken", accessToken);
@@ -38,7 +38,6 @@ const SocialLogin = () => {
         onClick={handleGoogleSignIn}
         className="btn btn-outline w-full bg-black text-white hover:bg-black "
       >
-        <img style={{ width: "30px" }} src={google} alt="Google" />
         Continue with Google
       </button>
     </div>
