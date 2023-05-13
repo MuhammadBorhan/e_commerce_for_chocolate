@@ -47,7 +47,7 @@ const Navbar = () => {
       <div
         onClick={() => setModelMenu(!modelMenu)}
         className="float-left text-white px-3 flex items-center lg:hidden "
-        style={{ height: "60px", backgroundColor: "#9A583B" }}
+        style={{ height: "70px", backgroundColor: "#9A583B" }}
       >
         <AiOutlineMenu
           className=""
@@ -60,7 +60,7 @@ const Navbar = () => {
         onClick={() => setModelMenu(!modelMenu)}
         className="float-left text-white px-3 lg:flex items-center hidden  "
         style={{
-          height: "60px",
+          height: "70px",
           backgroundColor: "#900C3F",
           cursor: "pointer",
         }}
@@ -119,7 +119,7 @@ const Navbar = () => {
       {/* navbar */}
       <div
         className="flex justify-between items-center px-4 "
-        style={{ height: "60px", backgroundColor: "#9A583B" }}
+        style={{ height: "70px", backgroundColor: "#9A583B" }}
       >
         {/* logo */}
         <div>
@@ -162,8 +162,13 @@ const Navbar = () => {
               {user ? (
                 <span className="text-sm">{user?.firstName}</span>
               ) : (
-                <div className="w-10 rounded-full">
-                  <img src="https://borhanportfolio.netlify.app/static/media/borhan.d87b28879c1a50ffbd3f.png" />
+                // <div className="w-10 rounded-full">
+                //   <img src="https://borhanportfolio.netlify.app/static/media/borhan.d87b28879c1a50ffbd3f.png" />
+                // </div>
+                <div className="avatar placeholder">
+                  <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
+                    <span className="text-xs">M</span>
+                  </div>
                 </div>
               )}
             </label>
@@ -182,9 +187,13 @@ const Navbar = () => {
                     Logout ({user?.role})
                   </button>
                 ) : (
-                  <button className="">
-                    <Link to={"/login"}>Login</Link>
-                  </button>
+                  <Link
+                    to={"/login"}
+                    className="p-0 bg-transparent m-0 text-center"
+                  >
+                    {" "}
+                    <button className="">Login</button>
+                  </Link>
                 )}
               </li>
             </ul>
