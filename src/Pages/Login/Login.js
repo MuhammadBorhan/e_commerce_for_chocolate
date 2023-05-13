@@ -15,7 +15,7 @@ const Login = () => {
         `http://localhost:4000/api/v1/login`,
         data
       );
-      const accessToken = response?.data?.data?.token;
+      const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
       if (response) {
         navigate("/dashboard");

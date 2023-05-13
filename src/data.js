@@ -1,3 +1,17 @@
+export const coverImage = [
+  {
+    id: 1,
+    name: "Godiva",
+    image:
+      "https://cdn.phenompeople.com/CareerConnectResources/GODIGLOBAL/en_global/common/image_gallery/godivacookies-1563814623533.jpg",
+  },
+  {
+    id: 2,
+    name: "Kitkat",
+    image:
+      "https://scontent.fdac24-2.fna.fbcdn.net/v/t31.18172-8/17917269_10155191647334557_3022423835546457856_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeEgeZAL5THWE7tsc-ZGIOC17ay1BwY2R0_trLUHBjZHT0EjLRRDwCDnQGk2uCYw2cb57LA4PKsn1N1cgZZegRWm&_nc_ohc=wjRLuPGicLEAX-wmdFN&_nc_ht=scontent.fdac24-2.fna&oh=00_AfCX0Barcugiis-a4Yspi14WkBva-E5sBecvSwL6W6sc7Q&oe=64870832",
+  },
+];
 export const heroSlider = [
   {
     id: 1,
