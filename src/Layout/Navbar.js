@@ -158,7 +158,10 @@ const Navbar = () => {
             </Link>
           </p>
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost">
+            <label
+              tabIndex={0}
+              className="btn bg-transparent hover:bg-transparent border-none"
+            >
               {user ? (
                 <span className="text-sm">{user?.firstName}</span>
               ) : (
@@ -170,12 +173,9 @@ const Navbar = () => {
                 //     <span className="text-xs">M</span>
                 //   </div>
                 // </div>
-                <Link
-                  to={"/login"}
-                  className="p-0 bg-transparent m-0 text-center"
-                >
+                <Link to={"/login"} className="bg-transparent">
                   {" "}
-                  <button className="">Login</button>
+                  Login
                 </Link>
               )}
             </label>
