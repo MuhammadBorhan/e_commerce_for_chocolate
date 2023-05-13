@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { Link, Outlet } from "react-router-dom";
 import { useGetUserQuery } from "../features/api/loginApi";
 import { MdDashboard } from "react-icons/md";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const DashboardLayout = () => {
   const { data } = useGetUserQuery();
@@ -16,7 +17,7 @@ const DashboardLayout = () => {
       <div className="drawer-side shadow-lg shadow-indigo-500/40">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
-        <ul className="menu p-4 w-60 bg-green-700 text-white">
+        <ul className="menu p-4 w-60 bg-[#9A583B] border-t-[1px] text-white">
           <li>
             <Link to="/dashboard">
               <MdDashboard /> Dashboard
