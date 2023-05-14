@@ -18,10 +18,6 @@ const SignUp = () => {
     } else if (password.length < 6) {
       toast.error("Password is less than 6");
     } else {
-<<<<<<< HEAD
-      axios.post(`http://localhost:4000/api/v1/signup`, others).then((res) => {
-        const accessToken = res?.data?.token;
-=======
       // axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
       //   console.log(res);
       //   const accessToken = res?.data?.token;
@@ -33,11 +29,10 @@ const SignUp = () => {
       // });
       try {
         const response = await axios.post(
-          `http://localhost:5000/api/v1/signup`,
+          `http://localhost:4000/api/v1/signup`,
           others
         );
         const accessToken = response?.data?.token;
->>>>>>> ae60891d7c56722bf88f7f75572b1449a33c5d3c
         localStorage.setItem("accessToken", accessToken);
         if (response) {
           navigate("/dashboard");

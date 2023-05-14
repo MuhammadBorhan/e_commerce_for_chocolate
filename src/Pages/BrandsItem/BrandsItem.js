@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
@@ -8,6 +7,7 @@ import { coverImage } from "../../data";
 const BrandsItem = () => {
   const location = useLocation();
   const brands = location?.state;
+  console.log(brands);
 
   // fetching products data with district and brand
   const { data } = useGetAllProductsQuery();
