@@ -37,12 +37,16 @@ const BrandsItem = () => {
     <div className="p-4 lg:p-12">
       <div class="bg-cover bg-center ...">
         <figure>
-          <img src={findImage.image} alt="Shoes" />
+          <img
+            src={findImage.image}
+            alt="Shoes"
+            className="h-[250px] w-full object-center"
+          />
         </figure>
       </div>
       {/* <BrandCover></BrandCover> */}
       {/* search bar */}
-      <div className="relative hidden lg:block text-gray-600 w-2/4 mx-auto mt-6 shadow-xl rounded shadow-gray-300">
+      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-16 border shadow rounded shadow-gray-300">
         <input
           className="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
           type="search"
@@ -59,23 +63,62 @@ const BrandsItem = () => {
           </svg>
         </button>
       </div>
-      <div className="flex justify-center pb-8  mt-6 ">
+      <div className="flex justify-center mb-16  mt-6 ">
         <div className="card card-compact rounded-none bg-base-100 shadow-xl">
           <figure>
+            <img className="w-[300px] " src={brands?.brandImage} alt="Shoes" />
+          </figure>
+        </div>
+      </div>
+
+      <div className="flex flex-col justify-center items-center gap-6">
+        <div className="card w-[700px] card-side bg-base-100 shadow-xl">
+          <figure>
             <img
-              className="w-[250px] h-[200px]"
-              src={brands?.brandImage}
+              className="w-[300px] pl-8"
+              src={allProducts[0]?.image}
               alt="Shoes"
             />
           </figure>
-          <div className="card-body text-center items-center">
-            <h2 className="card-title">Brand: {brands?.brandName}</h2>
+          <div className="card-body w-[700px]">
+            <h2 className="card-title">New brand is released!</h2>
+            <p>
+              chocolate, food product made from cocoa beans, consumed as candy
+              and used to make beverages and to flavour or coat various
+              confections and bakery products.
+            </p>
+            <div className="card-actions justify-end">
+              <button>
+                {" "}
+                <p>¥{allProducts[0]?.price}</p>
+              </button>
+            </div>
           </div>
+        </div>
+        <div className="card w-[700px] card-side bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title">New brand is released!</h2>
+            <p>
+              chocolate, food product made from cocoa beans, consumed as candy
+              and used to make beverages and to flavour or coat various
+              confections and bakery products.
+            </p>
+            <div className="card-actions justify-end">
+              <p>¥{allProducts[1]?.price}</p>
+            </div>
+          </div>
+          <figure>
+            <img
+              className="w-[300px] h-[200px] p-8"
+              src={allProducts[1]?.image}
+              alt="Shoes"
+            />
+          </figure>
         </div>
       </div>
 
       <div>
-        <h3 className="text-center text-xl font-bold mb-6">
+        <h3 className="text-center text-xl font-bold mb-6 mt-12">
           {brands?.brandName} Chocolate items {allProducts?.length}
         </h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
