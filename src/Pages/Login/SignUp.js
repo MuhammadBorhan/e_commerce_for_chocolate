@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import bg from "../../assets/images/loginBg.jpg";
+import bg from "../../assets/images/loginBg.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
@@ -29,7 +29,7 @@ const SignUp = () => {
       // });
       try {
         const response = await axios.post(
-          `http://localhost:5000/api/v1/signup`,
+          `http://localhost:4000/api/v1/signup`,
           others
         );
         const accessToken = response?.data?.token;

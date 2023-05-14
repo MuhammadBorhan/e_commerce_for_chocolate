@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import { Link, Outlet } from "react-router-dom";
 import { useGetUserQuery } from "../features/api/loginApi";
 import { MdDashboard } from "react-icons/md";
-import { AiOutlineMenu } from "react-icons/ai";
 
 const DashboardLayout = () => {
   const { data } = useGetUserQuery();

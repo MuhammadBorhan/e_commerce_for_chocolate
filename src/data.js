@@ -1,3 +1,35 @@
+export const coverImage = [
+  {
+    id: 1,
+    name: "Godiva",
+    image:
+      "https://cdn.phenompeople.com/CareerConnectResources/GODIGLOBAL/en_global/common/image_gallery/godivacookies-1563814623533.jpg",
+  },
+  {
+    id: 2,
+    name: "Kitkat",
+    image:
+      "https://scontent.fdac24-2.fna.fbcdn.net/v/t31.18172-8/17917269_10155191647334557_3022423835546457856_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeEgeZAL5THWE7tsc-ZGIOC17ay1BwY2R0_trLUHBjZHT0EjLRRDwCDnQGk2uCYw2cb57LA4PKsn1N1cgZZegRWm&_nc_ohc=wjRLuPGicLEAX-wmdFN&_nc_ht=scontent.fdac24-2.fna&oh=00_AfCX0Barcugiis-a4Yspi14WkBva-E5sBecvSwL6W6sc7Q&oe=64870832",
+  },
+  {
+    id: 3,
+    name: "Cabury",
+    image:
+      "https://scontent.fdac24-3.fna.fbcdn.net/v/t1.6435-9/119022161_10164059184200111_7879695655274451995_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeG4FjLWaDhIuTbfltlh4hZIRyK1-lxLq9ZHIrX6XEur1kKRW6B_kHpfCgRNGa51CRr9QSIBAFolFeLBXOghPjT2&_nc_ohc=O9W3TbcNoEwAX8sQ7Y6&_nc_ht=scontent.fdac24-3.fna&oh=00_AfCYqArgpvq1omtR7h0lVVwyHOixVLBpq2bzBL5SayxRMg&oe=6487EF97",
+  },
+  {
+    id: 4,
+    name: "Sniker",
+    image:
+      "https://scontent.fdac24-3.fna.fbcdn.net/v/t1.6435-9/36975822_10156435696549462_105055033204146176_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeHdsq9KiJruAO0wTBoH27kJSfGaKKH1xDVJ8ZooofXENaqA929Elimv802UGQRqVsjlrFMyEARZYK4xi8mLACKd&_nc_ohc=DS7AMsRs7oYAX9XlOd_&_nc_ht=scontent.fdac24-3.fna&oh=00_AfBLg9YHFc1Ec_hByAyfuIdgdmArMpd_P6NLCjf-7kNGZg&oe=64880137",
+  },
+  {
+    id: 5,
+    name: "Guylian",
+    image:
+      "https://scontent.fdac24-1.fna.fbcdn.net/v/t39.30808-6/340932839_1154091741931157_1543714205556559827_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeG1nOAwVRFEFJutv1LZtKTOpc-_uOzQy--lz7-47NDL7xZDOJ4XKvRorADupQ_vwI1nrzCb30FyrHHjAG7Yz84q&_nc_ohc=QiXd6r5KAPUAX8Sf1Tr&_nc_ht=scontent.fdac24-1.fna&oh=00_AfDKWmQBrkhjp49pcZHETSzzfJq9N8r6JWgEB2uqEM5M3Q&oe=646614F9",
+  },
+];
 export const heroSlider = [
   {
     id: 1,
