@@ -27,18 +27,6 @@ const DashboardLayout = () => {
               <Link to="/dashboard/addregion">Add Region And District</Link>
             </li>
           )}
-<<<<<<< HEAD
-          {users?.role == "admin" && (
-            <li>
-              <Link to="/dashboard/regionList">Region And District List</Link>
-            </li>
-          )}
-          {users?.role == "admin" && (
-            <li>
-              <Link to="/dashboard/addbrand">Add Products</Link>
-            </li>
-          )}
-=======
           {/* {users?.role == "user" && (
           <li>
             <Link to="/dashboard/addbrand">Add Products</Link>
@@ -98,7 +86,6 @@ const DashboardLayout = () => {
             </ul>
           </div>
 
->>>>>>> b143c9c89189f9cadb742ac44c73764b0b710d22
           {users?.role == "admin" && (
             <li>
               <Link to="/dashboard/allproducts">Manage Products</Link>
