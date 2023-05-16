@@ -29,6 +29,11 @@ const DashboardLayout = () => {
           )}
           {users?.role == "admin" && (
             <li>
+              <Link to="/dashboard/regionList">Region And District List</Link>
+            </li>
+          )}
+          {users?.role == "admin" && (
+            <li>
               <Link to="/dashboard/addbrand">Add Products</Link>
             </li>
           )}

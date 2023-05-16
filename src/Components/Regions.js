@@ -44,7 +44,9 @@ const Regions = () => {
   }
 
   if (regionError) {
-    return <div>Error: {regionError?.message}</div>;
+    return (
+      <div className="text-center text-red-500 font-bold">Data not found</div>
+    );
   }
 
   return (
