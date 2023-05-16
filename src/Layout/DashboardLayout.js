@@ -27,6 +27,7 @@ const DashboardLayout = () => {
               <Link to="/dashboard/addregion">Add Region And District</Link>
             </li>
           )}
+<<<<<<< HEAD
           {users?.role == "admin" && (
             <li>
               <Link to="/dashboard/regionList">Region And District List</Link>
@@ -37,6 +38,67 @@ const DashboardLayout = () => {
               <Link to="/dashboard/addbrand">Add Products</Link>
             </li>
           )}
+=======
+          {/* {users?.role == "user" && (
+          <li>
+            <Link to="/dashboard/addbrand">Add Products</Link>
+          </li>
+          )} */}
+          <div className="dropdown dropdown-bottom">
+            <label tabIndex={0} className="ml-2 cursor-pointer">
+              Products
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+            >
+              <li>
+                <Link to="/dashboard/addproduct">Add Products</Link>
+              </li>
+              <li>
+                <Link>All Products</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Brand  */}
+
+          <div className="dropdown dropdown-bottom mt-2">
+            <label tabIndex={0} className="ml-2  cursor-pointer">
+              Brands
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+            >
+              <li>
+                <Link to="/dashboard/addbrand">Add Brand</Link>
+              </li>
+              <li>
+                <Link>Brands Details</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Add Gift Items  */}
+          <div className="dropdown dropdown-bottom mt-2">
+            <label tabIndex={0} className="ml-2  cursor-pointer">
+              Gift Items
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+            >
+              <li>
+                <Link to="/dashboard/addgiftitem">Add Gift Items</Link>
+              </li>
+              <li>
+                <Link>Gift Item List</Link>
+              </li>
+            </ul>
+          </div>
+
+>>>>>>> b143c9c89189f9cadb742ac44c73764b0b710d22
           {users?.role == "admin" && (
             <li>
               <Link to="/dashboard/allproducts">Manage Products</Link>
@@ -45,6 +107,7 @@ const DashboardLayout = () => {
           <li>
             <Link to="/dashboard/alluser">All User</Link>
           </li>
+          {/* dropdown  */}
         </ul>
       </div>
     </div>
