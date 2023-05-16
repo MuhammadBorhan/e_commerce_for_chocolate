@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddGiftItems = () => {
   const [boxName, setBoxName] = useState("");
@@ -18,10 +19,8 @@ const AddGiftItems = () => {
 
   const handlePruductchange = (e) => {
     console.log(e);
-    // const { value, checked } = e.target;
-    const value = e.target.value;
-    const isChecked = e.target.checked;
-    if (isChecked) {
+    const { value, checked } = e.target;
+    if (checked) {
       setProductList([...productList, value]);
     } else {
       setProductList(productList.filter((item) => item !== value));
@@ -35,10 +34,6 @@ const AddGiftItems = () => {
       setProductList([]);
     }
     setSelectAll(!selectAll);
-  };
-
-  const handleUnselectAll = () => {
-    setProductList([]);
   };
 
   console.log(productList);
@@ -60,9 +55,9 @@ const AddGiftItems = () => {
       setBoxName("");
       setBoxImage("");
       setBrandName("");
-      // setProductList("");
+      setProductList("");
 
-      // Handle success or show a success message
+      toast.success("Successfully added");
     } catch (error) {
       console.log(error);
     }
@@ -82,22 +77,23 @@ const AddGiftItems = () => {
               <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 my-2  ">
                 <input
                   type="text"
+                  value={boxName}
                   onChange={(e) => setBoxName(e.target.value)}
-                  placeholder="Name"
+                  placeholder="Gift Box Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
                 />
                 <input
                   type="text"
-                  // value="image"
+                  value={boxImage}
                   onChange={(e) => setBoxImage(e.target.value)}
-                  placeholder="Brnad Cover Image Url"
+                  placeholder="Gift Box Image Url"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 />
 
                 <select
                   onChange={(e) => setBrandName(e.target.value)}
-                  // value="brand"
-                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                  vlaue={brandName}
+                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 >
                   <option disabled selected>
                     Select Brand
@@ -109,13 +105,12 @@ const AddGiftItems = () => {
                 </select>
 
                 {/* Checkbox  */}
-
                 <div className="dropdown dropdown-end">
                   <label tabIndex={0} className="ml-2  cursor-pointer">
                     Select Product
                   </label>
                   <div>
-                    <label className="inline-flex items-center cursor-pointer">
+                    <label className="inline-flex items-center gap-x-1 cursor-pointer my-2">
                       <input
                         type="checkbox"
                         className="form-checkbox"
@@ -125,9 +120,12 @@ const AddGiftItems = () => {
                       {selectAll ? "Unselect All" : "Select All"}
                     </label>
                   </div>
-                  <div>
+                  <div className="grid grid-cols-3 lg:grid-cols-6">
                     {data.map((item) => (
-                      <label key={item} className="block mt-2">
+                      <label
+                        key={item}
+                        className="inline-flex items-center gap-x-1"
+                      >
                         <input
                           type="checkbox"
                           className="form-checkbox"
