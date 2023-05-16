@@ -17,6 +17,7 @@ import NewAddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import ManageProducts from "../Pages/Dashboard/BrandProducts/ManageProducts";
 import AddProdusts from "../Pages/Dashboard/AddProducts/AddProducts";
 import AddGiftItems from "../Pages/Dashboard/GiftBox/AddGiftItems";
+import RegionList from "../Pages/Dashboard/RegionList";
 
 const routes = createBrowserRouter([
   {
