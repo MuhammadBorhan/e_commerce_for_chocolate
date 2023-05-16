@@ -16,6 +16,8 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddBrand from "../Pages/Dashboard/BrandProducts/AddBrand";
 import NewAddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import ManageProducts from "../Pages/Dashboard/BrandProducts/ManageProducts";
+import AddProdusts from "../Pages/Dashboard/AddProducts/AddProducts";
+import AddGiftItems from "../Pages/Dashboard/GiftBox/AddGiftItems";
 
 const routes = createBrowserRouter([
   {
@@ -73,6 +75,14 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/addbrand",
             element: <AddBrand />,
+          },
+          {
+            path: "/dashboard/addproduct",
+            element: <AddProdusts />,
+          },
+          {
+            path: "/dashboard/addgiftitem",
+            element: <AddGiftItems />,
           },
           {
             path: "/dashboard/allproducts",
