@@ -6,7 +6,7 @@ const loginApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "/users",
       }),
-      providesTags: ["logins"],
+      providesTags: ["login"],
     }),
     getUser: builder.query({
       query: () => ({
@@ -16,14 +16,14 @@ const loginApi = apiSlice.injectEndpoints({
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       }),
-      providesTags: ["logins"],
+      providesTags: ["login"],
     }),
     removeUser: builder.mutation({
       query: (id) => ({
         url: `/user/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["logins"],
+      invalidatesTags: ["login"],
     }),
   }),
 });

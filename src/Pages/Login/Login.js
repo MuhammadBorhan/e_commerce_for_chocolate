@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import bg from "../../assets/images/loginBg.jpg";
+import bg from "../../assets/images/loginBg.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
@@ -15,11 +14,10 @@ const Login = () => {
         `http://localhost:5001/api/v1/login`,
         data
       );
-      const accessToken = response?.data?.data?.token;
+      const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
       if (response) {
         navigate("/dashboard");
-        window.location.reload();
       }
     } catch (error) {
       toast.error(error.response?.data?.error);
