@@ -8,7 +8,7 @@ const SameDayDelivery = () => {
           className="flex justify-between pb-2 mb-2"
           style={{ borderBottom: "1px solid gray" }}
         >
-          <h6>Same Day Delivery </h6>
+          <h6>Unique Gifts Online</h6>
           <Link
             to="/same-day-delivery-gifts"
             style={{ textDecoration: "none", color: "gray" }}
