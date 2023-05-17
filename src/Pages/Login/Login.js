@@ -18,7 +18,6 @@ const Login = () => {
       localStorage.setItem("accessToken", accessToken);
       if (response) {
         navigate("/dashboard");
-        window.location.reload();
       }
     } catch (error) {
       toast.error(error.response?.data?.error);
