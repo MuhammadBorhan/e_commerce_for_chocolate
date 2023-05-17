@@ -11,37 +11,43 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    const { confirmPassword: cfw, ...others } = data;
-    const { password, confirmPassword } = data;
-    if (password !== confirmPassword) {
-      toast.error("Password did not match");
-    } else if (password.length < 6) {
-      toast.error("Password is less than 6");
-    } else {
-      // axios.post(`http://localhost:5000/api/v1/signup`, others).then((res) => {
-      //   console.log(res);
-      //   const accessToken = res?.data?.token;
-      //   localStorage.setItem("accessToken", accessToken);
-      //   if (res.status === 200) {
-      //     // navigate("/dashboard");
-      //     // window.location.reload();
-      //   }
-      // });
-      try {
-        const response = await axios.post(
-          `http://localhost:5000/api/v1/signup`,
-          others
-        );
-        const accessToken = response?.data?.token;
-        localStorage.setItem("accessToken", accessToken);
-        if (response) {
-          navigate("/dashboard");
-          window.location.reload();
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error(error?.response?.data?.error);
+    // const { confirmPassword: cfw, ...others } = data;
+    // const { password, confirmPassword } = data;
+    // if (password !== confirmPassword) {
+    //   toast.error("Password did not match");
+    // } else if (password.length < 6) {
+    //   toast.error("Password is less than 6");
+    // } else {
+    //   try {
+    //     const response = await axios.post(
+    //       `http://localhost:5000/api/v1/signup`,
+    //       others
+    //     );
+    //     const accessToken = response?.data?.token;
+    //     localStorage.setItem("accessToken", accessToken);
+    //     if (response) {
+    //       navigate("/dashboard");
+    //       window.location.reload();
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //     toast.error(error?.response?.data?.error);
+    //   }
+    // }
+
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/signup`,
+        data
+      );
+      const accessToken = response?.data?.token;
+      localStorage.setItem("accessToken", accessToken);
+      if (response) {
+        navigate("/dashboard");
+        window.location.reload();
       }
+    } catch (error) {
+      toast.error(error?.response?.data?.error);
     }
   };
   return (
