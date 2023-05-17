@@ -11,14 +11,13 @@ import SignUp from "../Pages/Login/SignUp";
 import BrandsItem from "../Pages/BrandsItem/BrandsItem";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Dashboard from "../Pages/Dashboard/Dashboard";
-import AddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AddBrand from "../Pages/Dashboard/BrandProducts/AddBrand";
 import NewAddRegion from "../Pages/Dashboard/AddRegion/AddRegion";
 import ManageProducts from "../Pages/Dashboard/BrandProducts/ManageProducts";
 import AddProdusts from "../Pages/Dashboard/AddProducts/AddProducts";
 import AddGiftItems from "../Pages/Dashboard/GiftBox/AddGiftItems";
-import AddEvent from "../Pages/Dashboard/Event/AddEvent";
+import RegionList from "../Pages/Dashboard/RegionList";
 
 const routes = createBrowserRouter([
   {
@@ -68,6 +67,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/addregion",
             element: <NewAddRegion />,
+          },
+          {
+            path: "/dashboard/regionList",
+            element: <RegionList />,
           },
           {
             path: "/dashboard/alluser",
