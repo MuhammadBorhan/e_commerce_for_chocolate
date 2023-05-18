@@ -24,13 +24,14 @@ const TrendingGiftList = () => {
   };
   return (
     <div className="p-8">
+      <h1 className="mb-4 text-blue-500 font-bold">Trending Gift List</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}
           <thead>
             <tr>
               <th>SL. No</th>
-              <th>Name</th>
+              <th>Brand</th>
               <th>Region</th>
               <th>District</th>
               <th>Action</th>
