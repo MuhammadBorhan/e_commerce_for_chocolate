@@ -11,7 +11,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/login`,
+        `http://localhost:5001/api/v1/login`,
         data
       );
       const accessToken = await response?.data?.data?.token;
