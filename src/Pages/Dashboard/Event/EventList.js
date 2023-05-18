@@ -1,11 +1,24 @@
 import React from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
-import { useGetAllEventQuery } from "../../../features/api/eventApi";
+import {
+  useGetAllEventQuery,
+  useRemoveEventMutation,
+} from "../../../features/api/eventApi";
+import { toast } from "react-toastify";
 
 const EventList = () => {
   const { data } = useGetAllEventQuery();
   const events = data?.data;
+  const [removeEvent] = useRemoveEventMutation();
+
+  const handleDelete = (id) => {
+    const confirm = window.confirm("Are you want do delete?");
+    if (confirm) {
+      removeEvent(id);
+      toast.success("Delete Successfull!!");
+    }
+  };
   return (
     <div className="p-8">
       <div className="overflow-x-auto">
@@ -44,6 +57,7 @@ const EventList = () => {
                     <FaEdit />
                   </button>
                   <button
+                    onClick={(e) => handleDelete(even?._id)}
                     className="text-red-500"
                     style={{ width: "40px", fontSize: "25px" }}
                   >

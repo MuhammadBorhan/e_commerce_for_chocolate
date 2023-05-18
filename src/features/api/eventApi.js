@@ -6,14 +6,16 @@ const eventApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "/event",
       }),
-      providesTags: ["events"],
+      providesTags: ["evn"],
+      invalidatesTags: ["evn"],
     }),
     removeEvent: builder.mutation({
       query: (id) => ({
         url: `/event/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["events"],
+      providesTags: ["evn"],
+      invalidatesTags: ["evn"],
     }),
   }),
 });
