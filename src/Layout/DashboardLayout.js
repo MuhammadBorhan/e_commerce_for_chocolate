@@ -4,6 +4,9 @@ import { Link, Outlet } from "react-router-dom";
 import { useGetUserQuery } from "../features/api/loginApi";
 import { MdDashboard } from "react-icons/md";
 
+
+
+
 const DashboardLayout = () => {
   const { data } = useGetUserQuery();
   const users = data?.data;
@@ -34,7 +37,7 @@ const DashboardLayout = () => {
           )} */}
           <div className="dropdown dropdown-bottom">
             <label tabIndex={0} className="ml-2 cursor-pointer">
-              Products
+             
             </label>
             <ul
               tabIndex={0}
@@ -52,8 +55,8 @@ const DashboardLayout = () => {
           {/* Brand  */}
 
           <div className="dropdown dropdown-bottom mt-2">
-            <label tabIndex={0} className="ml-2  cursor-pointer">
-              Brands
+          <label tabIndex={0} className=" cursor-pointer">
+             
             </label>
             <ul
               tabIndex={0}
@@ -70,8 +73,8 @@ const DashboardLayout = () => {
 
           {/* Add Gift Items  */}
           <div className="dropdown dropdown-bottom mt-2">
-            <label tabIndex={0} className="ml-2  cursor-pointer">
-              Gift Items
+          <label tabIndex={0} className=" cursor-pointer">
+             
             </label>
             <ul
               tabIndex={0}
@@ -91,7 +94,7 @@ const DashboardLayout = () => {
               <Link to="/dashboard/allproducts">Manage Products</Link>
             </li>
           )}
-          <li>
+          <li className="">
             <Link to="/dashboard/alluser">All User</Link>
           </li>
           {/* dropdown  */}
