@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { useGetAllProductsQuery } from "../../../features/api/productsApi";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:4000/api/v1/products")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
+  const { data } = useGetAllProductsQuery();
+  const products = data?.data;
+  console.log(products);
 
   const deleteUser = (id) => {
     const confirm = window.confirm("Are you want do delete?");
@@ -18,44 +16,36 @@ const ProductList = () => {
   return (
     <div className="p-8">
       <div className="overflow-x-auto">
-        <h2 className="text-xl font-bold mt-2">All User</h2>
+        <h2 className="text-xl font-bold mt-2">All Products</h2>
         <table className="table w-full mt-2">
           {/* head */}
           <thead>
             <tr>
               <th>Sl No.</th>
+              <th>Image</th>
               <th>Product Name</th>
+              <th>Price</th>
               <th>Brand</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {products?.map((user, i) => (
-              <tr key={user._id}>
+            {products?.map((product, i) => (
+              <tr key={product._id}>
                 <th>{i + 1}</th>
-                <td>
-                  {user?.firstName +
-                    " " +
-                    (user?.lastName ? user?.lastName : "")}
-                </td>
-                <td>{user.email}</td>
-                <td>
-                  <button className="px-2 bg-green-600 text-white rounded-full">
-                    {user?.role}
+                <th>
+                  {" "}
+                  <img src={product?.image} className="w-16" />{" "}
+                </th>
+                <td>{product?.name}</td>
+                <td>{product?.price}</td>
+                <td>{product?.brand}</td>
+                <td className="">
+                  <button className="px-2 bg-blue-600 text-white mr-2">
+                    Edit
                   </button>
+                  <button className="px-2 bg-red-600 text-white">Delete</button>
                 </td>
-                {/* {getMe?.role === "admin" && (
-                  <td>
-                    {" "}
-                    <button
-                      onClick={() => deleteUser(user?._id)}
-                      className="text-red-500 flex justify-center"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <AiTwotoneDelete></AiTwotoneDelete>
-                    </button>
-                  </td>
-                )} */}
               </tr>
             ))}
           </tbody>

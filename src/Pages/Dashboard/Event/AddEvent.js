@@ -1,39 +1,39 @@
 import axios from "axios";
 import { format } from "date-fns";
 import { useState } from "react";
+import DateTimePicker from "react-datetime-picker";
 import { DayPicker } from "react-day-picker";
+import "react-datetime-picker/dist/DateTimePicker.css";
+import "react-calendar/dist/Calendar.css";
+import "react-clock/dist/Clock.css";
+import { toast } from "react-toastify";
 
 const AddEvent = () => {
   const [title, setTitle] = useState("");
-  const [dateTime, setDateTime] = useState();
+  const [dateTime, setDateTime] = useState(new Date());
   const [region, setRegion] = useState("");
   const [district, setDistrict] = useState("");
   const [brand, setBrand] = useState("");
   const [status, setStatus] = useState("");
-  const [gMeet, setGMeet] = useState("");
+  const [gmeet, setGMeet] = useState("");
   const [desc, setDesc] = useState("");
-  const [selected, setSelected] = useState(new Date());
-
-  const handleDate = (e) => {
-    console.log(e);
-  };
 
   const handleSubmitEvent = async (e) => {
     e.preventDefault();
 
     const data = {
       title,
-      selected,
+      dateTime,
       region,
       district,
       brand,
       status,
-      gMeet,
+      gmeet,
       desc,
     };
     console.log(data);
     try {
-      await axios.post("http://localhost:4000/api/v1/event", data);
+      await axios.post("http://localhost:5000/api/v1/event", data);
 
       // Reset the form inputs
       setTitle("");
@@ -44,10 +44,9 @@ const AddEvent = () => {
       setGMeet("");
       setDesc("");
 
-      // Handle success or show a success message
+      toast.success("Succeessfully Added");
     } catch (error) {
-      console.log(error);
-      // Handle error or show an error message
+      toast.error(error?.response?.data?.error);
     }
   };
   return (
@@ -82,6 +81,7 @@ const AddEvent = () => {
                   <option>Chittagong</option>
                   <option>Tangail</option>
                 </select>
+
                 <select
                   onChange={(e) => setDistrict(e.target.value)}
                   className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
@@ -94,6 +94,7 @@ const AddEvent = () => {
                   <option>Agrabaad</option>
                   <option>Mirzapur</option>
                 </select>
+
                 <select
                   onChange={(e) => setBrand(e.target.value)}
                   className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
@@ -106,6 +107,7 @@ const AddEvent = () => {
                   <option>Guylian</option>
                   <option>Cudbery</option>
                 </select>
+
                 <select
                   onChange={(e) => setStatus(e.target.value)}
                   className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
@@ -118,6 +120,7 @@ const AddEvent = () => {
                   <option>Start</option>
                   <option>Finish</option>
                 </select>
+
                 <input
                   type="text"
                   onChange={(e) => setGMeet(e.target.value)}
@@ -125,9 +128,10 @@ const AddEvent = () => {
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
                 />
               </div>
+
               <div className="hero">
                 <div className="hero-content flex-col">
-                  <DayPicker
+                  {/* <DayPicker
                     mode="single"
                     selected={selected}
                     onSelect={setSelected}
@@ -135,14 +139,15 @@ const AddEvent = () => {
                   />
                   <p className="text-red-700 text-center text-2xl mt-2">
                     Our Event Date is: {format(selected, "PPpp")}
-                  </p>
+                  </p> */}
+                  <DateTimePicker value={dateTime} onChange={setDateTime} />
                 </div>
               </div>
               <textarea
                 onChange={(e) => setDesc(e.target.value)}
-                rows="8"
+                rows="4"
                 // value="desc"
-                className="block input-bordered mb-2 mx-auto w-2/4  px-0 text-sm rounded-none focus:border-none"
+                className="block input-bordered border mb-2 mx-auto w-full  p-1 text-sm rounded-none focus:border-none"
                 placeholder="Description..."
                 required
               ></textarea>
@@ -150,7 +155,7 @@ const AddEvent = () => {
               <div className="flex justify-around pt-6">
                 <button
                   type="submit"
-                  className="bg-[#5e2006] px-2 py-1 font-bold text-white "
+                  className="bg-[#5e2006] px-4 py-1 font-bold text-white "
                 >
                   Save
                 </button>
