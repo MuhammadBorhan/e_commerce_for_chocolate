@@ -23,6 +23,7 @@ import AddTrendingGift from "../Pages/Dashboard/TrendingGift/AddTrendingGift";
 import BrandList from "../Pages/Dashboard/BrandProducts/BrandList";
 import EventList from "../Pages/Dashboard/Event/EventList";
 import GiftItemList from "../Pages/Dashboard/GiftBox/GiftItemList";
+import TrendingGiftList from "../Pages/Dashboard/TrendingGift/TrendingGiftList";
 
 const routes = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/addtgift",
             element: <AddTrendingGift />,
+          },
+          {
+            path: "/dashboard/trendgiftlist",
+            element: <TrendingGiftList />,
           },
           {
             path: "/dashboard/addevent",

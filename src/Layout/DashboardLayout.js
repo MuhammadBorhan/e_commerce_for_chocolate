@@ -103,10 +103,10 @@ const DashboardLayout = () => {
               className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
-                <Link to="/dashboard/addtgift">Add Gift Items</Link>
+                <Link to="/dashboard/addtgift">Add TrendingGift</Link>
               </li>
               <li>
-                <Link>Gift Item List</Link>
+                <Link to="/dashboard/trendgiftlist">TrendingGift List</Link>
               </li>
             </ul>
           </div>
