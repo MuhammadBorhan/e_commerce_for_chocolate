@@ -6,7 +6,7 @@ const AddBrand = () => {
   const [image, setImg] = useState("");
   const [logo, setLogo] = useState("");
 
-  const handleSubmitProduct = async (e) => {
+  const handleSubmitBrand = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -16,7 +16,7 @@ const AddBrand = () => {
     };
     console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/brand", data);
+      await axios.post("http://localhost:4000/api/v1/brand", data);
 
       // Reset the form inputs
       setName("");
@@ -39,7 +39,7 @@ const AddBrand = () => {
             <h2 className="text-xl font-bold">Add Brand</h2>
           </div>
           {
-            <form onSubmit={handleSubmitProduct} className="text-center">
+            <form onSubmit={handleSubmitBrand} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 my-2  ">
                 <input
                   type="text"
