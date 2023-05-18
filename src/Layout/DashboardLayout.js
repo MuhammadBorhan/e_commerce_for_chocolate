@@ -85,6 +85,9 @@ const DashboardLayout = () => {
               </li>
             </ul>
           </div>
+
+          {/* Trending Gift  */}
+
           <div className="dropdown dropdown-bottom mt-2">
             <label tabIndex={0} className="ml-2  cursor-pointer">
               Trending Gift
@@ -126,10 +129,21 @@ const DashboardLayout = () => {
               <Link to="/dashboard/allproducts">Manage Products</Link>
             </li>
           )}
-          <li>
-            <Link to="/dashboard/alluser">All User</Link>
-          </li>
-          {/* dropdown  */}
+
+          {/* All Users  */}
+          <div className="dropdown dropdown-bottom mt-2">
+            <label tabIndex={0} className="ml-2  cursor-pointer">
+              Users
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+            >
+              <li>
+                <Link to="/dashboard/alluser">All User List</Link>
+              </li>
+            </ul>
+          </div>
         </ul>
       </div>
     </div>

@@ -20,7 +20,7 @@ const AddProdusts = () => {
     };
     console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/products", data);
+      await axios.post("http://localhost:4000/api/v1/products", data);
 
       // Reset the form inputs
       setName("");
