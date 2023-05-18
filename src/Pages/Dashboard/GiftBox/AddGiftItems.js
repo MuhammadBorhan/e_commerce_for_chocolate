@@ -10,32 +10,24 @@ const AddGiftItems = () => {
   const [brandName, setBrandName] = useState("");
   const [productList, setProductList] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const data = [
-    "Godiva 1",
-    "Kitkat 1",
-    "Gidiva 2",
-    "nestle 1",
-    "Kitkat 2",
-    "linkd choco",
-  ];
 
   const { data: brands } = useGetAllBrandsQuery();
   const allBrand = brands?.data;
   const { data: products } = useGetAllProductsQuery();
   const allProducts = products?.data;
-  const handlePruductchange = (e) => {
-    console.log(e);
-    const { value, checked } = e.target;
-    if (checked) {
-      setProductList([...productList, value]);
+  const handlePruductchange = (name) => {
+    const isSelected = productList.includes(name);
+    if (isSelected) {
+      setProductList(productList.filter((item) => item !== name));
     } else {
-      setProductList(productList.filter((item) => item !== value));
+      setProductList([...productList, name]);
     }
   };
 
   const handleSelectAll = () => {
     if (!selectAll) {
-      setProductList(data);
+      const allNames = allProducts.map((item) => item.name);
+      setProductList(allNames);
     } else {
       setProductList([]);
     }
@@ -136,7 +128,7 @@ const AddGiftItems = () => {
                           className="form-checkbox"
                           value={product?.name}
                           checked={productList.includes(product?.name)}
-                          onChange={handlePruductchange}
+                          onChange={() => handlePruductchange(product?.name)}
                         />
                         {product?.name}
                       </label>
