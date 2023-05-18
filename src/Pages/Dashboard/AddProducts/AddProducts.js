@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
 
 const AddProdusts = () => {
   const [name, setName] = useState("");
@@ -34,6 +35,9 @@ const AddProdusts = () => {
       // Handle error or show an error message
     }
   };
+
+  const { data } = useGetAllBrandsQuery();
+  const brands = data?.data;
   return (
     <div className="flex justify-center overflow-auto items-center mt-12">
       <div
@@ -73,18 +77,17 @@ const AddProdusts = () => {
                   <option disabled selected>
                     Select Brand
                   </option>
-                  <option>Godiva</option>
-                  <option>Kitkat</option>
-                  <option>Guylian</option>
-                  <option>Cudbery</option>
+                  {brands?.map((brand) => (
+                    <option key={brand?._id}>{brand?.name}</option>
+                  ))}
                 </select>
               </div>
 
               <textarea
                 onChange={(e) => setDesc(e.target.value)}
-                rows="8"
+                rows="4"
                 // value="desc"
-                className="block input-bordered mx-auto mb-2 w-2/4 px-0 text-sm rounded-none focus:border-none"
+                className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
                 placeholder="Description..."
                 required
               ></textarea>
