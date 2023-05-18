@@ -125,7 +125,7 @@ const DashboardLayout = () => {
                 <Link to="/dashboard/addevent">Add Event</Link>
               </li>
               <li>
-                <Link>Event List</Link>
+                <Link to="/dashboard/eventlist">Event List</Link>
               </li>
             </ul>
           </div>
