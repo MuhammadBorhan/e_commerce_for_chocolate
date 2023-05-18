@@ -38,7 +38,7 @@ const ProductList = () => {
                   <img src={product?.image} className="w-16" />{" "}
                 </th>
                 <td>{product?.name}</td>
-                <td>{product?.price}</td>
+                <td>¥{product?.price}</td>
                 <td>{product?.brand}</td>
                 <td className="">
                   <button className="px-2 bg-blue-600 text-white mr-2">

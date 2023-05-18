@@ -63,7 +63,7 @@ const DashboardLayout = () => {
                 <Link to="/dashboard/addbrand">Add Brand</Link>
               </li>
               <li>
-                <Link>Brands Details</Link>
+                <Link to="/dashboard/brandlist">Brands List</Link>
               </li>
             </ul>
           </div>
