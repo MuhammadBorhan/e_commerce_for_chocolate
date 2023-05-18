@@ -1,19 +1,28 @@
 import { useLocation } from "react-router-dom";
 import { useGetAllGiftBoxQuery } from "../../features/api/GiftBoxApi";
+import { useGetAllEventQuery } from "../../features/api/eventApi";
+import { useGetAllProductsQuery } from "../../features/api/productsApi";
 
 const BrandsItem = () => {
   const location = useLocation();
   const brands = location?.state;
-  // console.log(brands);
 
+  // fetch all gift box data
   const { data: getGiftBox } = useGetAllGiftBoxQuery();
   const allGiftbox = getGiftBox?.data;
-  // console.log(allGiftbox);
 
   const selectGiftBox = allGiftbox?.filter(
     (giftBox) => giftBox?.brandName === brands?.name
   );
   const findSelectGiftBox = selectGiftBox?.find((giftBox) => giftBox);
+
+  // fetch all events data
+  const { data: getEvent } = useGetAllEventQuery();
+  const events = getEvent?.data;
+
+  // fetch all products
+  const { data: getProducts } = useGetAllProductsQuery();
+  const allProducts = getProducts?.data;
 
   // const selectedProducts = products?.filter((brandItem) => {
   //   return (
@@ -25,7 +34,7 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div class="bg-cover bg-center ...">
+      <div className="bg-cover bg-center ...">
         <figure>
           <img
             src={brands?.image}
@@ -63,21 +72,80 @@ const BrandsItem = () => {
           </figure>
         </div>
       </div>
-      <div>
-        {allGiftbox?.map((box, index) => (
-          <div
-            key={box?._id}
-            className={`flex items-center justify-between p-8 gap-x-10 my-4 w-full lg:w-[40%] m-auto ${
-              index % 2 === 1 ? "flex-row-reverse" : ""
-            }`}
-            style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
-          >
-            <div>
-              <img src={box?.boxImage} className="w-20 lg:w-40 h-20 lg:h-40" />
+      <div className="mb-24">
+        {allGiftbox?.map((box, index) => {
+          // console.log(box);
+          return (
+            <div
+              key={box?._id}
+              className={`flex items-center justify-between p-8 gap-x-10 my-4 w-full lg:w-[40%] m-auto ${
+                index % 2 === 1 ? "flex-row-reverse" : ""
+              }`}
+              style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
+            >
+              <div>
+                <img
+                  src={box?.boxImage}
+                  className="w-20 lg:w-40 h-20 lg:h-40"
+                />
+              </div>
+              <div>{box?.boxName}</div>
             </div>
-            <div>{box?.boxName}</div>
+          );
+        })}
+      </div>
+      {events?.map((event) => {
+        return (
+          <div
+            key={event._id}
+            className="w-full lg:w-[40%] m-auto p-4 my-8"
+            style={{ boxShadow: "1px 1px 1px 2px gray" }}
+          >
+            <h1>
+              {event?.title}: {event?.desc}
+            </h1>
+            <div className="py-4">
+              <span className="bg-gray-300 p-1 mr-2">Event Date: </span>
+              <span>{new Date(event?.dateTime).toLocaleString()}</span>
+            </div>
+            <div>
+              <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
+              <a
+                target="_blank"
+                href={event?.gmeet}
+                className="text-blue-500 underline"
+              >
+                {event?.gmeet}
+              </a>
+            </div>
           </div>
-        ))}
+        );
+      })}
+
+      <div className="w-full lg:w-[60%] mt-24 mx-auto">
+        <h1 className="text-center text-2xl font-bold text-indigo-600">
+          Categories
+        </h1>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
+          {allProducts?.map((product) => {
+            return (
+              <div
+                key={product?._id}
+                className="shadow-lg p-2 flex justify-center items-center flex-col"
+              >
+                <img src={product?.image} className="w-[200px] h-[200px] " />
+                <div className="text-center">
+                  <p>{product?.name}</p>
+                  <p>{product?.desc}</p>
+                  <p>${product?.price}</p>
+                </div>
+                <button className="px-2 py-1 bg-[#9A583B] mt-4 text-white font-bold">
+                  Add To Cart
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
