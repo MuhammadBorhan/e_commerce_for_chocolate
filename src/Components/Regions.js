@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllProductsQuery } from "../features/api/productsApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
+import { useGetAllBrandsQuery } from "../features/api/brandApi";
 
 const Regions = () => {
   // fetching regions data for region and district
@@ -17,9 +18,18 @@ const Regions = () => {
   const { data: trend, isLoading } = useGetAllTrendGiftQuery();
   const trendGift = trend?.data;
 
+  // fetching brand data
+  const { data: getBrand } = useGetAllBrandsQuery();
+  const allBrands = getBrand?.data;
+
   const [active, setActive] = useState(0);
   const [disActive, setDisActive] = useState(0);
   const [selectedProducts, setSelectedProducts] = useState([]);
+
+  // brand filtering
+  const trendingBrands = allBrands?.filter((item) => {
+    return selectedProducts.some((trending) => trending.brand === item.name);
+  });
 
   // onClick handler of distrcit button for showing brands item
   const handleBrand = (d, index) => {
@@ -103,24 +113,20 @@ const Regions = () => {
 
       {/* Brands List */}
       <div className="py-6">
-        {selectedProducts && (
+        {trendingBrands && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
-            {selectedProducts?.map((product, index) => (
-              <Link
-                to={`/brands/${product?.brand}`}
-                state={product}
-                key={index}
-              >
+            {trendingBrands?.map((product, index) => (
+              <Link to={`/brands/${product?.name}`} state={product} key={index}>
                 <div className="card card-compact shadow-xl">
-                  {/* <figure>
+                  <figure>
                     <img
-                      className="h-[100px] lg:h-[200px]"
-                      src={product?.brandImage}
-                      alt={product?.brandName}
+                      className="w-[50px] lg:w-[150px] h-[50px] lg:h-[100px]"
+                      src={product?.logo}
+                      alt={product?.name}
                     />
-                  </figure> */}
+                  </figure>
                   <div className="card-body text-center items-center">
-                    <h2 className="card-title">{product?.brand}</h2>
+                    <h2 className="card-title">{product?.name}</h2>
                   </div>
                 </div>
               </Link>

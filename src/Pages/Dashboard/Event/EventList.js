@@ -27,6 +27,7 @@ const EventList = () => {
   };
   return (
     <div className="p-8">
+      <h1 className="mb-4 text-blue-500 font-bold">Event List</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}
