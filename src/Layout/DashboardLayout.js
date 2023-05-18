@@ -30,7 +30,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
                 <Link to="/dashboard/addregion">Add Region & District</Link>
@@ -47,7 +47,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
                 <Link to="/dashboard/addproduct">Add Products</Link>
@@ -66,7 +66,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
                 <Link to="/dashboard/addbrand">Add Brand</Link>
@@ -84,13 +84,13 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
                 <Link to="/dashboard/addgiftitem">Add Gift Items</Link>
               </li>
               <li>
-                <Link>Gift Item List</Link>
+                <Link to="/dashboard/giftitemlist">Gift Item List</Link>
               </li>
             </ul>
           </div>
@@ -100,13 +100,13 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
-                <Link to="/dashboard/addtgift">Add Gift Items</Link>
+                <Link to="/dashboard/addtgift">Add TrendingGift</Link>
               </li>
               <li>
-                <Link>Gift Item List</Link>
+                <Link to="/dashboard/trendgiftlist">TrendingGift List</Link>
               </li>
             </ul>
           </div>
@@ -119,7 +119,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
                 <Link to="/dashboard/addevent">Add Event</Link>
@@ -130,14 +130,21 @@ const DashboardLayout = () => {
             </ul>
           </div>
 
-          {users?.role == "admin" && (
-            <li>
-              <Link to="/dashboard/allproducts">Manage Products</Link>
-            </li>
-          )}
-          <li>
-            <Link to="/dashboard/alluser">All User</Link>
-          </li>
+          {/* users */}
+          <div className="dropdown dropdown-bottom mt-2">
+            <label tabIndex={0} className="ml-2  cursor-pointer">
+              Users
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
+            >
+              <li>
+                <Link to="/dashboard/alluser">Manage User</Link>
+              </li>
+            </ul>
+          </div>
+
           {/* dropdown  */}
         </ul>
       </div>

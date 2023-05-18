@@ -7,6 +7,8 @@ import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 import { toast } from "react-toastify";
+import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import { useGetAllRegionQuery } from "../../../features/api/regionApi";
 
 const AddEvent = () => {
   const [title, setTitle] = useState("");
@@ -17,6 +19,15 @@ const AddEvent = () => {
   const [status, setStatus] = useState("");
   const [gmeet, setGMeet] = useState("");
   const [desc, setDesc] = useState("");
+
+  const { data: getbrand } = useGetAllBrandsQuery();
+  const allBrand = getbrand?.data;
+  const { data: gregion } = useGetAllRegionQuery();
+  const allRegion = gregion?.data;
+
+  const selectDistrict = allRegion?.filter(
+    (sregion) => sregion.region === region
+  );
 
   const handleSubmitEvent = async (e) => {
     e.preventDefault();
@@ -76,10 +87,9 @@ const AddEvent = () => {
                   <option disabled selected>
                     Select Region
                   </option>
-                  <option>Dhaka</option>
-                  <option>Cumilla</option>
-                  <option>Chittagong</option>
-                  <option>Tangail</option>
+                  {allRegion?.map((region) => (
+                    <option key={region?._id}>{region?.region}</option>
+                  ))}
                 </select>
 
                 <select
@@ -89,10 +99,9 @@ const AddEvent = () => {
                   <option disabled selected>
                     Select District
                   </option>
-                  <option>MohammadPur</option>
-                  <option>Laksam</option>
-                  <option>Agrabaad</option>
-                  <option>Mirzapur</option>
+                  {selectDistrict?.[0]?.district?.map((dst, i) => (
+                    <option key={i}>{dst}</option>
+                  ))}
                 </select>
 
                 <select
@@ -102,10 +111,9 @@ const AddEvent = () => {
                   <option disabled selected>
                     Select Brand
                   </option>
-                  <option>Godiva</option>
-                  <option>Kitkat</option>
-                  <option>Guylian</option>
-                  <option>Cudbery</option>
+                  {allBrand?.map((brand) => (
+                    <option key={brand?._id}>{brand?.name}</option>
+                  ))}
                 </select>
 
                 <select

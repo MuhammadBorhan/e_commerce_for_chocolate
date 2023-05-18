@@ -1,10 +1,22 @@
 import axios from "axios";
 import { useState } from "react";
+import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import { useGetAllRegionQuery } from "../../../features/api/regionApi";
+import { toast } from "react-toastify";
 
 const AddTrendingGift = () => {
+  const { data: getbrand } = useGetAllBrandsQuery();
+  const allBrand = getbrand?.data;
+  const { data: gregion } = useGetAllRegionQuery();
+  const allRegion = gregion?.data;
+
   const [brand, setBrand] = useState("");
   const [region, setRegion] = useState("");
   const [district, setDistrict] = useState("");
+
+  const selectDistrict = allRegion?.filter(
+    (sregion) => sregion.region === region
+  );
 
   const handleTrendGift = async (e) => {
     e.preventDefault();
@@ -23,10 +35,9 @@ const AddTrendingGift = () => {
       setRegion("");
       setDistrict("");
 
-      // Handle success or show a success message
+      toast.success("Successfully Added");
     } catch (error) {
-      console.log(error);
-      // Handle error or show an error message
+      toast.error(error?.response?.data?.message);
     }
   };
   return (
@@ -50,10 +61,9 @@ const AddTrendingGift = () => {
                   <option disabled selected>
                     Select Brand
                   </option>
-                  <option>Godiva</option>
-                  <option>Kitkat</option>
-                  <option>Guylian</option>
-                  <option>Cudbery</option>
+                  {allBrand?.map((brand) => (
+                    <option key={brand._id}>{brand?.name}</option>
+                  ))}
                 </select>
               </div>
 
@@ -64,10 +74,9 @@ const AddTrendingGift = () => {
                 <option disabled selected>
                   Select Region
                 </option>
-                <option>Dhaka</option>
-                <option>Cumilla</option>
-                <option>Chittagong</option>
-                <option>Tangail</option>
+                {allRegion?.map((region) => (
+                  <option key={region?._id}>{region?.region}</option>
+                ))}
               </select>
               <select
                 onChange={(e) => setDistrict(e.target.value)}
@@ -76,10 +85,9 @@ const AddTrendingGift = () => {
                 <option disabled selected>
                   Select District
                 </option>
-                <option>MohammadPur</option>
-                <option>Laksam</option>
-                <option>Agrabaad</option>
-                <option>Mirzapur</option>
+                {selectDistrict?.[0]?.district?.map((dst, i) => (
+                  <option key={i}>{dst}</option>
+                ))}
               </select>
 
               <div className="flex justify-around pt-6">
