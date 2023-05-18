@@ -21,6 +21,7 @@ import AddEvent from "../Pages/Dashboard/Event/AddEvent";
 import ProductList from "../Pages/Dashboard/ProductList/ProductList";
 import AddTrendingGift from "../Pages/Dashboard/TrendingGift/AddTrendingGift";
 import BrandList from "../Pages/Dashboard/BrandProducts/BrandList";
+import EventList from "../Pages/Dashboard/Event/EventList";
 
 const routes = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/addevent",
             element: <AddEvent />,
+          },
+          {
+            path: "/dashboard/eventlist",
+            element: <EventList />,
           },
         ],
       },
