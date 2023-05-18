@@ -16,7 +16,7 @@ const AddBrand = () => {
     };
     console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/brand", data);
+      await axios.post("http://localhost:4000/api/v1/brand", data);
 
       // Reset the form inputs
       setName("");

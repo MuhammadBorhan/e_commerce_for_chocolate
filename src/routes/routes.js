@@ -18,6 +18,9 @@ import ManageProducts from "../Pages/Dashboard/BrandProducts/ManageProducts";
 import AddProdusts from "../Pages/Dashboard/AddProducts/AddProducts";
 import AddGiftItems from "../Pages/Dashboard/GiftBox/AddGiftItems";
 import RegionList from "../Pages/Dashboard/RegionList";
+import AddEvent from "../Pages/Dashboard/Event/AddEvent";
+import ProductList from "../Pages/Dashboard/ProductList/ProductList";
+import AddTrendingGift from "../Pages/Dashboard/TrendingGift/AddTrendingGift";
 
 const routes = createBrowserRouter([
   {
@@ -85,8 +88,16 @@ const routes = createBrowserRouter([
             element: <AddProdusts />,
           },
           {
+            path: "/dashboard/allproduct",
+            element: <ProductList />,
+          },
+          {
             path: "/dashboard/addgiftitem",
             element: <AddGiftItems />,
+          },
+          {
+            path: "/dashboard/addtgift",
+            element: <AddTrendingGift />,
           },
           {
             path: "/dashboard/addevent",

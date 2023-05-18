@@ -44,7 +44,7 @@ const DashboardLayout = () => {
                 <Link to="/dashboard/addproduct">Add Products</Link>
               </li>
               <li>
-                <Link>All Products</Link>
+                <Link to="/dashboard/allproduct">All Products</Link>
               </li>
             </ul>
           </div>
@@ -79,6 +79,22 @@ const DashboardLayout = () => {
             >
               <li>
                 <Link to="/dashboard/addgiftitem">Add Gift Items</Link>
+              </li>
+              <li>
+                <Link>Gift Item List</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown dropdown-bottom mt-2">
+            <label tabIndex={0} className="ml-2  cursor-pointer">
+              Trending Gift
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+            >
+              <li>
+                <Link to="/dashboard/addtgift">Add Gift Items</Link>
               </li>
               <li>
                 <Link>Gift Item List</Link>
