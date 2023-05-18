@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import { useGetAllProductsQuery } from "../../../features/api/productsApi";
 
 const AddGiftItems = () => {
   const [boxName, setBoxName] = useState("");
@@ -17,6 +19,10 @@ const AddGiftItems = () => {
     "linkd choco",
   ];
 
+  const { data: brands } = useGetAllBrandsQuery();
+  const allBrand = brands?.data;
+  const { data: products } = useGetAllProductsQuery();
+  const allProducts = products?.data;
   const handlePruductchange = (e) => {
     console.log(e);
     const { value, checked } = e.target;
@@ -98,10 +104,9 @@ const AddGiftItems = () => {
                   <option disabled selected>
                     Select Brand
                   </option>
-                  <option>Godiva</option>
-                  <option>Kitkat</option>
-                  <option>Guylian</option>
-                  <option>Cudbery</option>
+                  {allBrand?.map((brand, index) => (
+                    <option key={index}>{brand?.name}</option>
+                  ))}
                 </select>
 
                 {/* Checkbox  */}
@@ -120,20 +125,20 @@ const AddGiftItems = () => {
                       {selectAll ? "Unselect All" : "Select All"}
                     </label>
                   </div>
-                  <div className="grid grid-cols-3 lg:grid-cols-6">
-                    {data.map((item) => (
+                  <div className="grid grid-cols-3 lg:grid-cols-6 gap-4">
+                    {allProducts?.map((product) => (
                       <label
-                        key={item}
+                        key={product._id}
                         className="inline-flex items-center gap-x-1"
                       >
                         <input
                           type="checkbox"
                           className="form-checkbox"
-                          value={item}
-                          checked={productList.includes(item)}
+                          value={product?.name}
+                          checked={productList.includes(product?.name)}
                           onChange={handlePruductchange}
                         />
-                        {item}
+                        {product?.name}
                       </label>
                     ))}
                   </div>

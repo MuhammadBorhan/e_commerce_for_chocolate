@@ -22,6 +22,7 @@ import ProductList from "../Pages/Dashboard/ProductList/ProductList";
 import AddTrendingGift from "../Pages/Dashboard/TrendingGift/AddTrendingGift";
 import BrandList from "../Pages/Dashboard/BrandProducts/BrandList";
 import EventList from "../Pages/Dashboard/Event/EventList";
+import GiftItemList from "../Pages/Dashboard/GiftBox/GiftItemList";
 
 const routes = createBrowserRouter([
   {
@@ -99,6 +100,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/addgiftitem",
             element: <AddGiftItems />,
+          },
+          {
+            path: "/dashboard/giftitemlist",
+            element: <GiftItemList />,
           },
           {
             path: "/dashboard/addtgift",
