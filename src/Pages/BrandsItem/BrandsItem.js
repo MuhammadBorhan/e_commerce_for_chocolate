@@ -15,7 +15,7 @@ const BrandsItem = () => {
   // console.log("brand img", brands);
   // console.log("cover img", coverImage);
   const selectImage = coverImage.filter(
-    (select) => select.name === brands.brandName
+    (select) => select.name === brands.name
   );
   console.log(selectImage);
   const findImage = selectImage.find((image) => image);
@@ -23,26 +23,26 @@ const BrandsItem = () => {
 
   const selectedProducts = products?.filter((brandItem) => {
     return (
-      brandItem?.brandName === brands?.brandName &&
+      brandItem?.brandName === brands?.name &&
       brandItem?.district === brands?.district
     );
   });
   const mapingProducts = selectedProducts?.map(
     (products) => products?.products
   );
-  const allProducts = mapingProducts?.[0].map((products) => products);
+  // const allProducts = mapingProducts?.[0].map((products) => products);
 
   const dispatch = useDispatch();
   return (
     <div className="p-4 lg:p-12">
       <div class="bg-cover bg-center ...">
-        <figure>
+        {/* <figure>
           <img
             src={findImage.image}
             alt="Shoes"
             className="h-[250px] w-full object-center"
           />
-        </figure>
+        </figure> */}
       </div>
       {/* <BrandCover></BrandCover> */}
       {/* search bar */}
@@ -65,21 +65,21 @@ const BrandsItem = () => {
       </div>
       <div className="flex justify-center mb-16  mt-6 ">
         <div className="card card-compact rounded-none bg-base-100 shadow-xl">
-          <figure>
+          {/* <figure>
             <img className="w-[300px] " src={brands?.brandImage} alt="Shoes" />
-          </figure>
+          </figure> */}
         </div>
       </div>
 
       <div className="flex flex-col justify-center items-center gap-6">
         <div className="card w-[700px] card-side bg-base-100 shadow-xl">
-          <figure>
+          {/* <figure>
             <img
               className="w-[300px] pl-8"
               src={allProducts[0]?.image}
               alt="Shoes"
             />
-          </figure>
+          </figure> */}
           <div className="card-body w-[700px]">
             <h2 className="card-title">New brand is released!</h2>
             <p>
@@ -88,10 +88,7 @@ const BrandsItem = () => {
               confections and bakery products.
             </p>
             <div className="card-actions justify-end">
-              <button>
-                {" "}
-                <p>¥{allProducts[0]?.price}</p>
-              </button>
+              <button> {/* <p>¥{allProducts[0]?.price}</p> */}</button>
             </div>
           </div>
         </div>
@@ -104,24 +101,24 @@ const BrandsItem = () => {
               confections and bakery products.
             </p>
             <div className="card-actions justify-end">
-              <p>¥{allProducts[1]?.price}</p>
+              {/* <p>¥{allProducts[1]?.price}</p> */}
             </div>
           </div>
-          <figure>
+          {/* <figure>
             <img
               className="w-[300px] h-[200px] p-8"
               src={allProducts[1]?.image}
               alt="Shoes"
             />
-          </figure>
+          </figure> */}
         </div>
       </div>
 
       <div>
         <h3 className="text-center text-xl font-bold mb-6 mt-12">
-          {brands?.brandName} Chocolate items {allProducts?.length}
+          {/* {brands?.name} Chocolate items {allProducts?.length} */}
         </h3>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
+        {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
           {allProducts?.map((product) => {
             return (
               <div className="card card-compact rounded-none bg-base-100 shadow-xl">
@@ -142,7 +139,7 @@ const BrandsItem = () => {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -22,16 +22,25 @@ const DashboardLayout = () => {
               <MdDashboard /> Dashboard
             </Link>
           </li>
-          {users?.role == "admin" && (
-            <li>
-              <Link to="/dashboard/addregion">Add Region And District</Link>
-            </li>
-          )}
-          {/* {users?.role == "user" && (
-          <li>
-            <Link to="/dashboard/addbrand">Add Products</Link>
-          </li>
-          )} */}
+
+          {/* region and district */}
+          <div className="dropdown dropdown-bottom mb-3 mt-1">
+            <label tabIndex={0} className="ml-2 cursor-pointer">
+              Region & District
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-[#6d2507] rounded-box w-50"
+            >
+              <li>
+                <Link to="/dashboard/addregion">Add Region & District</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/regionlist">All Region & District</Link>
+              </li>
+            </ul>
+          </div>
+
           <div className="dropdown dropdown-bottom">
             <label tabIndex={0} className="ml-2 cursor-pointer">
               Products
@@ -63,7 +72,7 @@ const DashboardLayout = () => {
                 <Link to="/dashboard/addbrand">Add Brand</Link>
               </li>
               <li>
-                <Link>Brands Details</Link>
+                <Link to="/dashboard/brandlist">Brands List</Link>
               </li>
             </ul>
           </div>
