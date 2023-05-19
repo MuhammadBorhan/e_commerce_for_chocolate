@@ -11,24 +11,40 @@ const BrandsItem = () => {
   const brands = location?.state;
 
   // fetch all gift box data
-  const { data: getGiftBox } = useGetAllGiftBoxQuery();
+  const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const allGiftbox = getGiftBox?.data;
 
-  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery();
+  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const allSelectGiftBox = getSelectGiftBox?.data;
 
   const selectGiftBox = allGiftbox?.filter(
     (giftBox) => giftBox?.brandName === brands?.name
   );
-  const findSelectGiftBox = selectGiftBox?.find((giftBox) => giftBox);
+  const findSelectGiftBox = allSelectGiftBox?.find((giftBox) => giftBox);
+  // console.log(findSelectGiftBox?.productList);
 
   // fetch all events data
-  const { data: getEvent } = useGetAllEventQuery();
+  const { data: getEvent } = useGetAllEventQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const events = getEvent?.data;
 
   // fetch all products
-  const { data: getProducts } = useGetAllProductsQuery();
+  const { data: getProducts } = useGetAllProductsQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const allProducts = getProducts?.data;
+
+  const selectGiftBoxProducts = allProducts?.filter((product) => {
+    return findSelectGiftBox?.productList?.some(
+      (pdct) => pdct === product.name
+    );
+  });
+  console.log(selectGiftBoxProducts);
 
   // const selectedProducts = products?.filter((brandItem) => {
   //   return (
@@ -67,6 +83,7 @@ const BrandsItem = () => {
           </svg>
         </button>
       </div>
+      {/* 
       <div className="flex justify-center mb-16  mt-6 ">
         <div className="card card-compact rounded-none bg-base-100 shadow-xl">
           <figure>
@@ -77,29 +94,52 @@ const BrandsItem = () => {
             />
           </figure>
         </div>
-      </div>
+      </div> */}
+
       <div className="mb-24">
         {allSelectGiftBox?.map((box, index) => {
           // console.log(box);
           return (
             <div
               key={box?._id}
-              className={`flex items-center justify-between p-8 gap-x-10 my-4 w-full lg:w-[40%] m-auto ${
+              className={` p-2 mt-10 w-[50%] lg:w-[25%] m-auto `}
+              style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
+            >
+              <div>
+                <img src={box?.boxImage} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mb-24">
+        {selectGiftBoxProducts?.map((product, index) => {
+          return (
+            <div
+              key={product?._id}
+              className={`flex items-center justify-between p-8 gap-x-10 my-10 w-full lg:w-[40%] m-auto ${
                 index % 2 === 1 ? "flex-row-reverse" : ""
               }`}
               style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
             >
               <div>
                 <img
-                  src={box?.boxImage}
+                  src={product?.image}
                   className="w-20 lg:w-40 h-20 lg:h-40"
                 />
               </div>
-              <div>{box?.boxName}</div>
+              <div>
+                <p>{product?.desc}</p>
+                <p className="font-bold">{product?.name}</p>
+                <p className="text-xl font-bold">¥{product?.price}</p>
+              </div>
             </div>
           );
         })}
       </div>
+
+      {/* event */}
       {events?.map((event) => {
         return (
           event?.status === "Start" && (

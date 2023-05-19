@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
-import { useGetAllProductsQuery } from "../../../features/api/productsApi";
+import {
+  useGetAllProductsQuery,
+  useRemoveProductMutation,
+} from "../../../features/api/productsApi";
 
 const ProductList = () => {
-  const { data } = useGetAllProductsQuery();
+  const { data } = useGetAllProductsQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const products = data?.data;
-  console.log(products);
 
-  const deleteUser = (id) => {
+  const [removeProduct] = useRemoveProductMutation();
+
+  const handleDelete = (id) => {
     const confirm = window.confirm("Are you want do delete?");
     if (confirm) {
-      //   removeUser(id);
+      removeProduct(id);
     }
   };
   return (
@@ -44,7 +50,12 @@ const ProductList = () => {
                   <button className="px-2 bg-blue-600 text-white mr-2">
                     Edit
                   </button>
-                  <button className="px-2 bg-red-600 text-white">Delete</button>
+                  <button
+                    onClick={() => handleDelete(product?._id)}
+                    className="px-2 bg-red-600 text-white"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
