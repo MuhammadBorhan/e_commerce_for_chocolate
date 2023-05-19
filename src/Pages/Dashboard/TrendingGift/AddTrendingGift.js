@@ -32,8 +32,8 @@ const AddTrendingGift = () => {
 
       // Reset the form inputs
       setBrand("");
-      setRegion("");
-      setDistrict("");
+      // setRegion("");
+      // setDistrict("");
 
       toast.success("Successfully Added");
     } catch (error) {

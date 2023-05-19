@@ -4,21 +4,41 @@ import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
 
+import "./Regions.css";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/swiper.min.css";
+
+// import required modules
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
+
 const Regions = () => {
   // fetching regions data for region and district
   const {
     data: regionData,
     isLoading: regionLoading,
     error: regionError,
-  } = useGetAllRegionQuery();
+  } = useGetAllRegionQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const regions = regionData?.data;
 
   // fetching trending gift data
-  const { data: trend, isLoading } = useGetAllTrendGiftQuery();
+  const { data: trend, isLoading } = useGetAllTrendGiftQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const trendGift = trend?.data;
 
   // fetching brand data
-  const { data: getBrand } = useGetAllBrandsQuery();
+  const { data: getBrand } = useGetAllBrandsQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const allBrands = getBrand?.data;
 
   const [active, setActive] = useState(0);

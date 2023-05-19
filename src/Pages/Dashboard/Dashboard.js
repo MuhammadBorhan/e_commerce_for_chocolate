@@ -50,13 +50,13 @@ const Dashboard = () => {
           <h2 className="text-2xl font-bold">Gift Box {allGiftBox?.length}</h2>
         </div>
       </div>
-      <div className="card bg-[purple] text-white rounded-sm shadow-xl">
-        <div className="card-body ">
-          <Link to="/dashboard/eventlist">
+      <Link to="/dashboard/eventlist">
+        <div className="card bg-[purple] text-white rounded-sm shadow-xl">
+          <div className="card-body ">
             <h2 className="text-2xl font-bold">Event {allEvent?.length}</h2>
-          </Link>
+          </div>
         </div>
-      </div>
+      </Link>
       <div className="card bg-primary text-primary-content rounded-sm shadow-xl">
         <div className="card-body ">
           <h2 className="text-2xl font-bold">Products {products?.length}</h2>
