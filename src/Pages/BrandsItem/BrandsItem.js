@@ -1,5 +1,8 @@
 import { useLocation } from "react-router-dom";
-import { useGetAllGiftBoxQuery } from "../../features/api/GiftBoxApi";
+import {
+  useGetAllGiftBoxQuery,
+  useGetAllSelectGiftBoxQuery,
+} from "../../features/api/GiftBoxApi";
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
 
@@ -10,6 +13,9 @@ const BrandsItem = () => {
   // fetch all gift box data
   const { data: getGiftBox } = useGetAllGiftBoxQuery();
   const allGiftbox = getGiftBox?.data;
+
+  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery();
+  const allSelectGiftBox = getSelectGiftBox?.data;
 
   const selectGiftBox = allGiftbox?.filter(
     (giftBox) => giftBox?.brandName === brands?.name
@@ -73,7 +79,7 @@ const BrandsItem = () => {
         </div>
       </div>
       <div className="mb-24">
-        {allGiftbox?.map((box, index) => {
+        {allSelectGiftBox?.map((box, index) => {
           // console.log(box);
           return (
             <div

@@ -8,6 +8,12 @@ const GiftBoxApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["giftboxs"],
     }),
+    getAllSelectGiftBox: builder.query({
+      query: () => ({
+        url: "/selectgiftbox",
+      }),
+      providesTags: ["giftboxs"],
+    }),
     removeGiftBox: builder.mutation({
       query: (id) => ({
         url: `/giftbox/${id}`,
@@ -18,4 +24,8 @@ const GiftBoxApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllGiftBoxQuery, useRemoveGiftBoxMutation } = GiftBoxApi;
+export const {
+  useGetAllGiftBoxQuery,
+  useGetAllSelectGiftBoxQuery,
+  useRemoveGiftBoxMutation,
+} = GiftBoxApi;

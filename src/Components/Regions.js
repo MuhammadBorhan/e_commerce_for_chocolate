@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
-import { useGetAllProductsQuery } from "../features/api/productsApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
 
