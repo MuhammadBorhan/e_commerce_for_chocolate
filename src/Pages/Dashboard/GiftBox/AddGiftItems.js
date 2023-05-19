@@ -47,7 +47,7 @@ const AddGiftItems = () => {
     };
     console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/giftbox", data);
+      await axios.post("http://localhost:5001/api/v1/giftbox", data);
 
       // Reset the htmlForm inputs
       setBoxName("");
