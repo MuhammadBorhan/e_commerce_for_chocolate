@@ -35,27 +35,32 @@ const Dashboard = () => {
   const trendItem = trenitem?.data;
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 text-center">
-      <div className="card bg-success text-success-content rounded-sm shadow-xl">
-        <div className="card-body ">
-          <Link to="/dashboard/alluser">
-          <h2 className="text-2xl font-bold">User {users?.length}</h2>
-          </Link>
+      <Link to="/dashboard/alluser">
+        <div className="card bg-success text-success-content rounded-sm shadow-xl">
+          <div className="card-body ">
+            <h2 className="text-2xl font-bold">User {users?.length}</h2>
+          </div>
         </div>
-      </div>
-      <div className="card bg-[orange] text-success-content rounded-sm shadow-xl">
-        <div className="card-body ">
-          <Link to={"/dashboard/brandlist"}>
-          <h2 className="text-2xl font-bold">Brand {allBrand?.length}</h2>
-          </Link>
+      </Link>
+
+      <Link to={"/dashboard/brandlist"}>
+        <div className="card bg-[orange] text-success-content rounded-sm shadow-xl">
+          <div className="card-body ">
+            <h2 className="text-2xl font-bold">Brand {allBrand?.length}</h2>
+          </div>
         </div>
-      </div>
-      <div className="card bg-[indigo] text-white rounded-sm shadow-xl">
-        <div className="card-body ">
-        <Link to="/dashboard/giftitemlist">
-        <h2 className="text-2xl font-bold">Gift Box {allGiftBox?.length}</h2>
-         </Link>
+      </Link>
+
+      <Link to="/dashboard/giftitemlist">
+        <div className="card bg-[indigo] text-white rounded-sm shadow-xl">
+          <div className="card-body ">
+            <h2 className="text-2xl font-bold">
+              Gift Box {allGiftBox?.length}
+            </h2>
+          </div>
         </div>
-      </div>
+      </Link>
+
       <Link to="/dashboard/eventlist">
         <div className="card bg-[purple] text-white rounded-sm shadow-xl">
           <div className="card-body ">
@@ -63,30 +68,32 @@ const Dashboard = () => {
           </div>
         </div>
       </Link>
-      <div className="card bg-primary text-primary-content rounded-sm shadow-xl">
-        <div className="card-body ">
-        <Link to="/dashboard/allproduct">
-        <h2 className="text-2xl font-bold">Products {products?.length}</h2>
-         </Link>
+
+      <Link to="/dashboard/allproduct">
+        <div className="card bg-primary text-primary-content rounded-sm shadow-xl">
+          <div className="card-body ">
+            <h2 className="text-2xl font-bold">Products {products?.length}</h2>
+          </div>
         </div>
-      </div>
-      <div className="card bg-secondary text-secondary-content rounded-sm shadow-xl">
-        <div className="card-body ">
-          <Link to="/dashboard/addregion">
-          <h2 className="text-2xl font-bold">Regions {regions?.length}</h2>
-          </Link>
+      </Link>
+
+      <Link to="/dashboard/regionlist">
+        <div className="card bg-secondary text-secondary-content rounded-sm shadow-xl">
+          <div className="card-body ">
+            <h2 className="text-2xl font-bold">Regions {regions?.length}</h2>
+          </div>
         </div>
-      </div>
-      <div className="card bg-[tomato] text-secondary-content rounded-sm shadow-xl">
-        <div className="card-body ">
-       <Link to="/dashboard/trendgiftlist">
-       <h2 className="text-2xl font-bold">
-            Trending Item {trendItem?.length}
-          </h2>
-         </Link>
-          
+      </Link>
+
+      <Link to="/dashboard/trendgiftlist">
+        <div className="card bg-[tomato] text-secondary-content rounded-sm shadow-xl">
+          <div className="card-body ">
+            <h2 className="text-2xl font-bold">
+              Trending Item {trendItem?.length}
+            </h2>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

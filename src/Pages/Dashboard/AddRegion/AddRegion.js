@@ -81,11 +81,14 @@ const NewAddRegion = () => {
                       className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
                     />
 
-                    <button className="flex"
+                    <button
+                      className="flex"
                       type="button"
                       onClick={() => handleRemoveDistrict(index)}
                     >
-                      <div className="mt-1 ml-2"><CiCircleRemove/></div>
+                      <div className="mt-1 ml-2">
+                        <CiCircleRemove />
+                      </div>
                       <p className=" ml-2">Delete</p>
                     </button>
                   </div>
