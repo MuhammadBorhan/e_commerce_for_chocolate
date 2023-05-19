@@ -6,6 +6,7 @@ import { useGetAllBrandsQuery } from "../../features/api/brandApi";
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllGiftBoxQuery } from "../../features/api/GiftBoxApi";
 import { useGetAllTrendGiftQuery } from "../../features/api/trendingGift";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { data, isLoading } = useGetAllUserQuery();
@@ -51,7 +52,9 @@ const Dashboard = () => {
       </div>
       <div className="card bg-[purple] text-white rounded-sm shadow-xl">
         <div className="card-body ">
-          <h2 className="text-2xl font-bold">Event {allEvent?.length}</h2>
+          <Link to="/dashboard/eventlist">
+            <h2 className="text-2xl font-bold">Event {allEvent?.length}</h2>
+          </Link>
         </div>
       </div>
       <div className="card bg-primary text-primary-content rounded-sm shadow-xl">

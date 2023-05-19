@@ -3,12 +3,22 @@ import { AiTwotoneDelete } from "react-icons/ai";
 
 import "react-toastify/dist/ReactToastify.css";
 import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import { useRemoveBrandMutation } from "../../../features/api/brandApi";
 import { MdUpdate } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
 const BrandList = () => {
   const { data } = useGetAllBrandsQuery();
   const brands = data?.data;
+
+  const [removeBrand] = useRemoveBrandMutation();
+
+  const handleDelete = (id) => {
+    const confirm = window.confirm("Are You Sure?");
+    if (confirm) {
+      removeBrand(id);
+    }
+  };
 
   return (
     <div className="p-8">
@@ -47,6 +57,7 @@ const BrandList = () => {
                       <FaEdit />
                     </button>
                     <button
+                      onClick={() => handleDelete(brand?._id)}
                       className="text-red-500"
                       style={{ width: "40px", fontSize: "25px" }}
                     >
