@@ -66,7 +66,7 @@ const BrandsItem = () => {
         </figure>
       </div>
       {/* search bar */}
-      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-16 border shadow rounded shadow-gray-300">
+      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-6 border shadow rounded shadow-gray-300">
         <input
           className="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
           type="search"
@@ -96,7 +96,7 @@ const BrandsItem = () => {
         </div>
       </div> */}
 
-      <div className="mb-24">
+      <div className="mb-12 lg:mb-24">
         {allSelectGiftBox?.map((box, index) => {
           // console.log(box);
           return (
