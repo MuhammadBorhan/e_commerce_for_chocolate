@@ -102,29 +102,41 @@ const BrandsItem = () => {
       </div>
       {events?.map((event) => {
         return (
-          <div
-            key={event._id}
-            className="w-full lg:w-[40%] m-auto p-4 my-8"
-            style={{ boxShadow: "1px 1px 1px 2px gray" }}
-          >
-            <h1>
-              {event?.title}: {event?.desc}
-            </h1>
-            <div className="py-4">
-              <span className="bg-gray-300 p-1 mr-2">Event Date: </span>
-              <span>{new Date(event?.dateTime).toLocaleString()}</span>
+          event?.status === "Start" && (
+            <div
+              key={event._id}
+              className="w-full lg:w-[40%] m-auto p-4 my-8"
+              style={{ boxShadow: "1px 1px 1px 2px gray" }}
+            >
+              <h1>
+                {event?.title}: {event?.desc}
+              </h1>
+              <div className="py-4">
+                <span className="bg-gray-300 p-1 mr-2">Event Date: </span>
+                <span>{new Date(event?.dateTime).toLocaleString()}</span>
+              </div>
+              <div className="mb-4">
+                <span className="bg-gray-300 p-1 mr-2">Status: </span>
+                <a
+                  target="_blank"
+                  href={event?.gmeet}
+                  className="text-white px-2 font-bold btn-success"
+                >
+                  {event?.status}
+                </a>
+              </div>
+              <div>
+                <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
+                <a
+                  target="_blank"
+                  href={event?.gmeet}
+                  className="text-blue-500 underline"
+                >
+                  {event?.gmeet}
+                </a>
+              </div>
             </div>
-            <div>
-              <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
-              <a
-                target="_blank"
-                href={event?.gmeet}
-                className="text-blue-500 underline"
-              >
-                {event?.gmeet}
-              </a>
-            </div>
-          </div>
+          )
         );
       })}
 
