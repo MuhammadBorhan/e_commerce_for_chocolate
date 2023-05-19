@@ -1,50 +1,54 @@
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../features/cart/cartSlice";
+import {
+  useGetAllGiftBoxQuery,
+  useGetAllSelectGiftBoxQuery,
+} from "../../features/api/GiftBoxApi";
+import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
-import { coverImage } from "../../data";
 
 const BrandsItem = () => {
   const location = useLocation();
   const brands = location?.state;
-  console.log(brands);
 
-  // fetching products data with district and brand
-  const { data } = useGetAllProductsQuery();
-  const products = data?.data;
-  // console.log("brand img", brands);
-  // console.log("cover img", coverImage);
-  const selectImage = coverImage.filter(
-    (select) => select.name === brands.name
+  // fetch all gift box data
+  const { data: getGiftBox } = useGetAllGiftBoxQuery();
+  const allGiftbox = getGiftBox?.data;
+
+  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery();
+  const allSelectGiftBox = getSelectGiftBox?.data;
+
+  const selectGiftBox = allGiftbox?.filter(
+    (giftBox) => giftBox?.brandName === brands?.name
   );
-  console.log(selectImage);
-  const findImage = selectImage.find((image) => image);
-  console.log(findImage);
+  const findSelectGiftBox = selectGiftBox?.find((giftBox) => giftBox);
 
-  const selectedProducts = products?.filter((brandItem) => {
-    return (
-      brandItem?.brandName === brands?.name &&
-      brandItem?.district === brands?.district
-    );
-  });
-  const mapingProducts = selectedProducts?.map(
-    (products) => products?.products
-  );
-  // const allProducts = mapingProducts?.[0].map((products) => products);
+  // fetch all events data
+  const { data: getEvent } = useGetAllEventQuery();
+  const events = getEvent?.data;
 
-  const dispatch = useDispatch();
+  // fetch all products
+  const { data: getProducts } = useGetAllProductsQuery();
+  const allProducts = getProducts?.data;
+
+  // const selectedProducts = products?.filter((brandItem) => {
+  //   return (
+  //     brandItem?.brandName === brands?.name &&
+  //     brandItem?.district === brands?.district
+  //   );
+  // });
+
   return (
     <div className="p-4 lg:p-12">
-      <div class="bg-cover bg-center ...">
-        {/* <figure>
+      {/* brand cover image */}
+      <div className="bg-cover bg-center ...">
+        <figure>
           <img
-            src={findImage.image}
-            alt="Shoes"
-            className="h-[250px] w-full object-center"
+            src={brands?.image}
+            alt={brands?.name}
+            className="lg:h-[250px] w-full object-center"
           />
-        </figure> */}
+        </figure>
       </div>
-      {/* <BrandCover></BrandCover> */}
       {/* search bar */}
       <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-16 border shadow rounded shadow-gray-300">
         <input
@@ -65,81 +69,89 @@ const BrandsItem = () => {
       </div>
       <div className="flex justify-center mb-16  mt-6 ">
         <div className="card card-compact rounded-none bg-base-100 shadow-xl">
-          {/* <figure>
-            <img className="w-[300px] " src={brands?.brandImage} alt="Shoes" />
-          </figure> */}
+          <figure>
+            <img
+              className="w-[200px] lg:w-[300px] "
+              src={findSelectGiftBox?.boxImage}
+              alt={brands?.name}
+            />
+          </figure>
         </div>
       </div>
-
-      <div className="flex flex-col justify-center items-center gap-6">
-        <div className="card w-[700px] card-side bg-base-100 shadow-xl">
-          {/* <figure>
-            <img
-              className="w-[300px] pl-8"
-              src={allProducts[0]?.image}
-              alt="Shoes"
-            />
-          </figure> */}
-          <div className="card-body w-[700px]">
-            <h2 className="card-title">New brand is released!</h2>
-            <p>
-              chocolate, food product made from cocoa beans, consumed as candy
-              and used to make beverages and to flavour or coat various
-              confections and bakery products.
-            </p>
-            <div className="card-actions justify-end">
-              <button> {/* <p>¥{allProducts[0]?.price}</p> */}</button>
+      <div className="mb-24">
+        {allSelectGiftBox?.map((box, index) => {
+          // console.log(box);
+          return (
+            <div
+              key={box?._id}
+              className={`flex items-center justify-between p-8 gap-x-10 my-4 w-full lg:w-[40%] m-auto ${
+                index % 2 === 1 ? "flex-row-reverse" : ""
+              }`}
+              style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
+            >
+              <div>
+                <img
+                  src={box?.boxImage}
+                  className="w-20 lg:w-40 h-20 lg:h-40"
+                />
+              </div>
+              <div>{box?.boxName}</div>
             </div>
-          </div>
-        </div>
-        <div className="card w-[700px] card-side bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">New brand is released!</h2>
-            <p>
-              chocolate, food product made from cocoa beans, consumed as candy
-              and used to make beverages and to flavour or coat various
-              confections and bakery products.
-            </p>
-            <div className="card-actions justify-end">
-              {/* <p>¥{allProducts[1]?.price}</p> */}
-            </div>
-          </div>
-          {/* <figure>
-            <img
-              className="w-[300px] h-[200px] p-8"
-              src={allProducts[1]?.image}
-              alt="Shoes"
-            />
-          </figure> */}
-        </div>
+          );
+        })}
       </div>
+      {events?.map((event) => {
+        return (
+          <div
+            key={event._id}
+            className="w-full lg:w-[40%] m-auto p-4 my-8"
+            style={{ boxShadow: "1px 1px 1px 2px gray" }}
+          >
+            <h1>
+              {event?.title}: {event?.desc}
+            </h1>
+            <div className="py-4">
+              <span className="bg-gray-300 p-1 mr-2">Event Date: </span>
+              <span>{new Date(event?.dateTime).toLocaleString()}</span>
+            </div>
+            <div>
+              <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
+              <a
+                target="_blank"
+                href={event?.gmeet}
+                className="text-blue-500 underline"
+              >
+                {event?.gmeet}
+              </a>
+            </div>
+          </div>
+        );
+      })}
 
-      <div>
-        <h3 className="text-center text-xl font-bold mb-6 mt-12">
-          {/* {brands?.name} Chocolate items {allProducts?.length} */}
-        </h3>
-        {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
+      <div className="w-full lg:w-[60%] mt-24 mx-auto">
+        <h1 className="text-center text-2xl font-bold text-indigo-600">
+          Categories
+        </h1>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
           {allProducts?.map((product) => {
             return (
-              <div className="card card-compact rounded-none bg-base-100 shadow-xl">
-                <figure>
-                  <img className="h-[200px]" src={product?.image} alt="" />
-                </figure>
-                <div className="card-body text-center items-center">
-                  <h2 className="card-title">{product?.name}</h2>
-                  <h2 className="card-title">{product?.price}$</h2>
-                  <h2 className="card-title">Quantity: {product?.quantity}</h2>
+              <div
+                key={product?._id}
+                className="shadow-lg p-2 flex justify-center items-center flex-col"
+              >
+                <img src={product?.image} className="w-[200px] h-[200px] " />
+                <div className="text-center">
+                  <p>{product?.name}</p>
+                  <p>{product?.desc}</p>
+                  <p>${product?.price}</p>
                 </div>
-                <button
-                  onClick={() => dispatch(addToCart(product))}
-                  className="px-2 py-1 bg-[#9A583B] text-white"
-                >
+                <button className="px-2 py-1 bg-[#9A583B] mt-4 text-white font-bold">
                   Add To Cart
                 </button>
               </div>
             );
           })}
-        </div> */}
+        </div>
       </div>
     </div>
   );
