@@ -52,7 +52,7 @@ const Navbar = () => {
         className="float-left text-white px-3 lg:flex items-center hidden  "
         style={{
           height: "70px",
-          backgroundColor: "#900C3F",
+          backgroundColor: "#9A583B",
           cursor: "pointer",
         }}
       >

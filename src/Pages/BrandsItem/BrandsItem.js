@@ -56,17 +56,17 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="bg-cover bg-center ...">
+      <div className="bg-cover bg-center mt-[-40px]">
         <figure>
           <img
             src={brands?.image}
             alt={brands?.name}
-            className="lg:h-[250px] w-full object-center"
+            className="lg:h-[250px] w-full object-center "
           />
         </figure>
       </div>
       {/* search bar */}
-      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-16 border shadow rounded shadow-gray-300">
+      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-6 border shadow rounded shadow-gray-300">
         <input
           className="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
           type="search"
@@ -96,7 +96,7 @@ const BrandsItem = () => {
         </div>
       </div> */}
 
-      <div className="mb-24">
+      <div className="mb-12 lg:mb-24">
         {allSelectGiftBox?.map((box, index) => {
           // console.log(box);
           return (

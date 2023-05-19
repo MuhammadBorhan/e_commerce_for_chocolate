@@ -28,10 +28,7 @@ const GiftItemList = () => {
     // console.log(data);
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/v1/selectgiftbox",
-        data
-      );
+      await axios.post("http://localhost:5000/api/v1/selectgiftbox", data);
     } catch (error) {
       console.log(error);
     }
