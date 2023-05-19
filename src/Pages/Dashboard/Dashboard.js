@@ -37,17 +37,23 @@ const Dashboard = () => {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 text-center">
       <div className="card bg-success text-success-content rounded-sm shadow-xl">
         <div className="card-body ">
+          <Link to="/dashboard/alluser">
           <h2 className="text-2xl font-bold">User {users?.length}</h2>
+          </Link>
         </div>
       </div>
       <div className="card bg-[orange] text-success-content rounded-sm shadow-xl">
         <div className="card-body ">
+          <Link to={"/dashboard/brandlist"}>
           <h2 className="text-2xl font-bold">Brand {allBrand?.length}</h2>
+          </Link>
         </div>
       </div>
       <div className="card bg-[indigo] text-white rounded-sm shadow-xl">
         <div className="card-body ">
-          <h2 className="text-2xl font-bold">Gift Box {allGiftBox?.length}</h2>
+        <Link to="/dashboard/giftitemlist">
+        <h2 className="text-2xl font-bold">Gift Box {allGiftBox?.length}</h2>
+         </Link>
         </div>
       </div>
       <div className="card bg-[purple] text-white rounded-sm shadow-xl">
@@ -59,19 +65,26 @@ const Dashboard = () => {
       </div>
       <div className="card bg-primary text-primary-content rounded-sm shadow-xl">
         <div className="card-body ">
-          <h2 className="text-2xl font-bold">Products {products?.length}</h2>
+        <Link to="/dashboard/allproduct">
+        <h2 className="text-2xl font-bold">Products {products?.length}</h2>
+         </Link>
         </div>
       </div>
       <div className="card bg-secondary text-secondary-content rounded-sm shadow-xl">
         <div className="card-body ">
+          <Link to="/dashboard/addregion">
           <h2 className="text-2xl font-bold">Regions {regions?.length}</h2>
+          </Link>
         </div>
       </div>
       <div className="card bg-[tomato] text-secondary-content rounded-sm shadow-xl">
         <div className="card-body ">
-          <h2 className="text-2xl font-bold">
+       <Link to="/dashboard/trendgiftlist">
+       <h2 className="text-2xl font-bold">
             Trending Item {trendItem?.length}
           </h2>
+         </Link>
+          
         </div>
       </div>
     </div>

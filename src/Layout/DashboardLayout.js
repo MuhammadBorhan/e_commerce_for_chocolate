@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { useGetUserQuery } from "../features/api/loginApi";
 import { MdDashboard } from "react-icons/md"; 
 import { TbBrandShopee } from "react-icons/tb"; 
-import { IoIosArrowDropdown } from "react-icons/io"; 
+ 
 import {IoMdArrowDropdown} from "react-icons/io"; 
 
 
@@ -97,7 +97,7 @@ const DashboardLayout = () => {
           <div className="dropdown dropdown-bottom mt-2">
           <label tabIndex={0} className={`ml-2 cursor-pointer flex ${pathname==="/dashboard/addgiftitem"? "active": pathname==="/dashboard/giftitemlist"? "active":''}`}>
           <div className="mt-1 ml-2"><TbBrandShopee/></div>
-              <div className="ml-2">Gift Item</div>
+              <div className="ml-2">Gift Box</div>
               <div className="mt-1 ml-2"><IoMdArrowDropdown/></div>
             </label>
             <ul
@@ -105,10 +105,10 @@ const DashboardLayout = () => {
               className="dropdown-content menu shadow bg-[#ad5732]  w-50"
             >
               <li>
-                <Link to="/dashboard/addgiftitem">Add Gift Items</Link>
+                <Link to="/dashboard/addgiftitem">Add Gift Box</Link>
               </li>
               <li>
-                <Link to="/dashboard/giftitemlist">Gift Item List</Link>
+                <Link to="/dashboard/giftitemlist">Gift Box List</Link>
               </li>
             </ul>
           </div>
