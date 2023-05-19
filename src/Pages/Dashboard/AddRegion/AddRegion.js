@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { CiCircleRemove } from "react-icons/ci";
 
 const NewAddRegion = () => {
   const [region, setRegion] = useState("");
@@ -80,11 +81,12 @@ const NewAddRegion = () => {
                       className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
                     />
 
-                    <button
+                    <button className="flex"
                       type="button"
                       onClick={() => handleRemoveDistrict(index)}
                     >
-                      Delete
+                      <div className="mt-1 ml-2"><CiCircleRemove/></div>
+                      <p className=" ml-2">Delete</p>
                     </button>
                   </div>
                 ))}
