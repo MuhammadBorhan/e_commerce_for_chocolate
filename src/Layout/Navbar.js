@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {
-  AiOutlineMenu,
-  AiOutlineDollarCircle,
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-  FiLogOut,
-} from "react-icons/ai";
-import { MdOutlineLocationOn } from "react-icons/md";
+import React, { useState } from "react";
+import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
@@ -61,7 +52,7 @@ const Navbar = () => {
         className="float-left text-white px-3 lg:flex items-center hidden  "
         style={{
           height: "70px",
-          backgroundColor: "#900C3F",
+          backgroundColor: "#9A583B",
           cursor: "pointer",
         }}
       >

@@ -2,62 +2,48 @@ import React from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import {
-  useGetAllEventQuery,
-  useRemoveEventMutation,
-} from "../../../features/api/eventApi";
+  useGetAllTrendGiftQuery,
+  useRemoveTrendGiftMutation,
+} from "../../../features/api/trendingGift";
 import { toast } from "react-toastify";
-import { useGetUserQuery } from "../../../features/api/loginApi";
 
-const EventList = () => {
-  const { data } = useGetAllEventQuery(null, {
+const TrendingGiftList = () => {
+  const { data } = useGetAllTrendGiftQuery(null, {
     refetchOnMountOrArgChange: true,
   });
-  const events = data?.data;
-  const [removeEvent] = useRemoveEventMutation();
+  const trendingGift = data?.data;
 
-  const { data: getMe } = useGetUserQuery();
-  const user = getMe?.data;
+  const [removeTrending] = useRemoveTrendGiftMutation();
 
   const handleDelete = (id) => {
     const confirm = window.confirm("Are you want do delete?");
     if (confirm) {
-      removeEvent(id);
+      removeTrending(id);
       toast.success("Delete Successfull!!");
     }
   };
   return (
     <div className="p-8">
-      <h1 className="mb-4 text-blue-500 font-bold">Event List</h1>
+      <h1 className="mb-4 text-blue-500 font-bold">Trending Gift List</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}
           <thead>
             <tr>
               <th>SL. No</th>
-              <th>Title</th>
-              <th>Date</th>
+              <th>Brand</th>
               <th>Region</th>
               <th>District</th>
-              <th>G_meet Link</th>
-              <th>Status</th>
-              <th>Host</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {events?.map((even, index) => (
+            {trendingGift?.map((trend, i) => (
               <tr>
-                <th>{index + 1}</th>
-                <th>{even?.title}</th>
-                <th>{new Date(even.dateTime).toLocaleString()}</th>
-                <th>{even?.region}</th>
-                <th>{even?.district}</th>
-                <th className="text-blue-500 underline font-bold text-sm">
-                  {even?.gmeet}
-                </th>
-
-                <td>{even?.status}</td>
-                <td>{user?.firstName}</td>
+                <td>{i + 1}</td>
+                <td>{trend?.brand}</td>
+                <td>{trend?.region}</td>
+                <td>{trend?.district}</td>
                 <td>
                   <button
                     className="text-blue-500"
@@ -66,7 +52,7 @@ const EventList = () => {
                     <FaEdit />
                   </button>
                   <button
-                    onClick={(e) => handleDelete(even?._id)}
+                    onClick={(e) => handleDelete(trend?._id)}
                     className="text-red-500"
                     style={{ width: "40px", fontSize: "25px" }}
                   >
@@ -82,4 +68,4 @@ const EventList = () => {
   );
 };
 
-export default EventList;
+export default TrendingGiftList;

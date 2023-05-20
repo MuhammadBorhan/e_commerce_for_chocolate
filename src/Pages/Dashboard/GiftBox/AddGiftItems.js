@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import { useGetAllProductsQuery } from "../../../features/api/productsApi";
 
 const AddGiftItems = () => {
   const [boxName, setBoxName] = useState("");
@@ -8,28 +10,24 @@ const AddGiftItems = () => {
   const [brandName, setBrandName] = useState("");
   const [productList, setProductList] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const data = [
-    "Godiva 1",
-    "Kitkat 1",
-    "Gidiva 2",
-    "nestle 1",
-    "Kitkat 2",
-    "linkd choco",
-  ];
 
-  const handlePruductchange = (e) => {
-    console.log(e);
-    const { value, checked } = e.target;
-    if (checked) {
-      setProductList([...productList, value]);
+  const { data: brands } = useGetAllBrandsQuery();
+  const allBrand = brands?.data;
+  const { data: products } = useGetAllProductsQuery();
+  const allProducts = products?.data;
+  const handlePruductchange = (name) => {
+    const isSelected = productList.includes(name);
+    if (isSelected) {
+      setProductList(productList.filter((item) => item !== name));
     } else {
-      setProductList(productList.filter((item) => item !== value));
+      setProductList([...productList, name]);
     }
   };
 
   const handleSelectAll = () => {
     if (!selectAll) {
-      setProductList(data);
+      const allNames = allProducts.map((item) => item.name);
+      setProductList(allNames);
     } else {
       setProductList([]);
     }
@@ -98,10 +96,9 @@ const AddGiftItems = () => {
                   <option disabled selected>
                     Select Brand
                   </option>
-                  <option>Godiva</option>
-                  <option>Kitkat</option>
-                  <option>Guylian</option>
-                  <option>Cudbery</option>
+                  {allBrand?.map((brand, index) => (
+                    <option key={index}>{brand?.name}</option>
+                  ))}
                 </select>
 
                 {/* Checkbox  */}
@@ -120,20 +117,20 @@ const AddGiftItems = () => {
                       {selectAll ? "Unselect All" : "Select All"}
                     </label>
                   </div>
-                  <div className="grid grid-cols-3 lg:grid-cols-6">
-                    {data.map((item) => (
+                  <div className="grid grid-cols-3 lg:grid-cols-6 gap-4">
+                    {allProducts?.map((product) => (
                       <label
-                        key={item}
+                        key={product._id}
                         className="inline-flex items-center gap-x-1"
                       >
                         <input
                           type="checkbox"
                           className="form-checkbox"
-                          value={item}
-                          checked={productList.includes(item)}
-                          onChange={handlePruductchange}
+                          value={product?.name}
+                          checked={productList.includes(product?.name)}
+                          onChange={() => handlePruductchange(product?.name)}
                         />
-                        {item}
+                        {product?.name}
                       </label>
                     ))}
                   </div>

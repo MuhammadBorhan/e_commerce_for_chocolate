@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import { toast } from "react-toastify";
 
 const AddProdusts = () => {
   const [name, setName] = useState("");
@@ -30,7 +31,7 @@ const AddProdusts = () => {
       setPrice("");
       setImg("");
 
-      // Handle success or show a success message
+      toast.success("Successfully added");
     } catch (error) {
       // Handle error or show an error message
     }
