@@ -63,7 +63,8 @@ const AddGiftItems = () => {
 
       toast.success("Successfully added");
     } catch (error) {
-      console.log(error);
+      console.log(error?.response?.data?.error);
+      toast.error(error?.response?.data?.error);
     }
   };
   return (

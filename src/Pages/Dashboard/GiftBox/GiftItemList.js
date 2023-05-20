@@ -25,14 +25,13 @@ const GiftItemList = () => {
   };
 
   const handleSave = async (data) => {
-    // console.log(data);
-
     try {
       await axios.post("http://localhost:5000/api/v1/selectgiftbox", data);
+      toast.success("Gift-Box Added Succfess!!!");
     } catch (error) {
       console.log(error);
+      toast.error(error?.response?.data?.error);
     }
-    window.location.reload();
   };
 
   const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
@@ -47,8 +46,7 @@ const GiftItemList = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
-
-    window.location.reload();
+    toast.error("Remove Success.");
   };
 
   return (
@@ -86,7 +84,7 @@ const GiftItemList = () => {
                     ))}
                   </select>
                 </td>
-                <td>{box?.brandName}</td>
+                <td>{box?.brand}</td>
                 <td>
                   <button onClick={() => handleSave(box)} className={`mr-4 `}>
                     Yes
