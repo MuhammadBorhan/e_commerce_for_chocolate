@@ -14,6 +14,7 @@ const GiftItemList = () => {
     refetchOnMountOrArgChange: true,
   });
   const allGiftBox = giftBoxs?.data;
+
   const [removeBox] = useRemoveGiftBoxMutation();
 
   const handleDelete = (id) => {
@@ -28,6 +29,9 @@ const GiftItemList = () => {
     try {
       await axios.post("http://localhost:5000/api/v1/selectgiftbox", data);
       toast.success("Gift-Box Added Succfess!!!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.error);
@@ -38,7 +42,11 @@ const GiftItemList = () => {
     refetchOnMountOrArgChange: true,
   });
   const selectGiftBox = getSelectGiftBox?.data;
-  console.log(selectGiftBox);
+
+  const filtering = allGiftBox?.filter((abox) => {
+    return selectGiftBox?.some((sbox) => sbox?._id === abox?._id);
+  });
+  const maping = filtering?.find((fltr) => fltr);
 
   const handleCancel = (id) => {
     fetch(`http://localhost:5000/api/v1/selectgiftbox/${id}`, {
@@ -47,6 +55,9 @@ const GiftItemList = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
     toast.error("Remove Success.");
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   return (
@@ -67,48 +78,60 @@ const GiftItemList = () => {
             </tr>
           </thead>
           <tbody>
-            {allGiftBox?.map((box, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{box?.name}</td>
-                <td>
-                  <img
-                    src={`http://localhost:5000/${box?.image}`}
-                    className="w-16"
-                  />
-                </td>
-                <td>
-                  <select className="  rounded-none focus:border-none ">
-                    {box?.productList?.map((product, index) => (
-                      <option key={index}>{product}</option>
-                    ))}
-                  </select>
-                </td>
-                <td>{box?.brand}</td>
-                <td>
-                  <button onClick={() => handleSave(box)} className={`mr-4 `}>
-                    Yes
-                  </button>
-
-                  <button onClick={() => handleCancel(box?._id)}>No</button>
-                </td>
-                <td>
-                  <button
-                    className="text-blue-500"
-                    style={{ width: "40px", fontSize: "25px" }}
-                  >
-                    <FaEdit />
-                  </button>
-                  <button
-                    onClick={(e) => handleDelete(box?._id)}
-                    className="text-red-500"
-                    style={{ width: "40px", fontSize: "25px" }}
-                  >
-                    <AiTwotoneDelete />
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {allGiftBox?.map((box, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{box?.name}</td>
+                  <td>
+                    <img
+                      src={`http://localhost:5000/${box?.image}`}
+                      className="w-16"
+                    />
+                  </td>
+                  <td>
+                    <select className="  rounded-none focus:border-none ">
+                      {box?.productList?.map((product, index) => (
+                        <option key={index}>{product}</option>
+                      ))}
+                    </select>
+                  </td>
+                  <td>{box?.brand}</td>
+                  <td>
+                    {maping?._id === box?._id ? (
+                      <button
+                        onClick={() => handleCancel(box?._id)}
+                        className="mr-4 btn btn-error btn-xs text-white"
+                      >
+                        No
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleSave(box)}
+                        className={`btn btn-primary btn-xs text-white`}
+                      >
+                        Yes
+                      </button>
+                    )}
+                  </td>
+                  <td>
+                    <button
+                      className="text-blue-500"
+                      style={{ width: "40px", fontSize: "25px" }}
+                    >
+                      <FaEdit />
+                    </button>
+                    <button
+                      onClick={(e) => handleDelete(box?._id)}
+                      className="text-red-500"
+                      style={{ width: "40px", fontSize: "25px" }}
+                    >
+                      <AiTwotoneDelete />
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
