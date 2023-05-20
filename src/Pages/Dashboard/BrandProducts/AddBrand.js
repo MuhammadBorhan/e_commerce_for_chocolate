@@ -6,7 +6,6 @@ const AddBrand = () => {
   const [name, setName] = useState("");
   const [image, setImg] = useState(null);
   const [logo, setLogo] = useState(null);
-  console.log(name, image, logo);
 
   const handleSubmitBrand = async (e) => {
     e.preventDefault();
@@ -25,7 +24,6 @@ const AddBrand = () => {
           },
         }
       );
-      console.log("Product created:", response.data);
 
       // Reset the form inputs
       setName("");
@@ -34,7 +32,7 @@ const AddBrand = () => {
 
       toast.success("Successfully added");
     } catch (error) {
-      console.error("Error creating product:", error.response.data?.message);
+      console.error("Error creating product:", error.response.data);
       toast.error(error.response.data);
     }
   };
@@ -61,7 +59,6 @@ const AddBrand = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => setImg(e.target.files[0])}
-                  placeholder="Brnad Cover Image Url"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 />
                 <input
