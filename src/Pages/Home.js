@@ -12,18 +12,19 @@ const Home = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  console.log(name, price, description, image);
 
   const [products, setProducts] = useState([]);
-  console.log(products);
+  // console.log(products);
   useEffect(() => {
     fetchProducts();
   }, []);
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://localhost:5000/products");
-      setProducts(response.data);
+      setProducts(response?.data);
     } catch (error) {
-      console.error("Error fetching products:", error.response.data);
+      console.error("Error fetching products:", error.response?.data);
     }
   };
 
