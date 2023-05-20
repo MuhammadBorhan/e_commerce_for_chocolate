@@ -35,7 +35,9 @@ const GiftItemList = () => {
     window.location.reload();
   };
 
-  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery();
+  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const selectGiftBox = getSelectGiftBox?.data;
   console.log(selectGiftBox);
 

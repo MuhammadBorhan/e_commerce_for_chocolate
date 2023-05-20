@@ -8,21 +8,29 @@ const AddProdusts = () => {
   const [brand, setBrand] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImg] = useState("");
+  const [image, setImg] = useState(null);
 
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
 
-    const data = {
-      name,
-      brand,
-      desc,
-      price,
-      image,
-    };
-    console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/products", data);
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("brand", brand);
+      formData.append("desc", desc);
+      formData.append("price", price);
+      formData.append("image", image);
+      console.log(formData);
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/products",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Product created:", response.data);
 
       // Reset the form inputs
       setName("");
@@ -30,10 +38,10 @@ const AddProdusts = () => {
       setDesc("");
       setPrice("");
       setImg("");
-
       toast.success("Successfully added");
     } catch (error) {
-      // Handle error or show an error message
+      console.error("Error creating product:", error.response.data);
+      toast.error(error.response.data);
     }
   };
 
@@ -52,19 +60,9 @@ const AddProdusts = () => {
           {
             <form onSubmit={handleSubmitProduct} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
-                {/* <select
-                  onChange={(e) => setSelectRegion(e.target.value)}
-                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                >
-                  <option disabled selected>
-                    Select Region
-                  </option>
-                  {regions?.map((region, index) => (
-                    <option key={index}>{region?.region}</option>
-                  ))}
-                </select> */}
                 <input
                   type="text"
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
@@ -72,7 +70,6 @@ const AddProdusts = () => {
 
                 <select
                   onChange={(e) => setBrand(e.target.value)}
-                  // value="brand"
                   className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
                 >
                   <option disabled selected>
@@ -87,23 +84,22 @@ const AddProdusts = () => {
               <textarea
                 onChange={(e) => setDesc(e.target.value)}
                 rows="4"
-                // value="desc"
+                value={desc}
                 className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
                 placeholder="Description..."
                 required
               ></textarea>
               <input
                 type="number"
-                // value="price"
+                value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="Price"
                 className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
               />
               <input
-                type="text"
-                // value="image"
-                onChange={(e) => setImg(e.target.value)}
-                placeholder="Brnad Image Url"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImg(e.target.files[0])}
                 className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
               />
 
