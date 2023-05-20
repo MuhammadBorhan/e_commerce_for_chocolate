@@ -1,31 +1,41 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddBrand = () => {
   const [name, setName] = useState("");
-  const [image, setImg] = useState("");
-  const [logo, setLogo] = useState("");
+  const [image, setImg] = useState(null);
+  const [logo, setLogo] = useState(null);
+  console.log(name, image, logo);
 
   const handleSubmitBrand = async (e) => {
     e.preventDefault();
 
-    const data = {
-      name,
-      image,
-      logo,
-    };
-    console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/brand", data);
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("image", image);
+      formData.append("logo", logo);
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/brand",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Product created:", response.data);
 
       // Reset the form inputs
       setName("");
       setImg("");
       setLogo("");
 
-      // Handle success or show a success message
+      toast.success("Successfully added");
     } catch (error) {
-      // Handle error or show an error message
+      console.error("Error creating product:", error.response.data?.message);
+      toast.error(error.response.data);
     }
   };
   return (
@@ -48,17 +58,16 @@ const AddBrand = () => {
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
                 />
                 <input
-                  type="text"
-                  // value="image"
-                  onChange={(e) => setImg(e.target.value)}
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImg(e.target.files[0])}
                   placeholder="Brnad Cover Image Url"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 />
                 <input
-                  type="text"
-                  // value="image"
-                  onChange={(e) => setLogo(e.target.value)}
-                  placeholder="Brnad Logo"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setLogo(e.target.files[0])}
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 />
               </div>

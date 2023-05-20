@@ -8,7 +8,9 @@ import { MdUpdate } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
 const BrandList = () => {
-  const { data } = useGetAllBrandsQuery();
+  const { data } = useGetAllBrandsQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const brands = data?.data;
 
   const [removeBrand] = useRemoveBrandMutation();
@@ -42,10 +44,16 @@ const BrandList = () => {
                   <th>{index + 1}</th>
                   <td>{brand?.name}</td>
                   <td>
-                    <img src={brand?.logo} className="w-16" />
+                    <img
+                      src={`http://localhost:5000/uploads/${brand?.logo}`}
+                      className="w-16"
+                    />
                   </td>
                   <td>
-                    <img src={brand?.image} className="w-48" />
+                    <img
+                      src={`http://localhost:5000/uploads/${brand?.image}`}
+                      className="w-32"
+                    />
                   </td>
 
                   <td>

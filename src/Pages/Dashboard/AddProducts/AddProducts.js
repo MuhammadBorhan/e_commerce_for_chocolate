@@ -9,7 +9,6 @@ const AddProdusts = () => {
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImg] = useState(null);
-  console.log(name, brand, desc, price, image);
 
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
@@ -21,7 +20,6 @@ const AddProdusts = () => {
       formData.append("desc", desc);
       formData.append("price", price);
       formData.append("image", image);
-      console.log(formData);
       const response = await axios.post(
         "http://localhost:5000/api/v1/products",
         formData,
@@ -31,7 +29,6 @@ const AddProdusts = () => {
           },
         }
       );
-      console.log("Product created:", response.data);
 
       // Reset the form inputs
       setName("");
