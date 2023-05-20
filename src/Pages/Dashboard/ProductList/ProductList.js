@@ -42,7 +42,10 @@ const ProductList = () => {
                 <th>{i + 1}</th>
                 <th>
                   {" "}
-                  <img src={product?.image} className="w-16" />{" "}
+                  <img
+                    src={`http://localhost:4000/${product?.image}`}
+                    className="w-16"
+                  />{" "}
                 </th>
                 <td>{product?.name}</td>
                 <td>¥{product?.price}</td>
