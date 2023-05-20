@@ -28,7 +28,7 @@ const GiftItemList = () => {
     // console.log(data);
 
     try {
-      await axios.post("http://localhost:5000/api/v1/selectgiftbox", data);
+      await axios.post("http://localhost:4000/api/v1/selectgiftbox", data);
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +40,7 @@ const GiftItemList = () => {
   console.log(selectGiftBox);
 
   const handleCancel = (id) => {
-    fetch(`http://localhost:5000/api/v1/selectgiftbox/${id}`, {
+    fetch(`http://localhost:4000/api/v1/selectgiftbox/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
