@@ -1,14 +1,15 @@
-import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
 import { useGetAllProductsQuery } from "../../../features/api/productsApi";
+import axios from "axios";
 
 const AddGiftItems = () => {
-  const [boxName, setBoxName] = useState("");
-  const [boxImage, setBoxImage] = useState("");
-  const [brandName, setBrandName] = useState("");
+  const [name, setBoxName] = useState("");
+  const [image, setBoxImage] = useState(null);
+  const [brand, setBrandName] = useState("");
   const [productList, setProductList] = useState([]);
+
   const [selectAll, setSelectAll] = useState(false);
 
   const { data: brands } = useGetAllBrandsQuery();
@@ -34,24 +35,29 @@ const AddGiftItems = () => {
     setSelectAll(!selectAll);
   };
 
-  console.log(productList);
-
   const handleSubmitGiftItem = async (e) => {
     e.preventDefault();
 
     const data = {
-      boxName,
-      boxImage,
-      brandName,
+      name,
+      image,
+      brand,
       productList,
     };
-    console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/giftbox", data);
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/giftbox",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       // Reset the htmlForm inputs
       setBoxName("");
-      setBoxImage("");
+      setBoxImage(null);
       setBrandName("");
       setProductList("");
 
@@ -75,22 +81,21 @@ const AddGiftItems = () => {
               <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 my-2  ">
                 <input
                   type="text"
-                  value={boxName}
+                  value={name}
                   onChange={(e) => setBoxName(e.target.value)}
                   placeholder="Gift Box Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
                 />
                 <input
-                  type="text"
-                  value={boxImage}
-                  onChange={(e) => setBoxImage(e.target.value)}
-                  placeholder="Gift Box Image Url"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setBoxImage(e.target.files[0])}
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 />
 
                 <select
                   onChange={(e) => setBrandName(e.target.value)}
-                  vlaue={brandName}
+                  vlaue={brand}
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 >
                   <option disabled selected>

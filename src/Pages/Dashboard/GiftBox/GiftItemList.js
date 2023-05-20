@@ -35,7 +35,9 @@ const GiftItemList = () => {
     window.location.reload();
   };
 
-  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery();
+  const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const selectGiftBox = getSelectGiftBox?.data;
   console.log(selectGiftBox);
 
@@ -70,9 +72,12 @@ const GiftItemList = () => {
             {allGiftBox?.map((box, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{box?.boxName}</td>
+                <td>{box?.name}</td>
                 <td>
-                  <img src={box?.boxImage} className="w-16" />
+                  <img
+                    src={`http://localhost:5000/${box?.image}`}
+                    className="w-16"
+                  />
                 </td>
                 <td>
                   <select className="  rounded-none focus:border-none ">
