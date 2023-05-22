@@ -43,7 +43,7 @@ const Dashboard = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 text-center">
       <Link to="/dashboard/alluser">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
+        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl ">
           <div className="avatar placeholder">
             <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
               <span className="text-xl">
