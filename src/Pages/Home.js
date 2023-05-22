@@ -5,6 +5,7 @@ import MobileSearch from "../Components/MobileSearch";
 import CategorySwiper from "./CategorySwiper/CategorySwiper";
 import SameDayDelivery from "../Components/SameDayDelivery";
 import Regions from "../Components/Regions";
+import Footer from "../Layout/Footer";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <CategorySwiper />
       <Regions />
       <SameDayDelivery />
+      <Footer />
     </>
   );
 };
