@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
+import Marquee from "react-fast-marquee";
 
 import "./Regions.css";
 
@@ -16,7 +17,13 @@ import "swiper/css/navigation";
 import "swiper/swiper.min.css";
 
 // import required modules
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
+import {
+  EffectCoverflow,
+  Pagination,
+  Navigation,
+  Autoplay,
+  EffectCards,
+} from "swiper";
 
 const Regions = () => {
   // fetching regions data for region and district
@@ -52,11 +59,12 @@ const Regions = () => {
 
   // onClick handler of distrcit button for showing brands item
   const handleBrand = (d, index) => {
+    console.log(d, index);
     const rest = trendGift?.filter((trend) => trend?.district === d);
     setSelectedProducts(rest);
     setDisActive(index);
   };
-
+  console.log(selectedProducts);
   const [selectedRegion, setSelectedRegion] = useState(null);
 
   // onClick handler of region button for showing district list
@@ -87,6 +95,7 @@ const Regions = () => {
       </div>
 
       {/* Region list */}
+
       <div className="">
         <h3 className="float-left mr-4">Region:</h3>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
@@ -131,26 +140,57 @@ const Regions = () => {
       </div>
 
       {/* Brands List */}
+      {/* <>
+        <Swiper
+          effect={"cards"}
+          grabCursor={true}
+          modules={[EffectCards]}
+          className="mySwiper"
+        >
+          {trendingBrands?.map((product, index) => (
+            <Link to={`/brands/${product?.name}`} state={product} key={index}>
+              <SwiperSlide>
+                <figure>
+                  <img
+                    className="w-[50px] mx-auto"
+                    src={product?.logo}
+                    alt={product?.name}
+                  />
+                </figure>
+                <div className=" text-center items-center">
+                  <h2>{product?.name}</h2>
+                </div>
+              </SwiperSlide>
+            </Link>
+          ))}
+        </Swiper> */}
+
       <div className="py-6">
         {trendingBrands && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 text-center p-6 ">
-            {trendingBrands?.map((product, index) => (
-              <Link to={`/brands/${product?.name}`} state={product} key={index}>
-                <div className="card card-compact shadow-xl">
-                  <figure>
-                    <img
-                      className="w-[50px] lg:w-[150px] h-[50px] lg:h-[100px]"
-                      src={product?.logo}
-                      alt={product?.name}
-                    />
-                  </figure>
-                  <div className="card-body text-center items-center">
-                    <h2 className="card-title">{product?.name}</h2>
+          <Marquee pauseOnHover speed={100}>
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 text-center p-6 ">
+              {trendingBrands?.map((product, index) => (
+                <Link
+                  to={`/brands/${product?.name}`}
+                  state={product}
+                  key={index}
+                >
+                  <div className="card card-compact shadow-xl">
+                    <figure>
+                      <img
+                        className="w-[50px] lg:w-[150px] h-[50px] lg:h-[100px]"
+                        src={product?.logo}
+                        alt={product?.name}
+                      />
+                    </figure>
+                    <div className="card-body text-center items-center">
+                      <h2 className="card-title">{product?.name}</h2>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          </Marquee>
         )}
       </div>
     </div>
