@@ -19,7 +19,7 @@ const ProductList = () => {
       removeProduct(id);
     }
   };
-  console.log(products.length);
+
   return (
     <div className="p-8">
       <div className="overflow-x-auto">

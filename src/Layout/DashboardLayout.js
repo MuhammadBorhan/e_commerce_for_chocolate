@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useGetUserQuery } from "../features/api/loginApi";
 import { MdDashboard } from "react-icons/md";
-import { TbBrandShopee } from "react-icons/tb";
+import { TbBrandShopee, TbGiftCard } from "react-icons/tb";
+import { HiOutlineUsers } from "react-icons/hi";
+import { SiBrandfolder } from "react-icons/si";
+import { BsCalendarEvent, BsGift } from "react-icons/bs";
+import { CiLocationOn } from "react-icons/ci";
+import { RiProductHuntLine } from "react-icons/ri";
 
 import { IoMdArrowDropdown } from "react-icons/io";
 
 const DashboardLayout = () => {
+  const [pShow, setPShow] = useState(false);
+  const [rShow, setRShow] = useState(false);
+  const [bShow, setBShow] = useState(false);
+  const [eShow, setEShow] = useState(false);
+  const [gShow, setGShow] = useState(false);
+
   const { data } = useGetUserQuery();
   const users = data?.data;
 
@@ -15,23 +26,33 @@ const DashboardLayout = () => {
   const { pathname } = location;
 
   return (
-    <div className="drawer drawer-mobile">
+    <div className="drawer drawer-mobile bg-slate-50">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <Outlet />
       </div>
       <div className="drawer-side shadow-lg shadow-indigo-500/40">
-        <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+        {/* <label htmlFor="dashboard-drawer" className="drawer-overlay"></label> */}
 
-        <ul className="menu p-4 w-60 bg-[#9A583B] border-t-[1px] text-white">
-          <li>
-            <Link to="/dashboard">
-              <MdDashboard /> Dashboard
-            </Link>
-          </li>
+        <ul className="menu p-4 w-60 bg--slate-50 border-t-[1px] text-yellow-800">
+          <Link to="/dashboard">
+            <div className="menu bg-[#9A583B]  rounded-md shadow-xl mb-4 p-4 border-t-[1px]">
+              <div className=" flex justify-between justify-items-center ">
+                <p className="text-xl text-gray-50">
+                  <MdDashboard />
+                </p>
 
+                <div>
+                  <p className="text-gray-50 text-xl font-bold">Dashboard</p>
+                </div>
+              </div>
+            </div>
+          </Link>
           {/* region and district */}
-          <div className="dropdown dropdown-bottom mb-3 mt-1">
+          <div
+            className="dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md"
+            onClick={() => setRShow(!rShow)}
+          >
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
@@ -43,27 +64,37 @@ const DashboardLayout = () => {
               }`}
             >
               <div className="mt-1 ml-2">
-                <TbBrandShopee />
+                <CiLocationOn />
               </div>
               <div className="ml-2">Region & District</div>
               <div className="mt-1 ml-2">
                 <IoMdArrowDropdown />
               </div>
             </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
-            >
-              <li>
-                <Link to="/dashboard/addregion">Add Region & District</Link>
-              </li>
-              <li>
-                <Link to="/dashboard/regionlist">All Region & District</Link>
-              </li>
-            </ul>
+
+            {rShow && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu shadow bg-slate-50 w-50"
+              >
+                <li>
+                  <Link to="/dashboard/addregion">Add Region & District</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/regionlist">All Region & District</Link>
+                </li>
+              </ul>
+            )}
           </div>
 
-          <div className="dropdown dropdown-bottom">
+          {/* Products  */}
+
+          <div
+            onClick={() => setPShow(!pShow)}
+            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
+              rShow ? "mt-24" : "mt-0"
+            }`}
+          >
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
@@ -75,32 +106,39 @@ const DashboardLayout = () => {
               }`}
             >
               <div className="mt-1 ml-2">
-                <TbBrandShopee />
+                <RiProductHuntLine />
               </div>
               <div className="ml-2">Products</div>
               <div className="mt-1 ml-2">
                 <IoMdArrowDropdown />
               </div>
             </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
-            >
-              <li>
-                <Link to="/dashboard/addproduct">Add Products</Link>
-              </li>
-              <li>
-                <Link to="/dashboard/allproduct">All Products</Link>
-              </li>
-            </ul>
+            {pShow && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu shadow bg-slate-50  w-50"
+              >
+                <li>
+                  <Link to="/dashboard/addproduct">Add Products</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/allproduct">All Products</Link>
+                </li>
+              </ul>
+            )}
           </div>
 
           {/* Brand  */}
 
-          <div className="dropdown dropdown-bottom mt-2">
+          <div
+            onClick={() => setBShow(!bShow)}
+            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
+              pShow ? "mt-24" : "mt-0"
+            }`}
+          >
             <label
               tabIndex={0}
-              className={`ml-2 cursor-pointer- flex ${
+              className={`ml-2 cursor-pointer flex ${
                 pathname === "/dashboard/addbrand"
                   ? "active"
                   : pathname === "/dashboard/brandlist"
@@ -109,7 +147,7 @@ const DashboardLayout = () => {
               }`}
             >
               <div className="mt-1 ml-2">
-                <TbBrandShopee />
+                <SiBrandfolder />
               </div>
               <div className="ml-2">Brands</div>
               <div className="mt-1 ml-2">
@@ -118,7 +156,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
+              className="dropdown-content menu shadow bg-slate-50  w-50"
             >
               <li>
                 <Link to="/dashboard/addbrand">Add Brand</Link>
@@ -130,7 +168,7 @@ const DashboardLayout = () => {
           </div>
 
           {/* Add Gift Items  */}
-          <div className="dropdown dropdown-bottom mt-2">
+          <div className="dropdown dropdown-bottom mt-2 shadow-md p-2 rounded-md">
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
@@ -142,7 +180,7 @@ const DashboardLayout = () => {
               }`}
             >
               <div className="mt-1 ml-2">
-                <TbBrandShopee />
+                <BsGift />
               </div>
               <div className="ml-2">Gift Box</div>
               <div className="mt-1 ml-2">
@@ -151,7 +189,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
+              className="dropdown-content menu shadow bg-slate-50  w-50"
             >
               <li>
                 <Link to="/dashboard/addgiftitem">Add Gift Box</Link>
@@ -164,7 +202,7 @@ const DashboardLayout = () => {
 
           {/* Trending Gift  */}
 
-          <div className="dropdown dropdown-bottom mt-2">
+          <div className="dropdown dropdown-bottom mt-2 shadow-md p-2 rounded-md">
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
@@ -176,7 +214,7 @@ const DashboardLayout = () => {
               }`}
             >
               <div className="mt-1 ml-2">
-                <TbBrandShopee />
+                <TbGiftCard />
               </div>
               <div className="ml-2">Trending Gift</div>
               <div className="mt-1 ml-2">
@@ -185,7 +223,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
+              className="dropdown-content menu shadow bg-slate-50  w-50"
             >
               <li>
                 <Link to="/dashboard/addtgift">Add TrendingGift</Link>
@@ -198,7 +236,7 @@ const DashboardLayout = () => {
 
           {/* Event  */}
 
-          <div className="dropdown dropdown-bottom mt-2">
+          <div className="dropdown dropdown-bottom mt-2 shadow-md p-2 rounded-md">
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
@@ -210,7 +248,7 @@ const DashboardLayout = () => {
               }`}
             >
               <div className="mt-1 ml-2">
-                <TbBrandShopee />
+                <BsCalendarEvent />
               </div>
               <div className="ml-2">Events</div>
               <div className="mt-1 ml-2">
@@ -219,7 +257,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
+              className="dropdown-content menu shadow bg-slate-50  w-50"
             >
               <li>
                 <Link to="/dashboard/addevent">Add Event</Link>
@@ -231,7 +269,7 @@ const DashboardLayout = () => {
           </div>
 
           {/* users */}
-          <div className="dropdown dropdown-bottom mt-2">
+          <div className="dropdown dropdown-bottom mt-2 shadow-md p-2 rounded-md">
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
@@ -239,7 +277,7 @@ const DashboardLayout = () => {
               }`}
             >
               <div className="mt-1 ml-2">
-                <TbBrandShopee />
+                <HiOutlineUsers />
               </div>
               <div className="ml-2">Users</div>
               <div className=" mt-1 ml-2 ">
@@ -248,7 +286,7 @@ const DashboardLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu shadow bg-[#ad5732]  w-50"
+              className="dropdown-content menu shadow bg-slate-50  w-50"
             >
               <li>
                 <Link to="/dashboard/alluser">Manage User</Link>
