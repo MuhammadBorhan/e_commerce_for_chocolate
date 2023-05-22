@@ -164,7 +164,7 @@ const DashboardLayout = () => {
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
-                pathname === "/dashboard/addproduct"
+                pathname === "/dashboard/allproduct"
                   ? "active"
                   : pathname === "/dashboard/addproduct"
                   ? "active"
