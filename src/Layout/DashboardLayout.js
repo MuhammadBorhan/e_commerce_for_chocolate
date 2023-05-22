@@ -92,7 +92,7 @@ const DashboardLayout = () => {
   const { pathname } = location;
 
   return (
-    <div className="drawer drawer-mobile bg-slate-50 fixed">
+    <div className="drawer drawer-mobile bg-slate-50 ">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <Outlet />
@@ -100,7 +100,7 @@ const DashboardLayout = () => {
       <div className="drawer-side shadow-lg shadow-indigo-500/40">
         {/* <label htmlFor="dashboard-drawer" className="drawer-overlay"></label> */}
 
-        <ul className="menu p-4 w-60 bg--slate-50 border-t-[1px] text-yellow-800">
+        <ul className="menu p-4 w-60 bg-slate-50 border-t-[1px] text-yellow-800">
           <Link to="/dashboard">
             <div className="menu bg-[#9A583B]  rounded-md shadow-xl mb-4 p-4 border-t-[1px]">
               <div className=" flex justify-between justify-items-center ">
