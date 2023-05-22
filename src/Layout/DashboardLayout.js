@@ -98,9 +98,9 @@ const DashboardLayout = () => {
         <Outlet />
       </div>
       <div className="drawer-side shadow-lg shadow-indigo-500/40">
-        {/* <label htmlFor="dashboard-drawer" className="drawer-overlay"></label> */}
+        <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
-        <ul className="menu p-4 w-60 bg--slate-50 border-t-[1px] text-yellow-800">
+        <ul className="menu p-4 w-60 bg-slate-50 border-t-[1px] text-yellow-800">
           <Link to="/dashboard">
             <div className="menu bg-[#9A583B]  rounded-md shadow-xl mb-4 p-4 border-t-[1px]">
               <div className=" flex justify-between justify-items-center ">
@@ -141,7 +141,7 @@ const DashboardLayout = () => {
             {rShow && (
               <ul
                 tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-50 w-50"
+                className="dropdown-content menu shadow bg-slate-200 w-50"
               >
                 <li>
                   <Link to="/dashboard/addregion">Add Region & District</Link>
@@ -182,7 +182,7 @@ const DashboardLayout = () => {
             {pShow && (
               <ul
                 tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-50  w-50"
+                className="dropdown-content menu shadow bg-slate-200  w-50"
               >
                 <li>
                   <Link to="/dashboard/addproduct">Add Products</Link>
@@ -223,7 +223,7 @@ const DashboardLayout = () => {
             {bShow && (
               <ul
                 tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-50  w-50"
+                className="dropdown-content menu shadow bg-slate-200  w-50"
               >
                 <li>
                   <Link to="/dashboard/addbrand">Add Brand</Link>
@@ -263,7 +263,7 @@ const DashboardLayout = () => {
             {gShow && (
               <ul
                 tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-50  w-50"
+                className="dropdown-content menu shadow bg-slate-200  w-50"
               >
                 <li>
                   <Link to="/dashboard/addgiftitem">Add Gift Box</Link>
@@ -304,7 +304,7 @@ const DashboardLayout = () => {
             {trShow && (
               <ul
                 tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-50  w-50"
+                className="dropdown-content menu shadow bg-slate-200  w-50"
               >
                 <li>
                   <Link to="/dashboard/addtgift">Add TrendingGift</Link>
@@ -345,7 +345,7 @@ const DashboardLayout = () => {
             {eShow && (
               <ul
                 tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-50  w-50"
+                className="dropdown-content menu shadow bg-slate-200  w-50"
               >
                 <li>
                   <Link to="/dashboard/addevent">Add Event</Link>
@@ -381,7 +381,7 @@ const DashboardLayout = () => {
             {uShow && (
               <ul
                 tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-50  w-50"
+                className="dropdown-content menu shadow bg-slate-200  w-50"
               >
                 <li>
                   <Link to="/dashboard/alluser">Manage User</Link>
