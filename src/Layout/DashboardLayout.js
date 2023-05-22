@@ -2,31 +2,28 @@ import React from "react";
 import Navbar from "./Navbar";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useGetUserQuery } from "../features/api/loginApi";
-import { MdDashboard } from "react-icons/md"; 
-import { TbBrandShopee } from "react-icons/tb"; 
- 
-import {IoMdArrowDropdown} from "react-icons/io"; 
+import { MdDashboard } from "react-icons/md";
+import { TbBrandShopee } from "react-icons/tb";
 
-
-
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const DashboardLayout = () => {
   const { data } = useGetUserQuery();
   const users = data?.data;
 
-  const location= useLocation()
-  const {pathname}=location;
-  
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
-    <div className="drawer drawer-mobile">
+    <div className="drawer drawer-mobile fixed h-screen">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <Outlet />
       </div>
-      <div className="drawer-side shadow-lg shadow-indigo-500/40">
+      <div className="drawer-side shadow-lg shadow-indigo-500/40 ">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
-        <ul className="menu p-4 w-60 bg-[#9A583B] border-t-[1px] text-white">
+        <ul className="menu p-4 w-60  bg-[#9A583B] border-t-[1px] text-white">
           <li>
             <Link to="/dashboard">
               <MdDashboard /> Dashboard
@@ -35,10 +32,23 @@ const DashboardLayout = () => {
 
           {/* region and district */}
           <div className="dropdown dropdown-bottom mb-3 mt-1">
-            <label tabIndex={0} className={`ml-2 cursor-pointer flex ${pathname==="/dashboard/addregion" ? "active":  pathname==="/dashboard/regionlist"? "active": ""}`}>
-              <div className="mt-1 ml-2"><TbBrandShopee/></div>
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/addregion"
+                  ? "active"
+                  : pathname === "/dashboard/regionlist"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <TbBrandShopee />
+              </div>
               <div className="ml-2">Region & District</div>
-              <div className="mt-1 ml-2"><IoMdArrowDropdown/></div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
             </label>
             <ul
               tabIndex={0}
@@ -54,10 +64,23 @@ const DashboardLayout = () => {
           </div>
 
           <div className="dropdown dropdown-bottom">
-          <label tabIndex={0} className={`ml-2 cursor-pointer flex ${pathname==="/dashboard/addproduct"? "active": pathname==="/dashboard/addproduct"? "active":''}`}>
-          <div className="mt-1 ml-2"><TbBrandShopee/></div>
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/addproduct"
+                  ? "active"
+                  : pathname === "/dashboard/addproduct"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <TbBrandShopee />
+              </div>
               <div className="ml-2">Products</div>
-              <div className="mt-1 ml-2"><IoMdArrowDropdown/></div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
             </label>
             <ul
               tabIndex={0}
@@ -75,10 +98,23 @@ const DashboardLayout = () => {
           {/* Brand  */}
 
           <div className="dropdown dropdown-bottom mt-2">
-          <label tabIndex={0} className={`ml-2 cursor-pointer- flex ${pathname==="/dashboard/addbrand"? "active": pathname==="/dashboard/brandlist"? "active":''}`}>
-          <div className="mt-1 ml-2"><TbBrandShopee/></div>
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer- flex ${
+                pathname === "/dashboard/addbrand"
+                  ? "active"
+                  : pathname === "/dashboard/brandlist"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <TbBrandShopee />
+              </div>
               <div className="ml-2">Brands</div>
-              <div className="mt-1 ml-2"><IoMdArrowDropdown/></div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
             </label>
             <ul
               tabIndex={0}
@@ -95,10 +131,23 @@ const DashboardLayout = () => {
 
           {/* Add Gift Items  */}
           <div className="dropdown dropdown-bottom mt-2">
-          <label tabIndex={0} className={`ml-2 cursor-pointer flex ${pathname==="/dashboard/addgiftitem"? "active": pathname==="/dashboard/giftitemlist"? "active":''}`}>
-          <div className="mt-1 ml-2"><TbBrandShopee/></div>
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/addgiftitem"
+                  ? "active"
+                  : pathname === "/dashboard/giftitemlist"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <TbBrandShopee />
+              </div>
               <div className="ml-2">Gift Box</div>
-              <div className="mt-1 ml-2"><IoMdArrowDropdown/></div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
             </label>
             <ul
               tabIndex={0}
@@ -113,10 +162,23 @@ const DashboardLayout = () => {
             </ul>
           </div>
           <div className="dropdown dropdown-bottom mt-2">
-            <label tabIndex={0} className={`ml-2 cursor-pointer flex ${pathname==="/dashboard/addtgift"? "active": pathname==="/dashboard/trendgiftlist"? "active":''}`}>
-            <div className="mt-1 ml-2"><TbBrandShopee/></div>
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/addtgift"
+                  ? "active"
+                  : pathname === "/dashboard/trendgiftlist"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <TbBrandShopee />
+              </div>
               <div className="ml-2">Trending Gift</div>
-              <div className="mt-1 ml-2"><IoMdArrowDropdown/></div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
             </label>
             <ul
               tabIndex={0}
@@ -134,10 +196,23 @@ const DashboardLayout = () => {
           {/* Event  */}
 
           <div className="dropdown dropdown-bottom mt-2">
-            <label tabIndex={0} className={`ml-2 cursor-pointer flex ${pathname==="/dashboard/addevent"? "active": pathname==="/dashboard/eventlist"? "active":''}`}>
-            <div className="mt-1 ml-2"><TbBrandShopee/></div>
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/addevent"
+                  ? "active"
+                  : pathname === "/dashboard/eventlist"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <TbBrandShopee />
+              </div>
               <div className="ml-2">Events</div>
-              <div className="mt-1 ml-2"><IoMdArrowDropdown/></div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
             </label>
             <ul
               tabIndex={0}
@@ -154,10 +229,19 @@ const DashboardLayout = () => {
 
           {/* users */}
           <div className="dropdown dropdown-bottom mt-2">
-            <label tabIndex={0} className={`ml-2 cursor-pointer flex ${pathname==="/dashboard/alluser"? "active":''}`}>
-            <div className="mt-1 ml-2"><TbBrandShopee/></div>
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/alluser" ? "active" : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <TbBrandShopee />
+              </div>
               <div className="ml-2">Users</div>
-              <div className=" mt-1 ml-2 "><IoMdArrowDropdown/></div>
+              <div className=" mt-1 ml-2 ">
+                <IoMdArrowDropdown />
+              </div>
             </label>
             <ul
               tabIndex={0}

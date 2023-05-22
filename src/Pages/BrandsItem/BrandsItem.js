@@ -56,7 +56,7 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="bg-cover bg-center mt-[-40px]">
+      <div className="bg-cover bg-center">
         <figure>
           <img
             src={brands?.image}
