@@ -56,7 +56,7 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="bg-cover bg-center mt-[-40px]">
+      <div className="bg-cover bg-center">
         <figure>
           <img
             src={brands?.image}
@@ -156,6 +156,10 @@ const BrandsItem = () => {
                 <span>{new Date(event?.dateTime).toLocaleString()}</span>
               </div>
               <div className="mb-4">
+                <span className="bg-gray-300 p-1 mr-2">Delivery: </span>
+                <span>Google Meet</span>
+              </div>
+              <div className="">
                 <span className="bg-gray-300 p-1 mr-2">Status: </span>
                 <a
                   target="_blank"
@@ -165,7 +169,7 @@ const BrandsItem = () => {
                   {event?.status}
                 </a>
               </div>
-              <div>
+              <div className="hidden">
                 <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
                 <a
                   target="_blank"

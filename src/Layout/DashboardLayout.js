@@ -133,7 +133,7 @@ const DashboardLayout = () => {
           <div
             onClick={() => setBShow(!bShow)}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              pShow ? "mt-24" : "mt-0"
+              pShow ? "mt-24" : ""
             }`}
           >
             <label

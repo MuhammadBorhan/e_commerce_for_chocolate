@@ -154,7 +154,9 @@ const Navbar = () => {
               className="btn bg-transparent hover:bg-transparent border-none"
             >
               {user ? (
-                <span className="text-sm">{user?.firstName}</span>
+                <span className="text-sm">
+                  {user?.firstName} ({user?.role})
+                </span>
               ) : (
                 // <div className="w-10 rounded-full">
                 //   <img src="https://borhanportfolio.netlify.app/static/media/borhan.d87b28879c1a50ffbd3f.png" />
@@ -181,7 +183,7 @@ const Navbar = () => {
                 <li>
                   {" "}
                   <button onClick={logOut} className="">
-                    Logout ({user?.role})
+                    Logout
                   </button>{" "}
                 </li>
               </ul>

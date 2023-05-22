@@ -10,7 +10,7 @@ const Main = () => {
       <div>
         <Outlet />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
