@@ -41,7 +41,7 @@ const Dashboard = () => {
   const trendItem = trenitem?.data;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 p-8 text-center">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 text-center">
       <Link to="/dashboard/alluser">
         <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
           <div className="avatar placeholder">
