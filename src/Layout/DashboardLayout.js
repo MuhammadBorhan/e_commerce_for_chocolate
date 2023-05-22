@@ -92,7 +92,7 @@ const DashboardLayout = () => {
   const { pathname } = location;
 
   return (
-    <div className="drawer drawer-mobile bg-slate-50 fixed">
+    <div className="drawer drawer-mobile bg-slate-50 ">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <Outlet />
@@ -164,7 +164,7 @@ const DashboardLayout = () => {
             <label
               tabIndex={0}
               className={`ml-2 cursor-pointer flex ${
-                pathname === "/dashboard/addproduct"
+                pathname === "/dashboard/allproduct"
                   ? "active"
                   : pathname === "/dashboard/addproduct"
                   ? "active"

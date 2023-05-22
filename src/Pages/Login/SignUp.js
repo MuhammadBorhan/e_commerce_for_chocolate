@@ -36,9 +36,10 @@ const SignUp = () => {
     // }
 
     try {
+      const { confirmPassword: cfw, ...others } = data;
       const response = await axios.post(
         `http://localhost:5000/api/v1/signup`,
-        data
+        others
       );
       const accessToken = response?.data?.token;
       localStorage.setItem("accessToken", accessToken);
