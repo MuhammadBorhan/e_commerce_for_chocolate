@@ -45,13 +45,21 @@ const BrandList = () => {
                   <td>{brand?.name}</td>
                   <td>
                     <img
+<<<<<<< HEAD
                       src={`http://localhost:4000/uploads/${brand?.logo}`}
+=======
+                      src={`http://localhost:5002/uploads/${brand?.logo}`}
+>>>>>>> 9fe882de56a939a28aad3953fc2b210b31a14746
                       className="w-16"
                     />
                   </td>
                   <td>
                     <img
+<<<<<<< HEAD
                       src={`http://localhost:4000/uploads/${brand?.image}`}
+=======
+                      src={`http://localhost:5002/uploads/${brand?.image}`}
+>>>>>>> 9fe882de56a939a28aad3953fc2b210b31a14746
                       className="w-32"
                     />
                   </td>

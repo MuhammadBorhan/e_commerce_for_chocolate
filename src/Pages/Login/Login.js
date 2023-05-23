@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 import { toast } from "react-toastify";
-
 const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -17,6 +16,9 @@ const Login = () => {
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
       if (response) {
+
+
+
         navigate("/dashboard");
       }
     } catch (error) {

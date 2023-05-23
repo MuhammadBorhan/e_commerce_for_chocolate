@@ -13,7 +13,11 @@ const Navbar = () => {
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
+<<<<<<< HEAD
   //   fetch("http://localhost:4000/api/v1/me", {
+=======
+  //   fetch("http://localhost:5002/api/v1/me", {
+>>>>>>> 9fe882de56a939a28aad3953fc2b210b31a14746
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,

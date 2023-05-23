@@ -20,7 +20,11 @@ const SignUp = () => {
     // } else {
     //   try {
     //     const response = await axios.post(
+<<<<<<< HEAD
     //       `http://localhost:4000/api/v1/signup`,
+=======
+    //       `http://localhost:5002/api/v1/signup`,
+>>>>>>> 9fe882de56a939a28aad3953fc2b210b31a14746
     //       others
     //     );
     //     const accessToken = response?.data?.token;

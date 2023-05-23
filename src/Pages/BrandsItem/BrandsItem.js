@@ -145,39 +145,42 @@ const BrandsItem = () => {
           event?.status === "Start" && (
             <div
               key={event._id}
-              className="w-full lg:w-[40%] m-auto p-4 my-8"
-              style={{ boxShadow: "1px 1px 1px 2px gray" }}
+              className="card w-1/3 bg-base-100 shadow-xl mx-auto border-2 "
             >
-              <h1>
-                {event?.title}: {event?.desc}
-              </h1>
-              <div className="py-4">
-                <span className="bg-gray-300 p-1 mr-2">Event Date: </span>
-                <span>{new Date(event?.dateTime).toLocaleString()}</span>
-              </div>
-              <div className="mb-4">
-                <span className="bg-gray-300 p-1 mr-2">Delivery: </span>
-                <span>Google Meet</span>
-              </div>
-              <div className="">
-                <span className="bg-gray-300 p-1 mr-2">Status: </span>
-                <a
-                  target="_blank"
-                  href={event?.gmeet}
-                  className="text-white px-2 font-bold btn-success"
-                >
-                  {event?.status}
-                </a>
-              </div>
-              <div className="hidden">
-                <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
-                <a
-                  target="_blank"
-                  href={event?.gmeet}
-                  className="text-blue-500 underline"
-                >
-                  {event?.gmeet}
-                </a>
+              <div className="card-body">
+                <h1 className="text-center font-bold  ">
+                  Event Title :{event?.title}
+                </h1>
+                <h1 className="text-center font-bold">
+                  Event Date: {new Date(event?.dateTime).toLocaleString()}
+                </h1>
+                <span className="text-center font-bold">
+                  Delivery: Google Meet
+                </span>
+                <div className="card-actions justify-center">
+                  <div className="">
+                    <a
+                      target="_blank"
+                      href={event?.gmeet}
+                      className=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                    >
+                      {event?.status}
+                    </a>
+                  </div>
+                  <div className="hidden">
+                    <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
+                    <a
+                      target="_blank"
+                      href={event?.gmeet}
+                      className="text-blue-500 underline"
+                    >
+                      {event?.gmeet}
+                    </a>
+                  </div>
+                </div>
+                <div className="text-center font-bold">
+                  Description:{event?.desc}
+                </div>
               </div>
             </div>
           )
