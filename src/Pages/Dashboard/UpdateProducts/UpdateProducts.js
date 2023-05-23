@@ -1,17 +1,28 @@
 import axios from "axios";
-import { useState } from "react";
-import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
+import { useParams } from "react-router-dom";
 
-const AddProdusts = () => {
+const UpdateProducts = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImg] = useState(null);
-  console.log(name, image);
 
-  const handleSubmitProduct = async (e) => {
+  const [product, setProduct] = useState({});
+  const { id } = useParams();
+  useEffect(() => {
+    const url = `http://localhost:4000/api/v1/products/${id}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setProduct(data?.data));
+  }, [id]);
+
+  console.log(product);
+
+  const handleUpdateProduct = async (e) => {
     e.preventDefault();
 
     try {
@@ -21,8 +32,8 @@ const AddProdusts = () => {
       formData.append("desc", desc);
       formData.append("price", price);
       formData.append("image", image);
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/products",
+      const response = await axios.patch(
+        `http://localhost:4000/api/v1/products/${id}`,
         formData,
         {
           headers: {
@@ -30,13 +41,13 @@ const AddProdusts = () => {
           },
         }
       );
-
+      console.log(response);
       // Reset the form inputs
-      setName("");
-      setBrand("");
-      setDesc("");
-      setPrice("");
-      setImg("");
+      //   setName("");
+      //   setBrand("");
+      //   setDesc("");
+      //   setPrice("");
+      //   setImg("");
       toast.success("Successfully added");
     } catch (error) {
       console.error("Error creating product:", error.response.data);
@@ -46,6 +57,7 @@ const AddProdusts = () => {
 
   const { data } = useGetAllBrandsQuery();
   const brands = data?.data;
+  //   console.log(brands);
   return (
     <div className="flex justify-center overflow-auto items-center mt-12">
       <div
@@ -54,14 +66,14 @@ const AddProdusts = () => {
       >
         <div className="card-body">
           <div className="text-center">
-            <h2 className="text-xl font-bold">Add Product</h2>
+            <h2 className="text-xl font-bold">Update Product</h2>
           </div>
           {
-            <form onSubmit={handleSubmitProduct} className="text-center">
+            <form onSubmit={handleUpdateProduct} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
                 <input
                   type="text"
-                  value={name}
+                  defaultValue={product?.name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
@@ -83,14 +95,14 @@ const AddProdusts = () => {
               <textarea
                 onChange={(e) => setDesc(e.target.value)}
                 rows="4"
-                value={desc}
+                value={product?.desc}
                 className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
                 placeholder="Description..."
                 required
               ></textarea>
               <input
                 type="number"
-                value={price}
+                value={product?.price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="Price"
                 className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
@@ -107,7 +119,7 @@ const AddProdusts = () => {
                   type="submit"
                   className="bg-[#5e2006] px-2 py-1 font-bold text-white "
                 >
-                  Save
+                  Update
                 </button>
               </div>
             </form>
@@ -118,4 +130,4 @@ const AddProdusts = () => {
   );
 };
 
-export default AddProdusts;
+export default UpdateProducts;
