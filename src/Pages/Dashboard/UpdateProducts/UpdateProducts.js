@@ -2,56 +2,96 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateProducts = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImg] = useState(null);
+  console.log(name);
 
   const [product, setProduct] = useState({});
-  const { id } = useParams();
+  // console.log(product);
   useEffect(() => {
-    const url = `http://localhost:4000/api/v1/products/${id}`;
+    const url = `http://localhost:5000/api/v1/products/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data?.data));
   }, [id]);
 
-  console.log(product);
-
-  const handleUpdateProduct = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+  };
 
+  // const handleUpdateProduct = async (e) => {
+
+  //   // const data = {
+  //   //   name: name ? name : product?.name,
+  //   //   brand: brand ? brand : product?.brand,
+  //   //   desc: desc ? desc : product?.desc,
+  //   //   price: price ? price : product?.price,
+  //   //   image: image ? image : product?.image,
+  //   // };
+  //   // console.log(data);
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("name", name ? name : product?.name);
+  //     formData.append("brand", brand ? brand : product?.brand);
+  //     formData.append("desc", desc ? desc : product?.desc);
+  //     formData.append("price", price ? price : product?.price);
+  //     formData.append("image", image ? image : product?.image);
+  //     console.log(formData);
+  //     const response = await axios.patch(
+  //       `http://localhost:5000/api/v1/products/${id}`,
+
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  //     console.log(response);
+
+  //     toast.success("Successfully added");
+  //   } catch (error) {
+  //     console.error("Error creating product:", error.response.data);
+  //     toast.error(error.response.data);
+  //   }
+  // };
+
+  const handleUpdateProduct = async () => {
+    const data = {
+      name: name ? name : product?.name,
+      brand: brand ? brand : product?.brand,
+      desc: desc ? desc : product?.desc,
+      price: price ? price : product?.price,
+      // image: image ? image : product?.image,
+    };
+    console.log(data);
     try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("brand", brand);
-      formData.append("desc", desc);
-      formData.append("price", price);
-      formData.append("image", image);
+      // const formData = new FormData();
+      // formData.append("name", name ? name : product?.name);
+      // formData.append("brand", brand ? brand : product?.brand);
+      // formData.append("desc", desc ? desc : product?.desc);
+      // formData.append("price", price ? price : product?.price);
+      // formData.append("image", image ? image : product?.image);
       const response = await axios.patch(
-        `http://localhost:4000/api/v1/products/${id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        `http://localhost:5000/api/v1/products/${id}`,
+        data
       );
       console.log(response);
-      // Reset the form inputs
-      //   setName("");
-      //   setBrand("");
-      //   setDesc("");
-      //   setPrice("");
-      //   setImg("");
-      toast.success("Successfully added");
+      if (response) {
+        // toast.success("Successfully update");
+        navigate("/dashboard/allproduct");
+      }
     } catch (error) {
-      console.error("Error creating product:", error.response.data);
-      toast.error(error.response.data);
+      console.log(error);
     }
   };
 
@@ -69,7 +109,7 @@ const UpdateProducts = () => {
             <h2 className="text-xl font-bold">Update Product</h2>
           </div>
           {
-            <form onSubmit={handleUpdateProduct} className="text-center">
+            <form onSubmit={handleSubmit} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
                 <input
                   type="text"
@@ -79,30 +119,38 @@ const UpdateProducts = () => {
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
                 />
 
-                <select
-                  onChange={(e) => setBrand(e.target.value)}
-                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                >
-                  <option disabled selected>
-                    Select Brand
-                  </option>
-                  {brands?.map((brand) => (
-                    <option key={brand?._id}>{brand?.name}</option>
-                  ))}
-                </select>
+                <div>
+                  <input
+                    type="text"
+                    disabled
+                    defaultValue={product?.brand}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-[50%] max-w-xs lg:max-w-none mb-2"
+                  />
+                  <select
+                    onChange={(e) => setBrand(e.target.value)}
+                    className="border h-8 rounded-none focus:border-none w-[50%] max-w-xs mx-auto"
+                  >
+                    <option disabled selected>
+                      Select Brand
+                    </option>
+                    {brands?.map((brand) => (
+                      <option key={brand?._id}>{brand?.name}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <textarea
                 onChange={(e) => setDesc(e.target.value)}
                 rows="4"
-                value={product?.desc}
+                defaultValue={product?.desc}
                 className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
                 placeholder="Description..."
                 required
               ></textarea>
               <input
                 type="number"
-                value={product?.price}
+                defaultValue={product?.price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="Price"
                 className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
@@ -116,6 +164,7 @@ const UpdateProducts = () => {
 
               <div className="flex justify-around pt-6">
                 <button
+                  onClick={handleUpdateProduct}
                   type="submit"
                   className="bg-[#5e2006] px-2 py-1 font-bold text-white "
                 >
