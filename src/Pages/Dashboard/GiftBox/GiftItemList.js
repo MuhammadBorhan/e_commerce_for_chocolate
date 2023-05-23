@@ -27,7 +27,10 @@ const GiftItemList = () => {
 
   const handleSave = async (data) => {
     try {
-      await axios.post("http://localhost:5000/api/v1/selectgiftbox", data);
+      await axios.post(
+        "https://andy-chocolate-production.up.railway.app/api/v1/selectgiftbox",
+        data
+      );
       toast.success("Gift-Box Added Succfess!!!");
       setTimeout(() => {
         window.location.reload();
@@ -49,9 +52,12 @@ const GiftItemList = () => {
   const maping = filtering?.find((fltr) => fltr);
 
   const handleCancel = (id) => {
-    fetch(`http://localhost:5000/api/v1/selectgiftbox/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://andy-chocolate-production.up.railway.app/api/v1/selectgiftbox/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => console.log(data));
     toast.error("Remove Success.");
@@ -85,7 +91,7 @@ const GiftItemList = () => {
                   <td>{box?.name}</td>
                   <td>
                     <img
-                      src={`http://localhost:5000/${box?.image}`}
+                      src={`https://andy-chocolate-production.up.railway.app/${box?.image}`}
                       className="w-16"
                     />
                   </td>
