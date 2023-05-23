@@ -59,9 +59,9 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center">
         <figure>
           <img
-            src={brands?.image}
+            src={`https://andy-chocolate-production.up.railway.app/uploads/${brands?.image}`}
             alt={brands?.name}
-            className="lg:h-[250px] w-full object-center "
+            className="lg:h-[200px] w-[80%] mx-auto object-center "
           />
         </figure>
       </div>
@@ -106,7 +106,10 @@ const BrandsItem = () => {
               style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
             >
               <div>
-                <img src={`http://localhost:5000/${box?.image}`} />
+                <img
+                  src={`https://andy-chocolate-production.up.railway.app/${box?.image}`}
+                />
+                <p className="text-center font-bold">{box?.name}</p>
               </div>
             </div>
           );
@@ -125,7 +128,7 @@ const BrandsItem = () => {
             >
               <div>
                 <img
-                  src={product?.image}
+                  src={`https://andy-chocolate-production.up.railway.app/${product?.image}`}
                   className="w-20 lg:w-40 h-20 lg:h-40"
                 />
               </div>
@@ -195,7 +198,10 @@ const BrandsItem = () => {
                 key={product?._id}
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
-                <img src={product?.image} className="w-[200px] h-[200px] " />
+                <img
+                  src={`https://andy-chocolate-production.up.railway.app/${product?.image}`}
+                  className="w-[200px] h-[200px] "
+                />
                 <div className="text-center">
                   <p>{product?.name}</p>
                   <p>{product?.desc}</p>

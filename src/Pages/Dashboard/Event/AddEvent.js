@@ -44,7 +44,10 @@ const AddEvent = () => {
     };
     console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/event", data);
+      await axios.post(
+        "https://andy-chocolate-production.up.railway.app/api/v1/event",
+        data
+      );
 
       // Reset the form inputs
       setTitle("");
