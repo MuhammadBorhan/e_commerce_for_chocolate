@@ -44,7 +44,7 @@ const ProductList = () => {
                 <th>
                   {" "}
                   <img
-                    src={`http://localhost:5000/${product?.image}`}
+                    src={`http://localhost:5002/${product?.image}`}
                     className="w-16"
                   />{" "}
                 </th>
