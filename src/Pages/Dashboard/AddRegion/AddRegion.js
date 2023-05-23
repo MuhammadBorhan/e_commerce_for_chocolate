@@ -46,7 +46,7 @@ const NewAddRegion = () => {
 
   return (
     <div className="p-8">
-      <h1 className="mb-4 text-blue-500 font-bold">Add Region</h1>
+      {/* <h1 className="mb-4 text-blue-500 font-bold">Add Region</h1> */}
       <div className="flex justify-center overflow-auto items-center mt-12">
         <div
           className="card bg-base-100 overflow-auto mb-12 rounded-none"

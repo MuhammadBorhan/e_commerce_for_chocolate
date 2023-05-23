@@ -2,6 +2,7 @@ import React from "react";
 import { useGetAllRegionQuery } from "../../../features/api/regionApi";
 import { FaEdit } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const RegionList = () => {
   const { data } = useGetAllRegionQuery();
@@ -34,12 +35,14 @@ const RegionList = () => {
                   </td>
                   <td>{region?.region}</td>
                   <td>
-                    <button
-                      className="text-blue-500"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <FaEdit />
-                    </button>
+                    <Link to={`/dashboard/updateregionlist/${region?._id}`}>
+                      <button
+                        className="text-blue-500"
+                        style={{ width: "40px", fontSize: "25px" }}
+                      >
+                        <FaEdit />
+                      </button>
+                    </Link>
                     <button
                       className="text-red-500"
                       style={{ width: "40px", fontSize: "25px" }}

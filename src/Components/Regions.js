@@ -125,9 +125,7 @@ const Regions = () => {
       </div>
 
       {/* District List */}
-      {selectedRegion && (
-        <h4 className="text-2xl font-bold mb-1">Choose District</h4>
-      )}
+
       <div className="">
         {selectedRegion && (
           <h4 className="text-2xl font-bold mb-1">Choose District</h4>

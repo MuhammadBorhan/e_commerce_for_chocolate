@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useParams } from "react-router";
 
 const UpdateRegionDistrict = () => {
+  const { id } = useParams();
   const [region, setRegion] = useState("");
   const [district, setDistricts] = useState([]);
 
@@ -33,7 +35,6 @@ const UpdateRegionDistrict = () => {
   };
   return (
     <div className="p-8">
-      <h1 className="mb-4 text-blue-500 font-bold">Add Region</h1>
       <div className="flex justify-center overflow-auto items-center mt-12">
         <div
           className="card bg-base-100 overflow-auto mb-12 rounded-none"
@@ -41,13 +42,13 @@ const UpdateRegionDistrict = () => {
         >
           <div className="card-body">
             <div className="text-center">
-              <h2 className="text-xl font-bold">Add Region And District</h2>
+              <h2 className="text-xl font-bold">Update Region And District</h2>
             </div>
             <form onSubmit={handleSubmitDist}>
               <div className="grid grid-cols-1  my-2">
                 <input
                   type="text"
-                  value={region}
+                  defaultValue={region.name}
                   onChange={(e) => setRegion(e.target.value)}
                   placeholder="Region"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
