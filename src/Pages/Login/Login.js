@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 import { toast } from "react-toastify";
-git 
 const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
@@ -19,7 +18,7 @@ const Login = () => {
       if (response) {
 
 
-        
+
         navigate("/dashboard");
       }
     } catch (error) {
