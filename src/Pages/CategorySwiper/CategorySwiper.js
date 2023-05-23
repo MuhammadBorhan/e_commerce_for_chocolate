@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
+import { EffectCoverflow, Pagination, Navigation } from "swiper";
 
 const CategorySwiper = () => {
   return (
