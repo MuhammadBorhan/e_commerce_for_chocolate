@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { CiCircleRemove } from "react-icons/ci";
 
-const NewAddRegion = () => {
+const UpdateRegionDistrict = () => {
   const [region, setRegion] = useState("");
   const [district, setDistricts] = useState([]);
 
@@ -13,17 +12,6 @@ const NewAddRegion = () => {
     setDistricts(updatedDistrict);
   };
 
-  const handleAddDistrict = () => {
-    const newDistrict = {};
-    setDistricts([...district, newDistrict]);
-  };
-
-  const handleRemoveDistrict = (index) => {
-    const updatedDistrcit = [...district];
-    updatedDistrcit.splice(index, 1);
-    setDistricts(updatedDistrcit);
-  };
-
   const handleSubmitDist = async (e) => {
     e.preventDefault();
 
@@ -32,7 +20,7 @@ const NewAddRegion = () => {
       district,
     };
     try {
-      await axios.post("http://localhost:4000/api/v1/region", newDistrictData);
+      await axios.patch("http://localhost:4000/api/v1/region", newDistrictData);
 
       // Reset the form inputs
       setRegion("");
@@ -43,7 +31,6 @@ const NewAddRegion = () => {
       // Handle error or show an error message
     }
   };
-
   return (
     <div className="p-8">
       <h1 className="mb-4 text-blue-500 font-bold">Add Region</h1>
@@ -80,28 +67,17 @@ const NewAddRegion = () => {
                       placeholder="District"
                       className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
                     />
-
-                    <button
-                      className="flex"
-                      type="button"
-                      onClick={() => handleRemoveDistrict(index)}
-                    >
-                      <div className="mt-1 ml-2">
-                        <CiCircleRemove />
-                      </div>
-                      <p className=" ml-2">Delete</p>
-                    </button>
                   </div>
                 ))}
               </div>
               <div className="flex justify-around pt-6">
-                <button
+                {/* <button
                   type="button"
                   onClick={handleAddDistrict}
                   className="bg-green-500 px-2 py-1 font-bold text-white"
                 >
                   Add
-                </button>
+                </button> */}
 
                 <button
                   type="submit"
@@ -118,4 +94,4 @@ const NewAddRegion = () => {
   );
 };
 
-export default NewAddRegion;
+export default UpdateRegionDistrict;

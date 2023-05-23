@@ -8,6 +8,18 @@ import { GiModernCity } from "react-icons/gi";
 import { MdLocationCity } from "react-icons/md";
 
 import "./Regions.css";
+// import "./CategorySwiper.css";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
 
 const Regions = () => {
   // fetching regions data for region and district
@@ -109,6 +121,9 @@ const Regions = () => {
       </div>
 
       {/* District List */}
+      {selectedRegion && (
+        <h4 className="text-2xl font-bold mb-1">Choose District</h4>
+      )}
       <div className="">
         <div className="grid grid-cols-4 lg:grid-cols-6 gap-8 mx-auto">
           {selectedRegion?.district?.map((d, index) => (
@@ -125,49 +140,51 @@ const Regions = () => {
           ))}
         </div>
       </div>
-      {/* <div>
-        <div className="">
-          <h2 className="float-left mr-4">District:</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-6 justify-center text-center gap-2 lg:gap-4">
-            {selectedRegion?.district?.map((d, index) => (
-              <button
-                onClick={() => handleBrand(d, index)}
-                
-              >
-                {d}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div> */}
 
       {/* Brands List */}
-      {/* <>
-        <Swiper
-          effect={"cards"}
-          grabCursor={true}
-          modules={[EffectCards]}
-          className="mySwiper"
-        >
-          {trendingBrands?.map((product, index) => (
-            <Link to={`/brands/${product?.name}`} state={product} key={index}>
-              <SwiperSlide>
-                <figure>
-                  <img
-                    className="w-[50px] mx-auto"
-                    src={product?.logo}
-                    alt={product?.name}
-                  />
-                </figure>
-                <div className=" text-center items-center">
-                  <h2>{product?.name}</h2>
-                </div>
-              </SwiperSlide>
-            </Link>
-          ))}
-        </Swiper> */}
+      <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        // loop={true}
+        slidesPerView={"auto"}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+        }}
+        // pagination={{ el: ".swiper-pagination", clickable: true }}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+          clickable: true,
+        }}
+        modules={[EffectCoverflow, Pagination, Navigation]}
+        className="cswiperr"
+      >
+        {trendingBrands && (
+          <SwiperSlide className="cswiper-sliderr">
+            {trendingBrands?.map((product, index) => (
+              <Link to={`/brands/${product?.name}`} state={product} key={index}>
+                <img
+                  // className="w-[50px] lg:w-[150px] h-[50px] lg:h-[100px]"
+                  src={product?.logo}
+                  alt={product?.name}
+                />
 
-      <div className="py-6">
+                <h2 className="card-title">{product?.name}</h2>
+              </Link>
+            ))}
+          </SwiperSlide>
+        )}
+      </Swiper>
+
+      {/* <div className="py-6">
         {trendingBrands && (
           <Marquee pauseOnHover speed={100}>
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 text-center p-6 ">
@@ -194,7 +211,7 @@ const Regions = () => {
             </div>
           </Marquee>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
