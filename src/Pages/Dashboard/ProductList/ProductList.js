@@ -4,6 +4,7 @@ import {
   useGetAllProductsQuery,
   useRemoveProductMutation,
 } from "../../../features/api/productsApi";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const { data } = useGetAllProductsQuery(null, {
@@ -43,7 +44,7 @@ const ProductList = () => {
                 <th>
                   {" "}
                   <img
-                    src={`http://localhost:5000/${product?.image}`}
+                    src={`http://localhost:4000/${product?.image}`}
                     className="w-16"
                   />{" "}
                 </th>
@@ -51,9 +52,11 @@ const ProductList = () => {
                 <td>¥{product?.price}</td>
                 <td>{product?.brand}</td>
                 <td className="">
-                  <button className="px-2 bg-blue-600 text-white mr-2">
-                    Edit
-                  </button>
+                  <Link to={`/dashboard/updateproductlist/${product?._id}`}>
+                    <button className="px-2 bg-blue-600 text-white mr-2">
+                      Edit
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleDelete(product?._id)}
                     className="px-2 bg-red-600 text-white"
