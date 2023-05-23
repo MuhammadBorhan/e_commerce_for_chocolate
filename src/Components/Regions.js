@@ -4,26 +4,10 @@ import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
 import Marquee from "react-fast-marquee";
+import { GiModernCity } from "react-icons/gi";
+import { MdLocationCity } from "react-icons/md";
 
 import "./Regions.css";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/swiper.min.css";
-
-// import required modules
-import {
-  EffectCoverflow,
-  Pagination,
-  Navigation,
-  Autoplay,
-  EffectCards,
-} from "swiper";
 
 const Regions = () => {
   // fetching regions data for region and district
@@ -96,48 +80,66 @@ const Regions = () => {
 
       {/* Region list */}
 
-      <div className="">
-        <h3 className="float-left mr-4">Region:</h3>
+      <div>
+        <h4 className="text-2xl font-bold mb-1">Choose Region</h4>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
           {regions?.map((r, index) => {
             return (
-              <button
-                key={index}
-                onClick={() => handleRegionClick(r, index)}
-                className={`${
-                  active === index ? "bg-orange-700 text-white font-bold" : ""
-                } cursor-pointer capitalize m-1 lg:m-0 `}
-                style={{ boxShadow: "1px 1px 2px 1px gray" }}
-              >
-                {r.region}
-              </button>
+              <div className="card border-2 hover:border-gray-400   shadow-xl">
+                <div className="card-body">
+                  <div className="">
+                    <div className=" flex justify-center justify-items-center  text-2xl rounded">
+                      <span className=" text-center">
+                        <GiModernCity></GiModernCity>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    key={index}
+                    onClick={() => handleRegionClick(r, index)}
+                    className="cursor-pointer text-center text-xl font-bold"
+                  >
+                    {r.region}
+                  </div>
+                </div>
+              </div>
             );
           })}
         </div>
       </div>
 
       {/* District List */}
-      <div>
+      <div className="">
+        <div className="grid grid-cols-4 lg:grid-cols-6 gap-8 mx-auto">
+          {selectedRegion?.district?.map((d, index) => (
+            <div className="flex flex-col justify-center items-center text-center p-2 menu_icon">
+              <div className="">
+                <div className=" flex justify-center justify-items-center  text-2xl rounded">
+                  <span className=" text-center">
+                    <MdLocationCity></MdLocationCity>
+                  </span>
+                </div>
+              </div>
+              <div onClick={() => handleBrand(d, index)}>{d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* <div>
         <div className="">
           <h2 className="float-left mr-4">District:</h2>
           <div className="grid grid-cols-2 lg:grid-cols-6 justify-center text-center gap-2 lg:gap-4">
             {selectedRegion?.district?.map((d, index) => (
               <button
                 onClick={() => handleBrand(d, index)}
-                className={`${
-                  disActive === index
-                    ? "bg-orange-700 text-white font-bold"
-                    : "bg-blue-900 text-white"
-                }  `}
-                key={index}
-                style={{ boxShadow: "1px 1px 2px 1px gray" }}
+                
               >
                 {d}
               </button>
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Brands List */}
       {/* <>
