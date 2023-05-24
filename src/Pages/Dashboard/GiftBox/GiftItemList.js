@@ -49,7 +49,7 @@ const GiftItemList = () => {
   const maping = filtering?.find((fltr) => fltr);
 
   const handleCancel = (id) => {
-    fetch(`http://localhost:5000/v1/selectgiftbox/${id}`, {
+    fetch(`http://localhost:5000/api/v1/selectgiftbox/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

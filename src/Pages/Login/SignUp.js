@@ -20,7 +20,7 @@ const SignUp = () => {
     // } else {
     //   try {
     //     const response = await axios.post(
-    //       `http://localhost:5000/v1/signup`,
+    //       `http://localhost:5000/api/v1/signup`,
     //       others
     //     );
     //     const accessToken = response?.data?.token;

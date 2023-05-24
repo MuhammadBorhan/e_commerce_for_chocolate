@@ -13,10 +13,8 @@ const UpdateProducts = () => {
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImg] = useState(null);
-  console.log(name);
 
   const [product, setProduct] = useState({});
-  // console.log(product);
   useEffect(() => {
     const url = `http://localhost:5000/api/v1/products/${id}`;
     fetch(url)
@@ -29,15 +27,6 @@ const UpdateProducts = () => {
   };
 
   // const handleUpdateProduct = async (e) => {
-
-  //   // const data = {
-  //   //   name: name ? name : product?.name,
-  //   //   brand: brand ? brand : product?.brand,
-  //   //   desc: desc ? desc : product?.desc,
-  //   //   price: price ? price : product?.price,
-  //   //   image: image ? image : product?.image,
-  //   // };
-  //   // console.log(data);
   //   try {
   //     const formData = new FormData();
   //     formData.append("name", name ? name : product?.name);
@@ -83,11 +72,15 @@ const UpdateProducts = () => {
       // formData.append("image", image ? image : product?.image);
       const response = await axios.patch(
         `http://localhost:5000/api/v1/products/${id}`,
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log(response);
       if (response) {
-        // toast.success("Successfully update");
         navigate("/dashboard/allproduct");
       }
     } catch (error) {

@@ -9,7 +9,6 @@ const AddProdusts = () => {
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImg] = useState(null);
-  console.log(name, image);
 
   const handleSubmitProduct = async (e) => {
     e.preventDefault();

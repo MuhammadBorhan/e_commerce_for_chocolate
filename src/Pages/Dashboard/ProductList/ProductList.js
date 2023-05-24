@@ -5,6 +5,7 @@ import {
   useRemoveProductMutation,
 } from "../../../features/api/productsApi";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProductList = () => {
   const { data } = useGetAllProductsQuery(null, {
@@ -18,6 +19,7 @@ const ProductList = () => {
     const confirm = window.confirm("Are you want do delete?");
     if (confirm) {
       removeProduct(id);
+      toast.success("Successfully Delete");
     }
   };
 

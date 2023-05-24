@@ -65,6 +65,14 @@ const BrandsItem = () => {
           />
         </figure>
       </div>
+
+      {/* brand Log  */}
+
+      <div className="avatar">
+        <div className="w-48 -mt-28 object-center ml-4 rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+          <img src={brands.logo} alt="Logo" />
+        </div>
+      </div>
       {/* search bar */}
       <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-6 border shadow rounded shadow-gray-300">
         <input
@@ -107,7 +115,6 @@ const BrandsItem = () => {
             >
               <div>
                 <img src={`http://localhost:5000/${box?.image}`} />
-                <p className="text-center font-bold">{box?.name}</p>
               </div>
             </div>
           );
@@ -146,39 +153,57 @@ const BrandsItem = () => {
           event?.status === "Start" && (
             <div
               key={event._id}
-              className="w-full lg:w-[40%] m-auto p-4 my-8"
-              style={{ boxShadow: "1px 1px 1px 2px gray" }}
+              className="card w-1/3 bg-base-100 shadow-xl mx-auto border-2 "
             >
-              <h1>
-                {event?.title}: {event?.desc}
-              </h1>
-              <div className="py-4">
-                <span className="bg-gray-300 p-1 mr-2">Event Date: </span>
-                <span>{new Date(event?.dateTime).toLocaleString()}</span>
-              </div>
-              <div className="mb-4">
-                <span className="bg-gray-300 p-1 mr-2">Delivery: </span>
-                <span>Google Meet</span>
-              </div>
-              <div className="">
-                <span className="bg-gray-300 p-1 mr-2">Status: </span>
-                <a
-                  target="_blank"
-                  href={event?.gmeet}
-                  className="text-white px-2 font-bold btn-success"
-                >
-                  {event?.status}
-                </a>
-              </div>
-              <div className="hidden">
-                <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
-                <a
-                  target="_blank"
-                  href={event?.gmeet}
-                  className="text-blue-500 underline"
-                >
-                  {event?.gmeet}
-                </a>
+              <div className="card-body">
+                <div className=" font-bold  ">
+                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                    Event Title{" "}
+                  </span>
+                  {event?.title}
+                </div>
+                <div className=" font-bold mt-2">
+                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                    Event Date{" "}
+                  </span>{" "}
+                  {new Date(event?.dateTime).toLocaleString()}
+                </div>
+                <div className=" font-bold mt-2">
+                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                    Delivary{" "}
+                  </span>
+                  Google Meet
+                </div>
+
+                <div className=" font-bold mt-2">
+                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                    Description{" "}
+                  </span>
+                  {event?.desc}
+                </div>
+                <div className="card-actions justify-center mx-auto mt-2">
+                  <div className="">
+                    <a
+                      target="_blank"
+                      href={event?.gmeet}
+                      className=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                    >
+                      {event?.status}
+                    </a>
+                  </div>
+                  <div className="hidden mt-2">
+                    <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
+                      Meet Link:{" "}
+                    </span>
+                    <a
+                      target="_blank"
+                      href={event?.gmeet}
+                      className="text-blue-500 underline"
+                    >
+                      {event?.gmeet}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           )
@@ -186,9 +211,7 @@ const BrandsItem = () => {
       })}
 
       <div className="w-full lg:w-[60%] mt-24 mx-auto">
-        <h1 className="text-center text-2xl font-bold text-indigo-600">
-          Categories
-        </h1>
+        <div className=" text-2xl font-bold text-indigo-600">Categories</div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
           {allProducts?.map((product) => {
             return (
