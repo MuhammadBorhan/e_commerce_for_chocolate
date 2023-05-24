@@ -51,11 +51,11 @@ const BrandList = () => {
                   </td>
                   <td>
                     <img
-<<<<<<< HEAD
                       src={`https://andy-chocolate-production.up.railway.app/uploads/${brand?.image}`}
-=======
-                      src={`http://localhost:5000/uploads/${brand?.image}`}
                       className="w-32"
+                    />
+                  </td>
+
                   <td>
                     {" "}
                     <button
