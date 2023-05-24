@@ -16,18 +16,6 @@ import "./Regions.css";
 import { EffectCoverflow, Pagination } from "swiper";
 
 const Regions = () => {
-  const images = [
-    { image: "https://swiperjs.com/demos/images/nature-1.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-2.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-3.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-4.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-5.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-6.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-7.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-8.jpg", name: "name" },
-    { image: "https://swiperjs.com/demos/images/nature-9.jpg", name: "name" },
-  ];
-
   // fetching regions data for region and district
   const {
     data: regionData,
@@ -169,7 +157,10 @@ const Regions = () => {
         {trendingBrands?.map((product, index) => (
           <SwiperSlide className="bswiper-slide" key={index}>
             <Link to={`/brands/${product?.name}`} state={product} key={index}>
-              <img src={product?.logo} alt={product?.name} />
+              <img
+                src={`http://localhost:5000/uploads/${product?.logo}`}
+                alt={product?.name}
+              />
               <p>{product?.name}</p>
             </Link>
           </SwiperSlide>

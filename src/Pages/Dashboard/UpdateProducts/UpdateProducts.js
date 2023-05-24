@@ -13,10 +13,8 @@ const UpdateProducts = () => {
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImg] = useState(null);
-  console.log(name);
 
   const [product, setProduct] = useState({});
-  // console.log(product);
   useEffect(() => {
     const url = `http://localhost:5000/api/v1/products/${id}`;
     fetch(url)
@@ -28,76 +26,34 @@ const UpdateProducts = () => {
     e.preventDefault();
   };
 
-  // const handleUpdateProduct = async (e) => {
-
-  //   // const data = {
-  //   //   name: name ? name : product?.name,
-  //   //   brand: brand ? brand : product?.brand,
-  //   //   desc: desc ? desc : product?.desc,
-  //   //   price: price ? price : product?.price,
-  //   //   image: image ? image : product?.image,
-  //   // };
-  //   // console.log(data);
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("name", name ? name : product?.name);
-  //     formData.append("brand", brand ? brand : product?.brand);
-  //     formData.append("desc", desc ? desc : product?.desc);
-  //     formData.append("price", price ? price : product?.price);
-  //     formData.append("image", image ? image : product?.image);
-  //     console.log(formData);
-  //     const response = await axios.patch(
-  //       `http://localhost:5000/api/v1/products/${id}`,
-
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-  //     console.log(response);
-
-  //     toast.success("Successfully added");
-  //   } catch (error) {
-  //     console.error("Error creating product:", error.response.data);
-  //     toast.error(error.response.data);
-  //   }
-  // };
-
   const handleUpdateProduct = async () => {
     const data = {
       name: name ? name : product?.name,
       brand: brand ? brand : product?.brand,
       desc: desc ? desc : product?.desc,
       price: price ? price : product?.price,
-      // image: image ? image : product?.image,
+      image: image ? image : product?.image,
     };
-    console.log(data);
     try {
-      // const formData = new FormData();
-      // formData.append("name", name ? name : product?.name);
-      // formData.append("brand", brand ? brand : product?.brand);
-      // formData.append("desc", desc ? desc : product?.desc);
-      // formData.append("price", price ? price : product?.price);
-      // formData.append("image", image ? image : product?.image);
       const response = await axios.patch(
         `http://localhost:5000/api/v1/products/${id}`,
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
-      console.log(response);
       if (response) {
-        // toast.success("Successfully update");
         navigate("/dashboard/allproduct");
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error?.response?.data?.error);
     }
   };
 
   const { data } = useGetAllBrandsQuery();
   const brands = data?.data;
-  //   console.log(brands);
   return (
     <div className="flex justify-center overflow-auto items-center mt-12">
       <div
