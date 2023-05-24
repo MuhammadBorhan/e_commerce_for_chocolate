@@ -18,7 +18,7 @@ const UpdateProducts = () => {
   const [product, setProduct] = useState({});
   // console.log(product);
   useEffect(() => {
-    const url = `https://andy-chocolate-production.up.railway.app/api/v1/products/${id}`;
+    const url = `http://localhost:5000/api/v1/products/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data?.data));
@@ -47,7 +47,7 @@ const UpdateProducts = () => {
   //     formData.append("image", image ? image : product?.image);
   //     console.log(formData);
   //     const response = await axios.patch(
-  //       `https://andy-chocolate-production.up.railway.app/api/v1/products/${id}`,
+  //       `http://localhost:5000/api/v1/products/${id}`,
 
   //       formData,
   //       {
@@ -82,7 +82,7 @@ const UpdateProducts = () => {
       // formData.append("price", price ? price : product?.price);
       // formData.append("image", image ? image : product?.image);
       const response = await axios.patch(
-        `https://andy-chocolate-production.up.railway.app/api/v1/products/${id}`,
+        `http://localhost:5000/api/v1/products/${id}`,
         data
       );
       console.log(response);

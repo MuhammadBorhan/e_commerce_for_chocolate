@@ -19,19 +19,14 @@ const SocialLogin = () => {
         };
 
         console.log(user);
-        axios
-          .post(
-            `https://andy-chocolate-production.up.railway.app/v1/signup`,
-            gUser
-          )
-          .then((res) => {
-            console.log(res?.data?.token);
-            const accessToken = res?.data?.token;
-            localStorage.setItem("accessToken", accessToken);
-            if (res.status === 200) {
-              navigate("/dashboard");
-            }
-          });
+        axios.post(`http://localhost:5000/v1/signup`, gUser).then((res) => {
+          console.log(res?.data?.token);
+          const accessToken = res?.data?.token;
+          localStorage.setItem("accessToken", accessToken);
+          if (res.status === 200) {
+            navigate("/dashboard");
+          }
+        });
       })
       .catch((error) => {
         console.log("error", error);

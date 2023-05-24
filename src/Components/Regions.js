@@ -157,7 +157,7 @@ const Regions = () => {
           <SwiperSlide className="bswiper-slide" key={index}>
             <Link to={`/brands/${product?.name}`} state={product} key={index}>
               <img
-                src={`https://andy-chocolate-production.up.railway.app/uploads/${product?.logo}`}
+                src={`http://localhost:5000/uploads/${product?.logo}`}
                 alt={product?.name}
               />
               <p>{product?.name}</p>
