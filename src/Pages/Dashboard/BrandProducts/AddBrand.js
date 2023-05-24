@@ -16,7 +16,7 @@ const AddBrand = () => {
       formData.append("image", image);
       formData.append("logo", logo);
       const response = await axios.post(
-        "http://localhost:5002/api/v1/brand",
+        "http://localhost:4000/api/v1/brand",
         formData,
         {
           headers: {

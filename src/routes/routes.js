@@ -25,6 +25,7 @@ import EventList from "../Pages/Dashboard/Event/EventList";
 import GiftItemList from "../Pages/Dashboard/GiftBox/GiftItemList";
 import TrendingGiftList from "../Pages/Dashboard/TrendingGift/TrendingGiftList";
 import UpdateProducts from "../Pages/Dashboard/UpdateProducts/UpdateProducts";
+import UpdateRegionDistrict from "../Pages/Dashboard/UpdateRegionDistrict/UpdateRegionDistrict";
 
 const routes = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/regionlist",
             element: <RegionList />,
+          },
+          {
+            path: "/dashboard/updateregionlist/:id",
+            element: <UpdateRegionDistrict />,
           },
           {
             path: "/dashboard/alluser",
