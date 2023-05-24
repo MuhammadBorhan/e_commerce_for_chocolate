@@ -56,23 +56,25 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="bg-cover bg-center">
+      <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={brands?.image}
+            src={`http://localhost:5000/uploads/${brands?.image}`}
             alt={brands?.name}
-            className="lg:h-[250px] w-full object-center "
+            className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
         </figure>
       </div>
-
-      {/* brand Log  */}
-
-      <div className="avatar">
-        <div className="w-48 -mt-28 object-center ml-4 rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
-          <img src={brands.logo} alt="Logo" />
+      <div className="avatar absolute">
+        <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+          <img
+            src={`http://localhost:5000/uploads/${brands?.logo}`}
+            alt="Logo"
+            className=""
+          />
         </div>
       </div>
+
       {/* search bar */}
       <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-6 border shadow rounded shadow-gray-300">
         <input
@@ -111,7 +113,10 @@ const BrandsItem = () => {
             <div
               key={box?._id}
               className={` p-2 mt-10 w-[50%] lg:w-[25%] m-auto `}
-              style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
+              style={{
+                boxShadow:
+                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              }}
             >
               <div>
                 <img
@@ -131,11 +136,14 @@ const BrandsItem = () => {
               className={`flex items-center justify-between p-8 gap-x-10 my-10 w-full lg:w-[40%] m-auto ${
                 index % 2 === 1 ? "flex-row-reverse" : ""
               }`}
-              style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
+              style={{
+                boxShadow:
+                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              }}
             >
               <div>
                 <img
-                  src={product?.image}
+                  src={`http://localhost:5000/${product?.image}`}
                   className="w-20 lg:w-40 h-20 lg:h-40"
                 />
               </div>
@@ -221,7 +229,10 @@ const BrandsItem = () => {
                 key={product?._id}
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
-                <img src={product?.image} className="w-[200px] h-[200px] " />
+                <img
+                  src={`http://localhost:5000/${product?.image}`}
+                  className="w-[200px] h-[200px] "
+                />
                 <div className="text-center">
                   <p>{product?.name}</p>
                   <p>{product?.desc}</p>

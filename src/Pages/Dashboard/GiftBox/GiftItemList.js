@@ -27,10 +27,14 @@ const GiftItemList = () => {
 
   const handleSave = async (data) => {
     try {
+<<<<<<< HEAD
       await axios.post(
         "https://andy-chocolate-production.up.railway.app/api/v1/selectgiftbox",
         data
       );
+=======
+      await axios.post("http://localhost:5000/api/v1/selectgiftbox", data);
+>>>>>>> 35514de5f8158277898452e2f007399b998c4301
       toast.success("Gift-Box Added Succfess!!!");
       setTimeout(() => {
         window.location.reload();
@@ -91,7 +95,11 @@ const GiftItemList = () => {
                   <td>{box?.name}</td>
                   <td>
                     <img
+<<<<<<< HEAD
                       src={`https://andy-chocolate-production.up.railway.app/${box?.image}`}
+=======
+                      src={`http://localhost:5000/${box?.image}`}
+>>>>>>> 35514de5f8158277898452e2f007399b998c4301
                       className="w-16"
                     />
                   </td>
