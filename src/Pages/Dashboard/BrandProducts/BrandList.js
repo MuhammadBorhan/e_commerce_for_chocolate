@@ -45,13 +45,13 @@ const BrandList = () => {
                   <td>{brand?.name}</td>
                   <td>
                     <img
-                      src={`http://localhost:4000/uploads/${brand?.logo}`}
+                      src={`https://andy-chocolate-production.up.railway.app/uploads/${brand?.logo}`}
                       className="w-16"
                     />
                   </td>
                   <td>
                     <img
-                      src={`http://localhost:4000/uploads/${brand?.image}`}
+                      src={`https://andy-chocolate-production.up.railway.app/uploads/${brand?.image}`}
                       className="w-32"
                     />
                   </td>

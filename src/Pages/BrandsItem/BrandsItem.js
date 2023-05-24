@@ -114,7 +114,9 @@ const BrandsItem = () => {
               style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
             >
               <div>
-                <img src={`http://localhost:4000/${box?.image}`} />
+                <img
+                  src={`https://andy-chocolate-production.up.railway.app/${box?.image}`}
+                />
               </div>
             </div>
           );

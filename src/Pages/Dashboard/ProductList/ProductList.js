@@ -44,7 +44,7 @@ const ProductList = () => {
                 <th>
                   {" "}
                   <img
-                    src={`http://localhost:4000/${product?.image}`}
+                    src={`https://andy-chocolate-production.up.railway.app/${product?.image}`}
                     className="w-16"
                   />{" "}
                 </th>

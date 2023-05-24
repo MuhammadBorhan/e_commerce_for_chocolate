@@ -22,7 +22,10 @@ const UpdateRegionDistrict = () => {
       district,
     };
     try {
-      await axios.patch("http://localhost:4000/api/v1/region", newDistrictData);
+      await axios.patch(
+        "https://andy-chocolate-production.up.railway.app/api/v1/region",
+        newDistrictData
+      );
 
       // Reset the form inputs
       setRegion("");
