@@ -46,7 +46,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/giftbox",
+        "http://localhost:5002/api/v1/giftbox",
         data,
         {
           headers: {

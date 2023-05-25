@@ -44,7 +44,7 @@ const AddEvent = () => {
     };
     console.log(data);
     try {
-      await axios.post("http://localhost:5000/api/v1/event", data);
+      await axios.post("http://localhost:5002/api/v1/event", data);
 
       // Reset the form inputs
       setTitle("");
@@ -127,7 +127,7 @@ const AddEvent = () => {
                     </option>
                     <option>Pending</option>
                     <option>Cancel</option>
-                    <option>Start</option>
+                    <option>Join Now</option>
                     <option>Finish</option>
                   </select>
 
