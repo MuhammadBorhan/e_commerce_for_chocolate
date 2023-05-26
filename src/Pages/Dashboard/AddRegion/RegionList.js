@@ -1,12 +1,27 @@
 import React from "react";
-import { useGetAllRegionQuery } from "../../../features/api/regionApi";
+import {
+  useGetAllRegionQuery,
+  useRemoveRegionMutation,
+} from "../../../features/api/regionApi";
 import { FaEdit } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegionList = () => {
-  const { data } = useGetAllRegionQuery();
+  const { data } = useGetAllRegionQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
   const regions = data?.data;
+
+  const [deleteRegion] = useRemoveRegionMutation();
+  const handleDelete = (id) => {
+    const confirm = window.confirm("Are you sure?");
+    if (confirm) {
+      deleteRegion(id);
+      toast.success("Delete Successfull!!!");
+    }
+  };
   return (
     <div className="p-8">
       <h1 className="mb-4 text-blue-500 font-bold">Region List</h1>
@@ -44,6 +59,7 @@ const RegionList = () => {
                       </button>
                     </Link>
                     <button
+                      onClick={() => handleDelete(region?._id)}
                       className="text-red-500"
                       style={{ width: "40px", fontSize: "25px" }}
                     >
