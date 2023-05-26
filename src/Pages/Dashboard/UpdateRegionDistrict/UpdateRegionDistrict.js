@@ -1,53 +1,49 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateRegionDistrict = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [region, setRegion] = useState("");
   const [district, setDistricts] = useState([]);
   console.log(region, district);
 
   const [regionDistrict, setRegionDistrict] = useState({});
   useEffect(() => {
-    const url = `http://localhost:4000/api/v1/region/${id}`;
+    const url = `http://localhost:5000/api/v1/region/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setRegionDistrict(data?.data);
         setRegion(data?.data?.region);
-        // setDistricts(data?.data?.district);
+        setDistricts(data?.data?.district);
       });
   }, [id]);
 
-  const getDistrict = regionDistrict?.district;
-  const handleDistrictChange = (index, value, dis) => {
-    console.log(index, value);
-    dis = value;
-    console.log(dis);
-    // const updatedDistrict = [...district];
-    // updatedDistrict[index] = value;
-    setDistricts(dis);
+  const handleDistrictChange = (index, value) => {
+    district[index] = value;
   };
 
   const handleSubmitDist = async (e) => {
     e.preventDefault();
 
     const newDistrictData = {
-      // region: region ? region : regionDistrict?.region,
       region,
       district,
-      // district,
     };
     console.log(newDistrictData);
     try {
       const res = await axios.patch(
-        `http://localhost:4000/api/v1/region/${id}`,
+        `http://localhost:5000/api/v1/region/${id}`,
         newDistrictData
       );
 
-      console.log(res);
+      if (res) {
+        navigate("/dashboard/regionlist");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +72,7 @@ const UpdateRegionDistrict = () => {
 
               <div>
                 <h1 className="text-xl font-bold my-2">District</h1>
-                {getDistrict?.map((district, index) => (
+                {regionDistrict?.district?.map((district, index) => (
                   <div className="flex flex-col items-center gap-2" key={index}>
                     <input
                       type="text"

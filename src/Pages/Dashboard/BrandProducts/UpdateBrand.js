@@ -11,7 +11,7 @@ const UpdateBrand = () => {
 
   const [brand, setBrand] = useState({});
   useEffect(() => {
-    const url = `http://localhost:4000/api/v1/brand/${id}`;
+    const url = `http://localhost:5000/api/v1/brand/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBrand(data?.data));
@@ -26,7 +26,7 @@ const UpdateBrand = () => {
       formData.append("image", image);
       formData.append("logo", logo);
       const response = await axios.patch(
-        `http://localhost:4000/api/v1/brand/${id}`,
+        `http://localhost:5000/api/v1/brand/${id}`,
         formData,
         {
           headers: {

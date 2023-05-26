@@ -16,7 +16,7 @@ const UpdateProducts = () => {
 
   const [product, setProduct] = useState({});
   useEffect(() => {
-    const url = `http://localhost:4000/api/v1/products/${id}`;
+    const url = `http://localhost:5000/api/v1/products/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data?.data));
@@ -36,7 +36,7 @@ const UpdateProducts = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:4000/api/v1/products/${id}`,
+        `http://localhost:5000/api/v1/products/${id}`,
         data,
         {
           headers: {
