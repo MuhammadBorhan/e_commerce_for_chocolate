@@ -8,7 +8,14 @@ const regionApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["regions"],
     }),
+    removeRegion: builder.mutation({
+      query: (id) => ({
+        url: `/region/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["regions"],
+    }),
   }),
 });
 
-export const { useGetAllRegionQuery } = regionApi;
+export const { useGetAllRegionQuery, useRemoveRegionMutation } = regionApi;
