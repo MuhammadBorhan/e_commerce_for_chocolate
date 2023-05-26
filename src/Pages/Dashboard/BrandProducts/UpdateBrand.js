@@ -1,11 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const AddBrand = () => {
+const UpdateBrand = () => {
   const [name, setName] = useState("");
   const [image, setImg] = useState(null);
   const [logo, setLogo] = useState(null);
+  const { id } = useParams();
+
+  const [brand, setBrand] = useState({});
+  useEffect(() => {
+    const url = `http://localhost:4000/api/v1/brand/${id}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setBrand(data?.data));
+  }, [id]);
 
   const handleSubmitBrand = async (e) => {
     e.preventDefault();
@@ -15,8 +25,8 @@ const AddBrand = () => {
       formData.append("name", name);
       formData.append("image", image);
       formData.append("logo", logo);
-      const response = await axios.post(
-        "http://localhost:4000/api/v1/brand",
+      const response = await axios.patch(
+        `http://localhost:4000/api/v1/brand/${id}`,
         formData,
         {
           headers: {
@@ -24,7 +34,7 @@ const AddBrand = () => {
           },
         }
       );
-
+      console.log(response);
       // Reset the form inputs
       setName("");
       setImg("");
@@ -44,13 +54,14 @@ const AddBrand = () => {
       >
         <div className="card-body">
           <div className="text-center">
-            <h2 className="text-xl font-bold">Add Brand</h2>
+            <h2 className="text-xl font-bold">Update Brand</h2>
           </div>
           {
             <form onSubmit={handleSubmitBrand} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 my-2  ">
                 <input
                   type="text"
+                  defaultValue={brand.name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
@@ -85,4 +96,4 @@ const AddBrand = () => {
   );
 };
 
-export default AddBrand;
+export default UpdateBrand;

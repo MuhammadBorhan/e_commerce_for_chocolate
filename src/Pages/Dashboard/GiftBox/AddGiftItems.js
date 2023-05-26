@@ -14,8 +14,10 @@ const AddGiftItems = () => {
 
   const { data: brands } = useGetAllBrandsQuery();
   const allBrand = brands?.data;
+  console.log(allBrand);
   const { data: products } = useGetAllProductsQuery();
   const allProducts = products?.data;
+  console.log(allProducts);
   const handlePruductchange = (name) => {
     const isSelected = productList.includes(name);
     if (isSelected) {
@@ -46,7 +48,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/giftbox",
+        "http://localhost:4000/api/v1/giftbox",
         data,
         {
           headers: {

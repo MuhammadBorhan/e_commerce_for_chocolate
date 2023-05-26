@@ -131,7 +131,7 @@ const Regions = () => {
                   </span>
                 </div>
               </div>
-              <div>{d}</div>
+              <div className="lg:text-xl text-wrap">{d}</div>
             </div>
           ))}
         </div>

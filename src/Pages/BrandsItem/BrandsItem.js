@@ -119,7 +119,7 @@ const BrandsItem = () => {
               }}
             >
               <div>
-                <img src={`http://localhost:5000/${box?.image}`} />
+                <img src={`http://localhost:4000/${box?.image}`} />
               </div>
             </div>
           );

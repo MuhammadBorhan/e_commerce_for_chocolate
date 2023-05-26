@@ -26,6 +26,8 @@ import GiftItemList from "../Pages/Dashboard/GiftBox/GiftItemList";
 import TrendingGiftList from "../Pages/Dashboard/TrendingGift/TrendingGiftList";
 import UpdateProducts from "../Pages/Dashboard/UpdateProducts/UpdateProducts";
 import UpdateRegionDistrict from "../Pages/Dashboard/UpdateRegionDistrict/UpdateRegionDistrict";
+import UpdateBrand from "../Pages/Dashboard/BrandProducts/UpdateBrand";
+import UpdateGiftBox from "../Pages/Dashboard/GiftBox/UpdateGiftBox";
 
 const routes = createBrowserRouter([
   {
@@ -97,6 +99,10 @@ const routes = createBrowserRouter([
             element: <BrandList />,
           },
           {
+            path: "/dashboard/updatebrand/:id",
+            element: <UpdateBrand />,
+          },
+          {
             path: "/dashboard/addproduct",
             element: <AddProdusts />,
           },
@@ -115,6 +121,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/giftitemlist",
             element: <GiftItemList />,
+          },
+          {
+            path: "/dashboard/updategiftboxitem/:id",
+            element: <UpdateGiftBox />,
           },
           {
             path: "/dashboard/addtgift",
