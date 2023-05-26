@@ -16,7 +16,7 @@ const UpdateProducts = () => {
 
   const [product, setProduct] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/products/${id}`;
+    const url = `http://localhost:4000/api/v1/products/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data?.data));
@@ -36,7 +36,7 @@ const UpdateProducts = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/products/${id}`,
+        `http://localhost:4000/api/v1/products/${id}`,
         data,
         {
           headers: {
@@ -44,6 +44,7 @@ const UpdateProducts = () => {
           },
         }
       );
+      console.log(response);
       if (response) {
         navigate("/dashboard/allproduct");
       }
@@ -69,7 +70,7 @@ const UpdateProducts = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
                 <input
                   type="text"
-                  defaultValue={product?.name}
+                  value={product?.name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"

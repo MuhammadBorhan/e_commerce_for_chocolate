@@ -32,10 +32,7 @@ const NewAddRegion = () => {
       district,
     };
     try {
-      await axios.post(
-        "https://andy-chocolate-production.up.railway.app/api/v1/region",
-        newDistrictData
-      );
+      await axios.post("http://localhost:4000/api/v1/region", newDistrictData);
 
       // Reset the form inputs
       setRegion("");

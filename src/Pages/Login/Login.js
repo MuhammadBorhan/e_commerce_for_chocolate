@@ -10,7 +10,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `https://andy-chocolate-production.up.railway.app/api/v1/login`,
+        `http://localhost:4000/api/v1/login`,
         data
       );
       const accessToken = await response?.data?.data?.token;

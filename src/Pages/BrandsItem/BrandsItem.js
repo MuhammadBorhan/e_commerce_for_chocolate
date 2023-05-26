@@ -119,9 +119,7 @@ const BrandsItem = () => {
               }}
             >
               <div>
-                <img
-                  src={`https://andy-chocolate-production.up.railway.app/${box?.image}`}
-                />
+                <img src={`http://localhost:4000/${box?.image}`} />
               </div>
             </div>
           );

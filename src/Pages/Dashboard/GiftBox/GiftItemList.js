@@ -8,6 +8,7 @@ import {
 } from "../../../features/api/GiftBoxApi";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const GiftItemList = () => {
   const { data: giftBoxs } = useGetAllGiftBoxQuery(null, {
@@ -27,10 +28,7 @@ const GiftItemList = () => {
 
   const handleSave = async (data) => {
     try {
-      await axios.post(
-        "https://andy-chocolate-production.up.railway.app/api/v1/selectgiftbox",
-        data
-      );
+      await axios.post("http://localhost:4000/api/v1/selectgiftbox", data);
       toast.success("Gift-Box Added Succfess!!!");
       setTimeout(() => {
         window.location.reload();
@@ -52,12 +50,9 @@ const GiftItemList = () => {
   const maping = filtering?.find((fltr) => fltr);
 
   const handleCancel = (id) => {
-    fetch(
-      `https://andy-chocolate-production.up.railway.app/api/v1/selectgiftbox/${id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`http://localhost:4000/api/v1/selectgiftbox/${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((data) => console.log(data));
     toast.error("Remove Success.");
@@ -91,7 +86,7 @@ const GiftItemList = () => {
                   <td>{box?.name}</td>
                   <td>
                     <img
-                      src={`https://andy-chocolate-production.up.railway.app/${box?.image}`}
+                      src={`http://localhost:4000/${box?.image}`}
                       className="w-16"
                     />
                   </td>
@@ -125,7 +120,10 @@ const GiftItemList = () => {
                       className="text-blue-500"
                       style={{ width: "40px", fontSize: "25px" }}
                     >
-                      <FaEdit />
+                      <Link to={`/dashboard/updategiftboxitem/${box?._id}`}>
+                        {" "}
+                        <FaEdit />
+                      </Link>
                     </button>
                     <button
                       onClick={(e) => handleDelete(box?._id)}
