@@ -122,6 +122,7 @@ const BrandsItem = () => {
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                 />
+                <p className="font-bold text-center">{box?.name}</p>
               </div>
             </div>
           );
