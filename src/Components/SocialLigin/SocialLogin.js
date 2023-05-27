@@ -19,11 +19,7 @@ const SocialLogin = () => {
         };
 
         console.log(user);
-<<<<<<< HEAD
         axios.post(`http://localhost:4000/api/v1/signup`, gUser).then((res) => {
-=======
-        axios.post(`http://localhost:5002/api/v1/signup`, gUser).then((res) => {
->>>>>>> abb1fc586a6277af9402ce9bf9d348fbf5b7bffa
           console.log(res?.data?.token);
           const accessToken = res?.data?.token;
           localStorage.setItem("accessToken", accessToken);

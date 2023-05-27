@@ -28,11 +28,7 @@ const GiftItemList = () => {
 
   const handleSave = async (data) => {
     try {
-<<<<<<< HEAD
       await axios.post("http://localhost:4000/api/v1/selectgiftbox", data);
-=======
-      await axios.post("http://localhost:5002/api/v1/selectgiftbox", data);
->>>>>>> abb1fc586a6277af9402ce9bf9d348fbf5b7bffa
       toast.success("Gift-Box Added Succfess!!!");
       setTimeout(() => {
         window.location.reload();
@@ -54,11 +50,7 @@ const GiftItemList = () => {
   const maping = filtering?.find((fltr) => fltr);
 
   const handleCancel = (id) => {
-<<<<<<< HEAD
     fetch(`http://localhost:4000/api/v1/selectgiftbox/${id}`, {
-=======
-    fetch(`http://localhost:5002/api/v1/selectgiftbox/${id}`, {
->>>>>>> abb1fc586a6277af9402ce9bf9d348fbf5b7bffa
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -94,11 +86,7 @@ const GiftItemList = () => {
                   <td>{box?.name}</td>
                   <td>
                     <img
-<<<<<<< HEAD
                       src={`http://localhost:4000/${box?.image}`}
-=======
-                      src={`http://localhost:5002/${box?.image}`}
->>>>>>> abb1fc586a6277af9402ce9bf9d348fbf5b7bffa
                       className="w-16"
                     />
                   </td>
