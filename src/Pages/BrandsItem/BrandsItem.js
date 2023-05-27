@@ -59,7 +59,7 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`http://localhost:5000/uploads/${brands?.image}`}
+            src={`http://localhost:4000/uploads/${brands?.image}`}
             alt={brands?.name}
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
@@ -68,7 +68,7 @@ const BrandsItem = () => {
       <div className="avatar absolute">
         <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`http://localhost:5000/uploads/${brands?.logo}`}
+            src={`http://localhost:4000/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -119,7 +119,7 @@ const BrandsItem = () => {
               }}
             >
               <div>
-                <img src={`http://localhost:5000/${box?.image}`} />
+                <img src={`http://localhost:4000/${box?.image}`} />
               </div>
             </div>
           );
@@ -141,7 +141,7 @@ const BrandsItem = () => {
             >
               <div>
                 <img
-                  src={`http://localhost:5000/${product?.image}`}
+                  src={`http://localhost:4000/${product?.image}`}
                   className="w-20 lg:w-40 h-20 lg:h-40"
                 />
               </div>
@@ -228,7 +228,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`http://localhost:5000/${product?.image}`}
+                  src={`http://localhost:4000/${product?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
