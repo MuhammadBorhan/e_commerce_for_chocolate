@@ -158,43 +158,50 @@ const BrandsItem = () => {
       {/* event */}
       {events?.map((event) => {
         return (
-          event?.status === "Start" && (
+          event?.status === "Join Now" && (
             <div
               key={event._id}
-              className="card w-1/3 bg-base-100 shadow-xl mx-auto border-2 "
+              className="card grid grid-cols-1 lg:grid-cols-1 lg:w-1/3 sm:w-1/2 bg-base-100 shadow-xl mx-auto border-2  "
             >
               <div className="card-body">
-                <div className=" font-bold  ">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                <div div className="mb-4">
+                  <img
+                    src={`http://localhost:5002/uploads/${brands?.logo}`}
+                    alt={brands?.name}
+                    className="lg:h-[150px] w-[70%]  mx-auto object-center"
+                  />
+                </div>
+                <div className=" font-bold  grid grid-cols-3 ">
+                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
                     Event Title{" "}
-                  </span>
+                  </div>
                   {event?.title}
                 </div>
-                <div className=" font-bold mt-2">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                <div className=" font-bold grid grid-cols-3 ">
+                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
                     Event Date{" "}
-                  </span>{" "}
-                  {new Date(event?.dateTime).toLocaleString()}
+                  </div>{" "}
+                  <div>{new Date(event?.dateTime).toLocaleString()}</div>
                 </div>
-                <div className=" font-bold mt-2">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
-                    Delivary{" "}
-                  </span>
-                  Google Meet
+                <div className=" font-bold  grid grid-cols-3 ">
+                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
+                    Media{" "}
+                  </div>
+                  <div>Google Meet</div>
                 </div>
 
-                <div className=" font-bold mt-2">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                <div className=" font-bold  grid grid-cols-3 ">
+                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
                     Description{" "}
-                  </span>
-                  {event?.desc}
+                  </div>
+                  <div> {event?.desc}</div>
                 </div>
                 <div className="card-actions justify-center mx-auto mt-2">
-                  <div className="">
+                  <div className="mt-2">
                     <a
                       target="_blank"
                       href={event?.gmeet}
-                      className=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                      className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
                     >
                       {event?.status}
                     </a>

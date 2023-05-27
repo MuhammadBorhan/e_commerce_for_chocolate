@@ -118,7 +118,7 @@ const Regions = () => {
         {selectedRegion && (
           <h4 className="text-2xl font-bold mb-1">Choose District</h4>
         )}
-        <div className="grid grid-cols-4 lg:grid-cols-6 gap-8 mx-auto">
+        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mx-auto">
           {selectedRegion?.district?.map((d, index) => (
             <div
               onClick={() => handleBrand(d, index)}
@@ -158,7 +158,11 @@ const Regions = () => {
           <SwiperSlide className="bswiper-slide" key={index}>
             <Link to={`/brands/${product?.name}`} state={product} key={index}>
               <img
+<<<<<<< HEAD
                 src={`http://localhost:4000/uploads/${product?.logo}`}
+=======
+                src={`http://localhost:5002/uploads/${product?.logo}`}
+>>>>>>> abb1fc586a6277af9402ce9bf9d348fbf5b7bffa
                 alt={product?.name}
               />
               <p>{product?.name}</p>
