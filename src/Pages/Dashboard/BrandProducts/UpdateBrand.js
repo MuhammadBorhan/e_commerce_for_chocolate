@@ -11,7 +11,7 @@ const UpdateBrand = () => {
 
   const [brand, setBrand] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/brand/${id}`;
+    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/brand/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBrand(data?.data));
@@ -20,13 +20,15 @@ const UpdateBrand = () => {
   const handleSubmitBrand = async (e) => {
     e.preventDefault();
 
+    const formData = {
+      name: name ? name : brand?.name,
+      image: image ? image : brand?.image,
+      logo: logo ? logo : brand?.logo,
+    };
+    console.log(formData);
     try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("image", image);
-      formData.append("logo", logo);
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/brand/${id}`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/brand/${id}`,
         formData,
         {
           headers: {
@@ -40,7 +42,7 @@ const UpdateBrand = () => {
       setImg("");
       setLogo("");
 
-      toast.success("Successfully added");
+      // toast.success("Successfully added");
     } catch (error) {
       console.error("Error creating product:", error.response.data);
       toast.error(error.response.data);

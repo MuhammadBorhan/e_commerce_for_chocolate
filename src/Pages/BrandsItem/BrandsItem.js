@@ -59,16 +59,16 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`http://localhost:5000/uploads/${brands?.image}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
             alt={brands?.name}
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
         </figure>
       </div>
       <div className="avatar absolute">
-        <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+        <div className="w-28 mt-[-100px] ml-[160px] h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`http://localhost:5000/uploads/${brands?.logo}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -119,7 +119,9 @@ const BrandsItem = () => {
               }}
             >
               <div>
-                <img src={`http://localhost:5000/${box?.image}`} />
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                />
               </div>
             </div>
           );
@@ -141,7 +143,7 @@ const BrandsItem = () => {
             >
               <div>
                 <img
-                  src={`http://localhost:5000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-20 lg:w-40 h-20 lg:h-40"
                 />
               </div>
@@ -158,43 +160,50 @@ const BrandsItem = () => {
       {/* event */}
       {events?.map((event) => {
         return (
-          event?.status === "Start" && (
+          event?.status === "Join Now" && (
             <div
               key={event._id}
-              className="card w-1/3 bg-base-100 shadow-xl mx-auto border-2 "
+              className="card grid grid-cols-1 lg:grid-cols-1 lg:w-1/3 sm:w-1/2 bg-base-100 shadow-xl mx-auto border-2  "
             >
               <div className="card-body">
-                <div className=" font-bold  ">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                <div div className="mb-4">
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+                    alt={brands?.name}
+                    className="h-[250px]  mx-auto object-center"
+                  />
+                </div>
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
                     Event Title{" "}
-                  </span>
+                  </div>
                   {event?.title}
                 </div>
-                <div className=" font-bold mt-2">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
                     Event Date{" "}
-                  </span>{" "}
-                  {new Date(event?.dateTime).toLocaleString()}
+                  </div>{" "}
+                  <div>{new Date(event?.dateTime).toLocaleString()}</div>
                 </div>
-                <div className=" font-bold mt-2">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
-                    Delivary{" "}
-                  </span>
-                  Google Meet
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-28 mr-6">
+                    Media{" "}
+                  </div>
+                  <div>Google Meet</div>
                 </div>
 
-                <div className=" font-bold mt-2">
-                  <span className="bg-[#9A583B] p-2 mr-2 text-white rounded">
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-36 mr-6">
                     Description{" "}
-                  </span>
-                  {event?.desc}
+                  </div>
+                  <div> {event?.desc}</div>
                 </div>
                 <div className="card-actions justify-center mx-auto mt-2">
-                  <div className="">
+                  <div className="mt-2">
                     <a
                       target="_blank"
                       href={event?.gmeet}
-                      className=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                      className=" w-24 bg-green-500 text-white hover:bg-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
                     >
                       {event?.status}
                     </a>
@@ -228,7 +237,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`http://localhost:5000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">

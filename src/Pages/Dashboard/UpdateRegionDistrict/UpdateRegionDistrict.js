@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { CiCircleRemove } from "react-icons/ci";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateRegionDistrict = () => {
@@ -8,12 +9,12 @@ const UpdateRegionDistrict = () => {
   const navigate = useNavigate();
 
   const [region, setRegion] = useState("");
-  const [district, setDistricts] = useState([]);
-  console.log(region, district);
+  const [getDistrict, setDistricts] = useState([]);
+  const [newDistrict, setNewDistricts] = useState([]);
 
   const [regionDistrict, setRegionDistrict] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/region/${id}`;
+    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/region/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -24,22 +25,39 @@ const UpdateRegionDistrict = () => {
   }, [id]);
 
   const handleDistrictChange = (index, value) => {
-    district[index] = value;
+    getDistrict[index] = value;
   };
+
+  const handleNewDistrictChange = (index, value) => {
+    newDistrict[index] = value;
+  };
+
+  const handleAddDistrict = () => {
+    const newDstrct = "";
+    setNewDistricts([...newDistrict, newDstrct]);
+  };
+
+  const handleRemoveDistrict = (index) => {
+    const updatedDistrcit = [...newDistrict];
+    updatedDistrcit.splice(index, 1);
+    setNewDistricts(updatedDistrcit);
+  };
+  // const district = [...getDistrict, ...newDistrict];
+  // console.log("allDist", allDist);
 
   const handleSubmitDist = async (e) => {
     e.preventDefault();
 
     const newDistrictData = {
       region,
-      district,
+      district: [...getDistrict, ...newDistrict],
     };
-    console.log(newDistrictData);
     try {
       const res = await axios.patch(
-        `http://localhost:5000/api/v1/region/${id}`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/region/${id}`,
         newDistrictData
       );
+      console.log(res);
 
       if (res) {
         navigate("/dashboard/regionlist");
@@ -78,28 +96,52 @@ const UpdateRegionDistrict = () => {
                       type="text"
                       defaultValue={district}
                       onChange={(e) =>
-                        handleDistrictChange(index, e.target.value, district)
+                        handleDistrictChange(index, e.target.value)
                       }
                       placeholder="District"
                       className="input input-bordered h-8 rounded-none focus:border-none mt-2 w-full max-w-xs"
                     />
                   </div>
                 ))}
+
+                {newDistrict.map((dstrct, index) => (
+                  <div className="flex flex-col items-center gap-2" key={index}>
+                    <input
+                      type="text"
+                      onChange={(e) =>
+                        handleNewDistrictChange(index, e.target.value)
+                      }
+                      placeholder="District"
+                      className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
+                    />
+
+                    <button
+                      className="flex"
+                      type="button"
+                      onClick={() => handleRemoveDistrict(index)}
+                    >
+                      <div className="mt-1 ml-2">
+                        <CiCircleRemove />
+                      </div>
+                      <p className=" ml-2">Delete</p>
+                    </button>
+                  </div>
+                ))}
               </div>
               <div className="flex justify-around pt-6">
-                {/* <button
+                <button
                   type="button"
                   onClick={handleAddDistrict}
                   className="bg-green-500 px-2 py-1 font-bold text-white"
                 >
                   Add
-                </button> */}
+                </button>
 
                 <button
                   type="submit"
                   className="bg-blue-500 px-2 py-1 font-bold text-white "
                 >
-                  Save
+                  Update
                 </button>
               </div>
             </form>

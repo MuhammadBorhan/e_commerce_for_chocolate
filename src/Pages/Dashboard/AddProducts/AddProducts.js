@@ -21,7 +21,7 @@ const AddProdusts = () => {
       formData.append("price", price);
       formData.append("image", image);
       const response = await axios.post(
-        "http://localhost:5000/api/v1/products",
+        "https://andy-chocolate-productions.up.railway.app/api/v1/products",
         formData,
         {
           headers: {
