@@ -16,7 +16,7 @@ const AddBrand = () => {
       formData.append("image", image);
       formData.append("logo", logo);
       const response = await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/brand",
+        "https://andy-chocolate-productions.up.railway.app//api/v1/brand",
         formData,
         {
           headers: {
