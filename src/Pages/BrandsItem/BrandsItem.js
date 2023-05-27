@@ -59,16 +59,16 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`http://localhost:4000/uploads/${brands?.image}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
             alt={brands?.name}
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
         </figure>
       </div>
       <div className="avatar absolute">
-        <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+        <div className="w-28 mt-[-100px] ml-[160px] h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`http://localhost:4000/uploads/${brands?.logo}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -119,7 +119,9 @@ const BrandsItem = () => {
               }}
             >
               <div>
-                <img src={`http://localhost:4000/${box?.image}`} />
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                />
               </div>
             </div>
           );
@@ -141,7 +143,7 @@ const BrandsItem = () => {
             >
               <div>
                 <img
-                  src={`http://localhost:4000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-20 lg:w-40 h-20 lg:h-40"
                 />
               </div>
@@ -166,32 +168,32 @@ const BrandsItem = () => {
               <div className="card-body">
                 <div div className="mb-4">
                   <img
-                    src={`http://localhost:5002/uploads/${brands?.logo}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
                     alt={brands?.name}
-                    className="lg:h-[150px] w-[70%]  mx-auto object-center"
+                    className="h-[250px]  mx-auto object-center"
                   />
                 </div>
-                <div className=" font-bold  grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
                     Event Title{" "}
                   </div>
                   {event?.title}
                 </div>
-                <div className=" font-bold grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
                     Event Date{" "}
                   </div>{" "}
                   <div>{new Date(event?.dateTime).toLocaleString()}</div>
                 </div>
-                <div className=" font-bold  grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-28 mr-6">
                     Media{" "}
                   </div>
                   <div>Google Meet</div>
                 </div>
 
-                <div className=" font-bold  grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
+                <div className=" font-bold flex items-center">
+                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-36 mr-6">
                     Description{" "}
                   </div>
                   <div> {event?.desc}</div>
@@ -201,7 +203,7 @@ const BrandsItem = () => {
                     <a
                       target="_blank"
                       href={event?.gmeet}
-                      className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                      className=" w-24 bg-green-500 text-white hover:bg-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
                     >
                       {event?.status}
                     </a>
@@ -235,7 +237,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`http://localhost:4000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
