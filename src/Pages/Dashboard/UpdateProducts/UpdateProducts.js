@@ -15,6 +15,7 @@ const UpdateProducts = () => {
   const [image, setImg] = useState(null);
 
   const [product, setProduct] = useState({});
+  console.log(product.image);
   useEffect(() => {
     const url = `https://andy-chocolate-productions.up.railway.app//api/v1/products/${id}`;
     fetch(url)
@@ -34,6 +35,7 @@ const UpdateProducts = () => {
       price: price ? price : product?.price,
       image: image ? image : product?.image,
     };
+    console.log(data);
     try {
       const response = await axios.patch(
         `https://andy-chocolate-productions.up.railway.app//api/v1/products/${id}`,
@@ -70,7 +72,7 @@ const UpdateProducts = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
                 <input
                   type="text"
-                  value={product?.name}
+                  defaultValue={product?.name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"

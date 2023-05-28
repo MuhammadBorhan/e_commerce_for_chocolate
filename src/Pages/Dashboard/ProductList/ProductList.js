@@ -12,6 +12,7 @@ const ProductList = () => {
     refetchOnMountOrArgChange: true,
   });
   const products = data?.data;
+  console.log(products);
 
   const [removeProduct] = useRemoveProductMutation();
 
