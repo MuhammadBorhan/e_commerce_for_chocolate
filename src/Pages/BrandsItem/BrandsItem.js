@@ -138,7 +138,7 @@ const BrandsItem = () => {
               <a
                 // className="tab tab-bordered tab-active"
                 className={`${
-                  active === index ? "bg-red-500" : ""
+                  active === index ? "tab tab-bordered tab-active" : ""
                 } cursor-pointer capitalize m-4`}
                 key={index}
                 onClick={(e) => {
