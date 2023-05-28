@@ -12,7 +12,6 @@ const ProductList = () => {
     refetchOnMountOrArgChange: true,
   });
   const products = data?.data;
-  console.log(products);
 
   const [removeProduct] = useRemoveProductMutation();
 
@@ -35,6 +34,7 @@ const ProductList = () => {
               <th>Sl No.</th>
               <th>Image</th>
               <th>Product Name</th>
+              <th>Color</th>
               <th>Price</th>
               <th>Brand</th>
               <th>Action</th>
@@ -47,11 +47,12 @@ const ProductList = () => {
                 <th>
                   {" "}
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                    src={`http://localhost:5000/${product?.image}`}
                     className="w-16"
                   />{" "}
                 </th>
                 <td>{product?.name}</td>
+                <td>{product?.color}</td>
                 <td>¥{product?.price}</td>
                 <td>{product?.brand}</td>
                 <td className="">
