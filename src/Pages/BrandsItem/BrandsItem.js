@@ -68,6 +68,7 @@ const BrandsItem = () => {
       name: "Milk",
     },
   ];
+
   const [item, setItem] = useState({ name: "all" });
   const [projects, setProjects] = useState([]);
   const [active, setActive] = useState(0);
@@ -136,7 +137,6 @@ const BrandsItem = () => {
           <div className="tabs hidden lg:block">
             {menuNavbar?.map((menu, index) => (
               <a
-                // className="tab tab-bordered tab-active"
                 className={`${
                   active === index ? "tab tab-bordered tab-active" : ""
                 } cursor-pointer capitalize m-4`}
@@ -152,24 +152,26 @@ const BrandsItem = () => {
             <a className="tab tab-bordered">Description</a>
           </div>
 
-          <div className="flex flex-col absolute left-[5px] gap-y-10 m-auto w-full lg:hidden">
-            <a className="" onClick={() => handleColor("All")}>
-              A
-            </a>
-            <a className="" onClick={() => handleColor("Black")}>
-              B
-            </a>
-            <a className="" onClick={() => handleColor("White")}>
-              W
-            </a>
-            <a className="" onClick={() => handleColor("Milk")}>
-              M
-            </a>
+          <div className="flex flex-col absolute left-[-10px] gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+            {menuNavbar?.map((menu, index) => (
+              <a
+                className={`${
+                  active === index ? "text-red-500" : ""
+                } cursor-pointer capitalize m-4`}
+                key={index}
+                onClick={(e) => {
+                  handleColor(e, index);
+                }}
+              >
+                {menu.name}
+                {/* {menu.name=='all'?'A':menu.name=='Black'?'B':menu.name=='White'?'W':'M'} */}
+              </a>
+            ))}
             <a className="">D</a>
           </div>
 
           <div className="h-[600px] overflow-auto w-[400px] mx-auto p-2 mt-8 lg:hidden relative">
-            {selectGiftBoxProducts?.map((product) => {
+            {projects?.map((product) => {
               return (
                 <div
                   key={product?._id}
