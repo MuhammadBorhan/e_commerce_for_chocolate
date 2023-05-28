@@ -57,7 +57,7 @@ const BrandsItem = () => {
   const totalProducts = selectGiftBoxProducts?.length;
   const [showAllProducts, setShowAllProducts] = useState(false);
 
-  const handleLoadMore = () => {
+  const handleShowMore = () => {
     setVisibleProducts(totalProducts);
     setShowAllProducts(true);
   };
@@ -170,14 +170,7 @@ const BrandsItem = () => {
               );
             })}
         </div>
-        {/* {visibleProducts < totalProducts && (
-          <button
-            onClick={handleLoadMore}
-           
-          >
-            Show More
-          </button>
-        )} */}
+
         {showAllProducts ? (
           <button
             onClick={handleShowLess}
@@ -187,41 +180,13 @@ const BrandsItem = () => {
           </button>
         ) : (
           <button
-            onClick={handleLoadMore}
+            onClick={handleShowMore}
             className="bg-[#9A583B] text-white px-2 py-1 mt-12 mx-auto block"
           >
             Show More
           </button>
         )}
       </div>
-      {/* <div className="mb-24">
-        {selectGiftBoxProducts?.map((product, index) => {
-          return (
-            <div
-              key={product?._id}
-              className={`flex items-center justify-between p-8 gap-x-10 my-10 w-full lg:w-[40%] m-auto ${
-                index % 2 === 1 ? "flex-row-reverse" : ""
-              }`}
-              style={{
-                boxShadow:
-                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-              }}
-            >
-              <div>
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                  className="w-20 lg:w-40 h-20 lg:h-40"
-                />
-              </div>
-              <div>
-                <p>{product?.desc}</p>
-                <p className="font-bold">{product?.name}</p>
-                <p className="text-xl font-bold">¥{product?.price}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
 
       {/* event */}
       <div className="mt-20">
@@ -237,40 +202,41 @@ const BrandsItem = () => {
                     <img
                       src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
                       alt={brands?.name}
-                      className="lg:h-[150px] w-[70%]  mx-auto object-center"
+                      className="h-[250px]  mx-auto object-center"
                     />
                   </div>
-                  <div className=" font-bold  grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
                       Event Title{" "}
                     </div>
                     {event?.title}
                   </div>
-                  <div className=" font-bold grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
                       Event Date{" "}
                     </div>{" "}
                     <div>{new Date(event?.dateTime).toLocaleString()}</div>
                   </div>
-                  <div className=" font-bold  grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-28 mr-6">
                       Media{" "}
                     </div>
                     <div>Google Meet</div>
                   </div>
 
-                  <div className=" font-bold  grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-40 inline-block mr-2">
                       Description{" "}
                     </div>
                     <div> {event?.desc}</div>
                   </div>
+
                   <div className="card-actions justify-center mx-auto mt-2">
                     <div className="mt-2">
                       <a
                         target="_blank"
                         href={event?.gmeet}
-                        className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                        className=" w-24 bg-green-500 text-white hover:bg-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
                       >
                         {event?.status}
                       </a>
