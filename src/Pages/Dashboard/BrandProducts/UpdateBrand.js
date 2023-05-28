@@ -1,15 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateBrand = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [image, setImg] = useState(null);
   const [logo, setLogo] = useState(null);
-  const { id } = useParams();
+  console.log(name, image, logo);
 
   const [brand, setBrand] = useState({});
+  console.log(brand);
   useEffect(() => {
     const url = `https://andy-chocolate-productions.up.railway.app/api/v1/brand/${id}`;
     fetch(url)
@@ -20,16 +24,16 @@ const UpdateBrand = () => {
   const handleSubmitBrand = async (e) => {
     e.preventDefault();
 
-    const formData = {
+    const data = {
       name: name ? name : brand?.name,
       image: image ? image : brand?.image,
-      logo: logo ? logo : brand?.logo,
+      // logo: logo ? logo : brand?.logo,
     };
-    console.log(formData);
+    console.log(data);
     try {
       const response = await axios.patch(
         `https://andy-chocolate-productions.up.railway.app/api/v1/brand/${id}`,
-        formData,
+        data,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -37,15 +41,12 @@ const UpdateBrand = () => {
         }
       );
       console.log(response);
-      // Reset the form inputs
-      setName("");
-      setImg("");
-      setLogo("");
-
-      // toast.success("Successfully added");
+      if (response) {
+        navigate("/dashboard/brandlist");
+      }
     } catch (error) {
-      console.error("Error creating product:", error.response.data);
-      toast.error(error.response.data);
+      console.error("Error creating product:", error?.response?.data);
+      // toast.error(error?.response?.data);
     }
   };
   return (
@@ -61,6 +62,7 @@ const UpdateBrand = () => {
           {
             <form onSubmit={handleSubmitBrand} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 my-2  ">
+                <label>Brand Name</label>
                 <input
                   type="text"
                   defaultValue={brand.name}
@@ -68,12 +70,14 @@ const UpdateBrand = () => {
                   placeholder="Name"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
                 />
+                <label>Cover Image</label>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={(e) => setImg(e.target.files[0])}
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 />
+                <label>Logo</label>
                 <input
                   type="file"
                   accept="image/*"
@@ -87,7 +91,7 @@ const UpdateBrand = () => {
                   type="submit"
                   className="bg-[#5e2006] px-2 py-1 font-bold text-white "
                 >
-                  Save
+                  Update
                 </button>
               </div>
             </form>
