@@ -6,6 +6,7 @@ import {
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -53,8 +54,38 @@ const BrandsItem = () => {
   //   );
   // });
 
-  const handleColor = (color) => {
-    console.log(color);
+  const menuNavbar = [
+    {
+      name: "all",
+    },
+    {
+      name: "Black",
+    },
+    {
+      name: "White",
+    },
+    {
+      name: "Milk",
+    },
+  ];
+  const [item, setItem] = useState({ name: "all" });
+  const [projects, setProjects] = useState([]);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (item.name === "all") {
+      setProjects(selectGiftBoxProducts);
+    } else {
+      const newProjects = selectGiftBoxProducts.filter((project) => {
+        return project.color.toLowerCase() === item.name;
+      });
+      setProjects(newProjects);
+    }
+  }, [item]);
+
+  const handleColor = (e, index) => {
+    setItem({ name: e.target.textContent.toLowerCase() });
+    setActive(index);
   };
 
   return (
@@ -103,28 +134,25 @@ const BrandsItem = () => {
 
         <div>
           <div className="tabs hidden lg:block">
-            <a className="tab tab-bordered" onClick={() => handleColor("All")}>
-              All
-            </a>
-            <a
-              className="tab tab-bordered"
-              onClick={() => handleColor("Black")}
-            >
-              Black
-            </a>
-            <a
-              className="tab tab-bordered tab-active"
-              onClick={() => handleColor("White")}
-            >
-              White
-            </a>
-            <a className="tab tab-bordered" onClick={() => handleColor("Milk")}>
-              Milk
-            </a>
+            {menuNavbar?.map((menu, index) => (
+              <a
+                // className="tab tab-bordered tab-active"
+                className={`${
+                  active === index ? "bg-red-500" : ""
+                } cursor-pointer capitalize m-4`}
+                key={index}
+                onClick={(e) => {
+                  handleColor(e, index);
+                }}
+              >
+                {menu.name}
+              </a>
+            ))}
+
             <a className="tab tab-bordered">Description</a>
           </div>
 
-          <div className="flex lg:hidden">
+          <div className="flex flex-col absolute left-[5px] gap-y-10 m-auto w-full lg:hidden">
             <a className="" onClick={() => handleColor("All")}>
               A
             </a>
@@ -140,7 +168,7 @@ const BrandsItem = () => {
             <a className="">D</a>
           </div>
 
-          <div className="h-[600px] overflow-auto w-[400px] mx-auto p-2 mt-24 lg:hidden">
+          <div className="h-[600px] overflow-auto w-[400px] mx-auto p-2 mt-8 lg:hidden relative">
             {selectGiftBoxProducts?.map((product) => {
               return (
                 <div
@@ -157,7 +185,7 @@ const BrandsItem = () => {
 
                   <div className="">
                     <h2 className="font-bold ">{product?.name}</h2>
-                    {/* <h2 className="font-bold">{product?.color}</h2> */}
+                    <h2 className="font-bold">{product?.color}</h2>
                     <p>{product?.desc.slice(0, 50)}</p>
                     <p className=" font-bold">¥{product?.price}</p>
                   </div>
@@ -167,7 +195,7 @@ const BrandsItem = () => {
           </div>
           <div className="hidden lg:block">
             <div className="grid lg:grid-cols-4 gap-10 mt-12">
-              {selectGiftBoxProducts?.map((product) => {
+              {projects?.map((product) => {
                 return (
                   <div key={product?._id} className="card shadow-xl ">
                     <figure>
