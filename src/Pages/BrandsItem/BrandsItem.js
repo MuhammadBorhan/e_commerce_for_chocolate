@@ -5,6 +5,7 @@ import {
 } from "../../features/api/GiftBoxApi";
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
+import { useState } from "react";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -44,7 +45,6 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
-  console.log(selectGiftBoxProducts);
 
   // const selectedProducts = products?.filter((brandItem) => {
   //   return (
@@ -52,6 +52,14 @@ const BrandsItem = () => {
   //     brandItem?.district === brands?.district
   //   );
   // });
+
+  const [visibleProducts, setVisibleProducts] = useState(3);
+  const totalProducts = selectGiftBoxProducts?.length;
+  console.log(totalProducts);
+
+  const handleLoadMore = () => {
+    setVisibleProducts(totalProducts);
+  };
 
   return (
     <div className="p-4 lg:p-12">
@@ -65,8 +73,9 @@ const BrandsItem = () => {
           />
         </figure>
       </div>
+
       <div className="avatar absolute">
-        <div className="w-28 mt-[-100px] ml-[160px] h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+        <div className="w-20 h-20 lg:w-28 mt-[-70px] lg:mt-[-100px] ml-[60px] lg:ml-[160px] lg:h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
             src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
@@ -117,42 +126,52 @@ const BrandsItem = () => {
       </div>
 
       {/* All Products  */}
-      <div className="flex justify-end sticky top-20 z-50">
-        <select className="select select-error w-full max-w-xs">
+      <div className="flex lg:justify-end sticky top-20  z-50">
+        <select className="select select-error ">
           <option disabled selected>
             Pick Your Favourite One
           </option>
           <option>White Chocolate</option>
           <option>Black Chocolate</option>
-          <option>Milk Chocolate</option>
+          <option>Other Chocolate</option>
         </select>
       </div>
-      <div className="grid lg:grid-cols-4 gap-4 mt-4">
-        {selectGiftBoxProducts?.map((product, index) => {
-          return (
-            <div
-              key={product?._id}
-              className="card w-72 sm:max-w-xs shadow-xl flex-row sm:flex-col "
-            >
-              <figure>
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                  alt="Product"
-                />
-              </figure>
 
-              <div className="card-body sm:w-full">
-                <h2 className="card-title">
-                  {product?.name}
-                  <div className="badge badge-[#9A583B]">NEW</div>
-                </h2>
-                <p>{product.desc}</p>
-                <p>{product?.desc}</p>
-                <p className="text-xl font-bold">¥{product?.price}</p>
-              </div>
-            </div>
-          );
-        })}
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 mt-4">
+          {selectGiftBoxProducts
+            .slice(0, visibleProducts)
+            ?.map((product, index) => {
+              return (
+                <div key={product?._id} className="card  shadow-xl ">
+                  <figure>
+                    <img
+                      src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                      alt="Product"
+                    />
+                  </figure>
+
+                  <div className="card-body sm:w-full">
+                    <h2 className="card-title">
+                      {product?.name}
+                      <div className="badge badge-[#9A583B]">NEW</div>
+                    </h2>
+                    <p>{product.desc}</p>
+                    <p>{product?.desc}</p>
+                    <p className="text-xl font-bold">¥{product?.price}</p>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+        {visibleProducts < totalProducts && (
+          <button
+            onClick={handleLoadMore}
+            className="bg-blue-500 text-white px-2 py-1 mt-12 mx-auto block"
+          >
+            Show More
+          </button>
+        )}
       </div>
       {/* <div className="mb-24">
         {selectGiftBoxProducts?.map((product, index) => {
@@ -184,7 +203,7 @@ const BrandsItem = () => {
       </div> */}
 
       {/* event */}
-      <div className="mt-4">
+      <div className="mt-20">
         {events?.map((event) => {
           return (
             event?.status === "Join Now" && (
