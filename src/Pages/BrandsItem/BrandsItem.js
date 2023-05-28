@@ -5,6 +5,11 @@ import {
 } from "../../features/api/GiftBoxApi";
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
+<<<<<<< HEAD
+=======
+import { useState } from "react";
+import { useEffect } from "react";
+>>>>>>> f0b064e0483ea8dfca46c29af304a9f290393277
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -20,7 +25,6 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const allSelectGiftBox = getSelectGiftBox?.data;
-  console.log(allSelectGiftBox);
 
   const selectGiftBox = allSelectGiftBox?.filter(
     (giftBox) => giftBox?.brand === brands?.name
@@ -54,6 +58,40 @@ const BrandsItem = () => {
   //   );
   // });
 
+  const menuNavbar = [
+    {
+      name: "all",
+    },
+    {
+      name: "Black",
+    },
+    {
+      name: "White",
+    },
+    {
+      name: "Milk",
+    },
+  ];
+  const [item, setItem] = useState({ name: "all" });
+  const [projects, setProjects] = useState([]);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (item.name === "all") {
+      setProjects(selectGiftBoxProducts);
+    } else {
+      const newProjects = selectGiftBoxProducts.filter((project) => {
+        return project.color.toLowerCase() === item.name;
+      });
+      setProjects(newProjects);
+    }
+  }, [item]);
+
+  const handleColor = (e, index) => {
+    setItem({ name: e.target.textContent.toLowerCase() });
+    setActive(index);
+  };
+
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
@@ -76,50 +114,111 @@ const BrandsItem = () => {
         </div>
       </div>
 
-      <div className="mb-12 lg:mb-24 mt-16">
-        {selectGiftBox?.map((box) => {
-          return (
-            <div
-              key={box?._id}
-              className={` p-2 mt-10 w-[50%] lg:w-[25%] m-auto `}
-              style={{
-                boxShadow:
-                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-              }}
-            >
-              <div>
-                <img src={`http://localhost:4000/${box?.image}`} />
-              </div>
-              <p className="text-center font-bold">{box?.name}</p>
-            </div>
-          );
-        })}
-      </div>
-
       <div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 mt-4">
-          {selectGiftBoxProducts?.map((product) => {
+        <div className="mb-12 lg:mb-12 mt-16">
+          {selectGiftBox?.map((box) => {
             return (
-              <div key={product?._id} className="card  shadow-xl ">
-                <figure>
-                  <img
-                    src={`http://localhost:5000/${product?.image}`}
-                    alt="Product"
-                  />
-                </figure>
-
-                <div className="card-body sm:w-full">
-                  <h2 className="card-title">
-                    {product?.name}
-                    <div className="badge badge-[#9A583B]">NEW</div>
-                  </h2>
-                  <p>{product.desc}</p>
-                  <p>{product?.desc}</p>
-                  <p className="text-xl font-bold">¥{product?.price}</p>
+              <div
+                key={box?._id}
+                className={` p-2 mt-10 w-[50%] lg:w-[25%] m-auto `}
+                style={{
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+                }}
+              >
+                <div>
+                  <img src={`http://localhost:5000/${box?.image}`} />
                 </div>
+                <p className="text-center font-bold">{box?.name}</p>
               </div>
             );
           })}
+        </div>
+
+        <div>
+          <div className="tabs hidden lg:block">
+            {menuNavbar?.map((menu, index) => (
+              <a
+                // className="tab tab-bordered tab-active"
+                className={`${
+                  active === index ? "bg-red-500" : ""
+                } cursor-pointer capitalize m-4`}
+                key={index}
+                onClick={(e) => {
+                  handleColor(e, index);
+                }}
+              >
+                {menu.name}
+              </a>
+            ))}
+
+            <a className="tab tab-bordered">Description</a>
+          </div>
+
+          <div className="flex flex-col absolute left-[5px] gap-y-10 m-auto w-full lg:hidden">
+            <a className="" onClick={() => handleColor("All")}>
+              A
+            </a>
+            <a className="" onClick={() => handleColor("Black")}>
+              B
+            </a>
+            <a className="" onClick={() => handleColor("White")}>
+              W
+            </a>
+            <a className="" onClick={() => handleColor("Milk")}>
+              M
+            </a>
+            <a className="">D</a>
+          </div>
+
+          <div className="h-[600px] overflow-auto w-[400px] mx-auto p-2 mt-8 lg:hidden relative">
+            {selectGiftBoxProducts?.map((product) => {
+              return (
+                <div
+                  key={product?._id}
+                  className="flex items-center p-2 gap-x-5 border"
+                >
+                  <figure>
+                    <img
+                      src={`http://localhost:5000/${product?.image}`}
+                      alt="Product"
+                      className="w-[70px]"
+                    />
+                  </figure>
+
+                  <div className="">
+                    <h2 className="font-bold ">{product?.name}</h2>
+                    <h2 className="font-bold">{product?.color}</h2>
+                    <p>{product?.desc.slice(0, 50)}</p>
+                    <p className=" font-bold">¥{product?.price}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="hidden lg:block">
+            <div className="grid lg:grid-cols-4 gap-10 mt-12">
+              {projects?.map((product) => {
+                return (
+                  <div key={product?._id} className="card shadow-xl ">
+                    <figure>
+                      <img
+                        src={`http://localhost:5000/${product?.image}`}
+                        alt="Product"
+                      />
+                    </figure>
+
+                    <div className="card-body sm:w-full text-center">
+                      <h2 className="font-bold text-xl">{product?.name}</h2>
+                      <h2 className="font-bold">{product?.color}</h2>
+                      <p>{product?.desc}</p>
+                      <p className="text-xl font-bold">¥{product?.price}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
