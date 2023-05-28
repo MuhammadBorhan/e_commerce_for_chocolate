@@ -5,11 +5,8 @@ import {
 } from "../../features/api/GiftBoxApi";
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
-<<<<<<< HEAD
-=======
 import { useState } from "react";
 import { useEffect } from "react";
->>>>>>> f0b064e0483ea8dfca46c29af304a9f290393277
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -223,48 +220,33 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-4">
+      <div className="mt-6">
         {events?.map((event) => {
           return (
             event?.status === "Join Now" && (
               <div
                 key={event._id}
-                className="card grid grid-cols-1 lg:grid-cols-1 lg:w-1/3 sm:w-1/2 bg-base-100 shadow-xl mx-auto border-2  "
+                className="card card-compact mx-auto w-96 bg-base-100 shadow-xl"
               >
+                <figure>
+                  <img
+                    src={`http://localhost:4000/uploads/${brands?.logo}`}
+                    alt={brands?.name}
+                    className="h-[250px] rounded-md mt-1"
+                  />
+                </figure>
                 <div className="card-body">
-                  <div div className="mb-4">
-                    <img
-                      src={`http://localhost:4000/uploads/${brands?.logo}`}
-                      alt={brands?.name}
-                      className="lg:h-[150px] w-[70%]  mx-auto object-center"
-                    />
-                  </div>
-                  <div className=" font-bold  grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
-                      Event Title{" "}
-                    </div>
+                  <h3 className="text-2xl italic font-bold text-center">
                     {event?.title}
-                  </div>
-                  <div className=" font-bold grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
-                      Event Date{" "}
-                    </div>{" "}
-                    <div>{new Date(event?.dateTime).toLocaleString()}</div>
-                  </div>
-                  <div className=" font-bold  grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
-                      Media{" "}
-                    </div>
-                    <div>Google Meet</div>
-                  </div>
-
-                  <div className=" font-bold  grid grid-cols-3 ">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
-                      Description{" "}
-                    </div>
-                    <div> {event?.desc}</div>
-                  </div>
-                  <div className="card-actions justify-center mx-auto mt-2">
+                  </h3>
+                  <p className="text-center text-xl italic">
+                    {new Date(event?.dateTime).toLocaleString()}
+                  </p>
+                  <h4 className="text-center">Google Meet</h4>
+                  <p>
+                    <span className="text-xl">{event?.desc}</span>
+                  </p>
+                  <div className="card-actions justify-center mx-auto m-2">
                     <div className="mt-2">
                       <a
                         target="_blank"
