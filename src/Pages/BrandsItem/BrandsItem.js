@@ -59,7 +59,7 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`http://localhost:4000/uploads/${brands?.image}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
             alt={brands?.name}
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
@@ -68,7 +68,7 @@ const BrandsItem = () => {
       <div className="avatar absolute">
         <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`http://localhost:4000/uploads/${brands?.logo}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -93,20 +93,8 @@ const BrandsItem = () => {
           </svg>
         </button>
       </div>
-      {/* 
-      <div className="flex justify-center mb-16  mt-6 ">
-        <div className="card card-compact rounded-none bg-base-100 shadow-xl">
-          <figure>
-            <img
-              className="w-[200px] lg:w-[300px] "
-              src={findSelectGiftBox?.boxImage}
-              alt={brands?.name}
-            />
-          </figure>
-        </div>
-      </div> */}
 
-      <div className="mb-12 lg:mb-24">
+      <div className="mb-12 lg:mb-24 ">
         {allSelectGiftBox?.map((box, index) => {
           // console.log(box);
           return (
@@ -119,14 +107,55 @@ const BrandsItem = () => {
               }}
             >
               <div>
-                <img src={`http://localhost:4000/${box?.image}`} />
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  alt="box"
+                />
               </div>
             </div>
           );
         })}
       </div>
 
-      <div className="mb-24">
+      {/* All Products  */}
+      <div className="flex justify-end sticky top-20 z-50">
+        <select className="select select-error w-full max-w-xs">
+          <option disabled selected>
+            Pick Your Favourite One
+          </option>
+          <option>White Chocolate</option>
+          <option>Black Chocolate</option>
+          <option>Milk Chocolate</option>
+        </select>
+      </div>
+      <div className="grid lg:grid-cols-4 gap-4 mt-4">
+        {selectGiftBoxProducts?.map((product, index) => {
+          return (
+            <div
+              key={product?._id}
+              className="card w-72 sm:max-w-xs shadow-xl flex-row sm:flex-col "
+            >
+              <figure>
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                  alt="Product"
+                />
+              </figure>
+
+              <div className="card-body sm:w-full">
+                <h2 className="card-title">
+                  {product?.name}
+                  <div className="badge badge-[#9A583B]">NEW</div>
+                </h2>
+                <p>{product.desc}</p>
+                <p>{product?.desc}</p>
+                <p className="text-xl font-bold">¥{product?.price}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {/* <div className="mb-24">
         {selectGiftBoxProducts?.map((product, index) => {
           return (
             <div
@@ -141,7 +170,7 @@ const BrandsItem = () => {
             >
               <div>
                 <img
-                  src={`http://localhost:4000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-20 lg:w-40 h-20 lg:h-40"
                 />
               </div>
@@ -153,77 +182,79 @@ const BrandsItem = () => {
             </div>
           );
         })}
-      </div>
+      </div> */}
 
       {/* event */}
-      {events?.map((event) => {
-        return (
-          event?.status === "Join Now" && (
-            <div
-              key={event._id}
-              className="card grid grid-cols-1 lg:grid-cols-1 lg:w-1/3 sm:w-1/2 bg-base-100 shadow-xl mx-auto border-2  "
-            >
-              <div className="card-body">
-                <div div className="mb-4">
-                  <img
-                    src={`http://localhost:5002/uploads/${brands?.logo}`}
-                    alt={brands?.name}
-                    className="lg:h-[150px] w-[70%]  mx-auto object-center"
-                  />
-                </div>
-                <div className=" font-bold  grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
-                    Event Title{" "}
+      <div className="mt-4">
+        {events?.map((event) => {
+          return (
+            event?.status === "Join Now" && (
+              <div
+                key={event._id}
+                className="card grid grid-cols-1 lg:grid-cols-1 lg:w-1/3 sm:w-1/2 bg-base-100 shadow-xl mx-auto border-2  "
+              >
+                <div className="card-body">
+                  <div div className="mb-4">
+                    <img
+                      src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+                      alt={brands?.name}
+                      className="lg:h-[150px] w-[70%]  mx-auto object-center"
+                    />
                   </div>
-                  {event?.title}
-                </div>
-                <div className=" font-bold grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
-                    Event Date{" "}
-                  </div>{" "}
-                  <div>{new Date(event?.dateTime).toLocaleString()}</div>
-                </div>
-                <div className=" font-bold  grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
-                    Media{" "}
+                  <div className=" font-bold  grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
+                      Event Title{" "}
+                    </div>
+                    {event?.title}
                   </div>
-                  <div>Google Meet</div>
-                </div>
+                  <div className=" font-bold grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
+                      Event Date{" "}
+                    </div>{" "}
+                    <div>{new Date(event?.dateTime).toLocaleString()}</div>
+                  </div>
+                  <div className=" font-bold  grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
+                      Media{" "}
+                    </div>
+                    <div>Google Meet</div>
+                  </div>
 
-                <div className=" font-bold  grid grid-cols-3 ">
-                  <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
-                    Description{" "}
+                  <div className=" font-bold  grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
+                      Description{" "}
+                    </div>
+                    <div> {event?.desc}</div>
                   </div>
-                  <div> {event?.desc}</div>
-                </div>
-                <div className="card-actions justify-center mx-auto mt-2">
-                  <div className="mt-2">
-                    <a
-                      target="_blank"
-                      href={event?.gmeet}
-                      className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
-                    >
-                      {event?.status}
-                    </a>
-                  </div>
-                  <div className="hidden mt-2">
-                    <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
-                      Meet Link:{" "}
-                    </span>
-                    <a
-                      target="_blank"
-                      href={event?.gmeet}
-                      className="text-blue-500 underline"
-                    >
-                      {event?.gmeet}
-                    </a>
+                  <div className="card-actions justify-center mx-auto mt-2">
+                    <div className="mt-2">
+                      <a
+                        target="_blank"
+                        href={event?.gmeet}
+                        className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                      >
+                        {event?.status}
+                      </a>
+                    </div>
+                    <div className="hidden mt-2">
+                      <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
+                        Meet Link:{" "}
+                      </span>
+                      <a
+                        target="_blank"
+                        href={event?.gmeet}
+                        className="text-blue-500 underline"
+                      >
+                        {event?.gmeet}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )
-        );
-      })}
+            )
+          );
+        })}
+      </div>
 
       <div className="w-full lg:w-[60%] mt-24 mx-auto">
         <div className=" text-2xl font-bold text-indigo-600">Categories</div>
@@ -235,7 +266,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`http://localhost:4000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">

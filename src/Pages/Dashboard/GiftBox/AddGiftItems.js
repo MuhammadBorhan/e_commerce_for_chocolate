@@ -48,7 +48,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/giftbox",
+        "https://andy-chocolate-productions.up.railway.app/api/v1/giftbox",
         data,
         {
           headers: {
