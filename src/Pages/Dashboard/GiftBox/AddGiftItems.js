@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
 import { useGetAllProductsQuery } from "../../../features/api/productsApi";
@@ -14,10 +14,18 @@ const AddGiftItems = () => {
 
   const { data: brands } = useGetAllBrandsQuery();
   const allBrand = brands?.data;
-  console.log(allBrand);
+
   const { data: products } = useGetAllProductsQuery();
   const allProducts = products?.data;
-  console.log(allProducts);
+
+  const [brandProducts, setBrandProducts] = useState([]);
+  console.log(brandProducts);
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/product?brand=${brand}`)
+      .then((res) => res.json())
+      .then((data) => setBrandProducts(data?.data));
+  }, [brand]);
+
   const handlePruductchange = (name) => {
     const isSelected = productList.includes(name);
     if (isSelected) {
@@ -48,7 +56,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/giftbox",
+        "http://localhost:5000/api/v1/giftbox",
         data,
         {
           headers: {
@@ -69,8 +77,9 @@ const AddGiftItems = () => {
       toast.error(error?.response?.data?.error);
     }
   };
+
   return (
-    <div className="flex justify-center overflow-auto items-center mt-12">
+    <div className="flex justify-center overflow-auto items-center mt-12 px-8 ">
       <div
         className="card bg-base-100 overflow-auto mb-12 rounded-none"
         style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
@@ -97,13 +106,12 @@ const AddGiftItems = () => {
                 />
 
                 <select
+                  value={brand}
                   onChange={(e) => setBrandName(e.target.value)}
                   vlaue={brand}
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 >
-                  <option disabled selected>
-                    Select Brand
-                  </option>
+                  <option>--Select Brand--</option>
                   {allBrand?.map((brand, index) => (
                     <option key={index}>{brand?.name}</option>
                   ))}
@@ -112,7 +120,8 @@ const AddGiftItems = () => {
                 {/* Checkbox  */}
                 <div className="dropdown dropdown-end">
                   <label tabIndex={0} className="ml-2  cursor-pointer">
-                    Select Product
+                    Please Select The Product (Total Brand Product:{" "}
+                    {brandProducts?.length})
                   </label>
                   <div>
                     <label className="inline-flex items-center gap-x-1 cursor-pointer my-2">
@@ -126,7 +135,7 @@ const AddGiftItems = () => {
                     </label>
                   </div>
                   <div className="grid grid-cols-3 lg:grid-cols-6 gap-4">
-                    {allProducts?.map((product) => (
+                    {brandProducts?.map((product) => (
                       <label
                         key={product._id}
                         className="inline-flex items-center gap-x-1"

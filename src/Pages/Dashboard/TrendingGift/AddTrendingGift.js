@@ -26,17 +26,13 @@ const AddTrendingGift = () => {
       region,
       district,
     };
-    console.log(data);
     try {
-      await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/trendgift",
-        data
-      );
+      await axios.post("http://localhost:5000/api/v1/trendgift", data);
 
       // Reset the form inputs
       setBrand("");
-      // setRegion("");
-      // setDistrict("");
+      setRegion("");
+      setDistrict("");
 
       toast.success("Successfully Added");
     } catch (error) {
@@ -59,13 +55,11 @@ const AddTrendingGift = () => {
               <form onSubmit={handleTrendGift} className="text-center">
                 <div className=" ">
                   <select
+                    value={brand}
                     onChange={(e) => setBrand(e.target.value)}
-                    // value="brand"
                     className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto mb-2"
                   >
-                    <option disabled selected>
-                      Select Brand
-                    </option>
+                    <option>--Select Brand--</option>
                     {allBrand?.map((brand) => (
                       <option key={brand._id}>{brand?.name}</option>
                     ))}
@@ -73,23 +67,21 @@ const AddTrendingGift = () => {
                 </div>
 
                 <select
+                  value={region}
                   onChange={(e) => setRegion(e.target.value)}
                   className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto mb-2"
                 >
-                  <option disabled selected>
-                    Select Region
-                  </option>
+                  <option>--Select Region--</option>
                   {allRegion?.map((region) => (
                     <option key={region?._id}>{region?.region}</option>
                   ))}
                 </select>
                 <select
+                  value={district}
                   onChange={(e) => setDistrict(e.target.value)}
                   className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto mb-2"
                 >
-                  <option disabled selected>
-                    Select District
-                  </option>
+                  <option>--Select District--</option>
                   {selectDistrict?.[0]?.district?.map((dst, i) => (
                     <option key={i}>{dst}</option>
                   ))}
