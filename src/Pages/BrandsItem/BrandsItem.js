@@ -55,10 +55,16 @@ const BrandsItem = () => {
 
   const [visibleProducts, setVisibleProducts] = useState(3);
   const totalProducts = selectGiftBoxProducts?.length;
-  console.log(totalProducts);
+  const [showAllProducts, setShowAllProducts] = useState(false);
 
   const handleLoadMore = () => {
     setVisibleProducts(totalProducts);
+    setShowAllProducts(true);
+  };
+
+  const handleShowLess = () => {
+    setVisibleProducts(3);
+    setShowAllProducts(false);
   };
 
   return (
@@ -164,10 +170,25 @@ const BrandsItem = () => {
               );
             })}
         </div>
-        {visibleProducts < totalProducts && (
+        {/* {visibleProducts < totalProducts && (
           <button
             onClick={handleLoadMore}
-            className="bg-blue-500 text-white px-2 py-1 mt-12 mx-auto block"
+           
+          >
+            Show More
+          </button>
+        )} */}
+        {showAllProducts ? (
+          <button
+            onClick={handleShowLess}
+            className="bg-red-500 text-white px-2 py-1 mt-12 mx-auto block"
+          >
+            Show Less
+          </button>
+        ) : (
+          <button
+            onClick={handleLoadMore}
+            className="bg-[#9A583B] text-white px-2 py-1 mt-12 mx-auto block"
           >
             Show More
           </button>
