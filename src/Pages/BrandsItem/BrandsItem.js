@@ -59,7 +59,7 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
+            src={`http://localhost:5000/uploads/${brands?.image}`}
             alt={brands?.name}
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
@@ -68,7 +68,7 @@ const BrandsItem = () => {
       <div className="avatar absolute">
         <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+            src={`http://localhost:5000/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -107,17 +107,14 @@ const BrandsItem = () => {
               }}
             >
               <div>
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
-                  alt="box"
-                />
+                <img src={`http://localhost:5000/${box?.image}`} />
               </div>
             </div>
           );
         })}
       </div>
 
-{/* Filter button  */}
+      {/* Filter button  */}
       <div className="flex justify-end sticky top-20 z-50">
         <select className="select select-error w-full max-w-xs">
           <option disabled selected>
@@ -129,35 +126,6 @@ const BrandsItem = () => {
         </select>
       </div>
 
-      {/* All Products  */}
-
-      <div className="grid lg:grid-cols-4 gap-4 mt-4">
-        {selectGiftBoxProducts?.map((product, index) => {
-          return (
-            <div
-              key={product?._id}
-              className="card w-72 sm:max-w-xs shadow-xl flex-row sm:flex-col "
-            >
-              <figure>
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                  alt="Product"
-                />
-              </figure>
-
-              <div className="card-body sm:w-full">
-                <h2 className="card-title">
-                  {product?.name}
-                  <div className="badge badge-[#9A583B]">NEW</div>
-                </h2>
-                <p>{product.desc}</p>
-                <p>{product?.desc}</p>
-                <p className="text-xl font-bold">¥{product?.price}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
       {/* <div className="mb-24">
         {selectGiftBoxProducts?.map((product, index) => {
           return (
@@ -199,7 +167,7 @@ const BrandsItem = () => {
                 <div className="card-body">
                   <div div className="mb-4">
                     <img
-                      src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+                      src={`http://localhost:5000/uploads/${brands?.logo}`}
                       alt={brands?.name}
                       className="lg:h-[150px] w-[70%]  mx-auto object-center"
                     />
@@ -269,7 +237,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                  src={`http://localhost:5000/${product?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
