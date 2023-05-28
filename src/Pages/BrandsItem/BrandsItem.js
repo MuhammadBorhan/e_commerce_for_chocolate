@@ -5,7 +5,6 @@ import {
 } from "../../features/api/GiftBoxApi";
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
-import { useState } from "react";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -45,6 +44,7 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
+  console.log(selectGiftBoxProducts);
 
   // const selectedProducts = products?.filter((brandItem) => {
   //   return (
@@ -52,20 +52,6 @@ const BrandsItem = () => {
   //     brandItem?.district === brands?.district
   //   );
   // });
-
-  const [visibleProducts, setVisibleProducts] = useState(3);
-  const totalProducts = selectGiftBoxProducts?.length;
-  const [showAllProducts, setShowAllProducts] = useState(false);
-
-  const handleShowMore = () => {
-    setVisibleProducts(totalProducts);
-    setShowAllProducts(true);
-  };
-
-  const handleShowLess = () => {
-    setVisibleProducts(3);
-    setShowAllProducts(false);
-  };
 
   return (
     <div className="p-4 lg:p-12">
@@ -79,9 +65,8 @@ const BrandsItem = () => {
           />
         </figure>
       </div>
-
       <div className="avatar absolute">
-        <div className="w-20 h-20 lg:w-28 mt-[-70px] lg:mt-[-100px] ml-[60px] lg:ml-[160px] lg:h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+        <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
             src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
@@ -124,6 +109,7 @@ const BrandsItem = () => {
               <div>
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  alt="box"
                 />
               </div>
             </div>
@@ -131,65 +117,78 @@ const BrandsItem = () => {
         })}
       </div>
 
-      {/* All Products  */}
-      <div className="flex lg:justify-end sticky top-20  z-50">
-        <select className="select select-error ">
+{/* Filter button  */}
+      <div className="flex justify-end sticky top-20 z-50">
+        <select className="select select-error w-full max-w-xs">
           <option disabled selected>
             Pick Your Favourite One
           </option>
           <option>White Chocolate</option>
           <option>Black Chocolate</option>
-          <option>Other Chocolate</option>
+          <option>Milk Chocolate</option>
         </select>
       </div>
 
-      <div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 mt-4">
-          {selectGiftBoxProducts
-            .slice(0, visibleProducts)
-            ?.map((product, index) => {
-              return (
-                <div key={product?._id} className="card  shadow-xl ">
-                  <figure>
-                    <img
-                      src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                      alt="Product"
-                    />
-                  </figure>
+      {/* All Products  */}
 
-                  <div className="card-body sm:w-full">
-                    <h2 className="card-title">
-                      {product?.name}
-                      <div className="badge badge-[#9A583B]">NEW</div>
-                    </h2>
-                    <p>{product.desc}</p>
-                    <p>{product?.desc}</p>
-                    <p className="text-xl font-bold">¥{product?.price}</p>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
+      <div className="grid lg:grid-cols-4 gap-4 mt-4">
+        {selectGiftBoxProducts?.map((product, index) => {
+          return (
+            <div
+              key={product?._id}
+              className="card w-72 sm:max-w-xs shadow-xl flex-row sm:flex-col "
+            >
+              <figure>
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                  alt="Product"
+                />
+              </figure>
 
-        {showAllProducts ? (
-          <button
-            onClick={handleShowLess}
-            className="bg-red-500 text-white px-2 py-1 mt-12 mx-auto block"
-          >
-            Show Less
-          </button>
-        ) : (
-          <button
-            onClick={handleShowMore}
-            className="bg-[#9A583B] text-white px-2 py-1 mt-12 mx-auto block"
-          >
-            Show More
-          </button>
-        )}
+              <div className="card-body sm:w-full">
+                <h2 className="card-title">
+                  {product?.name}
+                  <div className="badge badge-[#9A583B]">NEW</div>
+                </h2>
+                <p>{product.desc}</p>
+                <p>{product?.desc}</p>
+                <p className="text-xl font-bold">¥{product?.price}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
+      {/* <div className="mb-24">
+        {selectGiftBoxProducts?.map((product, index) => {
+          return (
+            <div
+              key={product?._id}
+              className={`flex items-center justify-between p-8 gap-x-10 my-10 w-full lg:w-[40%] m-auto ${
+                index % 2 === 1 ? "flex-row-reverse" : ""
+              }`}
+              style={{
+                boxShadow:
+                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              }}
+            >
+              <div>
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                  className="w-20 lg:w-40 h-20 lg:h-40"
+                />
+              </div>
+              <div>
+                <p>{product?.desc}</p>
+                <p className="font-bold">{product?.name}</p>
+                <p className="text-xl font-bold">¥{product?.price}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div> */}
 
       {/* event */}
-      <div className="mt-20">
+      <div className="mt-4">
         {events?.map((event) => {
           return (
             event?.status === "Join Now" && (
@@ -202,41 +201,40 @@ const BrandsItem = () => {
                     <img
                       src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
                       alt={brands?.name}
-                      className="h-[250px]  mx-auto object-center"
+                      className="lg:h-[150px] w-[70%]  mx-auto object-center"
                     />
                   </div>
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
+                  <div className=" font-bold  grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
                       Event Title{" "}
                     </div>
                     {event?.title}
                   </div>
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
+                  <div className=" font-bold grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-24">
                       Event Date{" "}
                     </div>{" "}
                     <div>{new Date(event?.dateTime).toLocaleString()}</div>
                   </div>
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-28 mr-6">
+                  <div className=" font-bold  grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
                       Media{" "}
                     </div>
                     <div>Google Meet</div>
                   </div>
 
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-40 inline-block mr-2">
+                  <div className=" font-bold  grid grid-cols-3 ">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-24">
                       Description{" "}
                     </div>
                     <div> {event?.desc}</div>
                   </div>
-
                   <div className="card-actions justify-center mx-auto mt-2">
                     <div className="mt-2">
                       <a
                         target="_blank"
                         href={event?.gmeet}
-                        className=" w-24 bg-green-500 text-white hover:bg-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                        className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
                       >
                         {event?.status}
                       </a>
