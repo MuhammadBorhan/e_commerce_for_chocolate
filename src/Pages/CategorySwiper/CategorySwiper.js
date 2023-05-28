@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
+import { EffectCoverflow, Pagination, Navigation } from "swiper";
 
 const CategorySwiper = () => {
   return (
@@ -27,7 +27,7 @@ const CategorySwiper = () => {
         />
         <div>
           <h3 className="text-xl lg:text-2xl font-bold">Unique Gifts Online</h3>
-          <p className="">Curated to make every special moment a celebration</p>
+          <p className="">Created to make every special moment a celebration</p>
         </div>
       </div>
 

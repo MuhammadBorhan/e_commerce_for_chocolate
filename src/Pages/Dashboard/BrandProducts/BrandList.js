@@ -6,6 +6,7 @@ import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
 import { useRemoveBrandMutation } from "../../../features/api/brandApi";
 import { MdUpdate } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const BrandList = () => {
   const { data } = useGetAllBrandsQuery(null, {
@@ -62,7 +63,9 @@ const BrandList = () => {
                       className="text-blue-500"
                       style={{ width: "40px", fontSize: "25px" }}
                     >
-                      <FaEdit />
+                      <Link to={`/dashboard/updatebrand/${brand?._id}`}>
+                        <FaEdit />
+                      </Link>
                     </button>
                     <button
                       onClick={() => handleDelete(brand?._id)}

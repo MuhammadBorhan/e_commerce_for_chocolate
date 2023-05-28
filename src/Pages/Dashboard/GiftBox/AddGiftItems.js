@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
 import { useGetAllProductsQuery } from "../../../features/api/productsApi";
@@ -14,8 +14,18 @@ const AddGiftItems = () => {
 
   const { data: brands } = useGetAllBrandsQuery();
   const allBrand = brands?.data;
+
   const { data: products } = useGetAllProductsQuery();
   const allProducts = products?.data;
+
+  const [brandProducts, setBrandProducts] = useState([]);
+  console.log(brandProducts);
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/product?brand=${brand}`)
+      .then((res) => res.json())
+      .then((data) => setBrandProducts(data?.data));
+  }, [brand]);
+
   const handlePruductchange = (name) => {
     const isSelected = productList.includes(name);
     if (isSelected) {
@@ -67,8 +77,9 @@ const AddGiftItems = () => {
       toast.error(error?.response?.data?.error);
     }
   };
+
   return (
-    <div className="flex justify-center overflow-auto items-center mt-12">
+    <div className="flex justify-center overflow-auto items-center mt-12 px-8 ">
       <div
         className="card bg-base-100 overflow-auto mb-12 rounded-none"
         style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
@@ -95,13 +106,12 @@ const AddGiftItems = () => {
                 />
 
                 <select
+                  value={brand}
                   onChange={(e) => setBrandName(e.target.value)}
                   vlaue={brand}
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                 >
-                  <option disabled selected>
-                    Select Brand
-                  </option>
+                  <option>--Select Brand--</option>
                   {allBrand?.map((brand, index) => (
                     <option key={index}>{brand?.name}</option>
                   ))}
@@ -110,7 +120,8 @@ const AddGiftItems = () => {
                 {/* Checkbox  */}
                 <div className="dropdown dropdown-end">
                   <label tabIndex={0} className="ml-2  cursor-pointer">
-                    Select Product
+                    Please Select The Product (Total Brand Product:{" "}
+                    {brandProducts?.length})
                   </label>
                   <div>
                     <label className="inline-flex items-center gap-x-1 cursor-pointer my-2">
@@ -124,7 +135,7 @@ const AddGiftItems = () => {
                     </label>
                   </div>
                   <div className="grid grid-cols-3 lg:grid-cols-6 gap-4">
-                    {allProducts?.map((product) => (
+                    {brandProducts?.map((product) => (
                       <label
                         key={product._id}
                         className="inline-flex items-center gap-x-1"
@@ -160,121 +171,3 @@ const AddGiftItems = () => {
 };
 
 export default AddGiftItems;
-<ul
-  className="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
-  aria-labelledby="dropdownSearchButton"
->
-  <li>
-    <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-      <input
-        id="checkbox-item-11"
-        type="checkbox"
-        value=""
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-      />
-      <label
-        htmlFor="checkbox-item-11"
-        className="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-      >
-        Bonnie Green
-      </label>
-    </div>
-  </li>
-  <li>
-    <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-      <input
-        checked
-        id="checkbox-item-12"
-        type="checkbox"
-        value=""
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-      />
-      <label
-        htmlFor="checkbox-item-12"
-        className="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-      >
-        Jese Leos
-      </label>
-    </div>
-  </li>
-  <li>
-    <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-      <input
-        id="checkbox-item-13"
-        type="checkbox"
-        value=""
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-      />
-      <label
-        htmlFor="checkbox-item-13"
-        className="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-      >
-        Michael Gough
-      </label>
-    </div>
-  </li>
-  <li>
-    <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-      <input
-        id="checkbox-item-14"
-        type="checkbox"
-        value=""
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-      />
-      <label
-        htmlFor="checkbox-item-14"
-        className="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-      >
-        Robert Wall
-      </label>
-    </div>
-  </li>
-  <li>
-    <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-      <input
-        id="checkbox-item-15"
-        type="checkbox"
-        value=""
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-      />
-      <label
-        htmlFor="checkbox-item-15"
-        className="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-      >
-        Joseph Mcfall
-      </label>
-    </div>
-  </li>
-  <li>
-    <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-      <input
-        id="checkbox-item-16"
-        type="checkbox"
-        value=""
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-      />
-      <label
-        htmlFor="checkbox-item-16"
-        className="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-      >
-        Leslie Livingston
-      </label>
-    </div>
-  </li>
-  <li>
-    <div className="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-      <input
-        id="checkbox-item-17"
-        type="checkbox"
-        value=""
-        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-      />
-      <label
-        htmlFor="checkbox-item-17"
-        className="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
-      >
-        Roberta Casas
-      </label>
-    </div>
-  </li>
-</ul>;

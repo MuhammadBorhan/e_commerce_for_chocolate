@@ -5,6 +5,7 @@ import {
 } from "../../features/api/GiftBoxApi";
 import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
+import { useState } from "react";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -20,12 +21,13 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const allSelectGiftBox = getSelectGiftBox?.data;
+  console.log(allSelectGiftBox);
 
-  const selectGiftBox = allGiftbox?.filter(
-    (giftBox) => giftBox?.brandName === brands?.name
+  const selectGiftBox = allSelectGiftBox?.filter(
+    (giftBox) => giftBox?.brand === brands?.name
   );
-  const findSelectGiftBox = allSelectGiftBox?.find((giftBox) => giftBox);
-  // console.log(findSelectGiftBox?.productList);
+
+  const findSelectGiftBox = selectGiftBox?.find((giftBox) => giftBox);
 
   // fetch all events data
   const { data: getEvent } = useGetAllEventQuery(null, {
@@ -44,7 +46,6 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
-  console.log(selectGiftBoxProducts);
 
   // const selectedProducts = products?.filter((brandItem) => {
   //   return (
@@ -56,138 +57,150 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="bg-cover bg-center mt-[-40px]">
+      <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={brands?.image}
+            src={`http://localhost:5000/uploads/${brands?.image}`}
             alt={brands?.name}
-            className="lg:h-[250px] w-full object-center "
+            className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
         </figure>
       </div>
-      {/* search bar */}
-      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-6 border shadow rounded shadow-gray-300">
-        <input
-          className="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
-          type="search"
-          name="search"
-          placeholder="Search"
-        />
-        <button type="submit" className="absolute right-0 top-0 mt-2 mr-4 ">
-          <svg
-            className="h-4 w-4 fill-current"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M11.656 10.562c-1.031.813-2.344 1.313-3.75 1.313-3.313 0-6-2.688-6-6s2.687-6 6-6 6 2.688 6 6c0 1.406-.5 2.719-1.313 3.75l3.563 3.563-1.406 1.407-3.563-3.563zM6 8c0 1.656 1.344 3 3 3s3-1.344 3-3-1.344-3-3-3-3 1.344-3 3z" />
-          </svg>
-        </button>
-      </div>
-      {/* 
-      <div className="flex justify-center mb-16  mt-6 ">
-        <div className="card card-compact rounded-none bg-base-100 shadow-xl">
-          <figure>
-            <img
-              className="w-[200px] lg:w-[300px] "
-              src={findSelectGiftBox?.boxImage}
-              alt={brands?.name}
-            />
-          </figure>
-        </div>
-      </div> */}
 
-      <div className="mb-12 lg:mb-24">
-        {allSelectGiftBox?.map((box, index) => {
-          // console.log(box);
+      <div className="avatar absolute">
+        <div className="w-20 h-20 lg:w-28 mt-[-70px] lg:mt-[-100px] ml-[60px] lg:ml-[160px] lg:h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+          <img
+            src={`http://localhost:5000/uploads/${brands?.logo}`}
+            alt="Logo"
+            className=""
+          />
+        </div>
+      </div>
+
+      <div className="mb-12 lg:mb-24 mt-16">
+        {selectGiftBox?.map((box) => {
           return (
             <div
               key={box?._id}
               className={` p-2 mt-10 w-[50%] lg:w-[25%] m-auto `}
-              style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
+              style={{
+                boxShadow:
+                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              }}
             >
               <div>
                 <img src={`http://localhost:5000/${box?.image}`} />
               </div>
+              <p className="text-center font-bold">{box?.name}</p>
             </div>
           );
         })}
       </div>
 
-      <div className="mb-24">
-        {selectGiftBoxProducts?.map((product, index) => {
-          return (
-            <div
-              key={product?._id}
-              className={`flex items-center justify-between p-8 gap-x-10 my-10 w-full lg:w-[40%] m-auto ${
-                index % 2 === 1 ? "flex-row-reverse" : ""
-              }`}
-              style={{ boxShadow: "1px 1px 1px 2px lightblue" }}
-            >
-              <div>
-                <img
-                  src={product?.image}
-                  className="w-20 lg:w-40 h-20 lg:h-40"
-                />
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 mt-4">
+          {selectGiftBoxProducts?.map((product) => {
+            return (
+              <div key={product?._id} className="card  shadow-xl ">
+                <figure>
+                  <img
+                    src={`http://localhost:5000/${product?.image}`}
+                    alt="Product"
+                  />
+                </figure>
+
+                <div className="card-body sm:w-full">
+                  <h2 className="card-title">
+                    {product?.name}
+                    <div className="badge badge-[#9A583B]">NEW</div>
+                  </h2>
+                  <p>{product.desc}</p>
+                  <p>{product?.desc}</p>
+                  <p className="text-xl font-bold">¥{product?.price}</p>
+                </div>
               </div>
-              <div>
-                <p>{product?.desc}</p>
-                <p className="font-bold">{product?.name}</p>
-                <p className="text-xl font-bold">¥{product?.price}</p>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* event */}
-      {events?.map((event) => {
-        return (
-          event?.status === "Start" && (
-            <div
-              key={event._id}
-              className="w-full lg:w-[40%] m-auto p-4 my-8"
-              style={{ boxShadow: "1px 1px 1px 2px gray" }}
-            >
-              <h1>
-                {event?.title}: {event?.desc}
-              </h1>
-              <div className="py-4">
-                <span className="bg-gray-300 p-1 mr-2">Event Date: </span>
-                <span>{new Date(event?.dateTime).toLocaleString()}</span>
+      <div className="mt-20">
+        {events?.map((event) => {
+          return (
+            event?.status === "Join Now" && (
+              <div
+                key={event._id}
+                className="card grid grid-cols-1 lg:grid-cols-1 lg:w-1/3 sm:w-1/2 bg-base-100 shadow-xl mx-auto border-2  "
+              >
+                <div className="card-body">
+                  <div div className="mb-4">
+                    <img
+                      src={`http://localhost:5000/uploads/${brands?.logo}`}
+                      alt={brands?.name}
+                      className="h-[250px]  mx-auto object-center"
+                    />
+                  </div>
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
+                      Event Title{" "}
+                    </div>
+                    {event?.title}
+                  </div>
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
+                      Event Date{" "}
+                    </div>{" "}
+                    <div>{new Date(event?.dateTime).toLocaleString()}</div>
+                  </div>
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-28 mr-6">
+                      Media{" "}
+                    </div>
+                    <div>Google Meet</div>
+                  </div>
+
+                  <div className=" font-bold flex items-center">
+                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-40 inline-block mr-2">
+                      Description{" "}
+                    </div>
+                    <div> {event?.desc}</div>
+                  </div>
+
+                  <div className="card-actions justify-center mx-auto mt-2">
+                    <div className="mt-2">
+                      <a
+                        target="_blank"
+                        href={event?.gmeet}
+                        className=" w-24 bg-green-500 text-white hover:bg-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                      >
+                        {event?.status}
+                      </a>
+                    </div>
+                    <div className="hidden mt-2">
+                      <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
+                        Meet Link:{" "}
+                      </span>
+                      <a
+                        target="_blank"
+                        href={event?.gmeet}
+                        className="text-blue-500 underline"
+                      >
+                        {event?.gmeet}
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="mb-4">
-                <span className="bg-gray-300 p-1 mr-2">Delivery: </span>
-                <span>Google Meet</span>
-              </div>
-              <div className="">
-                <span className="bg-gray-300 p-1 mr-2">Status: </span>
-                <a
-                  target="_blank"
-                  href={event?.gmeet}
-                  className="text-white px-2 font-bold btn-success"
-                >
-                  {event?.status}
-                </a>
-              </div>
-              <div className="hidden">
-                <span className="bg-gray-300 p-1 mr-2">Meet Link: </span>
-                <a
-                  target="_blank"
-                  href={event?.gmeet}
-                  className="text-blue-500 underline"
-                >
-                  {event?.gmeet}
-                </a>
-              </div>
-            </div>
-          )
-        );
-      })}
+            )
+          );
+        })}
+      </div>
 
       <div className="w-full lg:w-[60%] mt-24 mx-auto">
-        <h1 className="text-center text-2xl font-bold text-indigo-600">
-          Categories
-        </h1>
+        <div className=" text-2xl font-bold text-indigo-600">
+          Similar Product
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
           {allProducts?.map((product) => {
             return (
@@ -195,7 +208,10 @@ const BrandsItem = () => {
                 key={product?._id}
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
-                <img src={product?.image} className="w-[200px] h-[200px] " />
+                <img
+                  src={`http://localhost:5000/${product?.image}`}
+                  className="w-[200px] h-[200px] "
+                />
                 <div className="text-center">
                   <p>{product?.name}</p>
                   <p>{product?.desc}</p>

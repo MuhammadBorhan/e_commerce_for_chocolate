@@ -1,52 +1,73 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { CiCircleRemove } from "react-icons/ci";
+import { useNavigate, useParams } from "react-router-dom";
 
-const NewAddRegion = () => {
+const UpdateRegionDistrict = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [region, setRegion] = useState("");
-  const [district, setDistricts] = useState([]);
+  const [getDistrict, setDistricts] = useState([]);
+  const [newDistrict, setNewDistricts] = useState([]);
+
+  const [regionDistrict, setRegionDistrict] = useState({});
+  useEffect(() => {
+    const url = `http://localhost:5000/api/v1/region/${id}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setRegionDistrict(data?.data);
+        setRegion(data?.data?.region);
+        setDistricts(data?.data?.district);
+      });
+  }, [id]);
 
   const handleDistrictChange = (index, value) => {
-    console.log(index, value);
-    const updatedDistrict = [...district];
-    updatedDistrict[index] = value;
-    setDistricts(updatedDistrict);
+    getDistrict[index] = value;
+  };
+
+  const handleNewDistrictChange = (index, value) => {
+    newDistrict[index] = value;
   };
 
   const handleAddDistrict = () => {
-    const newDistrict = {};
-    setDistricts([...district, newDistrict]);
+    const newDstrct = "";
+    setNewDistricts([...newDistrict, newDstrct]);
   };
 
   const handleRemoveDistrict = (index) => {
-    const updatedDistrcit = [...district];
+    const updatedDistrcit = [...newDistrict];
     updatedDistrcit.splice(index, 1);
-    setDistricts(updatedDistrcit);
+    setNewDistricts(updatedDistrcit);
   };
+  // const district = [...getDistrict, ...newDistrict];
+  // console.log("allDist", allDist);
 
   const handleSubmitDist = async (e) => {
     e.preventDefault();
 
     const newDistrictData = {
       region,
-      district,
+      district: [...getDistrict, ...newDistrict],
     };
     try {
-      await axios.post("http://localhost:5001/api/v1/region", newDistrictData);
+      const res = await axios.patch(
+        `http://localhost:5000/api/v1/region/${id}`,
+        newDistrictData
+      );
+      console.log(res);
 
-      // Reset the form inputs
-      setRegion("");
-      setDistricts([]);
-
-      // Handle success or show a success message
+      if (res) {
+        navigate("/dashboard/regionlist");
+      }
     } catch (error) {
-      // Handle error or show an error message
+      console.log(error);
     }
   };
-
   return (
     <div className="p-8">
-      {/* <h1 className="mb-4 text-blue-500 font-bold">Add Region</h1> */}
       <div className="flex justify-center overflow-auto items-center mt-12">
         <div
           className="card bg-base-100 overflow-auto mb-12 rounded-none"
@@ -54,13 +75,13 @@ const NewAddRegion = () => {
         >
           <div className="card-body">
             <div className="text-center">
-              <h2 className="text-xl font-bold">Add Region And District</h2>
+              <h2 className="text-xl font-bold">Update Region And District</h2>
             </div>
             <form onSubmit={handleSubmitDist}>
               <div className="grid grid-cols-1  my-2">
                 <input
                   type="text"
-                  value={region}
+                  defaultValue={regionDistrict.region}
                   onChange={(e) => setRegion(e.target.value)}
                   placeholder="Region"
                   className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
@@ -69,13 +90,26 @@ const NewAddRegion = () => {
 
               <div>
                 <h1 className="text-xl font-bold my-2">District</h1>
-                {district.map((district, index) => (
+                {regionDistrict?.district?.map((district, index) => (
                   <div className="flex flex-col items-center gap-2" key={index}>
                     <input
                       type="text"
-                      value={district?.name}
+                      defaultValue={district}
                       onChange={(e) =>
                         handleDistrictChange(index, e.target.value)
+                      }
+                      placeholder="District"
+                      className="input input-bordered h-8 rounded-none focus:border-none mt-2 w-full max-w-xs"
+                    />
+                  </div>
+                ))}
+
+                {newDistrict.map((dstrct, index) => (
+                  <div className="flex flex-col items-center gap-2" key={index}>
+                    <input
+                      type="text"
+                      onChange={(e) =>
+                        handleNewDistrictChange(index, e.target.value)
                       }
                       placeholder="District"
                       className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
@@ -107,7 +141,7 @@ const NewAddRegion = () => {
                   type="submit"
                   className="bg-blue-500 px-2 py-1 font-bold text-white "
                 >
-                  Save
+                  Update
                 </button>
               </div>
             </form>
@@ -118,4 +152,4 @@ const NewAddRegion = () => {
   );
 };
 
-export default NewAddRegion;
+export default UpdateRegionDistrict;

@@ -4,6 +4,8 @@ import {
   useGetAllProductsQuery,
   useRemoveProductMutation,
 } from "../../../features/api/productsApi";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProductList = () => {
   const { data } = useGetAllProductsQuery(null, {
@@ -17,8 +19,10 @@ const ProductList = () => {
     const confirm = window.confirm("Are you want do delete?");
     if (confirm) {
       removeProduct(id);
+      toast.success("Successfully Delete");
     }
   };
+
   return (
     <div className="p-8">
       <div className="overflow-x-auto">
@@ -30,6 +34,7 @@ const ProductList = () => {
               <th>Sl No.</th>
               <th>Image</th>
               <th>Product Name</th>
+              <th>Color</th>
               <th>Price</th>
               <th>Brand</th>
               <th>Action</th>
@@ -47,12 +52,15 @@ const ProductList = () => {
                   />{" "}
                 </th>
                 <td>{product?.name}</td>
+                <td>{product?.color}</td>
                 <td>¥{product?.price}</td>
                 <td>{product?.brand}</td>
                 <td className="">
-                  <button className="px-2 bg-blue-600 text-white mr-2">
-                    Edit
-                  </button>
+                  <Link to={`/dashboard/updateproductlist/${product?._id}`}>
+                    <button className="px-2 bg-blue-600 text-white mr-2">
+                      Edit
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleDelete(product?._id)}
                     className="px-2 bg-red-600 text-white"

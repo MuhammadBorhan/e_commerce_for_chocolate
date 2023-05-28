@@ -4,12 +4,13 @@ import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
 import { toast } from "react-toastify";
 
 const AddProdusts = () => {
+  const colors = ["Black", "White", "Milk"];
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
-  const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+  const [color, setcolor] = useState("");
+  const [desc, setDesc] = useState("");
   const [image, setImg] = useState(null);
-  console.log(name, image);
 
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
@@ -18,8 +19,9 @@ const AddProdusts = () => {
       const formData = new FormData();
       formData.append("name", name);
       formData.append("brand", brand);
-      formData.append("desc", desc);
       formData.append("price", price);
+      formData.append("color", color);
+      formData.append("desc", desc);
       formData.append("image", image);
       const response = await axios.post(
         "http://localhost:5000/api/v1/products",
@@ -34,13 +36,14 @@ const AddProdusts = () => {
       // Reset the form inputs
       setName("");
       setBrand("");
+      setcolor("");
       setDesc("");
       setPrice("");
       setImg("");
       toast.success("Successfully added");
     } catch (error) {
       console.error("Error creating product:", error.response.data);
-      toast.error(error.response.data);
+      toast.error(error.response?.data?.error);
     }
   };
 
@@ -68,14 +71,33 @@ const AddProdusts = () => {
                 />
 
                 <select
+                  value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                   className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
                 >
-                  <option disabled selected>
-                    Select Brand
-                  </option>
+                  <option>--Select Brand--</option>
                   {brands?.map((brand) => (
                     <option key={brand?._id}>{brand?.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
+                <input
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder="Price"
+                  className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                />
+
+                <select
+                  value={color}
+                  onChange={(e) => setcolor(e.target.value)}
+                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                >
+                  <option>--Select Color--</option>
+                  {colors?.map((color, index) => (
+                    <option key={index}>{color}</option>
                   ))}
                 </select>
               </div>
@@ -88,13 +110,7 @@ const AddProdusts = () => {
                 placeholder="Description..."
                 required
               ></textarea>
-              <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                placeholder="Price"
-                className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
-              />
+
               <input
                 type="file"
                 accept="image/*"
