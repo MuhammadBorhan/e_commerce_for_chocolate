@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import {
@@ -26,19 +26,6 @@ const GiftItemList = () => {
     }
   };
 
-  const handleSave = async (data) => {
-    try {
-      await axios.post("http://localhost:4000/api/v1/selectgiftbox", data);
-      toast.success("Gift-Box Added Succfess!!!");
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    } catch (error) {
-      console.log(error);
-      toast.error(error?.response?.data?.error);
-    }
-  };
-
   const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
     refetchOnMountOrArgChange: true,
   });
@@ -47,18 +34,26 @@ const GiftItemList = () => {
   const filtering = allGiftBox?.filter((abox) => {
     return selectGiftBox?.some((sbox) => sbox?._id === abox?._id);
   });
+
   const maping = filtering?.find((fltr) => fltr);
 
-  const handleCancel = (id) => {
-    fetch(`http://localhost:4000/api/v1/selectgiftbox/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-    toast.error("Remove Success.");
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+  // enable or disable
+  const handleToggle = async (id, isEnabled) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/v1/selectgiftbox/${id}`,
+        {
+          isEnabled: !isEnabled,
+        }
+      );
+      if (response) {
+        setTimeout(() => {
+          window.location.reload();
+        }, 50);
+      }
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
   };
 
   return (
@@ -66,7 +61,6 @@ const GiftItemList = () => {
       <h1 className="mb-4 text-blue-500 font-bold">Gift Box List</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
-          {/* head */}
           <thead>
             <tr>
               <th>SL. No</th>
@@ -99,21 +93,16 @@ const GiftItemList = () => {
                   </td>
                   <td>{box?.brand}</td>
                   <td>
-                    {maping?._id === box?._id ? (
-                      <button
-                        onClick={() => handleCancel(box?._id)}
-                        className="mr-4 btn btn-error btn-xs text-white"
-                      >
-                        No
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleSave(box)}
-                        className={`btn btn-primary btn-xs text-white`}
-                      >
-                        Yes
-                      </button>
-                    )}
+                    <button
+                      onClick={() => handleToggle(box._id, box.isEnabled)}
+                      className={`${
+                        box.isEnabled === true
+                          ? "bg-red-500 px-2 py-1 text-white font-bold rounded"
+                          : "bg-green-500 px-2 py-1 text-white font-bold rounded"
+                      }`}
+                    >
+                      {box.isEnabled ? "Disable" : "Enable"}
+                    </button>
                   </td>
                   <td>
                     <button

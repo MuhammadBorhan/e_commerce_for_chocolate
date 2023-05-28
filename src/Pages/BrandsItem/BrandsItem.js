@@ -20,12 +20,13 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const allSelectGiftBox = getSelectGiftBox?.data;
+  console.log(allSelectGiftBox);
 
-  const selectGiftBox = allGiftbox?.filter(
-    (giftBox) => giftBox?.brandName === brands?.name
+  const selectGiftBox = allSelectGiftBox?.filter(
+    (giftBox) => giftBox?.brand === brands?.name
   );
-  const findSelectGiftBox = allSelectGiftBox?.find((giftBox) => giftBox);
-  // console.log(findSelectGiftBox?.productList);
+
+  const findSelectGiftBox = selectGiftBox?.find((giftBox) => giftBox);
 
   // fetch all events data
   const { data: getEvent } = useGetAllEventQuery(null, {
@@ -75,28 +76,8 @@ const BrandsItem = () => {
         </div>
       </div>
 
-      {/* search bar */}
-      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-6 border shadow rounded shadow-gray-300">
-        <input
-          className="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
-          type="search"
-          name="search"
-          placeholder="Search"
-        />
-        <button type="submit" className="absolute right-0 top-0 mt-2 mr-4 ">
-          <svg
-            className="h-4 w-4 fill-current"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M11.656 10.562c-1.031.813-2.344 1.313-3.75 1.313-3.313 0-6-2.688-6-6s2.687-6 6-6 6 2.688 6 6c0 1.406-.5 2.719-1.313 3.75l3.563 3.563-1.406 1.407-3.563-3.563zM6 8c0 1.656 1.344 3 3 3s3-1.344 3-3-1.344-3-3-3-3 1.344-3 3z" />
-          </svg>
-        </button>
-      </div>
-
-      <div className="mb-12 lg:mb-24 ">
-        {allSelectGiftBox?.map((box, index) => {
-          // console.log(box);
+      <div className="mb-12 lg:mb-24 mt-16">
+        {selectGiftBox?.map((box) => {
           return (
             <div
               key={box?._id}
@@ -109,51 +90,38 @@ const BrandsItem = () => {
               <div>
                 <img src={`http://localhost:4000/${box?.image}`} />
               </div>
+              <p className="text-center font-bold">{box?.name}</p>
             </div>
           );
         })}
       </div>
 
-      {/* Filter button  */}
-      <div className="flex justify-end sticky top-20 z-50">
-        <select className="select select-error w-full max-w-xs">
-          <option disabled selected>
-            Pick Your Favourite One
-          </option>
-          <option>White Chocolate</option>
-          <option>Black Chocolate</option>
-          <option>Milk Chocolate</option>
-        </select>
-      </div>
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 mt-4">
+          {selectGiftBoxProducts?.map((product) => {
+            return (
+              <div key={product?._id} className="card  shadow-xl ">
+                <figure>
+                  <img
+                    src={`http://localhost:5000/${product?.image}`}
+                    alt="Product"
+                  />
+                </figure>
 
-      {/* <div className="mb-24">
-        {selectGiftBoxProducts?.map((product, index) => {
-          return (
-            <div
-              key={product?._id}
-              className={`flex items-center justify-between p-8 gap-x-10 my-10 w-full lg:w-[40%] m-auto ${
-                index % 2 === 1 ? "flex-row-reverse" : ""
-              }`}
-              style={{
-                boxShadow:
-                  "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-              }}
-            >
-              <div>
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                  className="w-20 lg:w-40 h-20 lg:h-40"
-                />
+                <div className="card-body sm:w-full">
+                  <h2 className="card-title">
+                    {product?.name}
+                    <div className="badge badge-[#9A583B]">NEW</div>
+                  </h2>
+                  <p>{product.desc}</p>
+                  <p>{product?.desc}</p>
+                  <p className="text-xl font-bold">¥{product?.price}</p>
+                </div>
               </div>
-              <div>
-                <p>{product?.desc}</p>
-                <p className="font-bold">{product?.name}</p>
-                <p className="text-xl font-bold">¥{product?.price}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
+            );
+          })}
+        </div>
+      </div>
 
       {/* event */}
       <div className="mt-4">
@@ -228,7 +196,9 @@ const BrandsItem = () => {
       </div>
 
       <div className="w-full lg:w-[60%] mt-24 mx-auto">
-        <div className=" text-2xl font-bold text-indigo-600">Categories</div>
+        <div className=" text-2xl font-bold text-indigo-600">
+          Similar Product
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
           {allProducts?.map((product) => {
             return (
