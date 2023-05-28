@@ -21,12 +21,13 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const allSelectGiftBox = getSelectGiftBox?.data;
+  console.log(allSelectGiftBox);
 
-  const selectGiftBox = allGiftbox?.filter(
-    (giftBox) => giftBox?.brandName === brands?.name
+  const selectGiftBox = allSelectGiftBox?.filter(
+    (giftBox) => giftBox?.brand === brands?.name
   );
-  const findSelectGiftBox = allSelectGiftBox?.find((giftBox) => giftBox);
-  // console.log(findSelectGiftBox?.productList);
+
+  const findSelectGiftBox = selectGiftBox?.find((giftBox) => giftBox);
 
   // fetch all events data
   const { data: getEvent } = useGetAllEventQuery(null, {
@@ -53,20 +54,6 @@ const BrandsItem = () => {
   //   );
   // });
 
-  const [visibleProducts, setVisibleProducts] = useState(3);
-  const totalProducts = selectGiftBoxProducts?.length;
-  const [showAllProducts, setShowAllProducts] = useState(false);
-
-  const handleShowMore = () => {
-    setVisibleProducts(totalProducts);
-    setShowAllProducts(true);
-  };
-
-  const handleShowLess = () => {
-    setVisibleProducts(3);
-    setShowAllProducts(false);
-  };
-
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
@@ -90,28 +77,8 @@ const BrandsItem = () => {
         </div>
       </div>
 
-      {/* search bar */}
-      <div className="relative hidden lg:block text-gray-600 w-[510px] mx-auto my-6 border shadow rounded shadow-gray-300">
-        <input
-          className="bg-white h-8 px-5 pr-10 rounded-full text-sm focus:outline-none w-[500px]"
-          type="search"
-          name="search"
-          placeholder="Search"
-        />
-        <button type="submit" className="absolute right-0 top-0 mt-2 mr-4 ">
-          <svg
-            className="h-4 w-4 fill-current"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M11.656 10.562c-1.031.813-2.344 1.313-3.75 1.313-3.313 0-6-2.688-6-6s2.687-6 6-6 6 2.688 6 6c0 1.406-.5 2.719-1.313 3.75l3.563 3.563-1.406 1.407-3.563-3.563zM6 8c0 1.656 1.344 3 3 3s3-1.344 3-3-1.344-3-3-3-3 1.344-3 3z" />
-          </svg>
-        </button>
-      </div>
-
-      <div className="mb-12 lg:mb-24 ">
-        {allSelectGiftBox?.map((box, index) => {
-          // console.log(box);
+      <div className="mb-12 lg:mb-24 mt-16">
+        {selectGiftBox?.map((box) => {
           return (
             <div
               key={box?._id}
@@ -124,66 +91,37 @@ const BrandsItem = () => {
               <div>
                 <img src={`http://localhost:5000/${box?.image}`} />
               </div>
+              <p className="text-center font-bold">{box?.name}</p>
             </div>
           );
         })}
       </div>
 
-      {/* All Products  */}
-      <div className="flex lg:justify-end sticky top-20  z-50">
-        <select className="select select-error ">
-          <option disabled selected>
-            Pick Your Favourite One
-          </option>
-          <option>White Chocolate</option>
-          <option>Black Chocolate</option>
-          <option>Other Chocolate</option>
-        </select>
-      </div>
-
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 mt-4">
-          {selectGiftBoxProducts
-            ?.slice(0, visibleProducts)
-            ?.map((product, index) => {
-              return (
-                <div key={product?._id} className="card  shadow-xl ">
-                  <figure>
-                    <img
-                      src={`http://localhost:5000/${product?.image}`}
-                      alt="Product"
-                    />
-                  </figure>
+          {selectGiftBoxProducts?.map((product) => {
+            return (
+              <div key={product?._id} className="card  shadow-xl ">
+                <figure>
+                  <img
+                    src={`http://localhost:5000/${product?.image}`}
+                    alt="Product"
+                  />
+                </figure>
 
-                  <div className="card-body sm:w-full">
-                    <h2 className="card-title">
-                      {product?.name}
-                      <div className="badge badge-[#9A583B]">NEW</div>
-                    </h2>
-                    <p>{product.desc}</p>
-                    <p>{product?.desc}</p>
-                    <p className="text-xl font-bold">¥{product?.price}</p>
-                  </div>
+                <div className="card-body sm:w-full">
+                  <h2 className="card-title">
+                    {product?.name}
+                    <div className="badge badge-[#9A583B]">NEW</div>
+                  </h2>
+                  <p>{product.desc}</p>
+                  <p>{product?.desc}</p>
+                  <p className="text-xl font-bold">¥{product?.price}</p>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
-
-        {showAllProducts ? (
-          <button
-            onClick={handleShowLess}
-            className="bg-red-500 text-white px-2 py-1 mt-12 mx-auto block"
-          >
-            Show Less
-          </button>
-        ) : (
-          <button
-            onClick={handleShowMore}
-            className="bg-[#9A583B] text-white px-2 py-1 mt-12 mx-auto block"
-          >
-            Show More
-          </button>
-        )}
       </div>
 
       {/* event */}
@@ -260,7 +198,9 @@ const BrandsItem = () => {
       </div>
 
       <div className="w-full lg:w-[60%] mt-24 mx-auto">
-        <div className=" text-2xl font-bold text-indigo-600">Categories</div>
+        <div className=" text-2xl font-bold text-indigo-600">
+          Similar Product
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
           {allProducts?.map((product) => {
             return (

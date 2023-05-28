@@ -77,6 +77,7 @@ const AddGiftItems = () => {
       toast.error(error?.response?.data?.error);
     }
   };
+
   return (
     <div className="flex justify-center overflow-auto items-center mt-12 px-8 ">
       <div
