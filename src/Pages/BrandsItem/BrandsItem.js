@@ -147,7 +147,7 @@ const BrandsItem = () => {
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 mt-4">
           {selectGiftBoxProducts
-            .slice(0, visibleProducts)
+            ?.slice(0, visibleProducts)
             ?.map((product, index) => {
               return (
                 <div key={product?._id} className="card  shadow-xl ">
