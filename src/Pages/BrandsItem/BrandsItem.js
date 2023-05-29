@@ -84,6 +84,9 @@ const BrandsItem = () => {
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
         </figure>
+        <h2 className="absolute font-bold text-xl mt-[-70px] lg:mt-[-40px] ml-[60px] lg:ml-[285px] text-white">
+          {brands?.name}
+        </h2>
       </div>
 
       <div className="avatar absolute">
@@ -98,7 +101,7 @@ const BrandsItem = () => {
 
       <div>
         {/* Selected gift box image */}
-        <div className="mb-12 lg:mb-12 mt-16">
+        <div className="mb-12 lg:mb-12 mt-10">
           {selectGiftBox?.map((box) => {
             return (
               <div
