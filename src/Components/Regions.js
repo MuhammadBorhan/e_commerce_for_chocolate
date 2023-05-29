@@ -63,8 +63,9 @@ const Regions = () => {
 
   if (regionLoading || isLoading) {
     return (
-      <div className="absolute left-[45%] text-red-500 font-bold text-2xl">
-        Loading...
+      <div className="flex flex-col items-center mt-12">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+        {/* <p className="mt-4 text-gray-900">Loading...</p> */}
       </div>
     );
   }
@@ -85,7 +86,7 @@ const Regions = () => {
       {/* Region list */}
 
       <div>
-        <h4 className="text-2xl font-bold mb-1">Choose Region</h4>
+        <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
           {regions?.map((r, index) => {
             return (
@@ -116,9 +117,9 @@ const Regions = () => {
 
       <div className="">
         {selectedRegion && (
-          <h4 className="text-2xl font-bold mb-1">Choose District</h4>
+          <h4 className="text-2xl font-bold mb-4">Choose District</h4>
         )}
-        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mx-auto">
+        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mx-auto mb-8">
           {selectedRegion?.district?.map((d, index) => (
             <div
               onClick={() => handleBrand(d, index)}
