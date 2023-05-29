@@ -63,8 +63,9 @@ const Regions = () => {
 
   if (regionLoading || isLoading) {
     return (
-      <div className="absolute left-[45%] text-red-500 font-bold text-2xl">
-        Loading...
+      <div className="flex flex-col items-center mt-12">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+        {/* <p className="mt-4 text-gray-900">Loading...</p> */}
       </div>
     );
   }
