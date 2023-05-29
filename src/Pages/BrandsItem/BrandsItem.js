@@ -51,6 +51,7 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
+  console.log(selectGiftBoxProducts);
 
   const [projects, setProjects] = useState();
   useEffect(() => {
@@ -88,9 +89,8 @@ const BrandsItem = () => {
           {brands?.name}
         </h2>
       </div>
-
       <div className="avatar absolute">
-        <div className="w-20 h-20 lg:w-28 mt-[-70px] lg:mt-[-100px] ml-[60px] lg:ml-[160px] lg:h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+        <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
             src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
@@ -272,54 +272,38 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-20">
+      <div className="mt-6">
         {events?.map((event) => {
           return (
             event?.status === "Join Now" && (
               <div
                 key={event._id}
-                className="card grid grid-cols-1 lg:grid-cols-1 lg:w-1/3 sm:w-1/2 bg-base-100 shadow-xl mx-auto border-2  "
+                className="card card-compact mx-auto w-96 bg-base-100 shadow-xl"
               >
+                <figure>
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+                    alt={brands?.name}
+                    className="h-[250px] rounded-md mt-1"
+                  />
+                </figure>
                 <div className="card-body">
-                  <div div className="mb-4">
-                    <img
-                      src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
-                      alt={brands?.name}
-                      className="h-[250px]  mx-auto object-center"
-                    />
-                  </div>
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
-                      Event Title{" "}
-                    </div>
+                  <h3 className="text-2xl italic font-bold text-center">
                     {event?.title}
-                  </div>
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2 text-white text-center rounded w-28 mr-6">
-                      Event Date{" "}
-                    </div>{" "}
-                    <div>{new Date(event?.dateTime).toLocaleString()}</div>
-                  </div>
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-28 mr-6">
-                      Media{" "}
-                    </div>
-                    <div>Google Meet</div>
-                  </div>
-
-                  <div className=" font-bold flex items-center">
-                    <div className="bg-[#9A583B] p-2  text-white text-center rounded w-40 inline-block mr-2">
-                      Description{" "}
-                    </div>
-                    <div> {event?.desc}</div>
-                  </div>
-
-                  <div className="card-actions justify-center mx-auto mt-2">
+                  </h3>
+                  <p className="text-center text-xl italic">
+                    {new Date(event?.dateTime).toLocaleString()}
+                  </p>
+                  <h4 className="text-center">Google Meet</h4>
+                  <p>
+                    <span className="text-xl text-center">{event?.desc}</span>
+                  </p>
+                  <div className="card-actions justify-center mx-auto m-2">
                     <div className="mt-2">
                       <a
                         target="_blank"
                         href={event?.gmeet}
-                        className=" w-24 bg-green-500 text-white hover:bg-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                        className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
                       >
                         {event?.status}
                       </a>

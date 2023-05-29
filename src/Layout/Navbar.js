@@ -13,6 +13,8 @@ const Navbar = () => {
   const { data } = useGetUserQuery();
   const user = data?.data;
 
+  // let { pathname } = useLocation();
+
   // const [user, setUser] = useState({});
   // useEffect(() => {
   //   fetch("https://andy-chocolate-productions.up.railway.app/api/v1/me", {
@@ -194,13 +196,19 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        <label
-          htmlFor="dashboard-drawer"
-          tabIndex={2}
-          className="btn text-white btn-ghost lg:hidden"
-        >
-          <AiOutlineMenu style={{ width: "30px", fontSize: "23px" }} />
-        </label>
+
+        {/* {pathname === "/dashboard" && (
+          <label
+            htmlFor="dashboard-drawer"
+            tabIndex={2}
+            className="btn text-white btn-ghost lg:hidden"
+          >
+            <AiOutlineMenu
+              className=""
+              style={{ width: "30px", fontSize: "23px" }}
+            />
+          </label>
+        )} */}
       </div>
     </div>
   );
