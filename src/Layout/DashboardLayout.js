@@ -143,7 +143,7 @@ const DashboardLayout = () => {
                 tabIndex={0}
                 className="dropdown-content menu shadow bg-slate-200 w-50"
               >
-                <li>
+                <li htmlFor="dashboard-drawer">
                   <Link to="/dashboard/addregion">Add Region & District</Link>
                 </li>
                 <li>
