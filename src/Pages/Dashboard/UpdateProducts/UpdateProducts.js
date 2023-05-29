@@ -166,7 +166,6 @@ const UpdateProducts = () => {
                   <button
                     onClick={handleUpdateProduct}
                     type="submit"
-                    // className="bg-[#5e2006] px-2 py-1 font-bold text-white "
                     className={`mt-4 px-4 py-2 rounded ${
                       term1
                         ? "bg-[#5e2006] text-white cursor-pointer"
@@ -192,7 +191,6 @@ const UpdateProducts = () => {
                   <button
                     onClick={handleUpdateProductWithImage}
                     type="submit"
-                    // className=" px-2 py-1 font-bold text-white "
                     className={`mt-4 px-4 py-2 rounded ${
                       term2
                         ? "bg-[#5e2006] text-white cursor-pointer"
