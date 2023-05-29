@@ -157,21 +157,13 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
-              className="btn bg-transparent hover:bg-transparent border-none"
+              className="btn bg-transparent hover:bg-transparent border-none -mr-4"
             >
               {user ? (
                 <span className="text-sm">
                   {user?.firstName} ({user?.role})
                 </span>
               ) : (
-                // <div className="w-10 rounded-full">
-                //   <img src="https://borhanportfolio.netlify.app/static/media/borhan.d87b28879c1a50ffbd3f.png" />
-                // </div>
-                // <div className="avatar placeholder">
-                //   <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-                //     <span className="text-xs">M</span>
-                //   </div>
-                // </div>
                 <Link to={"/login"} className="bg-transparent">
                   {" "}
                   Login
