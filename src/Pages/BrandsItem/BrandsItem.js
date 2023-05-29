@@ -296,7 +296,7 @@ const BrandsItem = () => {
                   </p>
                   <h4 className="text-center">Google Meet</h4>
                   <p>
-                    <span className="text-xl">{event?.desc}</span>
+                    <span className="text-xl text-center">{event?.desc}</span>
                   </p>
                   <div className="card-actions justify-center mx-auto m-2">
                     <div className="mt-2">

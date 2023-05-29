@@ -42,125 +42,137 @@ const Dashboard = () => {
   const trendItem = trenitem?.data;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 text-center">
-      <Link to="/dashboard/alluser">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl ">
-          <div className="avatar placeholder">
-            <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
-              <span className="text-xl">
-                <HiOutlineUsers></HiOutlineUsers>
-              </span>
+    <div>
+      <div className="flex justify-end">
+        <label
+          htmlFor="dashboard-drawer"
+          tabIndex={2}
+          className="btn text-yellow-900 btn-ghost lg:hidden"
+        >
+          <AiOutlineMenu
+            className=""
+            style={{ width: "30px", fontSize: "23px" }}
+          />
+        </label>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 text-center">
+        <Link to="/dashboard/alluser">
+          <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl ">
+            <div className="avatar placeholder">
+              <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
+                <span className="text-xl">
+                  <HiOutlineUsers></HiOutlineUsers>
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">User {users?.length}</p>
             </div>
           </div>
-          <div>
-            <p className="text-xl font-bold">User {users?.length}</p>
-          </div>
-        </div>
-      </Link>
+        </Link>
 
-      <Link to="/dashboard/brandlist">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
-          <div className="avatar placeholder">
-            <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
-              <span className="text-xl">
-                <SiBrandfolder />
-              </span>
+        <Link to="/dashboard/brandlist">
+          <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
+            <div className="avatar placeholder">
+              <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
+                <span className="text-xl">
+                  <SiBrandfolder />
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">
+                Total Brand {allBrand?.length}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-xl font-bold">Total Brand {allBrand?.length}</p>
-          </div>
-        </div>
-      </Link>
+        </Link>
 
-      <Link to="/dashboard/giftitemlist">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
-          <div className="avatar placeholder">
-            <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
-              <span className="text-xl">
-                <BsGift />
-              </span>
+        <Link to="/dashboard/giftitemlist">
+          <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
+            <div className="avatar placeholder">
+              <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
+                <span className="text-xl">
+                  <BsGift />
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">
+                Total Gift Box {allGiftBox?.length}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-xl font-bold">
-              Total Gift Box {allGiftBox?.length}
-            </p>
-          </div>
-        </div>
-      </Link>
+        </Link>
 
-      <Link to="/dashboard/eventlist">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
-          <div className="avatar placeholder">
-            <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
-              <span className="text-xl">
-                <BsCalendarEvent />
-              </span>
+        <Link to="/dashboard/eventlist">
+          <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
+            <div className="avatar placeholder">
+              <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
+                <span className="text-xl">
+                  <BsCalendarEvent />
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">
+                Total Event {allEvent?.length}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-xl font-bold">Total Event {allEvent?.length}</p>
-          </div>
-        </div>
-      </Link>
+        </Link>
 
-      <Link to="/dashboard/allproduct">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
-          <div className="avatar placeholder">
-            <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
-              <span className="text-xl">
-                <RiProductHuntLine />
-              </span>
+        <Link to="/dashboard/allproduct">
+          <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
+            <div className="avatar placeholder">
+              <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
+                <span className="text-xl">
+                  <RiProductHuntLine />
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">
+                Total Products {products?.length}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-xl font-bold">
-              Total Products {products?.length}
-            </p>
-          </div>
-        </div>
-      </Link>
+        </Link>
 
-      <Link to="/dashboard/regionlist">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
-          <div className="avatar placeholder">
-            <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
-              <span className="text-xl">
-                <CiLocationOn />
-              </span>
+        <Link to="/dashboard/regionlist">
+          <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
+            <div className="avatar placeholder">
+              <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
+                <span className="text-xl">
+                  <CiLocationOn />
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">
+                Total Regions {regions?.length}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-xl font-bold">Total Regions {regions?.length}</p>
-          </div>
-        </div>
-      </Link>
+        </Link>
 
-      <Link to="/dashboard/trendgiftlist">
-        <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
-          <div className="avatar placeholder">
-            <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
-              <span className="text-xl">
-                <TbGiftCard />
-              </span>
+        <Link to="/dashboard/trendgiftlist">
+          <div className="flex justify-between p-4 justify-items-center bg-slate-100 text-success-content rounded-sm shadow-xl">
+            <div className="avatar placeholder">
+              <div className="bg-gradient-to-r from-yellow-800 to-amber-700 text-neutral-content rounded-full w-8">
+                <span className="text-xl">
+                  <TbGiftCard />
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">
+                Trend Gifts {trendItem?.length}
+              </p>
             </div>
           </div>
-          <div>
-            <p className="text-xl font-bold">Trend Gifts {trendItem?.length}</p>
-          </div>
-        </div>
-      </Link>
-      <label
-        htmlFor="dashboard-drawer"
-        tabIndex={2}
-        className="btn text-yellow-900 btn-ghost lg:hidden"
-      >
-        <AiOutlineMenu
-          className=""
-          style={{ width: "30px", fontSize: "23px" }}
-        />
-      </label>
+        </Link>
+      </div>
     </div>
   );
 };
