@@ -80,19 +80,19 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
+            src={`http://localhost:5000/uploads/${brands?.image}`}
             alt={brands?.name}
-            className="lg:h-[200px] w-[80%] mx-auto object-center"
+            className="h-[80px] lg:h-[200px] w-[80%] mx-auto object-center"
           />
         </figure>
-        <h2 className="absolute font-bold text-xl mt-[-70px] lg:mt-[-40px] ml-[60px] lg:ml-[285px] text-white">
+        <h2 className="absolute font-bold lg:text-xl mt-[-30px] lg:mt-[-40px] ml-[135px] lg:ml-[285px] text-white">
           {brands?.name}
         </h2>
       </div>
       <div className="avatar absolute">
-        <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+        <div className="w-16 h-16 lg:w-28 lg:h-28 mt-[-55px] ml-[60px] lg:mt-[-100px] lg:ml-[160px]  object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+            src={`http://localhost:5000/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -113,9 +113,7 @@ const BrandsItem = () => {
                 }}
               >
                 <div>
-                  <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
-                  />
+                  <img src={`http://localhost:5000/${box?.image}`} />
                 </div>
                 <p className="text-center font-bold my-4">{box?.name}</p>
               </div>
@@ -170,7 +168,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -193,7 +191,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -233,7 +231,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            src={`http://localhost:5000/${product?.image}`}
                             alt="Product"
                           />
                         </figure>
@@ -252,7 +250,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            src={`http://localhost:5000/${product?.image}`}
                             alt="Product"
                           />
                         </figure>
@@ -272,17 +270,17 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-6">
+      <div className="mt-12">
         {events?.map((event) => {
           return (
             event?.status === "Join Now" && (
               <div
                 key={event._id}
-                className="card card-compact mx-auto w-96 bg-base-100 shadow-xl"
+                className="card card-compact mx-auto lg:w-96 bg-base-100 shadow-xl"
               >
                 <figure>
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+                    src={`http://localhost:5000/uploads/${brands?.logo}`}
                     alt={brands?.name}
                     className="h-[250px] rounded-md mt-1"
                   />
@@ -295,15 +293,15 @@ const BrandsItem = () => {
                     {new Date(event?.dateTime).toLocaleString()}
                   </p>
                   <h4 className="text-center">Google Meet</h4>
-                  <p>
-                    <span className="text-xl text-center">{event?.desc}</span>
+                  <p className="text-center">
+                    <span className="text-xs">{event?.desc}</span>
                   </p>
                   <div className="card-actions justify-center mx-auto m-2">
                     <div className="mt-2">
                       <a
                         target="_blank"
                         href={event?.gmeet}
-                        className=" w-24 bg-transparent hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                        className=" w-24 bg-transparent  hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
                       >
                         {event?.status}
                       </a>
@@ -330,7 +328,7 @@ const BrandsItem = () => {
 
       {/* Similar Gift Box */}
       <div className="w-full lg:w-[60%] mt-24 mx-auto">
-        <div className=" text-2xl font-bold text-indigo-600">
+        <div className=" text-2xl font-bold text-indigo-600 text-center lg:text-left">
           Similar Gift-Box
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
@@ -341,7 +339,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  src={`http://localhost:5000/${box?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
