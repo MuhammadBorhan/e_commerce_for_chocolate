@@ -70,7 +70,6 @@ const BrandsItem = () => {
     },
   ];
 
-  // const [projects, setProjects] = useState(selectGiftBoxProducts);
   const [projects, setProjects] = useState();
   useEffect(() => {
     setProjects(selectGiftBoxProducts);
@@ -91,8 +90,6 @@ const BrandsItem = () => {
       setProjects(filteredProjects);
     }
   };
-
-  const [active, setActive] = useState(0);
 
   return (
     <div className="p-4 lg:p-12">
@@ -140,51 +137,88 @@ const BrandsItem = () => {
           })}
         </div>
 
+        {/* sidebar menu and color wise scroll selected product for mobile device */}
         <div>
-          <div className="flex flex-col absolute left-[-10px] gap-y-10 z-50 m-auto w-[20px] lg:hidden">
-            {menuNavbar?.map((menu, index) => (
-              <a
-                className={`${
-                  active === index ? "text-red-500" : ""
-                } cursor-pointer capitalize m-4`}
-                key={index}
-                onClick={(e) => {
-                  handleColor(e, index);
-                }}
-              >
-                {menu.name}
-                {/* {menu.name=='all'?'A':menu.name=='Black'?'B':menu.name=='White'?'W':'M'} */}
-              </a>
-            ))}
-            <a className="">D</a>
+          <div className="flex flex-col absolute right-0 mt-2 bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+            <button
+              onClick={() => handleFilter("All")}
+              className={
+                activeFilter === "All" ? "text-green-500 font-bold" : ""
+              }
+            >
+              A
+            </button>
+            <button
+              onClick={() => handleFilter("Black")}
+              className={activeFilter === "Black" ? "active" : ""}
+            >
+              B
+            </button>
+            <button
+              onClick={() => handleFilter("White")}
+              className={activeFilter === "White" ? "active" : ""}
+            >
+              W
+            </button>
+            <button
+              onClick={() => handleFilter("Milk")}
+              className={activeFilter === "Milk" ? "active" : ""}
+            >
+              M
+            </button>
+            <button className="">D</button>
+          </div>
+          <div className="h-[600px] overflow-auto w-[400px] mx-auto mt-8 lg:hidden relative">
+            {projects
+              ? projects?.map((product) => {
+                  return (
+                    <div
+                      key={product?._id}
+                      className="flex items-center p-2 gap-x-5 border"
+                    >
+                      <figure>
+                        <img
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          alt="Product"
+                          className="w-[70px]"
+                        />
+                      </figure>
+
+                      <div className="">
+                        <h2 className="font-bold ">{product?.name}</h2>
+                        <h2 className="font-bold">{product?.color}</h2>
+                        <p>{product?.desc?.slice(0, 50)}</p>
+                        <p className=" font-bold">¥{product?.price}</p>
+                      </div>
+                    </div>
+                  );
+                })
+              : selectGiftBoxProducts?.map((product) => {
+                  return (
+                    <div
+                      key={product?._id}
+                      className="flex items-center p-2 gap-x-5 border"
+                    >
+                      <figure>
+                        <img
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          alt="Product"
+                          className="w-[70px]"
+                        />
+                      </figure>
+
+                      <div className="">
+                        <h2 className="font-bold ">{product?.name}</h2>
+                        <h2 className="font-bold">{product?.color}</h2>
+                        <p>{product?.desc?.slice(0, 50)}</p>
+                        <p className=" font-bold">¥{product?.price}</p>
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
 
-          <div className="h-[600px] overflow-auto w-[400px] mx-auto p-2 mt-8 lg:hidden relative">
-            {projects?.map((product) => {
-              return (
-                <div
-                  key={product?._id}
-                  className="flex items-center p-2 gap-x-5 border"
-                >
-                  <figure>
-                    <img
-                      src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                      alt="Product"
-                      className="w-[70px]"
-                    />
-                  </figure>
-
-                  <div className="">
-                    <h2 className="font-bold ">{product?.name}</h2>
-                    <h2 className="font-bold">{product?.color}</h2>
-                    <p>{product?.desc?.slice(0, 50)}</p>
-                    <p className=" font-bold">¥{product?.price}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
+          {/* tab and color wise selected product for desktop version */}
           <div className="hidden lg:block">
             <div className="tabs hidden lg:block">
               {colors?.map((color, index) => (
