@@ -26,6 +26,11 @@ const BrandsItem = () => {
   const selectGiftBox = allSelectGiftBox?.filter(
     (giftBox) => giftBox?.brand === brands?.name
   );
+  // console.log(selectGiftBox);
+
+  const similarGiftBox = allGiftbox?.filter((box) => {
+    return selectGiftBox?.some((sbox) => sbox?._id !== box?._id);
+  });
 
   const findSelectGiftBox = selectGiftBox?.find((giftBox) => giftBox);
 
@@ -46,35 +51,12 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
-  console.log("select", selectGiftBoxProducts);
-
-  // const selectedProducts = products?.filter((brandItem) => {
-  //   return (
-  //     brandItem?.brandName === brands?.name &&
-  //     brandItem?.district === brands?.district
-  //   );
-  // });
-
-  const menuNavbar = [
-    {
-      name: "All",
-    },
-    {
-      name: "Black",
-    },
-    {
-      name: "White",
-    },
-    {
-      name: "Milk",
-    },
-  ];
 
   const [projects, setProjects] = useState();
   useEffect(() => {
     setProjects(selectGiftBoxProducts);
   }, []);
-  console.log("projects", projects);
+
   const [activeFilter, setActiveFilter] = useState("All");
   const colors = ["All", "Black", "White", "Milk"];
 
@@ -102,6 +84,9 @@ const BrandsItem = () => {
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
         </figure>
+        <h2 className="absolute font-bold text-xl mt-[-70px] lg:mt-[-40px] ml-[60px] lg:ml-[285px] text-white">
+          {brands?.name}
+        </h2>
       </div>
 
       <div className="avatar absolute">
@@ -115,7 +100,8 @@ const BrandsItem = () => {
       </div>
 
       <div>
-        <div className="mb-12 lg:mb-12 mt-16">
+        {/* Selected gift box image */}
+        <div className="mb-12 lg:mb-12 mt-10">
           {selectGiftBox?.map((box) => {
             return (
               <div
@@ -131,15 +117,15 @@ const BrandsItem = () => {
                     src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                   />
                 </div>
-                <p className="text-center font-bold">{box?.name}</p>
+                <p className="text-center font-bold my-4">{box?.name}</p>
               </div>
             );
           })}
         </div>
 
-        {/* sidebar menu and color wise scroll selected product for mobile device */}
         <div>
-          <div className="flex flex-col absolute right-0 mt-2 bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+          {/* sidebar menu and color wise scroll selected product for mobile device */}
+          <div className="flex flex-col absolute right-0 mt- bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
             <button
               onClick={() => handleFilter("All")}
               className={
@@ -150,25 +136,31 @@ const BrandsItem = () => {
             </button>
             <button
               onClick={() => handleFilter("Black")}
-              className={activeFilter === "Black" ? "active" : ""}
+              className={
+                activeFilter === "Black" ? "text-green-500 font-bold" : ""
+              }
             >
               B
             </button>
             <button
               onClick={() => handleFilter("White")}
-              className={activeFilter === "White" ? "active" : ""}
+              className={
+                activeFilter === "White" ? "text-green-500 font-bold" : ""
+              }
             >
               W
             </button>
             <button
               onClick={() => handleFilter("Milk")}
-              className={activeFilter === "Milk" ? "active" : ""}
+              className={
+                activeFilter === "Milk" ? "text-green-500 font-bold" : ""
+              }
             >
               M
             </button>
             <button className="">D</button>
           </div>
-          <div className="h-[600px] overflow-auto w-[400px] mx-auto mt-8 lg:hidden relative">
+          <div className="h-[600px] overflow-auto mx-auto mt-8 lg:hidden relative">
             {projects
               ? projects?.map((product) => {
                   return (
@@ -352,25 +344,24 @@ const BrandsItem = () => {
         })}
       </div>
 
+      {/* Similar Gift Box */}
       <div className="w-full lg:w-[60%] mt-24 mx-auto">
         <div className=" text-2xl font-bold text-indigo-600">
-          Similar Product
+          Similar Gift-Box
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
-          {allProducts?.map((product) => {
+          {similarGiftBox?.map((box) => {
             return (
               <div
-                key={product?._id}
+                key={box?._id}
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
-                  <p>{product?.name}</p>
-                  <p>{product?.desc}</p>
-                  <p>${product?.price}</p>
+                  <p className="font-bold my-2">{box?.name}</p>
                 </div>
                 <button className="px-2 py-1 bg-[#9A583B] mt-4 text-white font-bold">
                   Add To Cart
