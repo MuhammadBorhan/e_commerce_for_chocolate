@@ -85,7 +85,7 @@ const Regions = () => {
       {/* Region list */}
 
       <div>
-        <h4 className="text-2xl font-bold mb-1">Choose Region</h4>
+        <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
           {regions?.map((r, index) => {
             return (
@@ -116,9 +116,9 @@ const Regions = () => {
 
       <div className="">
         {selectedRegion && (
-          <h4 className="text-2xl font-bold mb-1">Choose District</h4>
+          <h4 className="text-2xl font-bold mb-4">Choose District</h4>
         )}
-        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mx-auto">
+        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mx-auto mb-8">
           {selectedRegion?.district?.map((d, index) => (
             <div
               onClick={() => handleBrand(d, index)}
@@ -158,7 +158,7 @@ const Regions = () => {
           <SwiperSlide className="bswiper-slide" key={index}>
             <Link to={`/brands/${product?.name}`} state={product} key={index}>
               <img
-                src={`http://localhost:5000/uploads/${product?.logo}`}
+                src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.logo}`}
                 alt={product?.name}
               />
               <p>{product?.name}</p>

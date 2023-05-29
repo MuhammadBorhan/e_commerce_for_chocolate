@@ -17,7 +17,7 @@ const UpdateProducts = () => {
   const [product, setProduct] = useState({});
   console.log(product.image);
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/products/${id}`;
+    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/products/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data?.data));
@@ -38,7 +38,7 @@ const UpdateProducts = () => {
     console.log(data);
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/products/${id}`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/products/${id}`,
         data,
         {
           headers: {

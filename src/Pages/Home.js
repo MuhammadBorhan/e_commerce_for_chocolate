@@ -13,7 +13,7 @@ const Home = () => {
       <MobileSearch />
       <HeaderMenu />
       <HeroSlider />
-      <CategorySwiper />
+      {/* <CategorySwiper /> */}
       <Regions />
       <SameDayDelivery />
       <Footer />

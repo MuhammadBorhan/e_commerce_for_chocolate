@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../features/api/loginApi";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+
   const { data } = useGetUserQuery();
   const user = data?.data;
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
-  //   fetch("http://localhost:5000/api/v1/me", {
+  //   fetch("https://andy-chocolate-productions.up.railway.app/api/v1/me", {
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -37,7 +39,8 @@ const Navbar = () => {
       {/* menu icon for mobile device */}
       <div
         onClick={() => setModelMenu(!modelMenu)}
-        className="float-left text-white px-3 flex items-center lg:hidden "
+        className="float-left text-white px-3 items-center hidden"
+        // className="float-left text-white px-3 flex items-center lg:hidden "
         style={{ height: "70px", backgroundColor: "#9A583B" }}
       >
         <AiOutlineMenu
@@ -49,7 +52,8 @@ const Navbar = () => {
       {/* menu icon for desktop device */}
       <div
         onClick={() => setModelMenu(!modelMenu)}
-        className="float-left text-white px-3 lg:flex items-center hidden  "
+        className="float-left text-white px-3 items-center hidden"
+        // className="float-left text-white px-3 lg:flex items-center hidden"
         style={{
           height: "70px",
           backgroundColor: "#9A583B",
@@ -195,10 +199,7 @@ const Navbar = () => {
           tabIndex={2}
           className="btn text-white btn-ghost lg:hidden"
         >
-          <AiOutlineMenu
-            className=""
-            style={{ width: "30px", fontSize: "23px" }}
-          />
+          <AiOutlineMenu style={{ width: "30px", fontSize: "23px" }} />
         </label>
       </div>
     </div>
