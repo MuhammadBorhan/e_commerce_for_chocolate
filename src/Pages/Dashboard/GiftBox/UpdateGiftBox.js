@@ -14,7 +14,7 @@ const UpdateGiftBox = () => {
 
   const [giftBoxItem, setGiftBoxItem] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/giftbox/${id}`;
+    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/giftbox/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setGiftBoxItem(data?.data));
@@ -31,7 +31,7 @@ const UpdateGiftBox = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/giftbox/${id}`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/giftbox/${id}`,
         data,
         {
           headers: {

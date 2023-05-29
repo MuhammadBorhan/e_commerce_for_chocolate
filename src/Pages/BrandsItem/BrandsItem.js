@@ -46,6 +46,7 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
+  console.log("select", selectGiftBoxProducts);
 
   // const selectedProducts = products?.filter((brandItem) => {
   //   return (
@@ -56,7 +57,7 @@ const BrandsItem = () => {
 
   const menuNavbar = [
     {
-      name: "all",
+      name: "All",
     },
     {
       name: "Black",
@@ -69,24 +70,25 @@ const BrandsItem = () => {
     },
   ];
 
-  const [item, setItem] = useState({ name: "all" });
-  const [projects, setProjects] = useState([]);
-  const [active, setActive] = useState(0);
-
+  const [projects, setProjects] = useState();
   useEffect(() => {
-    if (item.name === "all") {
+    setProjects(selectGiftBoxProducts);
+  }, []);
+  console.log("projects", projects);
+  const [activeFilter, setActiveFilter] = useState("All");
+  const colors = ["All", "Black", "White", "Milk"];
+
+  const handleFilter = (filter) => {
+    setActiveFilter(filter);
+
+    if (filter === "All") {
       setProjects(selectGiftBoxProducts);
     } else {
-      const newProjects = selectGiftBoxProducts.filter((project) => {
-        return project.color.toLowerCase() === item.name;
-      });
-      setProjects(newProjects);
+      const filteredProjects = selectGiftBoxProducts.filter(
+        (project) => project.color === filter
+      );
+      setProjects(filteredProjects);
     }
-  }, [item]);
-
-  const handleColor = (e, index) => {
-    setItem({ name: e.target.textContent.toLowerCase() });
-    setActive(index);
   };
 
   return (
@@ -95,7 +97,7 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`http://localhost:5000/uploads/${brands?.image}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
             alt={brands?.name}
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
@@ -105,7 +107,7 @@ const BrandsItem = () => {
       <div className="avatar absolute">
         <div className="w-20 h-20 lg:w-28 mt-[-70px] lg:mt-[-100px] ml-[60px] lg:ml-[160px] lg:h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`http://localhost:5000/uploads/${brands?.logo}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -125,7 +127,9 @@ const BrandsItem = () => {
                 }}
               >
                 <div>
-                  <img src={`http://localhost:5000/${box?.image}`} />
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  />
                 </div>
                 <p className="text-center font-bold">{box?.name}</p>
               </div>
@@ -133,89 +137,143 @@ const BrandsItem = () => {
           })}
         </div>
 
+        {/* sidebar menu and color wise scroll selected product for mobile device */}
         <div>
-          <div className="tabs hidden lg:block">
-            {menuNavbar?.map((menu, index) => (
-              <a
-                className={`${
-                  active === index ? "tab tab-bordered tab-active" : ""
-                } cursor-pointer capitalize m-4`}
-                key={index}
-                onClick={(e) => {
-                  handleColor(e, index);
-                }}
-              >
-                {menu.name}
-              </a>
-            ))}
-
-            <a className="tab tab-bordered">Description</a>
+          <div className="flex flex-col absolute right-0 mt-2 bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+            <button
+              onClick={() => handleFilter("All")}
+              className={
+                activeFilter === "All" ? "text-green-500 font-bold" : ""
+              }
+            >
+              A
+            </button>
+            <button
+              onClick={() => handleFilter("Black")}
+              className={activeFilter === "Black" ? "active" : ""}
+            >
+              B
+            </button>
+            <button
+              onClick={() => handleFilter("White")}
+              className={activeFilter === "White" ? "active" : ""}
+            >
+              W
+            </button>
+            <button
+              onClick={() => handleFilter("Milk")}
+              className={activeFilter === "Milk" ? "active" : ""}
+            >
+              M
+            </button>
+            <button className="">D</button>
           </div>
+          <div className="h-[600px] overflow-auto w-[400px] mx-auto mt-8 lg:hidden relative">
+            {projects
+              ? projects?.map((product) => {
+                  return (
+                    <div
+                      key={product?._id}
+                      className="flex items-center p-2 gap-x-5 border"
+                    >
+                      <figure>
+                        <img
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          alt="Product"
+                          className="w-[70px]"
+                        />
+                      </figure>
 
-          <div className="flex flex-col absolute left-[-10px] gap-y-10 z-50 m-auto w-[20px] lg:hidden">
-            {menuNavbar?.map((menu, index) => (
-              <a
-                className={`${
-                  active === index ? "text-red-500" : ""
-                } cursor-pointer capitalize m-4`}
-                key={index}
-                onClick={(e) => {
-                  handleColor(e, index);
-                }}
-              >
-                {menu.name}
-                {/* {menu.name=='all'?'A':menu.name=='Black'?'B':menu.name=='White'?'W':'M'} */}
-              </a>
-            ))}
-            <a className="">D</a>
-          </div>
-
-          <div className="h-[600px] overflow-auto w-[400px] mx-auto p-2 mt-8 lg:hidden relative">
-            {projects?.map((product) => {
-              return (
-                <div
-                  key={product?._id}
-                  className="flex items-center p-2 gap-x-5 border"
-                >
-                  <figure>
-                    <img
-                      src={`http://localhost:5000/${product?.image}`}
-                      alt="Product"
-                      className="w-[70px]"
-                    />
-                  </figure>
-
-                  <div className="">
-                    <h2 className="font-bold ">{product?.name}</h2>
-                    <h2 className="font-bold">{product?.color}</h2>
-                    <p>{product?.desc.slice(0, 50)}</p>
-                    <p className=" font-bold">¥{product?.price}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="hidden lg:block">
-            <div className="grid lg:grid-cols-4 gap-10 mt-12">
-              {projects?.map((product) => {
-                return (
-                  <div key={product?._id} className="card shadow-xl ">
-                    <figure>
-                      <img
-                        src={`http://localhost:5000/${product?.image}`}
-                        alt="Product"
-                      />
-                    </figure>
-
-                    <div className="card-body sm:w-full text-center">
-                      <h2 className="font-bold text-xl">{product?.name}</h2>
-                      <h2 className="font-bold">{product?.color}</h2>
-                      <p>{product?.desc}</p>
-                      <p className="text-xl font-bold">¥{product?.price}</p>
+                      <div className="">
+                        <h2 className="font-bold ">{product?.name}</h2>
+                        <h2 className="font-bold">{product?.color}</h2>
+                        <p>{product?.desc?.slice(0, 50)}</p>
+                        <p className=" font-bold">¥{product?.price}</p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              : selectGiftBoxProducts?.map((product) => {
+                  return (
+                    <div
+                      key={product?._id}
+                      className="flex items-center p-2 gap-x-5 border"
+                    >
+                      <figure>
+                        <img
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          alt="Product"
+                          className="w-[70px]"
+                        />
+                      </figure>
+
+                      <div className="">
+                        <h2 className="font-bold ">{product?.name}</h2>
+                        <h2 className="font-bold">{product?.color}</h2>
+                        <p>{product?.desc?.slice(0, 50)}</p>
+                        <p className=" font-bold">¥{product?.price}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+          </div>
+
+          {/* tab and color wise selected product for desktop version */}
+          <div className="hidden lg:block">
+            <div className="tabs hidden lg:block">
+              {colors?.map((color, index) => (
+                <button
+                  onClick={() => handleFilter(color)}
+                  className={`${
+                    activeFilter === color ? " tab tab-bordered tab-active" : ""
+                  } tab tab-bordered`}
+                  key={index}
+                >
+                  {color}
+                </button>
+              ))}
+              <a className="tab tab-bordered">Description</a>
+            </div>
+            <div className="grid lg:grid-cols-4 gap-10 mt-12">
+              {projects
+                ? projects?.map((product) => {
+                    return (
+                      <div key={product?._id} className="card shadow-xl ">
+                        <figure>
+                          <img
+                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            alt="Product"
+                          />
+                        </figure>
+
+                        <div className="card-body sm:w-full text-center">
+                          <h2 className="font-bold text-xl">{product?.name}</h2>
+                          <h2 className="font-bold">{product?.color}</h2>
+                          <p>{product?.desc}</p>
+                          <p className="text-xl font-bold">¥{product?.price}</p>
+                        </div>
+                      </div>
+                    );
+                  })
+                : selectGiftBoxProducts?.map((product) => {
+                    return (
+                      <div key={product?._id} className="card shadow-xl ">
+                        <figure>
+                          <img
+                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            alt="Product"
+                          />
+                        </figure>
+
+                        <div className="card-body sm:w-full text-center">
+                          <h2 className="font-bold text-xl">{product?.name}</h2>
+                          <h2 className="font-bold">{product?.color}</h2>
+                          <p>{product?.desc}</p>
+                          <p className="text-xl font-bold">¥{product?.price}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
             </div>
           </div>
         </div>
@@ -233,7 +291,7 @@ const BrandsItem = () => {
                 <div className="card-body">
                   <div div className="mb-4">
                     <img
-                      src={`http://localhost:5000/uploads/${brands?.logo}`}
+                      src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
                       alt={brands?.name}
                       className="h-[250px]  mx-auto object-center"
                     />
@@ -306,7 +364,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`http://localhost:5000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
