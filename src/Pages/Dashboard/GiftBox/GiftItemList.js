@@ -80,7 +80,7 @@ const GiftItemList = () => {
                   <td>{box?.name}</td>
                   <td>
                     <img
-                      src={`http://localhost:4000/${box?.image}`}
+                      src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                       className="w-16"
                     />
                   </td>

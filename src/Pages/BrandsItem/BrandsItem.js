@@ -96,7 +96,7 @@ const BrandsItem = () => {
       <div className="bg-cover bg-center relative ">
         <figure>
           <img
-            src={`http://localhost:4000/uploads/${brands?.image}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
             alt={brands?.name}
             className="lg:h-[200px] w-[80%] mx-auto object-center"
           />
@@ -105,7 +105,7 @@ const BrandsItem = () => {
       <div className="avatar absolute">
         <div className="w-28 h-28 object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
           <img
-            src={`http://localhost:4000/uploads/${brands?.logo}`}
+            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
             className=""
           />
@@ -232,7 +232,7 @@ const BrandsItem = () => {
               >
                 <figure>
                   <img
-                    src={`http://localhost:4000/uploads/${brands?.logo}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
                     alt={brands?.name}
                     className="h-[250px] rounded-md mt-1"
                   />
@@ -290,7 +290,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`http://localhost:4000/${product?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">

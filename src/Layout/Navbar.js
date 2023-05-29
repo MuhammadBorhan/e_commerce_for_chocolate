@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
 import { useSelector } from "react-redux";
@@ -11,9 +11,11 @@ const Navbar = () => {
   const { data } = useGetUserQuery();
   const user = data?.data;
 
+  // let { pathname } = useLocation();
+
   // const [user, setUser] = useState({});
   // useEffect(() => {
-  //   fetch("http://localhost:4000/api/v1/me", {
+  //   fetch("https://andy-chocolate-productions.up.railway.app/api/v1/me", {
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -190,16 +192,19 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        <label
-          htmlFor="dashboard-drawer"
-          tabIndex={2}
-          className="btn text-white btn-ghost lg:hidden"
-        >
-          <AiOutlineMenu
-            className=""
-            style={{ width: "30px", fontSize: "23px" }}
-          />
-        </label>
+
+        {/* {pathname === "/dashboard" && (
+          <label
+            htmlFor="dashboard-drawer"
+            tabIndex={2}
+            className="btn text-white btn-ghost lg:hidden"
+          >
+            <AiOutlineMenu
+              className=""
+              style={{ width: "30px", fontSize: "23px" }}
+            />
+          </label>
+        )} */}
       </div>
     </div>
   );

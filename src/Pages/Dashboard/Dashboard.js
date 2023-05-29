@@ -13,6 +13,7 @@ import { BsCalendarEvent, BsGift } from "react-icons/bs";
 import { TbGiftCard } from "react-icons/tb";
 import { RiProductHuntLine } from "react-icons/ri";
 import { CiLocationOn } from "react-icons/ci";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Dashboard = () => {
   const { data, isLoading } = useGetAllUserQuery();
@@ -150,6 +151,16 @@ const Dashboard = () => {
           </div>
         </div>
       </Link>
+      <label
+        htmlFor="dashboard-drawer"
+        tabIndex={2}
+        className="btn text-yellow-900 btn-ghost lg:hidden"
+      >
+        <AiOutlineMenu
+          className=""
+          style={{ width: "30px", fontSize: "23px" }}
+        />
+      </label>
     </div>
   );
 };
