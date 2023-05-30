@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../features/api/loginApi";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+
   const { data } = useGetUserQuery();
   const user = data?.data;
+
+  // let { pathname } = useLocation();
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
@@ -37,7 +41,8 @@ const Navbar = () => {
       {/* menu icon for mobile device */}
       <div
         onClick={() => setModelMenu(!modelMenu)}
-        className="float-left text-white px-3 flex items-center lg:hidden "
+        className="float-left text-white px-3 items-center hidden"
+        // className="float-left text-white px-3 flex items-center lg:hidden "
         style={{ height: "70px", backgroundColor: "#9A583B" }}
       >
         <AiOutlineMenu
@@ -49,7 +54,8 @@ const Navbar = () => {
       {/* menu icon for desktop device */}
       <div
         onClick={() => setModelMenu(!modelMenu)}
-        className="float-left text-white px-3 lg:flex items-center hidden  "
+        className="float-left text-white px-3 items-center hidden"
+        // className="float-left text-white px-3 lg:flex items-center hidden"
         style={{
           height: "70px",
           backgroundColor: "#9A583B",
@@ -151,21 +157,13 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
-              className="btn bg-transparent hover:bg-transparent border-none"
+              className="btn bg-transparent hover:bg-transparent border-none -mr-4"
             >
               {user ? (
                 <span className="text-sm">
                   {user?.firstName} ({user?.role})
                 </span>
               ) : (
-                // <div className="w-10 rounded-full">
-                //   <img src="https://borhanportfolio.netlify.app/static/media/borhan.d87b28879c1a50ffbd3f.png" />
-                // </div>
-                // <div className="avatar placeholder">
-                //   <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-                //     <span className="text-xs">M</span>
-                //   </div>
-                // </div>
                 <Link to={"/login"} className="bg-transparent">
                   {" "}
                   Login
@@ -190,16 +188,19 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        <label
-          htmlFor="dashboard-drawer"
-          tabIndex={2}
-          className="btn text-white btn-ghost lg:hidden"
-        >
-          <AiOutlineMenu
-            className=""
-            style={{ width: "30px", fontSize: "23px" }}
-          />
-        </label>
+
+        {/* {pathname === "/dashboard" && (
+          <label
+            htmlFor="dashboard-drawer"
+            tabIndex={2}
+            className="btn text-white btn-ghost lg:hidden"
+          >
+            <AiOutlineMenu
+              className=""
+              style={{ width: "30px", fontSize: "23px" }}
+            />
+          </label>
+        )} */}
       </div>
     </div>
   );
