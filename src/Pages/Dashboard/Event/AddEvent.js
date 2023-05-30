@@ -141,15 +141,6 @@ const AddEvent = () => {
 
                 <div className="hero">
                   <div className="hero-content flex-col">
-                    {/* <DayPicker
-                    mode="single"
-                    selected={selected}
-                    onSelect={setSelected}
-                    onChange={(e) => handleDate(e)}
-                  />
-                  <p className="text-red-700 text-center text-2xl mt-2">
-                    Our Event Date is: {format(selected, "PPpp")}
-                  </p> */}
                     <DateTimePicker value={dateTime} onChange={setDateTime} />
                   </div>
                 </div>
