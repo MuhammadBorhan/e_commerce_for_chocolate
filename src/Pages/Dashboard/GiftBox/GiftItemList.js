@@ -41,7 +41,7 @@ const GiftItemList = () => {
   const handleToggle = async (id, isEnabled) => {
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/selectgiftbox/${id}`,
+        `http://localhost:5003/api/v1/selectgiftbox/${id}`,
         {
           isEnabled: !isEnabled,
         }
@@ -80,7 +80,7 @@ const GiftItemList = () => {
                   <td>{box?.name}</td>
                   <td>
                     <img
-                      src={`http://localhost:5001/${box?.image}`}
+                      src={`http://localhost:5003/${box?.image}`}
                       className="w-16"
                     />
                   </td>
