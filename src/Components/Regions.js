@@ -119,7 +119,7 @@ const Regions = () => {
         {selectedRegion && (
           <h4 className="text-2xl font-bold mb-4">Choose District</h4>
         )}
-        <div className="grid grid-cols-4 lg:grid-cols-6 gap-4 mx-auto mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mx-auto mb-8">
           {selectedRegion?.district?.map((d, index) => (
             <div
               onClick={() => handleBrand(d, index)}

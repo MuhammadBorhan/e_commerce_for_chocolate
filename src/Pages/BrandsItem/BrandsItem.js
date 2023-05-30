@@ -176,9 +176,9 @@ const BrandsItem = () => {
 
                       <div className="">
                         <h2 className="font-bold ">{product?.name}</h2>
-                        <h2 className="font-bold">{product?.color}</h2>
+                        {/* <h2 className="font-bold">{product?.color}</h2> */}
                         <p>{product?.desc?.slice(0, 50)}</p>
-                        <p className=" font-bold">¥{product?.price}</p>
+                        {/* <p className=" font-bold">¥{product?.price}</p> */}
                       </div>
                     </div>
                   );
@@ -199,9 +199,9 @@ const BrandsItem = () => {
 
                       <div className="">
                         <h2 className="font-bold ">{product?.name}</h2>
-                        <h2 className="font-bold">{product?.color}</h2>
+                        {/* <h2 className="font-bold">{product?.color}</h2> */}
                         <p>{product?.desc?.slice(0, 50)}</p>
-                        <p className=" font-bold">¥{product?.price}</p>
+                        {/* <p className=" font-bold">¥{product?.price}</p> */}
                       </div>
                     </div>
                   );
@@ -238,9 +238,9 @@ const BrandsItem = () => {
 
                         <div className="card-body sm:w-full text-center">
                           <h2 className="font-bold text-xl">{product?.name}</h2>
-                          <h2 className="font-bold">{product?.color}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
                           <p>{product?.desc}</p>
-                          <p className="text-xl font-bold">¥{product?.price}</p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
                       </div>
                     );
@@ -257,9 +257,9 @@ const BrandsItem = () => {
 
                         <div className="card-body sm:w-full text-center">
                           <h2 className="font-bold text-xl">{product?.name}</h2>
-                          <h2 className="font-bold">{product?.color}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
                           <p>{product?.desc}</p>
-                          <p className="text-xl font-bold">¥{product?.price}</p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
                       </div>
                     );
@@ -270,10 +270,10 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-12">
+      <div className="mt-12 ">
         {events?.map((event) => {
           return (
-            event?.status === "Join Now" && (
+            event?.status === "Start" && (
               <div
                 key={event._id}
                 className="card card-compact mx-auto lg:w-96 bg-base-100 shadow-xl"
@@ -286,7 +286,7 @@ const BrandsItem = () => {
                   />
                 </figure>
                 <div className="card-body">
-                  <h3 className="text-2xl italic font-bold text-center">
+                  <h3 className="text-2xl italic font-bold text-emerald-600 text-justify">
                     {event?.title}
                   </h3>
                   <p className="text-center text-xl italic">

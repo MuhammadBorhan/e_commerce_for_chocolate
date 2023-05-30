@@ -127,7 +127,7 @@ const AddEvent = () => {
                     </option>
                     <option>Pending</option>
                     <option>Cancel</option>
-                    <option>Join Now</option>
+                    <option>Start</option>
                     <option>Finish</option>
                   </select>
 
