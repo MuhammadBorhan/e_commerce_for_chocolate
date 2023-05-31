@@ -17,6 +17,7 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const allGiftbox = getGiftBox?.data;
+  console.log(allGiftbox);
 
   const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
     refetchOnMountOrArgChange: true,
@@ -77,31 +78,25 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="bg-cover bg-center relative ">
-        <figure>
-          <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
-            alt={brands?.name}
-            className="h-[80px] lg:h-[200px] w-[80%] mx-auto object-center"
-          />
-        </figure>
-        <h2 className="absolute font-bold lg:text-xl mt-[-30px] lg:mt-[-40px] ml-[135px] lg:ml-[285px] text-white">
-          {brands?.name}
-        </h2>
-      </div>
-      <div className="avatar absolute">
-        <div className="w-16 h-16 lg:w-28 lg:h-28 mt-[-55px] ml-[60px] lg:mt-[-100px] lg:ml-[160px]  object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+      <div className="relative -mt-10">
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900 opacity-75"></div> */}
+        <img
+          src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
+          alt={brands?.name}
+          className="w-full h-[200px] object-center opacity-75"
+        />
+        <div className="absolute bottom-10 left-10 flex items-center ">
           <img
             src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
-            className=""
+            className="w-full h-full object-center "
           />
         </div>
       </div>
 
       <div>
         {/* Selected gift box image */}
-        <div className="mb-12 lg:mb-12 mt-10">
+        {/* <div className="mb-12 lg:mb-12 mt-10">
           {selectGiftBox?.map((box) => {
             return (
               <div
@@ -113,14 +108,44 @@ const BrandsItem = () => {
                 }}
               >
                 <div>
-                  <img src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`} />
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  />
                 </div>
                 <p className="text-center font-bold my-4">{box?.name}</p>
               </div>
             );
           })}
+        </div> */}
+        <div className="hero  mt-2">
+          {selectGiftBox?.map((box) => {
+            return (
+              <div key={box?._id} className="hero-content flex-col lg:flex-row">
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  alt=""
+                  className="max-w-sm rounded-lg shadow-xl"
+                />
+                <div>
+                  <h1 className="text-xl text-green-500 font-bold">
+                    {box?.name}
+                  </h1>
+                  <h3 className="">Price:10</h3>
+                  <h3 className="">Qunatity:5</h3>
+                  <p className="">
+                    This chocolate is good its not fatty. One of the best
+                    chocolate in our brand.
+                    <br /> You can try it easily wot a sweet flavour.So You can
+                    order it also
+                  </p>
+                  <button className=" px-2  bg-[#9A583B] mt-16 text-white font-bold">
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
-
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
           <div className="flex flex-col absolute right-0 mt- bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
@@ -176,9 +201,9 @@ const BrandsItem = () => {
 
                       <div className="">
                         <h2 className="font-bold ">{product?.name}</h2>
-                        <h2 className="font-bold">{product?.color}</h2>
+                        {/* <h2 className="font-bold">{product?.color}</h2> */}
                         <p>{product?.desc?.slice(0, 50)}</p>
-                        <p className=" font-bold">¥{product?.price}</p>
+                        {/* <p className=" font-bold">¥{product?.price}</p> */}
                       </div>
                     </div>
                   );
@@ -199,9 +224,9 @@ const BrandsItem = () => {
 
                       <div className="">
                         <h2 className="font-bold ">{product?.name}</h2>
-                        <h2 className="font-bold">{product?.color}</h2>
+                        {/* <h2 className="font-bold">{product?.color}</h2> */}
                         <p>{product?.desc?.slice(0, 50)}</p>
-                        <p className=" font-bold">¥{product?.price}</p>
+                        {/* <p className=" font-bold">¥{product?.price}</p> */}
                       </div>
                     </div>
                   );
@@ -238,9 +263,9 @@ const BrandsItem = () => {
 
                         <div className="card-body sm:w-full text-center">
                           <h2 className="font-bold text-xl">{product?.name}</h2>
-                          <h2 className="font-bold">{product?.color}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
                           <p>{product?.desc}</p>
-                          <p className="text-xl font-bold">¥{product?.price}</p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
                       </div>
                     );
@@ -257,9 +282,9 @@ const BrandsItem = () => {
 
                         <div className="card-body sm:w-full text-center">
                           <h2 className="font-bold text-xl">{product?.name}</h2>
-                          <h2 className="font-bold">{product?.color}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
                           <p>{product?.desc}</p>
-                          <p className="text-xl font-bold">¥{product?.price}</p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
                       </div>
                     );
@@ -270,10 +295,10 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-12">
+      <div className="mt-12 ">
         {events?.map((event) => {
           return (
-            event?.status === "Join Now" && (
+            event?.status === "Start" && (
               <div
                 key={event._id}
                 className="card card-compact mx-auto lg:w-96 bg-base-100 shadow-xl"
@@ -286,7 +311,7 @@ const BrandsItem = () => {
                   />
                 </figure>
                 <div className="card-body">
-                  <h3 className="text-2xl italic font-bold text-center">
+                  <h3 className="text-2xl italic font-bold text-emerald-600 text-justify">
                     {event?.title}
                   </h3>
                   <p className="text-center text-xl italic">

@@ -7,6 +7,7 @@ import {
 } from "../../../features/api/eventApi";
 import { toast } from "react-toastify";
 import { useGetUserQuery } from "../../../features/api/loginApi";
+import { Link } from "react-router-dom";
 
 const EventList = () => {
   const { data } = useGetAllEventQuery(null, {
@@ -59,12 +60,14 @@ const EventList = () => {
                 <td>{even?.status}</td>
                 <td>{user?.firstName}</td>
                 <td>
-                  <button
+                  <Link
+                    to={`/dashboard/updateevent/${even?._id}`}
                     className="text-blue-500"
-                    style={{ width: "40px", fontSize: "25px" }}
                   >
-                    <FaEdit />
-                  </button>
+                    <button style={{ width: "40px", fontSize: "25px" }}>
+                      <FaEdit />
+                    </button>
+                  </Link>
                   <button
                     onClick={(e) => handleDelete(even?._id)}
                     className="text-red-500"

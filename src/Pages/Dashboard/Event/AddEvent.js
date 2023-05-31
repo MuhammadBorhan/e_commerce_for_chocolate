@@ -18,6 +18,7 @@ const AddEvent = () => {
   const [brand, setBrand] = useState("");
   const [status, setStatus] = useState("");
   const [gmeet, setGMeet] = useState("");
+  const [image, setImage] = useState(null);
   const [desc, setDesc] = useState("");
 
   const { data: getbrand } = useGetAllBrandsQuery();
@@ -40,11 +41,15 @@ const AddEvent = () => {
       brand,
       status,
       gmeet,
+      image,
       desc,
     };
     console.log(data);
     try {
-      await axios.post("https://andy-chocolate-productions.up.railway.app/api/v1/event", data);
+      await axios.post(
+        "https://andy-chocolate-productions.up.railway.app/api/v1/event",
+        data
+      );
 
       // Reset the form inputs
       setTitle("");
@@ -53,6 +58,7 @@ const AddEvent = () => {
       setDistrict("");
       setBrand("");
       setGMeet("");
+      setImage("");
       setDesc("");
 
       toast.success("Succeessfully Added");
@@ -127,7 +133,7 @@ const AddEvent = () => {
                     </option>
                     <option>Pending</option>
                     <option>Cancel</option>
-                    <option>Join Now</option>
+                    <option>Start</option>
                     <option>Finish</option>
                   </select>
 
@@ -141,23 +147,20 @@ const AddEvent = () => {
 
                 <div className="hero">
                   <div className="hero-content flex-col">
-                    {/* <DayPicker
-                    mode="single"
-                    selected={selected}
-                    onSelect={setSelected}
-                    onChange={(e) => handleDate(e)}
-                  />
-                  <p className="text-red-700 text-center text-2xl mt-2">
-                    Our Event Date is: {format(selected, "PPpp")}
-                  </p> */}
                     <DateTimePicker value={dateTime} onChange={setDateTime} />
                   </div>
                 </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+                />
                 <textarea
                   onChange={(e) => setDesc(e.target.value)}
                   rows="4"
                   // value="desc"
-                  className="block input-bordered border mb-2 mx-auto w-full  p-1 text-sm rounded-none focus:border-none"
+                  className=" block input-bordered border mb-2 mx-auto w-full  p-1 text-sm rounded-none focus:border-none"
                   placeholder="Description..."
                   required
                 ></textarea>

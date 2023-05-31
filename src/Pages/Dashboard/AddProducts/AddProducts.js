@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useGetAllBrandsQuery } from "../../../features/api/brandApi";
 import { toast } from "react-toastify";
+import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
 
 const AddProdusts = () => {
   const colors = ["Black", "White", "Milk"];
@@ -50,84 +51,87 @@ const AddProdusts = () => {
   const { data } = useGetAllBrandsQuery();
   const brands = data?.data;
   return (
-    <div className="flex justify-center overflow-auto items-center mt-12">
-      <div
-        className="card bg-base-100 overflow-auto mb-12 rounded-none"
-        style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
-      >
-        <div className="card-body">
-          <div className="text-center">
-            <h2 className="text-xl font-bold">Add Product</h2>
+    <div>
+      <DashBoardMenu></DashBoardMenu>
+      <div className="flex justify-center overflow-auto items-center mt-12">
+        <div
+          className="card bg-base-100 overflow-auto mb-12 rounded-none"
+          style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
+        >
+          <div className="card-body">
+            <div className="text-center">
+              <h2 className="text-xl font-bold">Add Product</h2>
+            </div>
+            {
+              <form onSubmit={handleSubmitProduct} className="text-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Name"
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+                  />
+
+                  <select
+                    value={brand}
+                    onChange={(e) => setBrand(e.target.value)}
+                    className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                  >
+                    <option>--Select Brand--</option>
+                    {brands?.map((brand) => (
+                      <option key={brand?._id}>{brand?.name}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
+                  <input
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Price"
+                    className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                  />
+
+                  <select
+                    value={color}
+                    onChange={(e) => setcolor(e.target.value)}
+                    className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                  >
+                    <option>--Select Color--</option>
+                    {colors?.map((color, index) => (
+                      <option key={index}>{color}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <textarea
+                  onChange={(e) => setDesc(e.target.value)}
+                  rows="4"
+                  value={desc}
+                  className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
+                  placeholder="Description..."
+                  required
+                ></textarea>
+
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImg(e.target.files[0])}
+                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                />
+
+                <div className="flex justify-around pt-6">
+                  <button
+                    type="submit"
+                    className="bg-[#5e2006] px-2 py-1 font-bold text-white "
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            }
           </div>
-          {
-            <form onSubmit={handleSubmitProduct} className="text-center">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Name"
-                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
-                />
-
-                <select
-                  value={brand}
-                  onChange={(e) => setBrand(e.target.value)}
-                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                >
-                  <option>--Select Brand--</option>
-                  {brands?.map((brand) => (
-                    <option key={brand?._id}>{brand?.name}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 ">
-                <input
-                  type="number"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  placeholder="Price"
-                  className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
-                />
-
-                <select
-                  value={color}
-                  onChange={(e) => setcolor(e.target.value)}
-                  className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                >
-                  <option>--Select Color--</option>
-                  {colors?.map((color, index) => (
-                    <option key={index}>{color}</option>
-                  ))}
-                </select>
-              </div>
-
-              <textarea
-                onChange={(e) => setDesc(e.target.value)}
-                rows="4"
-                value={desc}
-                className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
-                placeholder="Description..."
-                required
-              ></textarea>
-
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImg(e.target.files[0])}
-                className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
-              />
-
-              <div className="flex justify-around pt-6">
-                <button
-                  type="submit"
-                  className="bg-[#5e2006] px-2 py-1 font-bold text-white "
-                >
-                  Save
-                </button>
-              </div>
-            </form>
-          }
         </div>
       </div>
     </div>
