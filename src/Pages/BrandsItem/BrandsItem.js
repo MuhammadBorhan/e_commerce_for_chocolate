@@ -39,6 +39,7 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const events = getEvent?.data;
+  const filterEvent = events?.filter((even) => even?.brand === brands?.name);
 
   // fetch all products
   const { data: getProducts } = useGetAllProductsQuery(null, {
@@ -51,7 +52,6 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
-  console.log(selectGiftBoxProducts);
 
   const [projects, setProjects] = useState();
   useEffect(() => {
@@ -273,7 +273,7 @@ const BrandsItem = () => {
 
       {/* event */}
       <div className="mt-12 ">
-        {events?.map((event) => {
+        {filterEvent?.map((event) => {
           return (
             event?.status === "Start" && (
               <div

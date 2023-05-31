@@ -40,6 +40,7 @@ const EventList = () => {
               <th>Region</th>
               <th>District</th>
               <th>G_meet Link</th>
+              <th>Brand</th>
               <th>Status</th>
               <th>Host</th>
               <th>Action</th>
@@ -56,7 +57,7 @@ const EventList = () => {
                 <th className="text-blue-500 underline font-bold text-sm">
                   {even?.gmeet}
                 </th>
-
+                <td>{even?.brand}</td>
                 <td>{even?.status}</td>
                 <td>{user?.firstName}</td>
                 <td>
