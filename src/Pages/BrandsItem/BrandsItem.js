@@ -17,6 +17,7 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const allGiftbox = getGiftBox?.data;
+  console.log(allGiftbox);
 
   const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
     refetchOnMountOrArgChange: true,
@@ -76,7 +77,7 @@ const BrandsItem = () => {
 
   return (
     <div className="p-4 lg:p-12">
-      {/* brand cover image and logo */}
+      {/* brand cover image */}
       <div className="relative -mt-10">
         {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900 opacity-75"></div> */}
         <img
@@ -95,7 +96,7 @@ const BrandsItem = () => {
 
       <div>
         {/* Selected gift box image */}
-        <div className="mb-12 lg:mb-12 mt-10">
+        {/* <div className="mb-12 lg:mb-12 mt-10">
           {selectGiftBox?.map((box) => {
             return (
               <div
@@ -115,8 +116,39 @@ const BrandsItem = () => {
               </div>
             );
           })}
+        </div> */}
+        <div className="hero  my-10">
+          {selectGiftBox?.map((box) => {
+            return (
+              <div
+                key={box?._id}
+                className="hero-content flex-col gap-16 lg:flex-row"
+              >
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  alt=""
+                  className=" rounded-lg lg:w-[400px]"
+                />
+                <div>
+                  <h1 className="text-xl text-green-500 font-bold">
+                    {box?.name}
+                  </h1>
+                  <h3 className="">Price: ¥10</h3>
+                  <h3 className="">Qunatity: 5</h3>
+                  <p className="mt-2">
+                    This chocolate is good its not fatty. One of the best
+                    chocolate in our brand.
+                    <br /> You can try it easily wot a sweet flavour.So You can
+                    order it also
+                  </p>
+                  <button className=" px-2  bg-[#9A583B] mt-16 text-white font-bold">
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
-
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
           <div className="flex flex-col absolute right-0 mt- bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
