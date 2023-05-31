@@ -103,48 +103,29 @@ const BrandsItem = () => {
       </div>
 
       <div>
-        {/* Selected gift box image */}
-        {/* <div className="mb-12 lg:mb-12 mt-10">
-          {selectGiftBox?.map((box) => {
-            return (
+        {selectGiftBox?.map((box) => {
+          console.log("box", box);
+          return (
+            <div className="hero mx-auto my-16">
               <div
                 key={box?._id}
-                className={` p-2 mt-10 w-[50%] lg:w-[25%] m-auto `}
-                style={{
-                  boxShadow:
-                    "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-                }}
+                className="hero-content flex-col lg:flex-row gap-y-10 lg:gap-y-0"
               >
-                <div>
+                <div className="flex-1 flex justify-center">
                   <img
                     src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    alt=""
+                    className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                   />
                 </div>
-                <p className="text-center font-bold my-4">{box?.name}</p>
-              </div>
-            );
-          })}
-        </div> */}
-        {selectGiftBox?.map((box) => {
-          console.log('box',box);
-          return (
-              <div className="hero mx-auto ">
-            <div key={box?._id} className="hero-content flex-col lg:flex-row">
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
-                  alt=""
-                  className="max-w-sm w-2/4 rounded-lg shadow-2xl"
-                />
-                <div className="w-1/4">
+                <div className="w-full flex-1">
                   <h1 className="text-2xl italic text-justify text-yellow-900 font-bold">
                     {box?.name}
                   </h1>
                   <div className="divider"></div>
-                  <h3 className="font-bold">Price: $45</h3>
-                  <p className="py-6">
-                    Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                    assumenda excepturi exercitationem quasi.
-                  </p>
+                  <h3 className="font-bold text-xl">Price: ¥{box?.price}</h3>
+                  <h3 className="font-bold mt-2">Quantity: 15</h3>
+                  <p className="py-4 text-justify">{box?.desc}</p>
                   <button className="p-2 rounded text-white bg-[#9A583B]">
                     Add To Cart
                   </button>
