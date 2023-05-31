@@ -116,8 +116,8 @@ const DashboardLayout = () => {
           </Link>
           {/* region and district */}
           <div
-            className="dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md"
             onClick={handleRegion}
+            className="dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md"
           >
             <label
               tabIndex={0}
@@ -132,10 +132,10 @@ const DashboardLayout = () => {
               <div className="mt-1 ml-2">
                 <CiLocationOn />
               </div>
-              <div className="ml-2">Region & District</div>
-              <div className="mt-1 ml-2">
+              <p className="ml-2">Region & District</p>
+              <p className="mt-1 ml-2">
                 <IoMdArrowDropdown />
-              </div>
+              </p>
             </label>
 
             {rShow && (
