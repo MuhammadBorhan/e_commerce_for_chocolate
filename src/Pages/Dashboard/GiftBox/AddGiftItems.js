@@ -9,6 +9,8 @@ const AddGiftItems = () => {
   const [name, setBoxName] = useState("");
   const [image, setBoxImage] = useState(null);
   const [brand, setBrandName] = useState("");
+  const [price, setPrice] = useState("");
+  const [desc, setDesc] = useState("");
   const [productList, setProductList] = useState([]);
 
   const [selectAll, setSelectAll] = useState(false);
@@ -51,6 +53,8 @@ const AddGiftItems = () => {
       name,
       image,
       brand,
+      price,
+      desc,
       productList,
     };
     try {
@@ -68,6 +72,8 @@ const AddGiftItems = () => {
       setBoxName("");
       setBoxImage(null);
       setBrandName("");
+      setPrice("");
+      setDesc("");
       setProductList("");
 
       toast.success("Successfully added");
@@ -117,6 +123,22 @@ const AddGiftItems = () => {
                       <option key={index}>{brand?.name}</option>
                     ))}
                   </select>
+                  <input
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Price"
+                    className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                  />
+                  <label>Description</label>
+                  <textarea
+                    onChange={(e) => setDesc(e.target.value)}
+                    rows="4"
+                    value={desc}
+                    className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
+                    placeholder="Description..."
+                    required
+                  ></textarea>
 
                   {/* Checkbox  */}
                   <div className="dropdown dropdown-end">
