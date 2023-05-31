@@ -15,13 +15,11 @@ const AddGiftItems = () => {
   const { data: brands } = useGetAllBrandsQuery();
   const allBrand = brands?.data;
 
-  const { data: products } = useGetAllProductsQuery();
-  const allProducts = products?.data;
-
   const [brandProducts, setBrandProducts] = useState([]);
-  console.log(brandProducts);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/product?brand=${brand}`)
+    fetch(
+      `https://andy-chocolate-productions.up.railway.app/api/v1/product?brand=${brand}`
+    )
       .then((res) => res.json())
       .then((data) => setBrandProducts(data?.data));
   }, [brand]);
@@ -37,7 +35,7 @@ const AddGiftItems = () => {
 
   const handleSelectAll = () => {
     if (!selectAll) {
-      const allNames = allProducts.map((item) => item.name);
+      const allNames = brandProducts.map((item) => item.name);
       setProductList(allNames);
     } else {
       setProductList([]);
@@ -56,7 +54,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/giftbox",
+        "https://andy-chocolate-productions.up.railway.app/api/v1/giftbox",
         data,
         {
           headers: {
