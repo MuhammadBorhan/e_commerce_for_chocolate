@@ -19,7 +19,7 @@ const SocialLogin = () => {
         };
 
         console.log(user);
-        axios.post(`http://localhost:5003/api/v1/signup`, gUser).then((res) => {
+        axios.post(`https://andy-chocolate-productions.up.railway.app/api/v1/signup`, gUser).then((res) => {
           console.log(res?.data?.token);
           const accessToken = res?.data?.token;
           localStorage.setItem("accessToken", accessToken);
