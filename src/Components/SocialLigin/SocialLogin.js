@@ -19,16 +19,6 @@ const SocialLogin = () => {
         };
 
         console.log(user);
-<<<<<<< HEAD
-        axios.post(`https://andy-chocolate-productions.up.railway.app/api/v1/signup`, gUser).then((res) => {
-          console.log(res?.data?.token);
-          const accessToken = res?.data?.token;
-          localStorage.setItem("accessToken", accessToken);
-          if (res.status === 200) {
-            navigate("/dashboard");
-          }
-        });
-=======
         axios
           .post(
             `https://andy-chocolate-productions.up.railway.app/api/v1/signup`,
@@ -42,7 +32,6 @@ const SocialLogin = () => {
               navigate("/dashboard");
             }
           });
->>>>>>> cfcb54ee2bd8d100feeec93cd635b4a9578f0803
       })
       .catch((error) => {
         console.log("error", error);

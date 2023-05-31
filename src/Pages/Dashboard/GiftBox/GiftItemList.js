@@ -58,78 +58,6 @@ const GiftItemList = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="p-8">
-      <h1 className="mb-4 text-blue-500 font-bold">Gift Box List</h1>
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th>SL. No</th>
-              <th>Gift_name</th>
-              <th>Box Image</th>
-              <th>Products</th>
-              <th>Brand</th>
-              <th>Branding Item</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allGiftBox?.map((box, index) => {
-              return (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{box?.name}</td>
-                  <td>
-                    <img
-                      src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
-                      className="w-16"
-                    />
-                  </td>
-                  <td>
-                    <select className="  rounded-none focus:border-none ">
-                      {box?.productList?.map((product, index) => (
-                        <option key={index}>{product}</option>
-                      ))}
-                    </select>
-                  </td>
-                  <td>{box?.brand}</td>
-                  <td>
-                    <button
-                      onClick={() => handleToggle(box._id, box.isEnabled)}
-                      className={`${
-                        box.isEnabled === true
-                          ? "bg-red-500 px-2 py-1 text-white font-bold rounded"
-                          : "bg-green-500 px-2 py-1 text-white font-bold rounded"
-                      }`}
-                    >
-                      {box.isEnabled ? "Disable" : "Enable"}
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="text-blue-500"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <Link to={`/dashboard/updategiftboxitem/${box?._id}`}>
-                        {" "}
-                        <FaEdit />
-                      </Link>
-                    </button>
-                    <button
-                      onClick={(e) => handleDelete(box?._id)}
-                      className="text-red-500"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <AiTwotoneDelete />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-=======
     <div>
       <DashBoardMenu></DashBoardMenu>
       <div className="p-8">
@@ -203,7 +131,6 @@ const GiftItemList = () => {
             </tbody>
           </table>
         </div>
->>>>>>> cfcb54ee2bd8d100feeec93cd635b4a9578f0803
       </div>
     </div>
   );

@@ -20,13 +20,9 @@ const AddGiftItems = () => {
 
   const [brandProducts, setBrandProducts] = useState([]);
   useEffect(() => {
-<<<<<<< HEAD
-    fetch(`https://andy-chocolate-productions.up.railway.app/api/v1/product?brand=${brand}`)
-=======
     fetch(
       `https://andy-chocolate-productions.up.railway.app/api/v1/product?brand=${brand}`
     )
->>>>>>> cfcb54ee2bd8d100feeec93cd635b4a9578f0803
       .then((res) => res.json())
       .then((data) => setBrandProducts(data?.data));
   }, [brand]);
