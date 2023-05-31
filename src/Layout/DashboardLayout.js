@@ -116,8 +116,8 @@ const DashboardLayout = () => {
           </Link>
           {/* region and district */}
           <div
-            className="dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md"
             onClick={handleRegion}
+            className="dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md"
           >
             <label
               tabIndex={0}
@@ -132,10 +132,10 @@ const DashboardLayout = () => {
               <div className="mt-1 ml-2">
                 <CiLocationOn />
               </div>
-              <div className="ml-2">Region & District</div>
-              <div className="mt-1 ml-2">
+              <p className="ml-2">Region & District</p>
+              <p className="mt-1 ml-2">
                 <IoMdArrowDropdown />
-              </div>
+              </p>
             </label>
 
             {rShow && (
@@ -143,7 +143,7 @@ const DashboardLayout = () => {
                 tabIndex={0}
                 className="dropdown-content menu shadow bg-slate-200 w-50"
               >
-                <li>
+                <li htmlFor="dashboard-drawer">
                   <Link to="/dashboard/addregion">Add Region & District</Link>
                 </li>
                 <li>
@@ -153,53 +153,11 @@ const DashboardLayout = () => {
             )}
           </div>
 
-          {/* Products  */}
-
-          <div
-            onClick={handleProduct}
-            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              rShow ? "mt-24" : "mt-0"
-            }`}
-          >
-            <label
-              tabIndex={0}
-              className={`ml-2 cursor-pointer flex ${
-                pathname === "/dashboard/allproduct"
-                  ? "active"
-                  : pathname === "/dashboard/addproduct"
-                  ? "active"
-                  : ""
-              }`}
-            >
-              <div className="mt-1 ml-2">
-                <RiProductHuntLine />
-              </div>
-              <div className="ml-2">Products</div>
-              <div className="mt-1 ml-2">
-                <IoMdArrowDropdown />
-              </div>
-            </label>
-            {pShow && (
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-200  w-50"
-              >
-                <li>
-                  <Link to="/dashboard/addproduct">Add Products</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/allproduct">All Products</Link>
-                </li>
-              </ul>
-            )}
-          </div>
-
           {/* Brand  */}
-
           <div
             onClick={handleBrand}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              pShow ? "mt-24" : "mt-0"
+              rShow ? "mt-24" : "mt-0"
             }`}
           >
             <label
@@ -235,11 +193,52 @@ const DashboardLayout = () => {
             )}
           </div>
 
+          {/* Products  */}
+
+          <div
+            onClick={handleProduct}
+            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
+              bShow ? "mt-24" : "mt-0"
+            }`}
+          >
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/allproduct"
+                  ? "active"
+                  : pathname === "/dashboard/addproduct"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <RiProductHuntLine />
+              </div>
+              <div className="ml-2">Products</div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
+            </label>
+            {pShow && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu shadow bg-slate-200  w-50"
+              >
+                <li>
+                  <Link to="/dashboard/addproduct">Add Products</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/allproduct">All Products</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+
           {/* Add Gift Items  */}
           <div
             onClick={handleGiftBox}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              bShow ? "mt-24" : "mt-0"
+              pShow ? "mt-24" : "mt-0"
             }`}
           >
             <label

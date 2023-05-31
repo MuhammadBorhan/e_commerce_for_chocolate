@@ -9,6 +9,7 @@ import {
   AiTwotoneEdit,
   AiTwotoneDelete,
 } from "react-icons/ai";
+import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
 
 const AllUsers = () => {
   const { data, isLoading } = useGetAllUserQuery();
@@ -31,51 +32,54 @@ const AllUsers = () => {
     );
   }
   return (
-    <div className="p-8">
-      <div className="overflow-x-auto">
-        <h2 className="text-xl font-bold mt-2">All User</h2>
-        <table className="table w-full mt-2">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>Sl No.</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Role</th>
-              {getMe?.role === "admin" && <th>Action</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {users?.map((user, i) => (
-              <tr key={user._id}>
-                <th>{i + 1}</th>
-                <td>
-                  {user?.firstName +
-                    " " +
-                    (user?.lastName ? user?.lastName : "")}
-                </td>
-                <td>{user.email}</td>
-                <td>
-                  <button className="px-2 bg-green-600 text-white rounded-full">
-                    {user?.role}
-                  </button>
-                </td>
-                {getMe?.role === "admin" && (
+    <div>
+      <DashBoardMenu></DashBoardMenu>
+      <div className="p-8">
+        <div className="overflow-x-auto">
+          <h2 className="text-xl font-bold mt-2">All User</h2>
+          <table className="table w-full mt-2">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>Sl No.</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                {getMe?.role === "admin" && <th>Action</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {users?.map((user, i) => (
+                <tr key={user._id}>
+                  <th>{i + 1}</th>
                   <td>
-                    {" "}
-                    <button
-                      onClick={() => deleteUser(user?._id)}
-                      className="text-red-500 flex justify-center"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <AiTwotoneDelete></AiTwotoneDelete>
+                    {user?.firstName +
+                      " " +
+                      (user?.lastName ? user?.lastName : "")}
+                  </td>
+                  <td>{user.email}</td>
+                  <td>
+                    <button className="px-2 bg-green-600 text-white rounded-full">
+                      {user?.role}
                     </button>
                   </td>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  {getMe?.role === "admin" && (
+                    <td>
+                      {" "}
+                      <button
+                        onClick={() => deleteUser(user?._id)}
+                        className="text-red-500 flex justify-center"
+                        style={{ width: "40px", fontSize: "25px" }}
+                      >
+                        <AiTwotoneDelete></AiTwotoneDelete>
+                      </button>
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
