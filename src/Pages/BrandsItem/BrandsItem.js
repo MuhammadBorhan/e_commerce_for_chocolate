@@ -76,8 +76,7 @@ const BrandsItem = () => {
 
   return (
     <div className="p-4 lg:p-12">
-      {/* brand cover image */}
-
+      {/* brand cover image and logo */}
       <div className="relative -mt-10">
         {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900 opacity-75"></div> */}
         <img
