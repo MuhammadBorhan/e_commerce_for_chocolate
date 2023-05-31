@@ -77,24 +77,19 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="bg-cover bg-center relative ">
-        <figure>
-          <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
-            alt={brands?.name}
-            className="h-[80px] lg:h-[200px] w-[80%] mx-auto object-center"
-          />
-        </figure>
-        <h2 className="absolute font-bold lg:text-xl mt-[-30px] lg:mt-[-40px] ml-[135px] lg:ml-[285px] text-white">
-          {brands?.name}
-        </h2>
-      </div>
-      <div className="avatar absolute">
-        <div className="w-16 h-16 lg:w-28 lg:h-28 mt-[-55px] ml-[60px] lg:mt-[-100px] lg:ml-[160px]  object-center rounded-full ring ring-slate-100 ring-offset-base-100 ring-offset-2">
+
+      <div className="relative -mt-10">
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900 opacity-75"></div> */}
+        <img
+          src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
+          alt={brands?.name}
+          className="w-full h-[200px] object-center opacity-75"
+        />
+        <div className="absolute bottom-10 left-10 flex items-center ">
           <img
             src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
             alt="Logo"
-            className=""
+            className="w-full h-full object-center "
           />
         </div>
       </div>
