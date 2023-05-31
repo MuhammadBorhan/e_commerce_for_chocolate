@@ -25,7 +25,7 @@ const AddProdusts = () => {
       formData.append("desc", desc);
       formData.append("image", image);
       const response = await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/products",
+        "http://localhost:5000/api/v1/products",
         formData,
         {
           headers: {
@@ -41,7 +41,9 @@ const AddProdusts = () => {
       setDesc("");
       setPrice("");
       setImg("");
-      toast.success("Successfully added");
+      if (response) {
+        toast.success("Successfully added");
+      }
     } catch (error) {
       console.error("Error creating product:", error.response.data);
       toast.error(error.response?.data?.error);

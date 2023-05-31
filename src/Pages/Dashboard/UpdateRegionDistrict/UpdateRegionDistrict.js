@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { CiCircleRemove } from "react-icons/ci";
 import { useNavigate, useParams } from "react-router-dom";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
+import { FaTrash } from "react-icons/fa";
 
 const UpdateRegionDistrict = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const UpdateRegionDistrict = () => {
 
   const [regionDistrict, setRegionDistrict] = useState({});
   useEffect(() => {
-    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/region/${id}`;
+    const url = `http://localhost:5000/api/v1/region/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -55,7 +56,7 @@ const UpdateRegionDistrict = () => {
     };
     try {
       const res = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/region/${id}`,
+        `http://localhost:5000/api/v1/region/${id}`,
         newDistrictData
       );
       console.log(res);
@@ -66,6 +67,10 @@ const UpdateRegionDistrict = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleCancel = (d) => {
+    console.log(d);
   };
   return (
     <div>
@@ -100,15 +105,23 @@ const UpdateRegionDistrict = () => {
                       className="flex flex-col items-center gap-2"
                       key={index}
                     >
-                      <input
-                        type="text"
-                        defaultValue={district}
-                        onChange={(e) =>
-                          handleDistrictChange(index, e.target.value)
-                        }
-                        placeholder="District"
-                        className="input input-bordered h-8 rounded-none focus:border-none mt-2 w-full max-w-xs"
-                      />
+                      <div className="flex items-center">
+                        <input
+                          type="text"
+                          defaultValue={district}
+                          onChange={(e) =>
+                            handleDistrictChange(index, e.target.value)
+                          }
+                          placeholder="District"
+                          className="input input-bordered h-8 rounded-none focus:border-none mt-2 w-full max-w-xs"
+                        />
+                        <div
+                          onClick={() => handleCancel(district)}
+                          className=" ml-2 text-red-600 cursor-pointer"
+                        >
+                          <FaTrash />
+                        </div>
+                      </div>
                     </div>
                   ))}
 
@@ -117,25 +130,26 @@ const UpdateRegionDistrict = () => {
                       className="flex flex-col items-center gap-2"
                       key={index}
                     >
-                      <input
-                        type="text"
-                        onChange={(e) =>
-                          handleNewDistrictChange(index, e.target.value)
-                        }
-                        placeholder="District"
-                        className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
-                      />
+                      <div className="flex items-center">
+                        <input
+                          type="text"
+                          onChange={(e) =>
+                            handleNewDistrictChange(index, e.target.value)
+                          }
+                          placeholder="District"
+                          className="input input-bordered h-8 rounded-none focus:border-none mt-2 w-full max-w-xs"
+                        />
 
-                      <button
-                        className="flex"
-                        type="button"
-                        onClick={() => handleRemoveDistrict(index)}
-                      >
-                        <div className="mt-1 ml-2">
-                          <CiCircleRemove />
-                        </div>
-                        <p className=" ml-2">Delete</p>
-                      </button>
+                        <button
+                          className="flex"
+                          type="button"
+                          onClick={() => handleRemoveDistrict(index)}
+                        >
+                          <div className=" ml-2 text-red-600 cursor-pointer">
+                            <FaTrash />
+                          </div>
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>

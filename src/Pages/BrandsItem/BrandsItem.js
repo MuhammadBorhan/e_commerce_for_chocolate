@@ -8,6 +8,8 @@ import { useGetAllProductsQuery } from "../../features/api/productsApi";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import "./BrandsItem.css";
+
 const BrandsItem = () => {
   const location = useLocation();
   const brands = location?.state;
@@ -40,6 +42,7 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const events = getEvent?.data;
+  const filterEvent = events?.filter((even) => even?.brand === brands?.name);
 
   // fetch all products
   const { data: getProducts } = useGetAllProductsQuery(null, {
@@ -52,7 +55,6 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
-  console.log(selectGiftBoxProducts);
 
   const [projects, setProjects] = useState();
   useEffect(() => {
@@ -78,19 +80,25 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="relative -mt-10">
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900 opacity-75"></div> */}
-        <img
-          src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
-          alt={brands?.name}
-          className="w-full h-[200px] object-center opacity-75"
-        />
-        <div className="absolute bottom-10 left-10 flex items-center ">
-          <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
-            alt="Logo"
-            className="w-full h-full object-center "
-          />
+      <div>
+        <div
+          className="h-48 bg-cover bg-center bg-no-repeat w-full relative -mt-10"
+          style={{
+            backgroundImage: `url(${`http://localhost:5000/uploads/${brands?.image}`})`,
+          }}
+        >
+          <div
+            className="absolute bottom-10 left-10 flex flex-col items-center "
+            style={{ zIndex: "2" }}
+          >
+            <img
+              src={`http://localhost:5000/uploads/${brands?.logo}`}
+              alt="Logo"
+              className="w-full h-full object-center "
+            />
+            <p className="text-white font-bold">{brands?.name}</p>
+          </div>
+          <div className="overlay"></div>
         </div>
       </div>
 
@@ -109,7 +117,7 @@ const BrandsItem = () => {
               >
                 <div>
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                   />
                 </div>
                 <p className="text-center font-bold my-4">{box?.name}</p>
@@ -117,22 +125,25 @@ const BrandsItem = () => {
             );
           })}
         </div> */}
-        <div className="hero  mt-2">
+        <div className="hero  my-10">
           {selectGiftBox?.map((box) => {
             return (
-              <div key={box?._id} className="hero-content flex-col lg:flex-row">
+              <div
+                key={box?._id}
+                className="hero-content flex-col gap-16 lg:flex-row"
+              >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  src={`http://localhost:5000/${box?.image}`}
                   alt=""
-                  className="max-w-sm rounded-lg shadow-xl"
+                  className=" rounded-lg lg:w-[400px]"
                 />
                 <div>
                   <h1 className="text-xl text-green-500 font-bold">
                     {box?.name}
                   </h1>
-                  <h3 className="">Price:10</h3>
-                  <h3 className="">Qunatity:5</h3>
-                  <p className="">
+                  <h3 className="">Price: ¥10</h3>
+                  <h3 className="">Qunatity: 5</h3>
+                  <p className="mt-2">
                     This chocolate is good its not fatty. One of the best
                     chocolate in our brand.
                     <br /> You can try it easily wot a sweet flavour.So You can
@@ -193,7 +204,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -216,7 +227,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -256,7 +267,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            src={`http://localhost:5000/${product?.image}`}
                             alt="Product"
                           />
                         </figure>
@@ -275,7 +286,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            src={`http://localhost:5000/${product?.image}`}
                             alt="Product"
                           />
                         </figure>
@@ -295,25 +306,33 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-12 ">
-        {events?.map((event) => {
+      <div className="mt-12 lg:mt-16 ">
+        <h2 className="text-center mb-4 font-mono text-xl">
+          Event will be start this time. If you are interested please join
+        </h2>
+        {filterEvent?.map((event) => {
           return (
             event?.status === "Start" && (
               <div
                 key={event._id}
-                className="card card-compact mx-auto lg:w-96 bg-base-100 shadow-xl"
+                className="card card-compact mx-auto lg:w-[320px] bg-base-100 shadow-xl rounded-none"
+                style={{ borderRadius: "35px 35px 25px 25px" }}
               >
-                <figure>
+                <figure className=" ">
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+                    src={`http://localhost:5000/uploads/${brands?.image}`}
                     alt={brands?.name}
-                    className="h-[250px] rounded-md mt-1"
+                    className="h-[250px] mt-1"
+                    style={{ borderRadius: "25px 25px 0 0" }}
                   />
                 </figure>
+                <h3
+                  className=" italic font-bold text-white mt-8 mr-8 bg-[#db874b] p-2 text-justify"
+                  style={{ borderRadius: "0 30px 30px 0" }}
+                >
+                  {event?.title}
+                </h3>
                 <div className="card-body">
-                  <h3 className="text-2xl italic font-bold text-emerald-600 text-justify">
-                    {event?.title}
-                  </h3>
                   <p className="text-center text-xl italic">
                     {new Date(event?.dateTime).toLocaleString()}
                   </p>
@@ -364,7 +383,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  src={`http://localhost:5000/${box?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
