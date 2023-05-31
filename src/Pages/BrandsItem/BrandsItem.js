@@ -84,7 +84,7 @@ const BrandsItem = () => {
         <div
           className="h-48 bg-cover bg-center bg-no-repeat w-full relative -mt-10"
           style={{
-            backgroundImage: `url(${`http://localhost:5000/uploads/${brands?.image}`})`,
+            backgroundImage: `url(${`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`})`,
           }}
         >
           <div
@@ -92,7 +92,7 @@ const BrandsItem = () => {
             style={{ zIndex: "2" }}
           >
             <img
-              src={`http://localhost:5000/uploads/${brands?.logo}`}
+              src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
               alt="Logo"
               className="w-full h-full object-center "
             />
@@ -117,7 +117,7 @@ const BrandsItem = () => {
               >
                 <div>
                   <img
-                    src={`http://localhost:5000/${box?.image}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                   />
                 </div>
                 <p className="text-center font-bold my-4">{box?.name}</p>
@@ -125,38 +125,34 @@ const BrandsItem = () => {
             );
           })}
         </div> */}
-        <div className="hero  my-10">
-          {selectGiftBox?.map((box) => {
-            return (
-              <div
-                key={box?._id}
-                className="hero-content flex-col gap-16 lg:flex-row"
-              >
+        {selectGiftBox?.map((box) => {
+          console.log('box',box);
+          return (
+              <div className="hero mx-auto ">
+            <div key={box?._id} className="hero-content flex-col lg:flex-row">
                 <img
-                  src={`http://localhost:5000/${box?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                   alt=""
-                  className=" rounded-lg lg:w-[400px]"
+                  className="max-w-sm w-2/4 rounded-lg shadow-2xl"
                 />
-                <div>
-                  <h1 className="text-xl text-green-500 font-bold">
+                <div className="w-1/4">
+                  <h1 className="text-2xl italic text-justify text-yellow-900 font-bold">
                     {box?.name}
                   </h1>
-                  <h3 className="">Price: ¥10</h3>
-                  <h3 className="">Qunatity: 5</h3>
-                  <p className="mt-2">
-                    This chocolate is good its not fatty. One of the best
-                    chocolate in our brand.
-                    <br /> You can try it easily wot a sweet flavour.So You can
-                    order it also
+                  <div className="divider"></div>
+                  <h3 className="font-bold">Price: $45</h3>
+                  <p className="py-6">
+                    Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                    assumenda excepturi exercitationem quasi.
                   </p>
-                  <button className=" px-2  bg-[#9A583B] mt-16 text-white font-bold">
+                  <button className="p-2 rounded text-white bg-[#9A583B]">
                     Add To Cart
                   </button>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
           <div className="flex flex-col absolute right-0 mt- bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
@@ -204,7 +200,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`http://localhost:5000/${product?.image}`}
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -227,7 +223,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`http://localhost:5000/${product?.image}`}
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -267,7 +263,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`http://localhost:5000/${product?.image}`}
+                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                             alt="Product"
                           />
                         </figure>
@@ -286,7 +282,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`http://localhost:5000/${product?.image}`}
+                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                             alt="Product"
                           />
                         </figure>
@@ -320,7 +316,7 @@ const BrandsItem = () => {
               >
                 <figure className=" ">
                   <img
-                    src={`http://localhost:5000/uploads/${brands?.image}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
                     alt={brands?.name}
                     className="h-[250px] mt-1"
                     style={{ borderRadius: "25px 25px 0 0" }}
@@ -383,7 +379,7 @@ const BrandsItem = () => {
                 className="shadow-lg p-2 flex justify-center items-center flex-col"
               >
                 <img
-                  src={`http://localhost:5000/${box?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                   className="w-[200px] h-[200px] "
                 />
                 <div className="text-center">
