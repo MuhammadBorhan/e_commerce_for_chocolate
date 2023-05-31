@@ -16,11 +16,7 @@ const AddGiftItems = () => {
   const { data: brands } = useGetAllBrandsQuery();
   const allBrand = brands?.data;
 
-  const { data: products } = useGetAllProductsQuery();
-  const allProducts = products?.data;
-
   const [brandProducts, setBrandProducts] = useState([]);
-  console.log(brandProducts);
   useEffect(() => {
     fetch(
       `https://andy-chocolate-productions.up.railway.app/api/v1/product?brand=${brand}`
@@ -40,7 +36,7 @@ const AddGiftItems = () => {
 
   const handleSelectAll = () => {
     if (!selectAll) {
-      const allNames = allProducts.map((item) => item.name);
+      const allNames = brandProducts.map((item) => item.name);
       setProductList(allNames);
     } else {
       setProductList([]);

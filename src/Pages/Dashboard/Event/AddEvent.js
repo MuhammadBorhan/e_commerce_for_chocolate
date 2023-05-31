@@ -124,18 +124,18 @@ const AddEvent = () => {
                       ))}
                     </select>
 
-                    <select
-                      onChange={(e) => setStatus(e.target.value)}
-                      className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
-                    >
-                      <option disabled selected>
-                        Status
-                      </option>
-                      <option>Pending</option>
-                      <option>Cancel</option>
-                      <option>Join Now</option>
-                      <option>Finish</option>
-                    </select>
+                  <select
+                    onChange={(e) => setStatus(e.target.value)}
+                    className="border h-8 rounded-none focus:border-none w-full max-w-xs mx-auto"
+                  >
+                    <option disabled selected>
+                      Status
+                    </option>
+                    <option>Pending</option>
+                    <option>Cancel</option>
+                    <option>Start</option>
+                    <option>Finish</option>
+                  </select>
 
                     <input
                       type="text"
@@ -145,19 +145,9 @@ const AddEvent = () => {
                     />
                   </div>
 
-                  <div className="hero">
-                    <div className="hero-content flex-col">
-                      {/* <DayPicker
-                    mode="single"
-                    selected={selected}
-                    onSelect={setSelected}
-                    onChange={(e) => handleDate(e)}
-                  />
-                  <p className="text-red-700 text-center text-2xl mt-2">
-                    Our Event Date is: {format(selected, "PPpp")}
-                  </p> */}
-                      <DateTimePicker value={dateTime} onChange={setDateTime} />
-                    </div>
+                <div className="hero">
+                  <div className="hero-content flex-col">
+                    <DateTimePicker value={dateTime} onChange={setDateTime} />
                   </div>
                   <textarea
                     onChange={(e) => setDesc(e.target.value)}

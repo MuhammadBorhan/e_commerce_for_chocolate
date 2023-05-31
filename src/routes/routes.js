@@ -28,6 +28,7 @@ import UpdateProducts from "../Pages/Dashboard/UpdateProducts/UpdateProducts";
 import UpdateRegionDistrict from "../Pages/Dashboard/UpdateRegionDistrict/UpdateRegionDistrict";
 import UpdateBrand from "../Pages/Dashboard/BrandProducts/UpdateBrand";
 import UpdateGiftBox from "../Pages/Dashboard/GiftBox/UpdateGiftBox";
+import UpdateEvent from "../Pages/Dashboard/Event/UpdateEvent";
 
 const routes = createBrowserRouter([
   {
@@ -141,6 +142,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/eventlist",
             element: <EventList />,
+          },
+          {
+            path: "/dashboard/updateevent/:id",
+            element: <UpdateEvent />,
           },
         ],
       },
