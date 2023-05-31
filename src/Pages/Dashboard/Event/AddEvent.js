@@ -18,6 +18,17 @@ const AddEvent = () => {
   const [gmeet, setGMeet] = useState("");
   const [image, setImage] = useState(null);
   const [desc, setDesc] = useState("");
+  console.log(
+    title,
+    dateTime,
+    region,
+    district,
+    brand,
+    status,
+    gmeet,
+    image,
+    desc
+  );
 
   const { data: getbrand } = useGetAllBrandsQuery();
   const allBrand = getbrand?.data;
@@ -44,9 +55,14 @@ const AddEvent = () => {
     };
     console.log(data);
     try {
-      await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/event",
-        data
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/event",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       // Reset the form inputs
@@ -59,7 +75,9 @@ const AddEvent = () => {
       setImage("");
       setDesc("");
 
-      toast.success("Succeessfully Added");
+      if (response) {
+        toast.success("Succeessfully Added");
+      }
     } catch (error) {
       toast.error(error?.response?.data?.error);
     }
@@ -141,19 +159,21 @@ const AddEvent = () => {
                     placeholder="Google Meet Link"
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
                   />
+
+                  <DateTimePicker
+                    value={dateTime}
+                    onChange={setDateTime}
+                    className="h-8"
+                  />
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+                  />
                 </div>
 
-                <div className="hero">
-                  <div className="hero-content flex-col">
-                    <DateTimePicker value={dateTime} onChange={setDateTime} />
-                  </div>
-                </div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setImage(e.target.files[0])}
-                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
-                />
                 <textarea
                   onChange={(e) => setDesc(e.target.value)}
                   rows="4"

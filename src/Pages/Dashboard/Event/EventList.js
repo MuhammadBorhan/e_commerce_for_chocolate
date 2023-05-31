@@ -35,6 +35,7 @@ const EventList = () => {
           <thead>
             <tr>
               <th>SL. No</th>
+              <th>Image</th>
               <th>Title</th>
               <th>Date</th>
               <th>Region</th>
@@ -50,6 +51,12 @@ const EventList = () => {
             {events?.map((even, index) => (
               <tr>
                 <th>{index + 1}</th>
+                <th>
+                  <img
+                    src={`http://localhost:5000/${even?.image}`}
+                    className="w-16"
+                  />
+                </th>
                 <th>{even?.title}</th>
                 <th>{new Date(even.dateTime).toLocaleString()}</th>
                 <th>{even?.region}</th>

@@ -20,9 +20,7 @@ const AddGiftItems = () => {
 
   const [brandProducts, setBrandProducts] = useState([]);
   useEffect(() => {
-    fetch(
-      `https://andy-chocolate-productions.up.railway.app/api/v1/product?brand=${brand}`
-    )
+    fetch(`http://localhost:5000/api/v1/product?brand=${brand}`)
       .then((res) => res.json())
       .then((data) => setBrandProducts(data?.data));
   }, [brand]);
@@ -59,7 +57,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/giftbox",
+        "http://localhost:5000/api/v1/giftbox",
         data,
         {
           headers: {
@@ -76,9 +74,10 @@ const AddGiftItems = () => {
       setDesc("");
       setProductList("");
 
-      toast.success("Successfully added");
+      if (response) {
+        toast.success("Successfully added");
+      }
     } catch (error) {
-      console.log(error?.response?.data?.error);
       toast.error(error?.response?.data?.error);
     }
   };
@@ -88,7 +87,7 @@ const AddGiftItems = () => {
       <DashBoardMenu></DashBoardMenu>
       <div className="flex justify-center overflow-auto items-center mt-12 px-8 ">
         <div
-          className="card bg-base-100 overflow-auto mb-12 rounded-none"
+          className="card bg-base-100 overflow-auto mb-12 rounded-none w-full"
           style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
         >
           <div className="card-body">
@@ -97,7 +96,7 @@ const AddGiftItems = () => {
             </div>
             {
               <form onSubmit={handleSubmitGiftItem} className="text-center">
-                <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 my-2  ">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2  ">
                   <input
                     type="text"
                     value={name}
@@ -112,14 +111,27 @@ const AddGiftItems = () => {
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                   />
 
-                  <input
-                    type="number"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    placeholder="Price"
-                    className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
-                  />
-                  <label>Description</label>
+                  <div>
+                    <input
+                      type="number"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      placeholder="Price"
+                      className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                    />
+                    <select
+                      value={brand}
+                      onChange={(e) => setBrandName(e.target.value)}
+                      vlaue={brand}
+                      className="input input-bordered lg:mt-4 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none hidden lg:block"
+                    >
+                      <option>--Select Brand--</option>
+                      {allBrand?.map((brand, index) => (
+                        <option key={index}>{brand?.name}</option>
+                      ))}
+                    </select>
+                  </div>
+
                   <textarea
                     onChange={(e) => setDesc(e.target.value)}
                     rows="4"
@@ -128,52 +140,52 @@ const AddGiftItems = () => {
                     placeholder="Description..."
                     required
                   ></textarea>
+
                   <select
                     value={brand}
                     onChange={(e) => setBrandName(e.target.value)}
                     vlaue={brand}
-                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none block lg:hidden"
                   >
                     <option>--Select Brand--</option>
                     {allBrand?.map((brand, index) => (
                       <option key={index}>{brand?.name}</option>
                     ))}
                   </select>
-
-                  {/* Checkbox  */}
-                  <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="ml-2  cursor-pointer">
-                      Please Select The Product (Total Brand Product:{" "}
-                      {brandProducts?.length})
+                </div>
+                {/* Checkbox  */}
+                <div className="dropdown dropdown-end">
+                  <label tabIndex={0} className="ml-2  cursor-pointer">
+                    Please Select The Product (Total Brand Product:{" "}
+                    {brandProducts?.length})
+                  </label>
+                  <div>
+                    <label className="inline-flex items-center gap-x-1 cursor-pointer my-2">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox"
+                        checked={selectAll}
+                        onChange={handleSelectAll}
+                      />
+                      {selectAll ? "Unselect All" : "Select All"}
                     </label>
-                    <div>
-                      <label className="inline-flex items-center gap-x-1 cursor-pointer my-2">
+                  </div>
+                  <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+                    {brandProducts?.map((product) => (
+                      <label
+                        key={product._id}
+                        className="inline-flex items-center gap-x-1"
+                      >
                         <input
                           type="checkbox"
                           className="form-checkbox"
-                          checked={selectAll}
-                          onChange={handleSelectAll}
+                          value={product?.name}
+                          checked={productList.includes(product?.name)}
+                          onChange={() => handlePruductchange(product?.name)}
                         />
-                        {selectAll ? "Unselect All" : "Select All"}
+                        {product?.name}
                       </label>
-                    </div>
-                    <div className="grid grid-cols-3 lg:grid-cols-6 gap-4">
-                      {brandProducts?.map((product) => (
-                        <label
-                          key={product._id}
-                          className="inline-flex items-center gap-x-1"
-                        >
-                          <input
-                            type="checkbox"
-                            className="form-checkbox"
-                            value={product?.name}
-                            checked={productList.includes(product?.name)}
-                            onChange={() => handlePruductchange(product?.name)}
-                          />
-                          {product?.name}
-                        </label>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </div>
 
