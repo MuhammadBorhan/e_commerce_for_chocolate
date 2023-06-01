@@ -107,7 +107,7 @@ const BrandsItem = () => {
         {selectGiftBox?.map((box) => {
           console.log("box", box);
           return (
-            <div className="hero mx-auto my-16 sm:hidden">
+            <div className="hero mx-auto my-16 ">
               <div
                 key={box?._id}
                 className="hero-content flex-col lg:flex-row gap-y-10 lg:gap-y-0"
@@ -155,7 +155,6 @@ const BrandsItem = () => {
                   <h3 className="font-bold "> ¥{box?.price}</h3>
                   <h3 className="font-bold mt-2">Quantity: 15</h3>
                 </h2>
-                p
               </div>
             </div>
           );
@@ -203,6 +202,7 @@ const BrandsItem = () => {
               D
             </button>
           </div>
+          {/* product  */}
           <div className="h-[600px] overflow-auto mx-auto mt-8 lg:hidden relative">
             {projects
               ? projects?.map((product) => {
@@ -254,61 +254,69 @@ const BrandsItem = () => {
           </div>
 
           {/* tab and color wise selected product for desktop version */}
-          <div className="hidden lg:block">
-            <div className="tabs hidden lg:block">
-              {colors?.map((color, index) => (
-                <button
-                  onClick={() => handleFilter(color)}
-                  className={`${
-                    activeFilter === color ? " tab tab-bordered tab-active" : ""
-                  } tab tab-bordered`}
-                  key={index}
-                >
-                  {color}
-                </button>
-              ))}
-              <a className="tab tab-bordered">Description</a>
-            </div>
-            <div className="grid lg:grid-cols-4 gap-10 mt-12">
-              {projects
-                ? projects?.map((product) => {
-                    return (
-                      <div key={product?._id} className="card shadow-xl ">
-                        <figure>
-                          <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            alt="Product"
-                          />
-                        </figure>
+          <div>
+            <h2 className=" text-2xl  font-bold text-[#9A583B]">Products</h2>
+            <div className="hidden lg:block">
+              <div className="tabs hidden lg:block">
+                {colors?.map((color, index) => (
+                  <button
+                    onClick={() => handleFilter(color)}
+                    className={`${
+                      activeFilter === color
+                        ? " tab tab-bordered tab-active"
+                        : ""
+                    } tab tab-bordered`}
+                    key={index}
+                  >
+                    {color}
+                  </button>
+                ))}
+                <a className="tab tab-bordered">Description</a>
+              </div>
+              <div className="grid lg:grid-cols-5 gap-4 mt-12">
+                {projects
+                  ? projects?.map((product) => {
+                      return (
+                        <div key={product?._id} className="card shadow-xl ">
+                          <figure>
+                            <img
+                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                              alt="Product"
+                              className="lg:w-36"
+                            />
+                          </figure>
 
-                        <div className="card-body sm:w-full text-center">
-                          <h2 className="font-bold text-xl">{product?.name}</h2>
-                          {/* <h2 className="font-bold">{product?.color}</h2> */}
-                          <p>{product?.desc}</p>
-                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          <div className="card-body sm:w-full text-center">
+                            <h2 className=" font-bold">{product?.name}</h2>
+                            {/* <h2 className="font-bold">{product?.color}</h2> */}
+                            <p>
+                              <span className="">{product?.desc}</span>
+                            </p>
+                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })
-                : selectGiftBoxProducts?.map((product) => {
-                    return (
-                      <div key={product?._id} className="card shadow-xl ">
-                        <figure>
-                          <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            alt="Product"
-                          />
-                        </figure>
+                      );
+                    })
+                  : selectGiftBoxProducts?.map((product) => {
+                      return (
+                        <div key={product?._id} className="card shadow-xl ">
+                          <figure>
+                            <img
+                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                              alt="Product"
+                            />
+                          </figure>
 
-                        <div className="card-body sm:w-full text-center">
-                          <h2 className="font-bold text-xl">{product?.name}</h2>
-                          {/* <h2 className="font-bold">{product?.color}</h2> */}
-                          <p>{product?.desc}</p>
-                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          <div className="card-body sm:w-full text-center">
+                            <h2 className="text-xl">{product?.name}</h2>
+                            {/* <h2 className="font-bold">{product?.color}</h2> */}
+                            <p>{product?.desc}</p>
+                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+              </div>
             </div>
           </div>
         </div>
@@ -383,7 +391,7 @@ const BrandsItem = () => {
       {/* Similar Gift Box */}
 
       <div>
-        <h2 className="mt-8 text-2xl sm:text-center font-bold text-[#9A583B]">
+        <h2 className="mt-8 text-2xl font-bold text-[#9A583B]">
           Similar Gift Box
         </h2>
         <div className="grid lg:grid-cols-4 gap-10 mt-8">
@@ -400,7 +408,7 @@ const BrandsItem = () => {
                   {box?.name}
                 </h2>
 
-                <div className="card-body  text-center">
+                <div className="mb-4  text-center">
                   <button className="w-2/4 block mx-auto p-2 sm:w-sm rounded font-bold text-white bg-[#9A583B]">
                     Add To Cart
                   </button>
