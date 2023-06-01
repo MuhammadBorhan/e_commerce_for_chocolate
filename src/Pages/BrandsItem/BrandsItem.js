@@ -103,10 +103,12 @@ const BrandsItem = () => {
       </div>
 
       <div>
+
+        {/* Gift Box for large device  */}
         {selectGiftBox?.map((box) => {
           console.log("box", box);
           return (
-            <div className="hero mx-auto my-16">
+            <div className="hero mx-auto my-16 sm:hidden">
               <div
                 key={box?._id}
                 className="hero-content flex-col lg:flex-row gap-y-10 lg:gap-y-0"
@@ -134,11 +136,35 @@ const BrandsItem = () => {
             </div>
           );
         })}
+
+        {/* Gift box for mobile  */}
+        {
+          selectGiftBox?.map((box)=>{
+            return(
+              <div className="mt-4 card   shadow-xl lg:hidden">
+  <figure><img src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`} alt="Shoes" /></figure>
+                  <div className="divider"></div>
+  <div className="card-body">
+    <h2 className="card-title justify-center justify-items-center">
+      <h1 className="text-xl italic  text-yellow-900 font-bold">
+                    {box?.name}
+                  </h1>
+                  <h3 className="font-bold "> ¥{box?.price}</h3>
+                  <h3 className="font-bold mt-2">Quantity: 15</h3>
+                 
+    </h2>
+    p
+  </div>
+</div>
+            )
+          })
+        }
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
-          <div className="flex flex-col absolute right-0 mt- bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+          <div className="flex flex-col absolute right-0 mt- bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
             <button
               onClick={() => handleFilter("All")}
+              title="All Products"
               className={
                 activeFilter === "All" ? "text-green-500 font-bold" : ""
               }
@@ -147,6 +173,7 @@ const BrandsItem = () => {
             </button>
             <button
               onClick={() => handleFilter("Black")}
+              title="Black"
               className={
                 activeFilter === "Black" ? "text-green-500 font-bold" : ""
               }
@@ -155,6 +182,7 @@ const BrandsItem = () => {
             </button>
             <button
               onClick={() => handleFilter("White")}
+              title="White"
               className={
                 activeFilter === "White" ? "text-green-500 font-bold" : ""
               }
@@ -163,13 +191,14 @@ const BrandsItem = () => {
             </button>
             <button
               onClick={() => handleFilter("Milk")}
+              title="Milk"
               className={
                 activeFilter === "Milk" ? "text-green-500 font-bold" : ""
               }
             >
               M
             </button>
-            <button className="">D</button>
+            <button title="Description" className="">D</button>
           </div>
           <div className="h-[600px] overflow-auto mx-auto mt-8 lg:hidden relative">
             {projects
@@ -287,6 +316,7 @@ const BrandsItem = () => {
         <h2 className="text-center mb-4 font-mono text-xl">
           Event will be start this time. If you are interested please join
         </h2>
+        <div className="grid lg:grid-cols-3 gap-12 mt-12">
         {filterEvent?.map((event) => {
           return (
             event?.status === "Start" && (
@@ -346,36 +376,41 @@ const BrandsItem = () => {
           );
         })}
       </div>
-
-      {/* Similar Gift Box */}
-      <div className="w-full lg:w-[60%] mt-24 mx-auto">
-        <div className=" text-2xl font-bold text-indigo-600 text-center lg:text-left">
-          Similar Gift-Box
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
-          {similarGiftBox?.map((box) => {
-            return (
-              <div
-                key={box?._id}
-                className="shadow-lg p-2 flex justify-center items-center flex-col"
-              >
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
-                  className="w-[200px] h-[200px] "
-                />
-                <div className="text-center">
-                  <p className="font-bold my-2">{box?.name}</p>
-                </div>
-                <button className="px-2 py-1 bg-[#9A583B] mt-4 text-white font-bold">
-                  Add To Cart
-                </button>
-              </div>
-            );
-          })}
-        </div>
       </div>
+      {/* Similar Gift Box */}
+
+     <div>
+      <h2 className="mt-8 text-2xl sm:text-center font-bold text-[#9A583B]">Similar Gift Box</h2>
+     <div className="grid lg:grid-cols-4 gap-10 mt-8">
+              {similarGiftBox?.map((box) => {
+                    return (
+                      <div key={box?._id} className="card shadow-xl ">
+                        <figure>
+                          <img
+                            src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                            alt="box"
+
+                            
+                          />
+                        </figure>
+                        <h2 className="font-bold  sm:w-full text-center">{box?.name}</h2>
+
+                        <div className="card-body  text-center">
+                        
+                        <button className="w-2/4 block mx-auto p-2 sm:w-sm rounded font-bold text-white bg-[#9A583B]">
+                    Add To Cart
+                  </button>
+                        </div>
+                      </div>
+                    );
+                  })
+                }
+                  </div>
+     </div>
+                 
     </div>
   );
 };
+window.scrollTo(0,100)
 
 export default BrandsItem;
