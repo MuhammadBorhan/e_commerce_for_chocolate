@@ -99,7 +99,7 @@ const NewAddRegion = () => {
                         <div className="mt-1 ml-2">
                           <CiCircleRemove />
                         </div>
-                        <p className=" ml-2 text-red">Delete</p>
+                        <p className=" ml-2 text-[#ff0000e0]">Delete</p>
                       </button>
                     </div>
                   ))}

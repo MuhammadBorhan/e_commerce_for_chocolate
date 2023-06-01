@@ -117,35 +117,36 @@ const BrandsItem = () => {
             );
           })}
         </div> */}
-        <div className="hero  mt-2">
-          {selectGiftBox?.map((box) => {
-            return (
-              <div key={box?._id} className="hero-content flex-col lg:flex-row">
+        {selectGiftBox?.map((box) => {
+          console.log(box);
+          return (
+            <div key={box?._id} className="hero-content flex-col lg:flex-row">
+              <div className="hero mx-auto ">
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                   alt=""
-                  className="max-w-sm rounded-lg shadow-xl"
+                  className="max-w-sm w-2/4 rounded-lg shadow-2xl"
                 />
-                <div>
-                  <h1 className="text-xl text-green-500 font-bold">
+                <div className="w-1/4">
+                  <h1 className="text-2xl italic text-justify text-yellow-900 font-bold">
                     {box?.name}
                   </h1>
-                  <h3 className="">Price:10</h3>
-                  <h3 className="">Qunatity:5</h3>
-                  <p className="">
-                    This chocolate is good its not fatty. One of the best
-                    chocolate in our brand.
-                    <br /> You can try it easily wot a sweet flavour.So You can
-                    order it also
+                  <div className="divider"></div>
+                  <h3 className="font-bold">Price: $45</h3>
+                  <p className="py-6">
+                    Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                    assumenda excepturi exercitationem quasi. In deleniti eaque
+                    aut repudiandae et a id nisi.
                   </p>
-                  <button className=" px-2  bg-[#9A583B] mt-16 text-white font-bold">
+                  <button className="p-2 rounded text-white bg-[#9A583B]">
                     Add To Cart
                   </button>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
+
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
           <div className="flex flex-col absolute right-0 mt- bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
