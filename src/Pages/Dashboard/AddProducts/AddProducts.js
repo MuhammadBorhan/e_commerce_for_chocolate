@@ -41,7 +41,9 @@ const AddProdusts = () => {
       setDesc("");
       setPrice("");
       setImg("");
-      toast.success("Successfully added");
+      if (response) {
+        toast.success("Successfully added");
+      }
     } catch (error) {
       console.error("Error creating product:", error.response.data);
       toast.error(error.response?.data?.error);

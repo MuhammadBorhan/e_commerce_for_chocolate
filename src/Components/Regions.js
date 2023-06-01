@@ -156,11 +156,13 @@ const Regions = () => {
         className="mySwiper bswiper"
       >
         {trendingBrands?.map((product, index) => (
+            // consoe.log(product)
           <SwiperSlide className="bswiper-slide" key={index}>
             <Link to={`/brands/${product?.name}`} state={product} key={index}>
               <img
-                src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.logo}`}
+                src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
                 alt={product?.name}
+                className="h-48 w-48 object-cover"
               />
               <p>{product?.name}</p>
             </Link>

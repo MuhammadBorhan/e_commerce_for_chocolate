@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { CiCircleRemove } from "react-icons/ci";
+import { FaTrash } from "react-icons/fa";
 import { AiOutlineMenu } from "react-icons/ai";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
+import { toast } from "react-toastify";
 
 const NewAddRegion = () => {
   const [region, setRegion] = useState("");
@@ -34,7 +35,7 @@ const NewAddRegion = () => {
       district,
     };
     try {
-      await axios.post(
+      const res = await axios.post(
         "https://andy-chocolate-productions.up.railway.app/api/v1/region",
         newDistrictData
       );
@@ -43,9 +44,11 @@ const NewAddRegion = () => {
       setRegion("");
       setDistricts([]);
 
-      // Handle success or show a success message
+      if (res) {
+        toast.success("Successfully Added!!");
+      }
     } catch (error) {
-      // Handle error or show an error message
+      toast.error(error?.res?.data?.error);
     }
   };
 
@@ -81,26 +84,27 @@ const NewAddRegion = () => {
                       className="flex flex-col items-center gap-2"
                       key={index}
                     >
-                      <input
-                        type="text"
-                        value={district?.name}
-                        onChange={(e) =>
-                          handleDistrictChange(index, e.target.value)
-                        }
-                        placeholder="District"
-                        className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs"
-                      />
+                      <div className="flex items-center">
+                        <input
+                          type="text"
+                          value={district?.name}
+                          onChange={(e) =>
+                            handleDistrictChange(index, e.target.value)
+                          }
+                          placeholder="District"
+                          className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs mb-1"
+                        />
 
-                      <button
-                        className="flex"
-                        type="button"
-                        onClick={() => handleRemoveDistrict(index)}
-                      >
-                        <div className="mt-1 ml-2">
-                          <CiCircleRemove />
-                        </div>
-                        <p className=" ml-2 text-[#ff0000e0]">Delete</p>
-                      </button>
+                        <button
+                          className="flex"
+                          type="button"
+                          onClick={() => handleRemoveDistrict(index)}
+                        >
+                          <div className=" ml-2 text-red-600">
+                            <FaTrash />
+                          </div>
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>

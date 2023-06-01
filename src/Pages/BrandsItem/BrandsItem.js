@@ -8,6 +8,8 @@ import { useGetAllProductsQuery } from "../../features/api/productsApi";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import "./BrandsItem.css";
+
 const BrandsItem = () => {
   const location = useLocation();
   const brands = location?.state;
@@ -40,6 +42,7 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const events = getEvent?.data;
+  const filterEvent = events?.filter((even) => even?.brand === brands?.name);
 
   // fetch all products
   const { data: getProducts } = useGetAllProductsQuery(null, {
@@ -52,7 +55,6 @@ const BrandsItem = () => {
       (pdct) => pdct === product.name
     );
   });
-  console.log(selectGiftBoxProducts);
 
   const [projects, setProjects] = useState();
   useEffect(() => {
@@ -78,66 +80,53 @@ const BrandsItem = () => {
   return (
     <div className="p-4 lg:p-12">
       {/* brand cover image */}
-      <div className="relative -mt-10">
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-gray-900 opacity-75"></div> */}
-        <img
-          src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
-          alt={brands?.name}
-          className="w-full h-[200px] object-center opacity-75"
-        />
-        <div className="absolute bottom-10 left-10 flex items-center ">
-          <img
-            src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
-            alt="Logo"
-            className="w-full h-full object-center "
-          />
+      <div>
+        <div
+          className="h-48 bg-cover bg-center bg-no-repeat w-full relative -mt-10"
+          style={{
+            backgroundImage: `url(${`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`})`,
+          }}
+        >
+          <div
+            className="absolute bottom-10 left-10 flex flex-col items-center "
+            style={{ zIndex: "2" }}
+          >
+            <img
+              src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+              alt="Logo"
+              className="w-full h-full object-center "
+            />
+            <p className="text-white font-bold">{brands?.name}</p>
+          </div>
+          <div className="overlay"></div>
         </div>
       </div>
 
       <div>
-        {/* Selected gift box image */}
-        {/* <div className="mb-12 lg:mb-12 mt-10">
-          {selectGiftBox?.map((box) => {
-            return (
+        {/* Gift Box for large device  */}
+        {selectGiftBox?.map((box) => {
+          console.log("box", box);
+          return (
+            <div className="hero mx-auto my-16 sm:hidden">
               <div
                 key={box?._id}
-                className={` p-2 mt-10 w-[50%] lg:w-[25%] m-auto `}
-                style={{
-                  boxShadow:
-                    "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-                }}
+                className="hero-content flex-col lg:flex-row gap-y-10 lg:gap-y-0"
               >
-                <div>
+                <div className="flex-1 flex justify-center">
                   <img
                     src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    alt=""
+                    className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                   />
                 </div>
-                <p className="text-center font-bold my-4">{box?.name}</p>
-              </div>
-            );
-          })}
-        </div> */}
-        {selectGiftBox?.map((box) => {
-          console.log(box);
-          return (
-            <div key={box?._id} className="hero-content flex-col lg:flex-row">
-              <div className="hero mx-auto ">
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
-                  alt=""
-                  className="max-w-sm w-2/4 rounded-lg shadow-2xl"
-                />
-                <div className="w-1/4">
+                <div className="w-full flex-1">
                   <h1 className="text-2xl italic text-justify text-yellow-900 font-bold">
                     {box?.name}
                   </h1>
                   <div className="divider"></div>
-                  <h3 className="font-bold">Price: $45</h3>
-                  <p className="py-6">
-                    Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                    assumenda excepturi exercitationem quasi. In deleniti eaque
-                    aut repudiandae et a id nisi.
-                  </p>
+                  <h3 className="font-bold text-xl">Price: ¥{box?.price}</h3>
+                  <h3 className="font-bold mt-2">Quantity: 15</h3>
+                  <p className="py-4 text-justify">{box?.desc}</p>
                   <button className="p-2 rounded text-white bg-[#9A583B]">
                     Add To Cart
                   </button>
@@ -147,11 +136,36 @@ const BrandsItem = () => {
           );
         })}
 
+        {/* Gift box for mobile  */}
+        {selectGiftBox?.map((box) => {
+          return (
+            <div className="mt-4 card   shadow-xl lg:hidden">
+              <figure>
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  alt="Shoes"
+                />
+              </figure>
+              <div className="divider"></div>
+              <div className="card-body">
+                <h2 className="card-title justify-center justify-items-center">
+                  <h1 className="text-xl italic  text-yellow-900 font-bold">
+                    {box?.name}
+                  </h1>
+                  <h3 className="font-bold "> ¥{box?.price}</h3>
+                  <h3 className="font-bold mt-2">Quantity: 15</h3>
+                </h2>
+                p
+              </div>
+            </div>
+          );
+        })}
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
-          <div className="flex flex-col absolute right-0 mt- bg-black text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+          <div className="flex flex-col absolute right-0 mt- bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
             <button
               onClick={() => handleFilter("All")}
+              title="All Products"
               className={
                 activeFilter === "All" ? "text-green-500 font-bold" : ""
               }
@@ -160,6 +174,7 @@ const BrandsItem = () => {
             </button>
             <button
               onClick={() => handleFilter("Black")}
+              title="Black"
               className={
                 activeFilter === "Black" ? "text-green-500 font-bold" : ""
               }
@@ -168,6 +183,7 @@ const BrandsItem = () => {
             </button>
             <button
               onClick={() => handleFilter("White")}
+              title="White"
               className={
                 activeFilter === "White" ? "text-green-500 font-bold" : ""
               }
@@ -176,13 +192,16 @@ const BrandsItem = () => {
             </button>
             <button
               onClick={() => handleFilter("Milk")}
+              title="Milk"
               className={
                 activeFilter === "Milk" ? "text-green-500 font-bold" : ""
               }
             >
               M
             </button>
-            <button className="">D</button>
+            <button title="Description" className="">
+              D
+            </button>
           </div>
           <div className="h-[600px] overflow-auto mx-auto mt-8 lg:hidden relative">
             {projects
@@ -296,84 +315,96 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-12 ">
-        {events?.map((event) => {
-          return (
-            event?.status === "Start" && (
-              <div
-                key={event._id}
-                className="card card-compact mx-auto lg:w-96 bg-base-100 shadow-xl"
-              >
-                <figure>
-                  <img
-                    src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
-                    alt={brands?.name}
-                    className="h-[250px] rounded-md mt-1"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h3 className="text-2xl italic font-bold text-emerald-600 text-justify">
+      <div className="mt-12 lg:mt-16 ">
+        <h2 className="text-center mb-4 font-mono text-xl">
+          Event will be start this time. If you are interested please join
+        </h2>
+        <div className="grid lg:grid-cols-3 gap-12 mt-12">
+          {filterEvent?.map((event) => {
+            return (
+              event?.status === "Start" && (
+                <div
+                  key={event._id}
+                  className="card card-compact mx-auto lg:w-[320px] bg-base-100 shadow-xl rounded-none"
+                  style={{ borderRadius: "35px 35px 25px 25px" }}
+                >
+                  <figure className=" ">
+                    <img
+                      src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`}
+                      alt={brands?.name}
+                      className="h-[250px] mt-1"
+                      style={{ borderRadius: "25px 25px 0 0" }}
+                    />
+                  </figure>
+                  <h3
+                    className=" italic font-bold text-white mt-8 mr-8 bg-[#db874b] p-2 text-justify"
+                    style={{ borderRadius: "0 30px 30px 0" }}
+                  >
                     {event?.title}
                   </h3>
-                  <p className="text-center text-xl italic">
-                    {new Date(event?.dateTime).toLocaleString()}
-                  </p>
-                  <h4 className="text-center">Google Meet</h4>
-                  <p className="text-center">
-                    <span className="text-xs">{event?.desc}</span>
-                  </p>
-                  <div className="card-actions justify-center mx-auto m-2">
-                    <div className="mt-2">
-                      <a
-                        target="_blank"
-                        href={event?.gmeet}
-                        className=" w-24 bg-transparent  hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
-                      >
-                        {event?.status}
-                      </a>
-                    </div>
-                    <div className="hidden mt-2">
-                      <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
-                        Meet Link:{" "}
-                      </span>
-                      <a
-                        target="_blank"
-                        href={event?.gmeet}
-                        className="text-blue-500 underline"
-                      >
-                        {event?.gmeet}
-                      </a>
+                  <div className="card-body">
+                    <p className="text-center text-xl italic">
+                      {new Date(event?.dateTime).toLocaleString()}
+                    </p>
+                    <h4 className="text-center">Google Meet</h4>
+                    <p className="text-center">
+                      <span className="text-xs">{event?.desc}</span>
+                    </p>
+                    <div className="card-actions justify-center mx-auto m-2">
+                      <div className="mt-2">
+                        <a
+                          target="_blank"
+                          href={event?.gmeet}
+                          className=" w-24 bg-transparent  hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                        >
+                          {event?.status}
+                        </a>
+                      </div>
+                      <div className="hidden mt-2">
+                        <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
+                          Meet Link:{" "}
+                        </span>
+                        <a
+                          target="_blank"
+                          href={event?.gmeet}
+                          className="text-blue-500 underline"
+                        >
+                          {event?.gmeet}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )
-          );
-        })}
-      </div>
-
-      {/* Similar Gift Box */}
-      <div className="w-full lg:w-[60%] mt-24 mx-auto">
-        <div className=" text-2xl font-bold text-indigo-600 text-center lg:text-left">
-          Similar Gift-Box
+              )
+            );
+          })}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-6">
+      </div>
+      {/* Similar Gift Box */}
+
+      <div>
+        <h2 className="mt-8 text-2xl sm:text-center font-bold text-[#9A583B]">
+          Similar Gift Box
+        </h2>
+        <div className="grid lg:grid-cols-4 gap-10 mt-8">
           {similarGiftBox?.map((box) => {
             return (
-              <div
-                key={box?._id}
-                className="shadow-lg p-2 flex justify-center items-center flex-col"
-              >
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
-                  className="w-[200px] h-[200px] "
-                />
-                <div className="text-center">
-                  <p className="font-bold my-2">{box?.name}</p>
+              <div key={box?._id} className="card shadow-xl ">
+                <figure>
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    alt="box"
+                  />
+                </figure>
+                <h2 className="font-bold  sm:w-full text-center">
+                  {box?.name}
+                </h2>
+
+                <div className="card-body  text-center">
+                  <button className="w-2/4 block mx-auto p-2 sm:w-sm rounded font-bold text-white bg-[#9A583B]">
+                    Add To Cart
+                  </button>
                 </div>
-                <button className="px-2 py-1 bg-[#9A583B] mt-4 text-white font-bold">
-                  Add To Cart
-                </button>
               </div>
             );
           })}
@@ -382,5 +413,6 @@ const BrandsItem = () => {
     </div>
   );
 };
+window.scrollTo(0, 100);
 
 export default BrandsItem;

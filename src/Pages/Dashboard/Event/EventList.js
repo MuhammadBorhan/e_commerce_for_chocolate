@@ -35,11 +35,13 @@ const EventList = () => {
           <thead>
             <tr>
               <th>SL. No</th>
+              <th>Image</th>
               <th>Title</th>
               <th>Date</th>
               <th>Region</th>
               <th>District</th>
               <th>G_meet Link</th>
+              <th>Brand</th>
               <th>Status</th>
               <th>Host</th>
               <th>Action</th>
@@ -49,6 +51,12 @@ const EventList = () => {
             {events?.map((even, index) => (
               <tr>
                 <th>{index + 1}</th>
+                <th>
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${even?.image}`}
+                    className="w-16"
+                  />
+                </th>
                 <th>{even?.title}</th>
                 <th>{new Date(even.dateTime).toLocaleString()}</th>
                 <th>{even?.region}</th>
@@ -56,7 +64,7 @@ const EventList = () => {
                 <th className="text-blue-500 underline font-bold text-sm">
                   {even?.gmeet}
                 </th>
-
+                <td>{even?.brand}</td>
                 <td>{even?.status}</td>
                 <td>{user?.firstName}</td>
                 <td>
