@@ -14,10 +14,12 @@ const BrandsItem = () => {
   const location = useLocation();
   const brands = location?.state;
 
-  // window.scrollTo({
-  //   top: 0,
-  //   behavior: "smooth",
-  // });
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   // fetch all gift box data
   const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
@@ -83,6 +85,7 @@ const BrandsItem = () => {
   };
 
   const [show, setShow] = useState(false);
+  const [pShow, setPShow] = useState(false);
 
   return (
     <div className="p-4 lg:p-12">
@@ -168,7 +171,9 @@ const BrandsItem = () => {
                 <p className="italic text-justify mb-2 text-yellow-900 font-light">
                   {show ? box?.desc : box?.desc.slice(0, 100) + "..."}
                   <button onClick={() => setShow(!show)}>
-                    {show ? "...see less" : "..see more"}
+                    <span className="font-bold">
+                      {show ? "...see less" : "..see more"}
+                    </span>
                   </button>
                 </p>
                 <div className="flex gap-x-2 items-center justify-between my-2">
@@ -189,48 +194,53 @@ const BrandsItem = () => {
 
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
-          <div className="flex flex-col absolute right-0 mt- bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
-            <button
-              onClick={() => handleFilter("All")}
-              title="All Products"
-              className={
-                activeFilter === "All" ? "text-green-500 font-bold" : ""
-              }
-            >
-              A
-            </button>
-            <button
-              onClick={() => handleFilter("Black")}
-              title="Black"
-              className={
-                activeFilter === "Black" ? "text-green-500 font-bold" : ""
-              }
-            >
-              B
-            </button>
-            <button
-              onClick={() => handleFilter("White")}
-              title="White"
-              className={
-                activeFilter === "White" ? "text-green-500 font-bold" : ""
-              }
-            >
-              W
-            </button>
-            <button
-              onClick={() => handleFilter("Milk")}
-              title="Milk"
-              className={
-                activeFilter === "Milk" ? "text-green-500 font-bold" : ""
-              }
-            >
-              M
-            </button>
-            <button title="Description" className="">
-              D
-            </button>
+          <div>
+            <h2 className="text-[#9A583B] mt-4 font-bold lg:hidden ">
+              Products
+            </h2>
+            <div className="flex flex-col absolute right-0 mt-20 bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+              <button
+                onClick={() => handleFilter("All")}
+                title="All Products"
+                className={
+                  activeFilter === "All" ? "text-green-500 font-bold" : ""
+                }
+              >
+                A
+              </button>
+              <button
+                onClick={() => handleFilter("Black")}
+                title="Black"
+                className={
+                  activeFilter === "Black" ? "text-green-500 font-bold" : ""
+                }
+              >
+                B
+              </button>
+              <button
+                onClick={() => handleFilter("White")}
+                title="White"
+                className={
+                  activeFilter === "White" ? "text-green-500 font-bold" : ""
+                }
+              >
+                W
+              </button>
+              <button
+                onClick={() => handleFilter("Milk")}
+                title="Milk"
+                className={
+                  activeFilter === "Milk" ? "text-green-500 font-bold" : ""
+                }
+              >
+                M
+              </button>
+              <button title="Description" className="">
+                D
+              </button>
+            </div>
           </div>
-          <div className="h-[600px] overflow-auto mx-auto mt-8 lg:hidden relative">
+          <div className="h-[400px] overflow-auto mx-auto mt-8 lg:hidden relative">
             {projects
               ? projects?.map((product) => {
                   return (
@@ -281,69 +291,88 @@ const BrandsItem = () => {
           </div>
 
           {/* tab and color wise selected product for desktop version */}
-          <div className="hidden lg:block">
-            <div className="tabs hidden lg:block">
-              {colors?.map((color, index) => (
-                <button
-                  onClick={() => handleFilter(color)}
-                  className={`${
-                    activeFilter === color ? " tab tab-bordered tab-active" : ""
-                  } tab tab-bordered`}
-                  key={index}
-                >
-                  {color}
-                </button>
-              ))}
-              <a className="tab tab-bordered">Description</a>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mt-12">
-              {projects
-                ? projects?.map((product) => {
-                    return (
-                      <div key={product?._id} className="card shadow-xl ">
-                        <figure>
-                          <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            alt="Product"
-                            className="w-[170px]"
-                          />
-                        </figure>
+          <div>
+            <h2 className="hidden lg:block text-[#9A583B] text-xl font-bold mt-4 ">
+              Products
+            </h2>
+            <div className="hidden lg:block">
+              <div className="tabs hidden lg:block">
+                {colors?.map((color, index) => (
+                  <button
+                    onClick={() => handleFilter(color)}
+                    className={`${
+                      activeFilter === color
+                        ? " tab tab-bordered tab-active"
+                        : ""
+                    } tab tab-bordered`}
+                    key={index}
+                  >
+                    {color}
+                  </button>
+                ))}
+                <a className="tab tab-bordered">Description</a>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mt-12">
+                {projects
+                  ? projects?.map((product) => {
+                      return (
+                        <div key={product?._id} className="card shadow-xl ">
+                          <figure>
+                            <img
+                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                              alt="Product"
+                              className="w-[170px]"
+                            />
+                          </figure>
 
-                        <div className="card-body sm:w-full text-center">
-                          <h2 className="font-bold">{product?.name}</h2>
-                          {/* <h2 className="font-bold">{product?.color}</h2> */}
-                          <p className="text-sm font-light">{product?.desc}</p>
-                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          <div className="card-body sm:w-full text-center">
+                            <h2 className="font-bold">{product?.name}</h2>
+                            {/* <h2 className="font-bold">{product?.color}</h2> */}
+                            <p className="text-sm font-light">
+                              {product?.desc}
+                            </p>
+                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })
-                : selectGiftBoxProducts?.map((product) => {
-                    return (
-                      <div key={product?._id} className="card shadow-xl ">
-                        <figure>
-                          <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            alt="Product"
-                          />
-                        </figure>
+                      );
+                    })
+                  : selectGiftBoxProducts?.map((product) => {
+                      return (
+                        <div key={product?._id} className="card shadow-xl ">
+                          <figure>
+                            <img
+                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                              alt="Product"
+                            />
+                          </figure>
 
-                        <div className="card-body sm:w-full text-center">
-                          <h2 className="font-bold">{product?.name}</h2>
-                          {/* <h2 className="font-bold">{product?.color}</h2> */}
-                          <p className="text-sm font-light">{product?.desc}</p>
-                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          <div className="card-body sm:w-full text-center">
+                            <h2 className="font-bold">{product?.name}</h2>
+                            {/* <h2 className="font-bold">{product?.color}</h2> */}
+                            <p className="text-sm font-light">
+                              {" "}
+                              {pShow
+                                ? product?.desc
+                                : product?.desc.slice(0, 20) + "..."}
+                              <button onClick={() => setPShow(!pShow)}>
+                                <span className="font-bold">
+                                  {pShow ? "...see less" : "..see more"}
+                                </span>
+                              </button>
+                            </p>
+                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* event */}
-      <div className="mt-12 lg:mt-16 ">
+      <div className="mt-8 lg:mt-16 ">
         <h2 className="text-center mb-4 font-mono text-xl">
           Event will be start this time. If you are interested please join
         </h2>
@@ -411,7 +440,7 @@ const BrandsItem = () => {
       {/* Similar Gift Box */}
 
       <div>
-        <h2 className="mt-8 text-2xl sm:text-center font-bold text-[#9A583B]">
+        <h2 className="mt-8 text-2xl text-center lg:text-left font-bold text-[#9A583B]">
           Similar Gift Box
         </h2>
         <div className="grid lg:grid-cols-4 gap-10 mt-8">
@@ -429,7 +458,7 @@ const BrandsItem = () => {
                   {box?.name}
                 </h2>
 
-                <div className="card-body  text-center">
+                <div className="my-2.5  text-center">
                   <button className=" block mx-auto py-2 px-4 sm:w-sm rounded font-bold text-white bg-[#9A583B]">
                     Add To Cart
                   </button>
@@ -442,6 +471,6 @@ const BrandsItem = () => {
     </div>
   );
 };
-window.scrollTo(0, 100);
+// window.scrollTo(0, 100);
 
 export default BrandsItem;
