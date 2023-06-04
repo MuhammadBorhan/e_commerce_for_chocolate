@@ -150,8 +150,7 @@ const BrandsItem = () => {
                     {box?.name}
                   </h1>
                   <h3 className="font-bold "> ¥{box?.price}</h3>
-                  <h3 className="font-bold mt-2">Quantity: 15</h3>
-                 
+                  <h3 className="font-bold mt-2">Quantity: 15</h3>      
     </h2>
     p
   </div>
