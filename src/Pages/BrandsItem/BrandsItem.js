@@ -91,7 +91,7 @@ const BrandsItem = () => {
         <div
           className="h-48 bg-cover bg-center bg-no-repeat w-full relative -mt-10"
           style={{
-            backgroundImage: `url(${`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`})`,
+            backgroundImage: `url(${`http://localhost:5000/uploads/${brands?.image}`})`,
           }}
         >
           <div
@@ -99,7 +99,7 @@ const BrandsItem = () => {
             style={{ zIndex: "2" }}
           >
             <img
-              src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+              src={`http://localhost:5000/uploads/${brands?.logo}`}
               alt="Logo"
               className="w-full h-full object-center "
             />
@@ -120,7 +120,7 @@ const BrandsItem = () => {
               >
                 <div className="flex-1 flex justify-center">
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                     alt=""
                     className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                   />
@@ -155,7 +155,7 @@ const BrandsItem = () => {
             <div className="mt-4 card shadow-xl lg:hidden">
               <figure>
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  src={`http://localhost:5000/${box?.image}`}
                   alt={box?.name}
                   classNmae="w-[200px]"
                 />
@@ -189,7 +189,7 @@ const BrandsItem = () => {
 
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
-          <div className="flex flex-col absolute right-0 mt- bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+          <div className="flex flex-col absolute right-0 mt- bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] h-full lg:hidden">
             <button
               onClick={() => handleFilter("All")}
               title="All Products"
@@ -230,7 +230,7 @@ const BrandsItem = () => {
               D
             </button>
           </div>
-          <div className="h-[600px] overflow-auto mx-auto mt-8 lg:hidden relative">
+          <div className="h-[400px] overflow-auto mx-auto mt-8 lg:hidden relative">
             {projects
               ? projects?.map((product) => {
                   return (
@@ -240,7 +240,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -263,7 +263,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -303,7 +303,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            src={`http://localhost:5000/${product?.image}`}
                             alt="Product"
                             className="w-[170px]"
                           />
@@ -323,7 +323,7 @@ const BrandsItem = () => {
                       <div key={product?._id} className="card shadow-xl ">
                         <figure>
                           <img
-                            src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            src={`http://localhost:5000/${product?.image}`}
                             alt="Product"
                           />
                         </figure>
@@ -343,7 +343,7 @@ const BrandsItem = () => {
       </div>
 
       {/* event */}
-      <div className="mt-12 lg:mt-16 ">
+      <div className="mt-8 lg:mt-16 ">
         <h2 className="text-center mb-4 font-mono text-xl">
           Event will be start this time. If you are interested please join
         </h2>
@@ -358,7 +358,7 @@ const BrandsItem = () => {
                 >
                   <figure className=" ">
                     <img
-                      src={`https://andy-chocolate-productions.up.railway.app/${event?.image}`}
+                      src={`http://localhost:5000/${event?.image}`}
                       alt={brands?.name}
                       className="h-[250px] mt-1"
                       style={{ borderRadius: "25px 25px 0 0" }}
@@ -420,7 +420,7 @@ const BrandsItem = () => {
               <div key={box?._id} className="card shadow-xl ">
                 <figure>
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                     alt="box"
                     className="w-[200px] lg:w-[300px]"
                   />

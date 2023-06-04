@@ -29,6 +29,7 @@ import UpdateRegionDistrict from "../Pages/Dashboard/UpdateRegionDistrict/Update
 import UpdateBrand from "../Pages/Dashboard/BrandProducts/UpdateBrand";
 import UpdateGiftBox from "../Pages/Dashboard/GiftBox/UpdateGiftBox";
 import UpdateEvent from "../Pages/Dashboard/Event/UpdateEvent";
+import AllVisitors from "../Pages/Dashboard/AllUsers/AllVisitors";
 
 const routes = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/alluser",
             element: <AllUsers />,
+          },
+          {
+            path: "/dashboard/visitor",
+            element: <AllVisitors />,
           },
           {
             path: "/dashboard/addbrand",
