@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
 import Marquee from "react-fast-marquee";
 import { GiModernCity } from "react-icons/gi";
-import { MdLocationCity } from "react-icons/md";
+import { IoIosArrowDown } from "react-icons/io";
 
 // react swiper
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,6 +17,8 @@ import { EffectCoverflow, Pagination } from "swiper";
 
 const Regions = () => {
   const [show, setShow] = useState(false);
+
+
   // fetching regions data for region and district
   const {
     data: regionData,
@@ -88,9 +90,33 @@ const Regions = () => {
 
       <div>
         <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
-          {regions?.map((r, index) => {
-            return (
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6  ">
+          {selectedRegion ? (
+            <div className='flex justify-center items-center justify-evenly bg-cover  rounded-r-full cursor-pointer border hover:border-gray-400 shadow-x'
+            onClick={() => setSelectedRegion(null)}>
+              <div
+                
+                className="card  "
+              >
+                
+                  <div className="p-4">
+                    <div className=" flex justify-center justify-items-center text-xl">
+                      <span className=" text-center">
+                        <GiModernCity></GiModernCity>
+                      </span>
+                    </div>
+                  
+                  <div className=" text-center text-xl font-bold ">
+                    {selectedRegion?.region}
+                  </div>
+                  </div>
+              </div>
+              <div className="text-xl text-slate-300">
+              < IoIosArrowDown style={{  fontSize: "30px" }} />
+              </div>
+            </div>
+          ) : (
+            regions?.map((r, index) => (
               <div
                 onClick={() => handleRegionClick(r, index)}
                 className="card border-2 hover:border-gray-400 shadow-xl cursor-pointer"
@@ -104,13 +130,13 @@ const Regions = () => {
                       </span>
                     </div>
                   </div>
-                  <div className=" text-center text-xl font-bold">
+                  <div className=" text-center text-xl font-bold ">
                     {r.region}
                   </div>
                 </div>
               </div>
-            );
-          })}
+            ))
+          )}
         </div>
       </div>
 
@@ -118,7 +144,7 @@ const Regions = () => {
 
       <div className="">
         {selectedRegion && (
-          <h4 className="text-2xl font-bold mb-4">Choose District</h4>
+          <h4 className="text-2xl font-bold mt-2 mb-4">Choose District</h4>
         )}
         <div className="grid grid-cols-4 lg:grid-cols-8 gap-2 mx-auto mb-8">
           {show
@@ -127,13 +153,6 @@ const Regions = () => {
                   onClick={() => handleBrand(d, index)}
                   className="flex flex-col justify-center items-center text-center p-2 cursor-pointer"
                 >
-                  <div className="">
-                    <div className=" flex justify-center justify-items-center  text-2xl rounded">
-                      {/* <span className=" text-center">
-                  <MdLocationCity></MdLocationCity>
-                </span> */}
-                    </div>
-                  </div>
                   <div className="lg:text-xl text-wrap text-gray-800">{d}</div>
                 </div>
               ))
@@ -142,13 +161,6 @@ const Regions = () => {
                   onClick={() => handleBrand(d, index)}
                   className="flex flex-col justify-center items-center text-center p-2 cursor-pointer"
                 >
-                  <div className="">
-                    <div className=" flex justify-center justify-items-center  text-2xl rounded">
-                      {/* <span className=" text-center">
-                    <MdLocationCity></MdLocationCity>
-                  </span> */}
-                    </div>
-                  </div>
                   <div className="lg:text-xl text-wrap text-gray-800">{d}</div>
                 </div>
               ))}
