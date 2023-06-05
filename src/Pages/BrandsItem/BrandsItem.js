@@ -14,13 +14,6 @@ import "glightbox/dist/css/glightbox.min.css";
 import Glightbox from "glightbox";
 
 const BrandsItem = () => {
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth",
-  //   });
-  // }, []);
-
   const location = useLocation();
   const brands = location?.state;
 
@@ -28,13 +21,6 @@ const BrandsItem = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    });
-  }, []);
-
-  // For product lightBox
-  useEffect(() => {
-    const lightbox = Glightbox({
-      selector: ".glightbox",
     });
   }, []);
 
@@ -104,6 +90,13 @@ const BrandsItem = () => {
   const [show, setShow] = useState(false);
   const [pShow, setPShow] = useState(false);
   const [registerPop, setRegisterPop] = useState(false);
+
+  // For product lightBox
+  useEffect(() => {
+    const lightbox = Glightbox({
+      selector: ".glightbox",
+    });
+  }, []);
 
   return (
     <div className="p-4 lg:p-12">
@@ -188,6 +181,7 @@ const BrandsItem = () => {
             </div>
           );
         })}
+
         {/* Gift box for mobile  */}
         {selectGiftBox?.map((box) => {
           return (
@@ -201,7 +195,7 @@ const BrandsItem = () => {
               </figure>
               <div className="divider"></div>
               <div className="card-body">
-                <h1 className="italic text-center text-yellow-900 font-bold lg:text-2xl lg:text-justify text-yellow-900 ">
+                <h1 className="italic text-center text-yellow-900 font-bold lg:text-2xl lg:text-justify  ">
                   {box?.name}
                 </h1>
                 {/* <p className="italic text-justify mb-2 text-yellow-900 font-light">
@@ -348,68 +342,62 @@ const BrandsItem = () => {
                 ))}
                 <a className="tab tab-bordered">Description</a>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mt-12">
+              <div className="gallery grid grid-cols-1 lg:grid-cols-5 gap-4 mt-12">
                 {projects
-                  ? projects?.map((product) => {
-                      return (
-                        <div key={product?._id} className="card shadow-xl ">
-                          <div className="gallery flex justify-between">
-                            <a
-                              className="glightbox"
-                              href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            >
-                              <img
-                                src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                                alt="Image"
-                              />
-                            </a>
-                          </div>
-
-                          <div className="card-body sm:w-full text-center">
-                            <h2 className="font-bold">{product?.name}</h2>
-                            {/* <h2 className="font-bold">{product?.color}</h2> */}
-                            <p className="text-sm font-light">
-                              {product?.desc}
-                            </p>
-                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
-                          </div>
+                  ? projects?.map((product) => (
+                      <div key={product?._id} className="card shadow-xl ">
+                        <div className=" flex justify-between">
+                          <a
+                            className="glightbox"
+                            href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          >
+                            <img
+                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                              alt="Image"
+                            />
+                          </a>
                         </div>
-                      );
-                    })
-                  : selectGiftBoxProducts?.map((product) => {
-                      return (
-                        <div key={product?._id} className="card shadow-xl ">
-                          <div className="gallery flex justify-between">
-                            <a
-                              className="glightbox"
-                              href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            >
-                              <img
-                                src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                                alt="Image"
-                              />
-                            </a>
-                          </div>
 
-                          <div className="card-body sm:w-full text-center">
-                            <h2 className="font-bold">{product?.name}</h2>
-                            {/* <h2 className="font-bold">{product?.color}</h2> */}
-                            <p className="text-sm font-light">
-                              {" "}
-                              {pShow
-                                ? product?.desc
-                                : product?.desc.slice(0, 20) + "..."}
-                              <button onClick={() => setPShow(!pShow)}>
-                                <span className="">
-                                  {pShow ? "...see less" : "..see more"}
-                                </span>
-                              </button>
-                            </p>
-                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
-                          </div>
+                        <div className="card-body sm:w-full text-center">
+                          <h2 className="font-bold">{product?.name}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
+                          <p className="text-sm font-light">{product?.desc}</p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
-                      );
-                    })}
+                      </div>
+                    ))
+                  : selectGiftBoxProducts?.map((product) => (
+                      <div key={product?._id} className="card shadow-xl ">
+                        <div className=" flex justify-between">
+                          <a
+                            className="glightbox"
+                            href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          >
+                            <img
+                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                              alt="Image"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="card-body sm:w-full text-center">
+                          <h2 className="font-bold">{product?.name}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
+                          <p className="text-sm font-light">
+                            {" "}
+                            {pShow
+                              ? product?.desc
+                              : product?.desc.slice(0, 20) + "..."}
+                            <button onClick={() => setPShow(!pShow)}>
+                              <span className="">
+                                {pShow ? "...see less" : "..see more"}
+                              </span>
+                            </button>
+                          </p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
+                        </div>
+                      </div>
+                    ))}
               </div>
             </div>
           </div>
