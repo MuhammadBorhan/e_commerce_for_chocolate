@@ -7,14 +7,29 @@ import SameDayDelivery from "../Components/SameDayDelivery";
 import Regions from "../Components/Regions";
 import Footer from "../Layout/Footer";
 
-const Home = () => {
-  const regions = [
-    { region: "Dhaka", district: ["mohammadpur", "rampura", "badda"] },
-    { region: "Comilla", district: ["laksham", "lalmai", "barura", "sadar"] },
-    { region: "Chattagram", district: ["agrabad", "hamjarbag", "muradpur"] },
-  ];
-  const [selectedRegion, setSelectedRegion] = useState(null);
+import "glightbox/dist/css/glightbox.min.css";
+import Glightbox from "glightbox";
 
+const Home = () => {
+  const images = [
+    {
+      img: "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-royal-purple-chocolate-bouquet-178336-m.jpg",
+    },
+    {
+      img: "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-chocolaty-goodness-191630-m.jpg",
+    },
+    {
+      img: "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-rochers-galore-gift-178334-m.jpg",
+    },
+    {
+      img: "https://cdn.igp.com/f_auto,q_auto,t_pnopt5prodlp/products/p-premium-couverture-chocolate-hamper-191990-m.jpg",
+    },
+  ];
+  useEffect(() => {
+    const lightbox = Glightbox({
+      selector: ".glightbox",
+    });
+  }, []);
   return (
     <>
       <MobileSearch />
@@ -26,37 +41,12 @@ const Home = () => {
       <Footer />
 
       <div className="p-20">
-        {selectedRegion ? (
-          <button
-            onClick={() => setSelectedRegion(null)}
-            className="border-2 rounded-full px-2"
-          >
-            {selectedRegion?.region} &#8595;
-          </button>
-        ) : (
-          <div>
-            <span>Choose Region</span>
-            <div className="flex gap-x-12">
-              {regions.map((region) => (
-                <button onClick={() => setSelectedRegion(region)}>
-                  {region?.region}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div>
-          {selectedRegion && (
-            <div>
-              <h4 className=" font-bold my-2">Choose District</h4>
-              <div className="flex gap-4 mx-auto ">
-                {selectedRegion?.district?.map((dis) => (
-                  <button className="border py-1 px-2">{dis}</button>
-                ))}
-              </div>
-            </div>
-          )}
+        <div className="gallery flex justify-between">
+          {images.map((img) => (
+            <a className="glightbox" href={img.img}>
+              <img src={img.img} alt="Image" />
+            </a>
+          ))}
         </div>
       </div>
     </>

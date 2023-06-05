@@ -9,17 +9,18 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import "./BrandsItem.css";
+import { ImCross } from "react-icons/im";
 
 const BrandsItem = () => {
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // }, []);
+
   const location = useLocation();
   const brands = location?.state;
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
 
   // fetch all gift box data
   const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
@@ -86,6 +87,7 @@ const BrandsItem = () => {
 
   const [show, setShow] = useState(false);
   const [pShow, setPShow] = useState(false);
+  const [registerPop, setRegisterPop] = useState(false);
 
   return (
     <div className="p-4 lg:p-12">
@@ -409,13 +411,12 @@ const BrandsItem = () => {
                     </p>
                     <div className="card-actions justify-center mx-auto m-2">
                       <div className="mt-2">
-                        <a
-                          target="_blank"
-                          href={event?.gmeet}
-                          className=" w-24 bg-transparent  hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
+                        <button
+                          onClick={() => setRegisterPop(!registerPop)}
+                          className=" w-24 bg-transparent  hover:bg-[#DB874B] text-[#DB874B] font-semibold hover:text-white py-2 px-4 border border-[#DB874B] hover:border-transparent rounded"
                         >
-                          {event?.status}
-                        </a>
+                          Registrer
+                        </button>
                       </div>
                       <div className="hidden mt-2">
                         <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
@@ -437,6 +438,56 @@ const BrandsItem = () => {
           })}
         </div>
       </div>
+
+      {/* register popup start*/}
+      {registerPop && (
+        <div
+          style={{
+            backgroundColor: "#ebedf0",
+            position: "relative",
+            marginTop: "-100px",
+            width: "100%",
+            height: "100vh",
+            zIndex: "999",
+          }}
+        >
+          <div className="">
+            <div
+              onClick={() => setRegisterPop(!registerPop)}
+              className="float-left text-white p-4 "
+              style={{
+                height: "60px",
+                backgroundColor: "#900C3F",
+                cursor: "pointer",
+              }}
+            >
+              <ImCross
+                onClick={() => setRegisterPop(false)}
+                style={{
+                  cursor: "pointer",
+                  color: "white",
+                  fontSize: "20px",
+                }}
+              />
+            </div>
+            <div
+              className="d-flex justify-content-between align-items-center px-4 "
+              style={{ height: "60px", backgroundColor: "#7B3F00" }}
+            >
+              {/* logo */}
+              <div className="flex items-center h-full">
+                <p className="text-white ml-4">Title</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h1 className="flex justify-center ">Borhan Uddin</h1>
+          </div>
+        </div>
+      )}
+      {/* register popup end*/}
+
       {/* Similar Gift Box */}
 
       <div>
