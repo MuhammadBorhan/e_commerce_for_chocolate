@@ -16,6 +16,7 @@ import "./Regions.css";
 import { EffectCoverflow, Pagination } from "swiper";
 
 const Regions = () => {
+  const [show, setShow] = useState(false);
   // fetching regions data for region and district
   const {
     data: regionData,
@@ -119,23 +120,46 @@ const Regions = () => {
         {selectedRegion && (
           <h4 className="text-2xl font-bold mb-4">Choose District</h4>
         )}
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mx-auto mb-8">
-          {selectedRegion?.district?.map((d, index) => (
-            <div
-              onClick={() => handleBrand(d, index)}
-              className="flex flex-col justify-center items-center text-center p-2 menu_icon"
-            >
-              <div className="">
-                <div className=" flex justify-center justify-items-center  text-2xl rounded">
-                  <span className=" text-center">
-                    <MdLocationCity></MdLocationCity>
-                  </span>
+        <div className="grid grid-cols-4 lg:grid-cols-8 gap-2 mx-auto mb-8">
+          {show
+            ? selectedRegion?.district?.map((d, index) => (
+                <div
+                  onClick={() => handleBrand(d, index)}
+                  className="flex flex-col justify-center items-center text-center p-2 cursor-pointer"
+                >
+                  <div className="">
+                    <div className=" flex justify-center justify-items-center  text-2xl rounded">
+                      {/* <span className=" text-center">
+                  <MdLocationCity></MdLocationCity>
+                </span> */}
+                    </div>
+                  </div>
+                  <div className="lg:text-xl text-wrap text-gray-800">{d}</div>
                 </div>
-              </div>
-              <div className="lg:text-xl text-wrap">{d}</div>
-            </div>
-          ))}
+              ))
+            : selectedRegion?.district?.slice(0, 18).map((d, index) => (
+                <div
+                  onClick={() => handleBrand(d, index)}
+                  className="flex flex-col justify-center items-center text-center p-2 cursor-pointer"
+                >
+                  <div className="">
+                    <div className=" flex justify-center justify-items-center  text-2xl rounded">
+                      {/* <span className=" text-center">
+                    <MdLocationCity></MdLocationCity>
+                  </span> */}
+                    </div>
+                  </div>
+                  <div className="lg:text-xl text-wrap text-gray-800">{d}</div>
+                </div>
+              ))}
         </div>
+        {selectedRegion?.district?.length > 18 && (
+          <button onClick={() => setShow(!show)} className="block m-auto">
+            <span className="font-bold text-center">
+              {show ? "Show less" : "Show more"}
+            </span>
+          </button>
+        )}
       </div>
 
       <Swiper
@@ -162,7 +186,7 @@ const Regions = () => {
               <img
                 src={`http://localhost:5000/uploads/${product?.image}`}
                 alt={product?.name}
-                className="h-48 w-48 object-cover"
+                className="h-96 w-96 object-cover"
               />
               <p>{product?.name}</p>
             </Link>

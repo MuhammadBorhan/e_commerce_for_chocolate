@@ -26,23 +26,23 @@ const DeliveryGiftsDetails = () => {
         <div className="flex justify-center">
           <img
             className="hidden lg:block"
-            src={data.image}
+            src={data?.image}
             style={{ width: "600px" }}
           />
           <img
             className="block lg:hidden"
-            src={data.image}
+            src={data?.image}
             style={{ width: "300px" }}
           />
         </div>
         <div className="col-12 col-lg-6 d-flex justify-content-center pe-4 flex-column pt-3 pt-lg-0">
           <p className="text-blue-300 font-bold">Same Day Delivery</p>
-          <p className="text-xl font-bold">{data.name}</p>
+          <p className="text-xl font-bold">{data?.name}</p>
           <h4 className="text-orange-500 font-bold text-3xl py-2">
             {data.price}$
           </h4>
           <h6 className="text-xl">Description</h6>
-          <p className="mb-4">{data.desc}</p>
+          <p className="mb-4">{data?.desc}</p>
 
           <div>
             <h6

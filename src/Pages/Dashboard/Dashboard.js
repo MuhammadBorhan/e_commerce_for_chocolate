@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetAllUserQuery } from "../../features/api/loginApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
 import { useGetAllRegionQuery } from "../../features/api/regionApi";
@@ -16,6 +16,12 @@ import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineMenu } from "react-icons/ai";
 
 const Dashboard = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const { data, isLoading } = useGetAllUserQuery();
   const users = data?.data;
 
