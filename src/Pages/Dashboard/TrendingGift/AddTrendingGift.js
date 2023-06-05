@@ -28,7 +28,7 @@ const AddTrendingGift = () => {
       district,
     };
     try {
-      await axios.post("https://andy-chocolate-productions.up.railway.app/api/v1/trendgift", data);
+      await axios.post("http://localhost:5000/api/v1/trendgift", data);
 
       // Reset the form inputs
       setBrand("");
