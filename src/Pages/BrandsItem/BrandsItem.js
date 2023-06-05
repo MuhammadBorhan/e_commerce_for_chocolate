@@ -7,8 +7,10 @@ import { useGetAllEventQuery } from "../../features/api/eventApi";
 import { useGetAllProductsQuery } from "../../features/api/productsApi";
 import { useState } from "react";
 import { useEffect } from "react";
-
 import "./BrandsItem.css";
+
+import "glightbox/dist/css/glightbox.min.css";
+import Glightbox from "glightbox";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -21,6 +23,13 @@ const BrandsItem = () => {
     });
   }, []);
 
+  // For product lightBox
+  useEffect(() => {
+    const lightbox = Glightbox({
+      selector: ".glightbox",
+    });
+  }, []);
+  
   // fetch all gift box data
   const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
     refetchOnMountOrArgChange: true,
@@ -113,8 +122,8 @@ const BrandsItem = () => {
       </div>
 
       <div>
-        {/* Gift Box for desktop  */}
-        {selectGiftBox?.map((box) => {
+        {/* Gift Box for desktop  postponded for client choice..  */}
+        {/* {selectGiftBox?.map((box) => {
           return (
             <div className="hero mx-auto my-16 hidden md:block">
               <div
@@ -150,12 +159,30 @@ const BrandsItem = () => {
               </div>
             </div>
           );
-        })}
+        })} */}
 
+        {selectGiftBox?.map((box) => {
+          return (
+            <div className="card hidden lg:block">
+              <figure className="px-10 pt-10">
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  alt=""
+                  className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
+                />
+              </figure>
+              <div className="card-body items-center text-center">
+              <h1 className="text-2xl italic text-justify text-yellow-900 font-bold">
+                    {box?.name}
+                  </h1>
+              </div>
+            </div>
+          );
+        })}
         {/* Gift box for mobile  */}
         {selectGiftBox?.map((box) => {
           return (
-            <div className="mt-4 card shadow-xl lg:hidden">
+            <div className="mt-4 card shadow-xl lg:hidden ">
               <figure>
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
@@ -165,14 +192,14 @@ const BrandsItem = () => {
               </figure>
               <div className="divider"></div>
               <div className="card-body">
-                <h1 className="italic text-center text-yellow-900 font-bold">
+                <h1 className="italic text-center text-yellow-900 font-bold lg:text-2xl lg:text-justify text-yellow-900 ">
                   {box?.name}
                 </h1>
-                <p className="italic text-justify mb-2 text-yellow-900 font-light">
+                {/* <p className="italic text-justify mb-2 text-yellow-900 font-light">
                   {show ? box?.desc : box?.desc.slice(0, 100) + "..."}
                   <button onClick={() => setShow(!show)}>
-                    <span className="font-bold">
-                      {show ? "...see less" : "..see more"}
+                    <span className="">
+                      {show ? "...see less" : "...see more"}
                     </span>
                   </button>
                 </p>
@@ -186,7 +213,7 @@ const BrandsItem = () => {
                   <button className="py-1 px-2 text-sm w-28 rounded text-white font-bold bg-[#9A583B]">
                     Add To Cart
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           );
@@ -317,13 +344,17 @@ const BrandsItem = () => {
                   ? projects?.map((product) => {
                       return (
                         <div key={product?._id} className="card shadow-xl ">
-                          <figure>
-                            <img
-                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                              alt="Product"
-                              className="w-[170px]"
-                            />
-                          </figure>
+                          <div className="gallery flex justify-between">
+                            <a
+                              className="glightbox"
+                              href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            >
+                              <img
+                                src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                                alt="Image"
+                              />
+                            </a>
+                          </div>
 
                           <div className="card-body sm:w-full text-center">
                             <h2 className="font-bold">{product?.name}</h2>
@@ -339,12 +370,17 @@ const BrandsItem = () => {
                   : selectGiftBoxProducts?.map((product) => {
                       return (
                         <div key={product?._id} className="card shadow-xl ">
-                          <figure>
-                            <img
-                              src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                              alt="Product"
-                            />
-                          </figure>
+                          <div className="gallery flex justify-between">
+                            <a
+                              className="glightbox"
+                              href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                            >
+                              <img
+                                src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                                alt="Image"
+                              />
+                            </a>
+                          </div>
 
                           <div className="card-body sm:w-full text-center">
                             <h2 className="font-bold">{product?.name}</h2>
@@ -355,7 +391,7 @@ const BrandsItem = () => {
                                 ? product?.desc
                                 : product?.desc.slice(0, 20) + "..."}
                               <button onClick={() => setPShow(!pShow)}>
-                                <span className="font-bold">
+                                <span className="">
                                   {pShow ? "...see less" : "..see more"}
                                 </span>
                               </button>
