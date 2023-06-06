@@ -5,6 +5,7 @@ import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
 import Marquee from "react-fast-marquee";
 import { GiModernCity } from "react-icons/gi";
+import { IoIosArrowDropdown } from "react-icons/io";
 import { MdLocationCity } from "react-icons/md";
 
 // react swiper
@@ -17,6 +18,8 @@ import { EffectCoverflow, Pagination } from "swiper";
 
 const Regions = () => {
   const [show, setShow] = useState(false);
+  const [rShow, setRShow] = useState(false);
+
   // fetching regions data for region and district
   const {
     data: regionData,
@@ -59,8 +62,12 @@ const Regions = () => {
   // onClick handler of region button for showing district list
   const handleRegionClick = (region, index) => {
     setSelectedRegion(region);
-    setActive(index);
+    // setActive(index);
   };
+
+  // const handleShowAgain =()=>{
+
+  // }
 
   if (regionLoading || isLoading) {
     return (
@@ -90,28 +97,31 @@ const Regions = () => {
         <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6 pb-8">
           {regions?.map((r, index) => {
-            return (
-              <div
-                onClick={() => handleRegionClick(r, index)}
-                className="card border-2 hover:border-gray-400 shadow-xl cursor-pointer"
-                key={index}
-              >
-                <div className="card-body">
-                  <div className="">
-                    <div className=" flex justify-center justify-items-center text-2xl rounded">
-                      <span className=" text-center">
-                        <GiModernCity></GiModernCity>
-                      </span>
+            if (selectedRegion === null || selectedRegion?._id === r._id) {
+              return (
+                <div
+                  onClick={() => handleRegionClick(r, index)}
+                  className="card border-2 hover:border-gray-400 shadow-xl cursor-pointer"
+                  key={index}
+                >
+                  <div className="card-body">
+                    <div className="">
+                      <div className=" flex justify-center justify-items-center text-2xl rounded">
+                        <span className=" text-center">
+                          <GiModernCity></GiModernCity>
+                        </span>
+                      </div>
+                    </div>
+                    <div className=" text-center text-xl font-bold">
+                      {r.region}
                     </div>
                   </div>
-                  <div className=" text-center text-xl font-bold">
-                    {r.region}
-                  </div>
                 </div>
-              </div>
-            );
+              );
+            }
           })}
         </div>
+        {/* <button onClick={()=>handleShowAgain()}>Show</button> */}
       </div>
 
       {/* District List */}
@@ -137,7 +147,7 @@ const Regions = () => {
                   <div className="lg:text-xl text-wrap text-gray-800">{d}</div>
                 </div>
               ))
-            : selectedRegion?.district?.slice(0, 18).map((d, index) => (
+            : selectedRegion?.district?.slice(0, 16).map((d, index) => (
                 <div
                   onClick={() => handleBrand(d, index)}
                   className="flex flex-col justify-center items-center text-center p-2 cursor-pointer"
@@ -198,3 +208,24 @@ const Regions = () => {
 };
 
 export default Regions;
+
+//  <div>
+//             {selectedRegion !== null && (
+//               <div>
+//                 {/* {regions
+//                   .filter((f) => f._id !== selectedRegion._id)
+//                   .map((r) => { */}
+//                     // return (
+//                     //   <div>
+//                     //     <IoIosArrowDropdown
+//                     //       onClick={() => setSelectedRegion()}
+//                     //     ></IoIosArrowDropdown>
+//                     //     {/* <div className=" text-center text-xl font-bold">
+//                     //       {r.region}
+//                     //     </div> */}
+//                     //   </div>
+//                     // );
+//                   // })}
+//               </div>
+//             )}
+//           </div>
