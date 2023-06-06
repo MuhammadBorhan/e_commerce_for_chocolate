@@ -18,7 +18,6 @@ import { EffectCoverflow, Pagination } from "swiper";
 const Regions = () => {
   const [show, setShow] = useState(false);
 
-
   // fetching regions data for region and district
   const {
     data: regionData,
@@ -92,27 +91,25 @@ const Regions = () => {
         <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6  ">
           {selectedRegion ? (
-            <div className='flex justify-center items-center justify-evenly bg-cover  rounded-r-full cursor-pointer border hover:border-gray-400 shadow-x'
-            onClick={() => setSelectedRegion(null)}>
-              <div
-                
-                className="card  "
-              >
-                
-                  <div className="p-4">
-                    <div className=" flex justify-center justify-items-center text-xl">
-                      <span className=" text-center">
-                        <GiModernCity></GiModernCity>
-                      </span>
-                    </div>
-                  
+            <div
+              className="flex justify-center items-center justify-evenly bg-cover  rounded-r-full cursor-pointer border hover:border-gray-400 shadow-x"
+              onClick={() => setSelectedRegion(null)}
+            >
+              <div className="card  ">
+                <div className="p-4">
+                  <div className=" flex justify-center justify-items-center text-xl">
+                    <span className=" text-center">
+                      <GiModernCity></GiModernCity>
+                    </span>
+                  </div>
+
                   <div className=" text-center text-xl font-bold ">
                     {selectedRegion?.region}
                   </div>
-                  </div>
+                </div>
               </div>
               <div className="text-xl text-slate-300">
-              < IoIosArrowDown style={{  fontSize: "30px" }} />
+                <IoIosArrowDown style={{ fontSize: "30px" }} />
               </div>
             </div>
           ) : (
@@ -196,7 +193,7 @@ const Regions = () => {
           <SwiperSlide className="bswiper-slide" key={index}>
             <Link to={`/brands/${product?.name}`} state={product} key={index}>
               <img
-                src={`http://localhost:5000/uploads/${product?.image}`}
+                src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
                 alt={product?.name}
                 className="h-96 w-96 object-cover"
               />
