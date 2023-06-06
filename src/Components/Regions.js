@@ -205,11 +205,15 @@ const Regions = () => {
               onClick={() => handleBrand(d, index)}
               className="swiper-slider cursor-pointer"
             >
-              <div className="lg:text-xl text-wrap text-gray-800"><span className="font-mono italic  border-r shadow-xl border-yellow-700 pr-4">{d}</span></div>
+              <div className="lg:text-xl text-wrap text-gray-800">
+                <span className="font-mono italic  border-r shadow-xl border-yellow-700 pr-4">
+                  {d}
+                </span>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
-         {/* District for Mobile */}
+        {/* District for Mobile */}
       </div>
       <div className="lg:hidden">
         {selectedRegion && (
@@ -233,48 +237,50 @@ const Regions = () => {
               onClick={() => handleBrand(d, index)}
               className="swiper-slider cursor-pointer"
             >
-              <div ><span className="font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">{d}</span></div>
+              <div>
+                <span className="font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">
+                  {d}
+                </span>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-{/* Show available brand  */}
+      {/* Show available brand  */}
       <div className="mt-4">
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        // loop={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2,
-          slideShadows: true,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper bswiper"
-      >
-        {trendingBrands?.map((product, index) => (
-          // consoe.log(product)
-          <SwiperSlide className="bswiper-slide" key={index}>
-            <Link to={`/brands/${product?.name}`} state={product} key={index}>
-              <img
-                src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
-                alt={product?.name}
-                className="h-96 w-96 object-cover"
-              />
-              <p>{product?.name}</p>
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          // loop={true}
+          slidesPerView={"auto"}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2,
+            slideShadows: true,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination]}
+          className="mySwiper bswiper"
+        >
+          {trendingBrands?.map((product, index) => (
+            // consoe.log(product)
+            <SwiperSlide className="bswiper-slide" key={index}>
+              <Link to={`/brands/${product?.name}`} state={product} key={index}>
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
+                  alt={product?.name}
+                  className="h-96 w-96 object-cover"
+                />
+                <p>{product?.name}</p>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-
-      
     </div>
   );
 };

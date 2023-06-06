@@ -104,7 +104,6 @@ const BrandsItem = () => {
   });
   const allEventUser = getEventUser?.data;
   console.log(allEventUser);
-  const total = 100;
 
   return (
     <div className="p-4 lg:p-12">
@@ -447,10 +446,11 @@ const BrandsItem = () => {
                           Recruiting
                         </h2>
                         <p className="text-center p-2 font-bold">
-                          Capacity {total} people
+                          Capacity {event?.capacity} people
                         </p>
                         <p className="text-center font-bold text-blue-500 p-2">
-                          {total - allEventUser?.length} People remaining
+                          {event?.capacity - allEventUser?.length} People
+                          remaining
                         </p>
                       </div>
                     </div>

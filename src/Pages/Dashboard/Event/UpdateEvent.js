@@ -18,6 +18,7 @@ const UpdateEvent = () => {
   const [status, setStatus] = useState("");
   const [gmeet, setGMeet] = useState("");
   const [desc, setDesc] = useState("");
+  const [capacity, setCapacity] = useState("");
 
   const [event, setEvent] = useState({});
   useEffect(() => {
@@ -49,6 +50,7 @@ const UpdateEvent = () => {
       status: status ? status : event?.status,
       gmeet: gmeet ? gmeet : event?.gmeet,
       desc: desc ? desc : event?.desc,
+      capacity: capacity ? capacity : event?.capacity,
     };
     try {
       const response = await axios.patch(
@@ -186,6 +188,12 @@ const UpdateEvent = () => {
                     value={dateTime}
                     onChange={setDateTime}
                     className="input  h-8 rounded-none focus:border-none w-full lg:w-[400px] mb-2"
+                  />
+                  <input
+                    type="number"
+                    defaultValue={event?.capacity}
+                    onChange={(e) => setCapacity(e.target.value)}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full lg:w-[400px] mb-2"
                   />
                 </div>
                 <textarea

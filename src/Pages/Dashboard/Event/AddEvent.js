@@ -18,17 +18,7 @@ const AddEvent = () => {
   const [gmeet, setGMeet] = useState("");
   const [image, setImage] = useState(null);
   const [desc, setDesc] = useState("");
-  console.log(
-    title,
-    dateTime,
-    region,
-    district,
-    brand,
-    status,
-    gmeet,
-    image,
-    desc
-  );
+  const [capacity, setCapacity] = useState("");
 
   const { data: getbrand } = useGetAllBrandsQuery();
   const allBrand = getbrand?.data;
@@ -51,6 +41,7 @@ const AddEvent = () => {
       status,
       gmeet,
       image,
+      capacity,
       desc,
     };
     console.log(data);
@@ -74,6 +65,7 @@ const AddEvent = () => {
       setGMeet("");
       setImage("");
       setDesc("");
+      setCapacity("");
 
       if (response) {
         toast.success("Succeessfully Added");
@@ -170,6 +162,12 @@ const AddEvent = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => setImage(e.target.files[0])}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+                  />
+                  <input
+                    type="number"
+                    value={capacity}
+                    onChange={(e) => setCapacity(e.target.value)}
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
                   />
                 </div>
