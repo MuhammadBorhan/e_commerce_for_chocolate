@@ -13,6 +13,7 @@ import { ImCross } from "react-icons/im";
 import "glightbox/dist/css/glightbox.min.css";
 import Glightbox from "glightbox";
 import Modal from "../../Components/Modal";
+import { useGetAllEventUserQuery } from "../../features/api/eventUserApi";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -97,6 +98,13 @@ const BrandsItem = () => {
       selector: ".glightbox",
     });
   }, []);
+
+  const { data: getEventUser } = useGetAllEventUserQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
+  const allEventUser = getEventUser?.data;
+  console.log(allEventUser);
+  const total = 100;
 
   return (
     <div className="p-4 lg:p-12">
@@ -432,9 +440,20 @@ const BrandsItem = () => {
                       {new Date(event?.dateTime).toLocaleString()}
                     </p>
                     <h4 className="text-center">Google Meet</h4>
-                    <p className="text-center">
-                      <span className="text-xs">{event?.desc}</span>
-                    </p>
+                    <div className="flex items-center gap-x-10">
+                      <p className="text-xs text-center">{event?.desc}</p>
+                      <div className="shadow-lg rounded">
+                        <h2 className="bg-[#DB874B] p-2 text-white font-bold">
+                          Recruiting
+                        </h2>
+                        <p className="text-center p-2 font-bold">
+                          Capacity {total} people
+                        </p>
+                        <p className="text-center font-bold text-blue-500 p-2">
+                          {total - allEventUser?.length} People remaining
+                        </p>
+                      </div>
+                    </div>
                     <div className="card-actions justify-center mx-auto m-2">
                       <div className="mt-2">
                         <Modal />

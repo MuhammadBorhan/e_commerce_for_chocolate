@@ -12,6 +12,7 @@ const apiSlice = createApi({
     "trend",
     "brands",
     "evn",
+    "evnusr",
     "giftboxs",
   ],
   endpoints: (builder) => ({}),
