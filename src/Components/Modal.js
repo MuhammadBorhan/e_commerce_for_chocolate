@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import {
+  useGetAllEventUserQuery,
+  usePostEventUserMutation,
+} from "../features/api/eventUserApi";
 
 const Modal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,17 +19,23 @@ const Modal = () => {
     document.body.style.overflow = "auto";
   };
 
-  const { register, handleSubmit } = useForm();
+  const [postEventUser] = usePostEventUserMutation();
+
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/eventuser`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/eventuser`,
         data
       );
 
       if (response) {
         toast.success("Registration Success");
         setIsOpen(false);
+        reset();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     } catch (error) {
       toast.error(error?.response?.data?.error);
