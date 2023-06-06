@@ -9,6 +9,7 @@ import Footer from "../Layout/Footer";
 
 import "glightbox/dist/css/glightbox.min.css";
 import Glightbox from "glightbox";
+import Modal from "../Components/Modal";
 
 const Home = () => {
   const images = [
@@ -30,6 +31,7 @@ const Home = () => {
       selector: ".glightbox",
     });
   }, []);
+
   return (
     <>
       <MobileSearch />
