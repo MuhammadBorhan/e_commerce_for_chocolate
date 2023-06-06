@@ -353,6 +353,7 @@ const BrandsItem = () => {
                         <img
                           src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                           alt="Image"
+                          className="w-[150px] m-auto"
                         />
                         <div className="card-body sm:w-full text-center">
                           <h2 className="font-bold">{product?.name}</h2>
@@ -371,11 +372,12 @@ const BrandsItem = () => {
                         <img
                           src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
                           alt="Image"
+                          className="w-[150px] m-auto"
                         />
                         <div className="card-body sm:w-full text-center">
                           <h2 className="font-bold">{product?.name}</h2>
                           {/* <h2 className="font-bold">{product?.color}</h2> */}
-                          <p className="text-sm font-light">
+                          {/* <p className="text-sm font-light">
                             {" "}
                             {pShow
                               ? product?.desc
@@ -385,7 +387,8 @@ const BrandsItem = () => {
                                 {pShow ? "...see less" : "..see more"}
                               </span>
                             </button>
-                          </p>
+                          </p> */}
+                          <p className="text-sm font-light">{product?.desc}</p>
                           {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
                       </a>
@@ -434,7 +437,6 @@ const BrandsItem = () => {
                     </p>
                     <div className="card-actions justify-center mx-auto m-2">
                       <div className="mt-2">
-                        {/* <button className=" w-24 bg-transparent  hover:bg-[#DB874B] text-[#DB874B] font-semibold hover:text-white py-2 px-4 border border-[#DB874B] hover:border-transparent rounded"></button> */}
                         <Modal />
                       </div>
                       <div className="hidden mt-2">

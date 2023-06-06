@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Modal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +17,19 @@ const Modal = () => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/eventuser`,
+        data
+      );
+
+      if (response) {
+        toast.success("Registration Success");
+        setIsOpen(false);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.error);
+    }
   };
   return (
     <div>
