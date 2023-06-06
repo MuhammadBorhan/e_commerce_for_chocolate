@@ -10,14 +10,24 @@ import { IoIosArrowDown } from "react-icons/io";
 // react swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/grid";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import "swiper/css/free-mode";
+// import "./styles.css";
 import "./Regions.css";
-import { EffectCoverflow, Pagination } from "swiper";
+
+import {
+  EffectCoverflow,
+  FreeMode,
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Keyboard,
+} from "swiper";
 
 const Regions = () => {
   const [show, setShow] = useState(false);
-
 
   // fetching regions data for region and district
   const {
@@ -92,27 +102,25 @@ const Regions = () => {
         <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6  ">
           {selectedRegion ? (
-            <div className='flex justify-center items-center justify-evenly bg-cover  rounded-r-full cursor-pointer border hover:border-gray-400 shadow-x'
-            onClick={() => setSelectedRegion(null)}>
-              <div
-                
-                className="card  "
-              >
-                
-                  <div className="p-4">
-                    <div className=" flex justify-center justify-items-center text-xl">
-                      <span className=" text-center">
-                        <GiModernCity></GiModernCity>
-                      </span>
-                    </div>
-                  
+            <div
+              className="flex justify-center items-center justify-evenly bg-cover  rounded-r-full cursor-pointer border hover:border-gray-400 shadow-x"
+              onClick={() => setSelectedRegion(null)}
+            >
+              <div className="card  ">
+                <div className="p-4">
+                  <div className=" flex justify-center justify-items-center text-xl">
+                    <span className=" text-center">
+                      <GiModernCity></GiModernCity>
+                    </span>
+                  </div>
+
                   <div className=" text-center text-xl font-bold ">
                     {selectedRegion?.region}
                   </div>
-                  </div>
+                </div>
               </div>
               <div className="text-xl text-slate-300">
-              < IoIosArrowDown style={{  fontSize: "30px" }} />
+                <IoIosArrowDown style={{ fontSize: "30px" }} />
               </div>
             </div>
           ) : (
@@ -140,9 +148,9 @@ const Regions = () => {
         </div>
       </div>
 
-      {/* District List */}
+      {/* District List  old show more version- - ***ayta thakuk kew delete korish nah****/}
 
-      <div className="">
+      {/* <div className="">
         {selectedRegion && (
           <h4 className="text-2xl font-bold mt-2 mb-4">Choose District</h4>
         )}
@@ -172,8 +180,67 @@ const Regions = () => {
             </span>
           </button>
         )}
+      </div> */}
+
+      {/*New District for destop  */}
+      <div className="hidden lg:block">
+        {selectedRegion && (
+          <h4 className="text-2xl font-bold mt-2 mb-4">Choose District</h4>
+        )}
+        <Swiper
+          loop={true}
+          navigation={true}
+          keyboard={true}
+          slidesPerView={8}
+          spaceBetween={0}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Navigation, Keyboard]}
+          className=" swiperr"
+        >
+          {selectedRegion?.district?.map((d, index) => (
+            <SwiperSlide
+              onClick={() => handleBrand(d, index)}
+              className="swiper-slider cursor-pointer"
+            >
+              <div className="lg:text-xl text-wrap text-gray-800"><span className="font-mono italic  border-r shadow-xl border-yellow-700 pr-4">{d}</span></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+         {/* District for Mobile */}
+      </div>
+      <div className="lg:hidden">
+        {selectedRegion && (
+          <h4 className="text-xl font-bold mt-2 mb-4">Choose District</h4>
+        )}
+        <Swiper
+          loop={true}
+          navigation={true}
+          keyboard={true}
+          slidesPerView={3}
+          spaceBetween={1}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Navigation, Keyboard]}
+          className=" swiperr"
+        >
+          {selectedRegion?.district?.map((d, index) => (
+            <SwiperSlide
+              onClick={() => handleBrand(d, index)}
+              className="swiper-slider cursor-pointer"
+            >
+              <div ><span className="font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">{d}</span></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
+{/* Show available brand  */}
+      <div className="mt-4">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -205,6 +272,9 @@ const Regions = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
+
+      
     </div>
   );
 };
