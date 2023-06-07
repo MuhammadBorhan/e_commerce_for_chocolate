@@ -417,6 +417,10 @@ const BrandsItem = () => {
         </h2>
         <div className="grid lg:grid-cols-3 gap-20 mt-12">
           {filterEvent?.map((event) => {
+            const remUser = allEventUser?.filter(
+              (user) => user?.event === event?._id
+            );
+
             return (
               event?.status === "Start" && (
                 <div
@@ -453,8 +457,7 @@ const BrandsItem = () => {
                           Capacity {event?.capacity} people
                         </p>
                         <p className="text-center font-bold text-blue-500 p-2">
-                          {event?.capacity - allEventUser?.length} People
-                          remaining
+                          {event?.capacity - remUser?.length} People remaining
                         </p>
                       </div>
                     </div>
