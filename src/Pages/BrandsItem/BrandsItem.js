@@ -112,7 +112,7 @@ const BrandsItem = () => {
         <div
           className="h-48 bg-cover bg-center bg-no-repeat w-full relative -mt-10"
           style={{
-            backgroundImage: `url(${`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.image}`})`,
+            backgroundImage: `url(${`http://localhost:5000/uploads/${brands?.image}`})`,
           }}
         >
           <div
@@ -120,7 +120,7 @@ const BrandsItem = () => {
             style={{ zIndex: "2" }}
           >
             <img
-              src={`https://andy-chocolate-productions.up.railway.app/uploads/${brands?.logo}`}
+              src={`http://localhost:5000/uploads/${brands?.logo}`}
               alt="Logo"
               className="w-full h-full object-center "
             />
@@ -141,7 +141,7 @@ const BrandsItem = () => {
               >
                 <div className="flex-1 flex justify-center">
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                     alt=""
                     className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                   />
@@ -175,7 +175,7 @@ const BrandsItem = () => {
             <div className="card hidden lg:block">
               <figure className="px-10 pt-10">
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  src={`http://localhost:5000/${box?.image}`}
                   alt=""
                   className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                 />
@@ -195,7 +195,7 @@ const BrandsItem = () => {
             <div className="mt-4 card shadow-xl lg:hidden ">
               <figure>
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                  src={`http://localhost:5000/${box?.image}`}
                   alt={box?.name}
                   classNmae="w-[200px]"
                 />
@@ -287,7 +287,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -310,7 +310,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -355,10 +355,10 @@ const BrandsItem = () => {
                       <a
                         key={index}
                         className="glightbox card shadow-xl"
-                        href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                        href={`http://localhost:5000/${product?.image}`}
                       >
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Image"
                           className="w-[150px] m-auto"
                         />
@@ -374,10 +374,10 @@ const BrandsItem = () => {
                       <a
                         key={index}
                         className="glightbox card shadow-xl"
-                        href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                        href={`http://localhost:5000/${product?.image}`}
                       >
                         <img
-                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          src={`http://localhost:5000/${product?.image}`}
                           alt="Image"
                           className="w-[150px] m-auto"
                         />
@@ -422,7 +422,7 @@ const BrandsItem = () => {
                 >
                   <figure className=" ">
                     <img
-                      src={`https://andy-chocolate-productions.up.railway.app/${event?.image}`}
+                      src={`http://localhost:5000/${event?.image}`}
                       alt={brands?.name}
                       className="h-[250px] mt-1"
                       style={{ borderRadius: "25px 25px 0 0" }}
@@ -438,9 +438,9 @@ const BrandsItem = () => {
                     <p className="text-center text-xl italic">
                       {new Date(event?.dateTime).toLocaleString()}
                     </p>
-                    <h4 className="text-center">Google Meet</h4>
-                    <div className="flex items-center gap-x-10">
-                      <p className="text-xs text-center">{event?.desc}</p>
+
+                    <div className="flex items-center justify-center gap-x-10">
+                      <h4 className="text-center">Google Meet</h4>
                       <div className="shadow-lg rounded">
                         <h2 className="bg-[#DB874B] p-2 text-white font-bold">
                           Recruiting
@@ -454,9 +454,10 @@ const BrandsItem = () => {
                         </p>
                       </div>
                     </div>
+                    <p className="text-xs text-center">{event?.desc}</p>
                     <div className="card-actions justify-center mx-auto m-2">
                       <div className="mt-2">
-                        <Modal />
+                        <Modal eventId={event?._id} />
                       </div>
                       <div className="hidden mt-2">
                         <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
@@ -491,7 +492,7 @@ const BrandsItem = () => {
               <div key={box?._id} className="card shadow-xl ">
                 <figure>
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                     alt="box"
                     className="w-[200px] lg:w-[300px]"
                   />

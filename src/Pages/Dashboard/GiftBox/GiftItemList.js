@@ -42,7 +42,7 @@ const GiftItemList = () => {
   const handleToggle = async (id, isEnabled) => {
     try {
       const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/selectgiftbox/${id}`,
+        `http://localhost:5000/api/v1/selectgiftbox/${id}`,
         {
           isEnabled: !isEnabled,
         }
@@ -83,7 +83,7 @@ const GiftItemList = () => {
                     <td>{box?.name}</td>
                     <td>
                       <img
-                        src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                        src={`http://localhost:5000/${box?.image}`}
                         className="w-16"
                       />
                     </td>

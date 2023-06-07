@@ -214,7 +214,7 @@ const Regions = () => {
           ))}
         </Swiper>
 
-         {/* District for Mobile */}
+        {/* District for Mobile */}
       </div>
       <div className="lg:hidden">
         {selectedRegion && (
@@ -238,7 +238,11 @@ const Regions = () => {
               onClick={() => handleBrand(d, index)}
               className="swiper-slider cursor-pointer"
             >
-              <div ><span className="mr-2 font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">{d}</span></div>
+              <div>
+                <span className="mr-2 font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">
+                  {d}
+                </span>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -268,7 +272,7 @@ const Regions = () => {
             <SwiperSlide className="bswiper-slide" key={index}>
               <Link to={`/brands/${product?.name}`} state={product} key={index}>
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
+                  src={`http://localhost:5000/uploads/${product?.image}`}
                   alt={product?.name}
                   className="h-96 w-96 object-cover"
                 />
