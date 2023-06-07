@@ -183,7 +183,7 @@ const Regions = () => {
       </div> */}
 
       {/*New District for destop  */}
-      <div className="hidden lg:block">
+      <div className=" hidden lg:block">
         {selectedRegion && (
           <h4 className="text-2xl font-bold mt-2 mb-4">Choose District</h4>
         )}
@@ -198,7 +198,7 @@ const Regions = () => {
             clickable: true,
           }}
           modules={[FreeMode, Navigation, Keyboard]}
-          className=" swiperr"
+          className=" swiper"
         >
           {selectedRegion?.district?.map((d, index) => (
             <SwiperSlide
@@ -209,6 +209,7 @@ const Regions = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+
          {/* District for Mobile */}
       </div>
       <div className="lg:hidden">
@@ -219,21 +220,21 @@ const Regions = () => {
           loop={true}
           navigation={true}
           keyboard={true}
-          slidesPerView={3}
-          spaceBetween={1}
+          slidesPerView={4}
+          spaceBetween={0}
           freeMode={true}
           pagination={{
             clickable: true,
           }}
           modules={[FreeMode, Navigation, Keyboard]}
-          className=" swiperr"
+          className=" swipermobile "
         >
           {selectedRegion?.district?.map((d, index) => (
             <SwiperSlide
               onClick={() => handleBrand(d, index)}
               className="swiper-slider cursor-pointer"
             >
-              <div ><span className="font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">{d}</span></div>
+              <div ><span className="mr-2 font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">{d}</span></div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -265,7 +266,7 @@ const Regions = () => {
               <img
                 src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
                 alt={product?.name}
-                className="h-96 w-96 object-cover"
+                className="h-48 w-48 object-cover"
               />
               <p>{product?.name}</p>
             </Link>

@@ -390,11 +390,16 @@ const BrandsItem = () => {
                               {pShow
                                 ? product?.desc
                                 : product?.desc.slice(0, 20) + "..."}
-                              <button onClick={() => setPShow(!pShow)}>
-                                <span className="">
-                                  {pShow ? "...see less" : "..see more"}
-                                </span>
-                              </button>
+                             
+                                <button onClick={() => setPShow(!pShow)}>
+                              <span className="">
+                                {pShow ? "...see less" : "..see more"}
+                              </span>
+                            </button>
+                              
+                              
+                              
+                             
                             </p>
                             {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                           </div>
