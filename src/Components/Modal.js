@@ -25,7 +25,7 @@ const Modal = ({ eventId }) => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/eventuser`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/eventuser`,
         { ...data, eventId }
       );
 
