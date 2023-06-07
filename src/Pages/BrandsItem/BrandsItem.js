@@ -8,9 +8,12 @@ import { useGetAllProductsQuery } from "../../features/api/productsApi";
 import { useState } from "react";
 import { useEffect } from "react";
 import "./BrandsItem.css";
+import { ImCross } from "react-icons/im";
 
 import "glightbox/dist/css/glightbox.min.css";
 import Glightbox from "glightbox";
+import Modal from "../../Components/Modal";
+import { useGetAllEventUserQuery } from "../../features/api/eventUserApi";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -23,13 +26,6 @@ const BrandsItem = () => {
     });
   }, []);
 
-  // For product lightBox
-  useEffect(() => {
-    const lightbox = Glightbox({
-      selector: ".glightbox",
-    });
-  }, []);
-  
   // fetch all gift box data
   const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
     refetchOnMountOrArgChange: true,
@@ -95,6 +91,19 @@ const BrandsItem = () => {
 
   const [show, setShow] = useState(false);
   const [pShow, setPShow] = useState(false);
+
+  // For product lightBox
+  useEffect(() => {
+    const lightbox = Glightbox({
+      selector: ".glightbox",
+    });
+  }, []);
+
+  const { data: getEventUser } = useGetAllEventUserQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
+  const allEventUser = getEventUser?.data;
+  console.log(allEventUser);
 
   return (
     <div className="p-4 lg:p-12">
@@ -172,13 +181,14 @@ const BrandsItem = () => {
                 />
               </figure>
               <div className="card-body items-center text-center">
-              <h1 className="text-2xl italic text-justify text-yellow-900 font-bold">
-                    {box?.name}
-                  </h1>
+                <h1 className="text-2xl italic text-justify text-yellow-900 font-bold">
+                  {box?.name}
+                </h1>
               </div>
             </div>
           );
         })}
+
         {/* Gift box for mobile  */}
         {selectGiftBox?.map((box) => {
           return (
@@ -192,7 +202,7 @@ const BrandsItem = () => {
               </figure>
               <div className="divider"></div>
               <div className="card-body">
-                <h1 className="italic text-center text-yellow-900 font-bold lg:text-2xl lg:text-justify text-yellow-900 ">
+                <h1 className="italic text-center text-yellow-900 font-bold lg:text-2xl lg:text-justify  ">
                   {box?.name}
                 </h1>
                 {/* <p className="italic text-justify mb-2 text-yellow-900 font-light">
@@ -339,73 +349,57 @@ const BrandsItem = () => {
                 ))}
                 <a className="tab tab-bordered">Description</a>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mt-12">
+              <div className="gallery grid grid-cols-1 lg:grid-cols-5 gap-4 mt-12">
                 {projects
-                  ? projects?.map((product) => {
-                      return (
-                        <div key={product?._id} className="card shadow-xl ">
-                          <div className="gallery flex justify-between">
-                            <a
-                              className="glightbox"
-                              href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            >
-                              <img
-                                src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                                alt="Image"
-                              />
-                            </a>
-                          </div>
-
-                          <div className="card-body sm:w-full text-center">
-                            <h2 className="font-bold">{product?.name}</h2>
-                            {/* <h2 className="font-bold">{product?.color}</h2> */}
-                            <p className="text-sm font-light">
-                              {product?.desc}
-                            </p>
-                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
-                          </div>
+                  ? projects?.map((product, index) => (
+                      <a
+                        key={index}
+                        className="glightbox card shadow-xl"
+                        href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                      >
+                        <img
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          alt="Image"
+                          className="w-[150px] m-auto"
+                        />
+                        <div className="card-body sm:w-full text-center">
+                          <h2 className="font-bold">{product?.name}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
+                          <p className="text-sm font-light">{product?.desc}</p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
-                      );
-                    })
-                  : selectGiftBoxProducts?.map((product) => {
-                      return (
-                        <div key={product?._id} className="card shadow-xl ">
-                          <div className="gallery flex justify-between">
-                            <a
-                              className="glightbox"
-                              href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                            >
-                              <img
-                                src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
-                                alt="Image"
-                              />
-                            </a>
-                          </div>
-
-                          <div className="card-body sm:w-full text-center">
-                            <h2 className="font-bold">{product?.name}</h2>
-                            {/* <h2 className="font-bold">{product?.color}</h2> */}
-                            <p className="text-sm font-light">
-                              {" "}
-                              {pShow
-                                ? product?.desc
-                                : product?.desc.slice(0, 20) + "..."}
-                             
-                                <button onClick={() => setPShow(!pShow)}>
+                      </a>
+                    ))
+                  : selectGiftBoxProducts?.map((product, index) => (
+                      <a
+                        key={index}
+                        className="glightbox card shadow-xl"
+                        href={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                      >
+                        <img
+                          src={`https://andy-chocolate-productions.up.railway.app/${product?.image}`}
+                          alt="Image"
+                          className="w-[150px] m-auto"
+                        />
+                        <div className="card-body sm:w-full text-center">
+                          <h2 className="font-bold">{product?.name}</h2>
+                          {/* <h2 className="font-bold">{product?.color}</h2> */}
+                          {/* <p className="text-sm font-light">
+                            {" "}
+                            {pShow
+                              ? product?.desc
+                              : product?.desc.slice(0, 20) + "..."}
+                            <button onClick={() => setPShow(!pShow)}>
                               <span className="">
                                 {pShow ? "...see less" : "..see more"}
                               </span>
                             </button>
-                              
-                              
-                              
-                             
-                            </p>
-                            {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
-                          </div>
+                          </p> */}
+                          <p className="text-sm font-light">{product?.desc}</p>
+                          {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
-                      );
-                    })}
+                      </a>
+                    ))}
               </div>
             </div>
           </div>
@@ -445,18 +439,24 @@ const BrandsItem = () => {
                       {new Date(event?.dateTime).toLocaleString()}
                     </p>
                     <h4 className="text-center">Google Meet</h4>
-                    <p className="text-center">
-                      <span className="text-xs">{event?.desc}</span>
-                    </p>
+                    <div className="flex items-center gap-x-10">
+                      <p className="text-xs text-center">{event?.desc}</p>
+                      <div className="shadow-lg rounded">
+                        <h2 className="bg-[#DB874B] p-2 text-white font-bold">
+                          Recruiting
+                        </h2>
+                        <p className="text-center p-2 font-bold">
+                          Capacity {event?.capacity} people
+                        </p>
+                        <p className="text-center font-bold text-blue-500 p-2">
+                          {event?.capacity - allEventUser?.length} People
+                          remaining
+                        </p>
+                      </div>
+                    </div>
                     <div className="card-actions justify-center mx-auto m-2">
                       <div className="mt-2">
-                        <a
-                          target="_blank"
-                          href={event?.gmeet}
-                          className=" w-24 bg-transparent  hover:bg-emerald-400 text-emerald-400 font-semibold hover:text-white py-2 px-4 border border-emerald-400 hover:border-transparent rounded"
-                        >
-                          {event?.status}
-                        </a>
+                        <Modal />
                       </div>
                       <div className="hidden mt-2">
                         <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
@@ -478,6 +478,7 @@ const BrandsItem = () => {
           })}
         </div>
       </div>
+
       {/* Similar Gift Box */}
 
       <div>
