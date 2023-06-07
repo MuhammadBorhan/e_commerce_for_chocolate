@@ -16,3 +16,22 @@
   width: 100%;
 }
 
+.swiper-button-next{
+  color: rgba(224, 217, 217, 0.959);
+}
+.swiper-button-prev{
+  color: rgba(224, 217, 217, 0.959);
+}
+
+.swipermobile .swiper-button-next{
+  width: 5px;
+ font-size: medium;
+  height: auto;
+  margin-bottom: 10px;
+}
+.swipermobile .swiper-button-prev{
+  width: 5px;
+ font-size: medium;
+  height: auto;
+  margin-bottom: 10px;
+}
