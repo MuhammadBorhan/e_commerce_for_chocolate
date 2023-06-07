@@ -7,7 +7,7 @@ import {
   usePostEventUserMutation,
 } from "../features/api/eventUserApi";
 
-const Modal = () => {
+const Modal = ({ eventId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -26,7 +26,7 @@ const Modal = () => {
     try {
       const response = await axios.post(
         `https://andy-chocolate-productions.up.railway.app/api/v1/eventuser`,
-        data
+        { ...data, eventId }
       );
 
       if (response) {
