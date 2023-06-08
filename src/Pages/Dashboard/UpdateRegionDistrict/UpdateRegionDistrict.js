@@ -46,7 +46,6 @@ const UpdateRegionDistrict = () => {
     setNewDistricts(updatedDistrcit);
   };
 
-  console.log(yes);
   const handleCancel = (d) => {
     const restDist = getDistrict?.filter((dist) => dist !== d);
     setDistricts(restDist);
