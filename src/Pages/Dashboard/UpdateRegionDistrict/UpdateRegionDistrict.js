@@ -28,6 +28,7 @@ const UpdateRegionDistrict = () => {
 
   const handleDistrictChange = (index, value) => {
     getDistrict[index] = value;
+    console.log(getDistrict);
   };
 
   const handleNewDistrictChange = (index, value) => {
@@ -44,8 +45,12 @@ const UpdateRegionDistrict = () => {
     updatedDistrcit.splice(index, 1);
     setNewDistricts(updatedDistrcit);
   };
-  // const district = [...getDistrict, ...newDistrict];
-  // console.log("allDist", allDist);
+
+  console.log(yes);
+  const handleCancel = (d) => {
+    const restDist = getDistrict?.filter((dist) => dist !== d);
+    setDistricts(restDist);
+  };
 
   const handleSubmitDist = async (e) => {
     e.preventDefault();
@@ -69,9 +74,6 @@ const UpdateRegionDistrict = () => {
     }
   };
 
-  const handleCancel = (d) => {
-    console.log(d);
-  };
   return (
     <div>
       <DashBoardMenu></DashBoardMenu>
