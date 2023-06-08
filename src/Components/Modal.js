@@ -7,7 +7,7 @@ import {
   usePostEventUserMutation,
 } from "../features/api/eventUserApi";
 
-const Modal = () => {
+const Modal = ({ eventId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -23,22 +23,15 @@ const Modal = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/eventuser`,
-        data
-      );
+    const result = await postEventUser({ ...data, eventId });
 
-      if (response) {
-        toast.success("Registration Success");
-        setIsOpen(false);
-        reset();
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      }
-    } catch (error) {
-      toast.error(error?.response?.data?.error);
+    if (result?.data) {
+      toast.success("Registration Successfully Done!!!");
+      setIsOpen(false);
+      reset();
+      document.body.style.overflow = "auto";
+    } else if (result?.error) {
+      toast.error(result?.error?.data?.error);
     }
   };
   return (
@@ -68,6 +61,7 @@ const Modal = () => {
                     <input
                       type="text"
                       placeholder="Your Name"
+                      required
                       className="input input-bordered w-full h-8 rounded-none focus:border-none "
                       {...register("name")}
                     />
@@ -79,6 +73,7 @@ const Modal = () => {
                     <input
                       type="email"
                       placeholder="Your Email"
+                      required
                       className="input input-bordered w-full h-8 rounded-none focus:border-none "
                       {...register("email")}
                     />

@@ -31,7 +31,6 @@ const BrandsItem = () => {
     refetchOnMountOrArgChange: true,
   });
   const allGiftbox = getGiftBox?.data;
-  console.log(allGiftbox);
 
   const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
     refetchOnMountOrArgChange: true,
@@ -102,8 +101,13 @@ const BrandsItem = () => {
   const { data: getEventUser } = useGetAllEventUserQuery(null, {
     refetchOnMountOrArgChange: true,
   });
+  const [eventuserId, setEventUserId] = useState(null);
+  console.log(eventuserId);
   const allEventUser = getEventUser?.data;
-  console.log(allEventUser);
+  // const something = allEventUser?.map((eUser) => {
+  //   const getUserId = eUser?._id;
+  //   setEventUserId(getUserId);
+  // });
 
   return (
     <div className="p-4 lg:p-12">
@@ -413,6 +417,10 @@ const BrandsItem = () => {
         </h2>
         <div className="grid lg:grid-cols-3 gap-20 mt-12">
           {filterEvent?.map((event) => {
+            const remUser = allEventUser?.filter(
+              (user) => user?.event === event?._id
+            );
+
             return (
               event?.status === "Start" && (
                 <div
@@ -438,9 +446,9 @@ const BrandsItem = () => {
                     <p className="text-center text-xl italic">
                       {new Date(event?.dateTime).toLocaleString()}
                     </p>
-                    <h4 className="text-center">Google Meet</h4>
-                    <div className="flex items-center gap-x-10">
-                      <p className="text-xs text-center">{event?.desc}</p>
+
+                    <div className="flex items-center justify-center gap-x-10">
+                      <h4 className="text-center">Google Meet</h4>
                       <div className="shadow-lg rounded">
                         <h2 className="bg-[#DB874B] p-2 text-white font-bold">
                           Recruiting
@@ -449,14 +457,14 @@ const BrandsItem = () => {
                           Capacity {event?.capacity} people
                         </p>
                         <p className="text-center font-bold text-blue-500 p-2">
-                          {event?.capacity - allEventUser?.length} People
-                          remaining
+                          {event?.capacity - remUser?.length} People remaining
                         </p>
                       </div>
                     </div>
+                    <p className="text-xs text-center">{event?.desc}</p>
                     <div className="card-actions justify-center mx-auto m-2">
                       <div className="mt-2">
-                        <Modal />
+                        <Modal eventId={event?._id} />
                       </div>
                       <div className="hidden mt-2">
                         <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
