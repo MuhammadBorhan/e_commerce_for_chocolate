@@ -103,7 +103,7 @@ const DashboardLayout = () => {
         <ul className="menu p-4 w-60 bg-slate-50 border-t-[1px] text-yellow-800">
           <Link to="/dashboard">
             <div className="menu bg-[#9A583B]  rounded-md shadow-xl mb-4 p-4 border-t-[1px]">
-              <div className=" flex justify-between justify-items-center ">
+              <div className=" flex justify-between items-center ">
                 <p className="text-xl text-gray-50">
                   <MdDashboard />
                 </p>
