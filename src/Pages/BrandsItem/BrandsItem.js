@@ -438,21 +438,24 @@ const BrandsItem = () => {
                   </figure>
                   <div className="flex  justify-evenly gap-10 ">
                     <div className="flex-1 shadow-xl rounded -mt-10">
-                      <h2 className="bg-[#DB874B] p-2 text-white font-bold">Event Time</h2>
-                    <p className="text-slate-500 text-base">
-                      {new Date(event?.dateTime).toLocaleString()}
-                    </p>
+                      <h2 className="bg-[#DB874B] p-2 text-white font-bold">
+                        Event Time
+                      </h2>
+                      <p className="text-slate-500 text-base pl-2 py-1">
+                        {new Date(event?.dateTime).toLocaleString()}
+                      </p>
                     </div>
                     <div className="flex-1 shadow-xl rounded -mt-10">
-                        <h2 className="bg-[#DB874B] p-2 text-white font-bold">
-                          Recruiting
-                        </h2>
-                        <p className="text-xs font-bold text-slate-500">
-                          Capacity {event?.capacity},
-                        <span className="text-center font-bold text-blue-400 py-2">Remaining {event?.capacity - remUser?.length}
-                          </span>
-                        </p>
-                      </div>
+                      <h2 className="bg-[#DB874B] p-2 text-white font-bold">
+                        Recruiting
+                      </h2>
+                      <p className="text-xs font-bold text-slate-500 pl-2 py-1">
+                        Capacity {event?.capacity},
+                        <span className="text-center font-bold text-blue-400 py-2">
+                          Remaining {event?.capacity - remUser?.length}
+                        </span>
+                      </p>
+                    </div>
                   </div>
                   <h3
                     className=" italic font-bold text-slate-700 mt-6 text-center p-2 text-justify"
@@ -461,11 +464,8 @@ const BrandsItem = () => {
                     {event?.title}
                   </h3>
                   <div className="card-body">
-                    
-
                     <div className="flex items-center justify-center gap-x-10">
                       <h4 className="text-center">Google Meet</h4>
-                      
                     </div>
                     <p className="text-xs text-center">{event?.desc}</p>
                     <div className="card-actions justify-center mx-auto m-2">
