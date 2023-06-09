@@ -155,6 +155,7 @@ const AddEvent = () => {
                   <DateTimePicker
                     value={dateTime}
                     onChange={setDateTime}
+
                     className="h-8"
                   />
 
