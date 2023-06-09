@@ -103,37 +103,37 @@ const Regions = () => {
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6  ">
           {selectedRegion ? (
             <div
-              className="flex justify-center items-center justify-evenly bg-cover  rounded-r-full cursor-pointer border hover:border-gray-400 shadow-x"
+              className=" bg-cover rounded-r-full cursor-pointer border hover:border-gray-400 shadow-xl"
               onClick={() => setSelectedRegion(null)}
             >
-              <div className="card  ">
-                <div className="p-4">
-                  <div className=" flex justify-center justify-items-center text-xl">
-                    <span className=" text-center">
+              <div className="">
+                <div className="py-2 flex items-center justify-between">
+                  <div className=" text-xl">
+                    <span className=" ">
                       <GiModernCity></GiModernCity>
                     </span>
                   </div>
 
-                  <div className=" text-center text-xl font-bold ">
+                  <div className="  text-xl font-bold ">
                     {selectedRegion?.region}
                   </div>
+                  <div className="text-xl text-slate-300">
+                    <IoIosArrowDown style={{ fontSize: "30px" }} />
+                  </div>
                 </div>
-              </div>
-              <div className="text-xl text-slate-300">
-                <IoIosArrowDown style={{ fontSize: "30px" }} />
               </div>
             </div>
           ) : (
             regions?.map((r, index) => (
               <div
                 onClick={() => handleRegionClick(r, index)}
-                className="card border-2 hover:border-gray-400 shadow-xl cursor-pointer"
+                className=" border-2 hover:border-gray-400 shadow-xl rounded-xl cursor-pointer"
                 key={index}
               >
-                <div className="card-body">
+                <div className=" text center px-0 py-2 flex items-center justify-evenly ">
                   <div className="">
-                    <div className=" flex justify-center justify-items-center text-2xl rounded">
-                      <span className=" text-center">
+                    <div className="  lg:text-xl">
+                      <span className=" ">
                         <GiModernCity></GiModernCity>
                       </span>
                     </div>
@@ -274,9 +274,9 @@ const Regions = () => {
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
                   alt={product?.name}
-                  className="h-96 w-96 object-cover"
+                  className="h-48 w-48 object-cover"
                 />
-                <p>{product?.name}</p>
+                <p className="font-bold text-[#9A583B]">{product?.name}</p>
               </Link>
             </SwiperSlide>
           ))}

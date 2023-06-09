@@ -415,7 +415,7 @@ const BrandsItem = () => {
         <h2 className="text-center mb-4 font-mono text-xl">
           Event will be start this time. If you are interested please join
         </h2>
-        <div className="grid lg:grid-cols-3 gap-20 mt-12">
+        <div className="grid lg:grid-cols-3 gap-10 mt-12">
           {filterEvent?.map((event) => {
             const remUser = allEventUser?.filter(
               (user) => user?.event === event?._id
@@ -432,41 +432,47 @@ const BrandsItem = () => {
                     <img
                       src={`https://andy-chocolate-productions.up.railway.app/${event?.image}`}
                       alt={brands?.name}
-                      className="h-[250px] mt-1"
+                      className="h-[250px] w-full mt-1"
                       style={{ borderRadius: "25px 25px 0 0" }}
                     />
                   </figure>
+                  <div className="flex  justify-evenly gap-10 ">
+                    <div className="flex-1 shadow-xl rounded -mt-10">
+                      <h2 className="bg-[#DB874B] p-2 text-white font-bold">Event Time</h2>
+                    <p className="text-slate-500 text-base">
+                      {new Date(event?.dateTime).toLocaleString()}
+                    </p>
+                    </div>
+                    <div className="flex-1 shadow-xl rounded -mt-10">
+                        <h2 className="bg-[#DB874B] p-2 text-white font-bold">
+                          Recruiting
+                        </h2>
+                        <p className="text-xs font-bold text-slate-500">
+                          Capacity {event?.capacity},
+                        <span className="text-center font-bold text-blue-400 py-2">Remaining {event?.capacity - remUser?.length}
+                          </span>
+                        </p>
+                      </div>
+                  </div>
                   <h3
-                    className=" italic font-bold text-white mt-8 mr-8 bg-[#db874b] p-2 text-justify"
-                    style={{ borderRadius: "0 30px 30px 0" }}
+                    className=" italic font-bold text-slate-700 mt-6 text-center p-2 text-justify"
+                    // style={{ borderRadius: "0 30px 30px 0" }}
                   >
                     {event?.title}
                   </h3>
                   <div className="card-body">
-                    <p className="text-center text-xl italic">
-                      {new Date(event?.dateTime).toLocaleString()}
-                    </p>
+                    
 
                     <div className="flex items-center justify-center gap-x-10">
                       <h4 className="text-center">Google Meet</h4>
-                      <div className="shadow-lg rounded">
-                        <h2 className="bg-[#DB874B] p-2 text-white font-bold">
-                          Recruiting
-                        </h2>
-                        <p className="text-center p-2 font-bold">
-                          Capacity {event?.capacity} people
-                        </p>
-                        <p className="text-center font-bold text-blue-500 p-2">
-                          {event?.capacity - remUser?.length} People remaining
-                        </p>
-                      </div>
+                      
                     </div>
                     <p className="text-xs text-center">{event?.desc}</p>
                     <div className="card-actions justify-center mx-auto m-2">
-                      <div className="mt-2">
+                      <div className="">
                         <Modal eventId={event?._id} />
                       </div>
-                      <div className="hidden mt-2">
+                      <div className="hidden">
                         <span className="bg-[#9A583B] p-2 mr-2 text-white rounded ">
                           Meet Link:{" "}
                         </span>
