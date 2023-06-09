@@ -15,7 +15,7 @@ const UpdateGiftBox = () => {
 
   const [giftBoxItem, setGiftBoxItem] = useState({});
   useEffect(() => {
-    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/giftbox/${id}`;
+    const url = `http://localhost:5000/api/v1/giftbox/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -32,7 +32,7 @@ const UpdateGiftBox = () => {
     e.preventDefault();
   };
 
-  const updateWithImage = async () => {
+  const handleUpdate = async () => {
     const data = {
       name: name ? name : giftBoxItem?.name,
       image: image ? image : giftBoxItem?.image,
@@ -41,7 +41,7 @@ const UpdateGiftBox = () => {
     };
     try {
       const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/updateWithImage/${id}`,
+        `http://localhost:5000/api/v1/giftbox/${id}`,
         data,
         {
           headers: {
@@ -58,33 +58,10 @@ const UpdateGiftBox = () => {
     }
   };
 
-  const updateWithoutImage = async () => {
-    const data = {
-      name: name ? name : giftBoxItem?.name,
-      brand: brand ? brand : giftBoxItem?.brand,
-      productList: productList ? productList : giftBoxItem?.productList,
-    };
-    try {
-      const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/giftbox/${id}`,
-        data
-      );
-      if (response) {
-        navigate("/dashboard/giftitemlist");
-      }
-    } catch (error) {
-      console.log(error?.response?.data?.error);
-      toast.error(error?.response?.data?.error);
-    }
-  };
+  const [term, setTerm] = useState(false);
 
-  const [term1, setTerm1] = useState(false);
-  const [term2, setTerm2] = useState(false);
-  const handleTerm1 = () => {
-    setTerm1(!term1);
-  };
-  const handleTerm2 = () => {
-    setTerm2(!term2);
+  const handleterm = () => {
+    setTerm(!term);
   };
   return (
     <div className="flex justify-center overflow-auto items-center mt-12">
@@ -158,49 +135,24 @@ const UpdateGiftBox = () => {
                     <input
                       type="checkbox"
                       className="form-checkbox text-indigo-600 h-5 w-5"
-                      checked={term1}
-                      onChange={handleTerm1}
+                      checked={term}
+                      onChange={handleterm}
                     />
                     <span className="ml-2 text-gray-900">
-                      Update Without Image
+                      I'm Agree for update
                     </span>
                   </label>
                   <button
-                    onClick={updateWithoutImage}
+                    onClick={handleUpdate}
                     type="submit"
                     className={`mt-4 px-4 py-2 rounded ${
-                      term1
+                      term
                         ? "bg-[#5e2006] text-white cursor-pointer"
                         : "bg-gray-400 text-gray-700 cursor-not-allowed"
                     }`}
-                    disabled={!term1}
+                    disabled={!term}
                   >
-                    Update Without Image
-                  </button>
-                </div>
-                <div className="flex flex-col gap-y-4">
-                  <label className="inline-flex items-center">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox text-indigo-600 h-5 w-5"
-                      checked={term2}
-                      onChange={handleTerm2}
-                    />
-                    <span className="ml-2 text-gray-900">
-                      Update With Image
-                    </span>
-                  </label>
-                  <button
-                    onClick={updateWithImage}
-                    type="submit"
-                    className={`mt-4 px-4 py-2 rounded ${
-                      term2
-                        ? "bg-[#5e2006] text-white cursor-pointer"
-                        : "bg-gray-400 text-gray-700 cursor-not-allowed"
-                    }`}
-                    disabled={!term2}
-                  >
-                    Update With Image
+                    Update
                   </button>
                 </div>
               </div>
