@@ -6,10 +6,12 @@ import axios from "axios";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
 
 const AddGiftItems = () => {
+  const festivals = ["Valentine", "Christmas", "Marriage", "Birthday"];
   const [name, setBoxName] = useState("");
   const [image, setBoxImage] = useState(null);
   const [brand, setBrandName] = useState("");
   const [price, setPrice] = useState("");
+  const [festival, setFestival] = useState("");
   const [desc, setDesc] = useState("");
   const [productList, setProductList] = useState([]);
 
@@ -20,9 +22,7 @@ const AddGiftItems = () => {
 
   const [brandProducts, setBrandProducts] = useState([]);
   useEffect(() => {
-    fetch(
-      `https://andy-chocolate-productions.up.railway.app/api/v1/product?brand=${brand}`
-    )
+    fetch(`http://localhost:5000/api/v1/product?brand=${brand}`)
       .then((res) => res.json())
       .then((data) => setBrandProducts(data?.data));
   }, [brand]);
@@ -54,12 +54,13 @@ const AddGiftItems = () => {
       image,
       brand,
       price,
+      festival,
       desc,
       productList,
     };
     try {
       const response = await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/giftbox",
+        "http://localhost:5000/api/v1/giftbox",
         data,
         {
           headers: {
@@ -73,6 +74,7 @@ const AddGiftItems = () => {
       setBoxImage(null);
       setBrandName("");
       setPrice("");
+      setFestival("");
       setDesc("");
       setProductList("");
 
@@ -112,27 +114,35 @@ const AddGiftItems = () => {
                     onChange={(e) => setBoxImage(e.target.files[0])}
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                   />
+                  <input
+                    type="number"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Price"
+                    className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                  />
+                  <select
+                    value={festival}
+                    onChange={(e) => setFestival(e.target.value)}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                  >
+                    <option>--Select Festival--</option>
+                    {festivals?.map((fest, index) => (
+                      <option key={index}>{fest}</option>
+                    ))}
+                  </select>
 
-                  <div>
-                    <input
-                      type="number"
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                      placeholder="Price"
-                      className="input input-bordered mb-2 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
-                    />
-                    <select
-                      value={brand}
-                      onChange={(e) => setBrandName(e.target.value)}
-                      vlaue={brand}
-                      className="input input-bordered lg:mt-4 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none hidden lg:block"
-                    >
-                      <option>--Select Brand--</option>
-                      {allBrand?.map((brand, index) => (
-                        <option key={index}>{brand?.name}</option>
-                      ))}
-                    </select>
-                  </div>
+                  <select
+                    value={brand}
+                    onChange={(e) => setBrandName(e.target.value)}
+                    vlaue={brand}
+                    className="input input-bordered lg:mt-4 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none hidden lg:block"
+                  >
+                    <option>--Select Brand--</option>
+                    {allBrand?.map((brand, index) => (
+                      <option key={index}>{brand?.name}</option>
+                    ))}
+                  </select>
 
                   <textarea
                     onChange={(e) => setDesc(e.target.value)}
