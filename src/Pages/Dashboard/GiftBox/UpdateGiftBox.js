@@ -9,6 +9,7 @@ const UpdateGiftBox = () => {
   const navigate = useNavigate();
 
   const [name, setBoxName] = useState("");
+  const [festival, setFestival] = useState("");
   const [image, setBoxImage] = useState(null);
   const [brand, setBrandName] = useState("");
   const [productList, setProductList] = useState([]);
@@ -36,6 +37,7 @@ const UpdateGiftBox = () => {
     const data = {
       name: name ? name : giftBoxItem?.name,
       image: image ? image : giftBoxItem?.image,
+      festival: festival ? festival : giftBoxItem?.festival,
       brand: brand ? brand : giftBoxItem?.brand,
       productList: productList ? productList : giftBoxItem?.productList,
     };
@@ -82,7 +84,6 @@ const UpdateGiftBox = () => {
                     type="text"
                     defaultValue={giftBoxItem?.name}
                     onChange={(e) => setBoxName(e.target.value)}
-                    placeholder="Gift Box Name"
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
                   />
                 </div>
@@ -96,12 +97,20 @@ const UpdateGiftBox = () => {
                   />
                 </div>
                 <div>
+                  <label>Festival</label>
+                  <input
+                    type="text"
+                    defaultValue={giftBoxItem?.festival}
+                    onChange={(e) => setFestival(e.target.value)}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
+                  />
+                </div>
+                <div>
                   <label>Brand</label>
                   <input
                     type="text"
                     defaultValue={giftBoxItem.brand}
                     onChange={(e) => setBrandName(e.target.value)}
-                    placeholder="Gift Box Name"
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
                   />
                 </div>
@@ -121,7 +130,6 @@ const UpdateGiftBox = () => {
                         onChange={(e) =>
                           handleProductChange(index, e.target.value)
                         }
-                        placeholder="District"
                         className="input input-bordered h-8 rounded-none focus:border-none mt-2 w-full max-w-xs"
                       />
                     </div>

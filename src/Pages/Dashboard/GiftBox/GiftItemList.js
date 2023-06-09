@@ -71,6 +71,7 @@ const GiftItemList = () => {
                 <th>Box Image</th>
                 <th>Products</th>
                 <th>Brand</th>
+                <th>Festival</th>
                 <th>Branding Item</th>
                 <th>Action</th>
               </tr>
@@ -95,6 +96,7 @@ const GiftItemList = () => {
                       </select>
                     </td>
                     <td>{box?.brand}</td>
+                    <td>{box?.festival}</td>
                     <td>
                       <button
                         onClick={() => handleToggle(box._id, box.isEnabled)}
