@@ -101,13 +101,7 @@ const BrandsItem = () => {
   const { data: getEventUser } = useGetAllEventUserQuery(null, {
     refetchOnMountOrArgChange: true,
   });
-  const [eventuserId, setEventUserId] = useState(null);
-  console.log(eventuserId);
   const allEventUser = getEventUser?.data;
-  // const something = allEventUser?.map((eUser) => {
-  //   const getUserId = eUser?._id;
-  //   setEventUserId(getUserId);
-  // });
 
   return (
     <div className="p-4 lg:p-12">
