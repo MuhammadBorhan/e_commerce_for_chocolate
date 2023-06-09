@@ -6,11 +6,13 @@ import axios from "axios";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
 
 const AddGiftItems = () => {
+  const festivals=["Birth Day","Christmas Day","Valentine Day","Kanda Matsuri"]
   const [name, setBoxName] = useState("");
   const [image, setBoxImage] = useState(null);
   const [brand, setBrandName] = useState("");
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
+  const[festival,setFestival]=useState("")
   const [productList, setProductList] = useState([]);
 
   const [selectAll, setSelectAll] = useState(false);
@@ -132,6 +134,16 @@ const AddGiftItems = () => {
                         <option key={index}>{brand?.name}</option>
                       ))}
                     </select>
+                    <select
+                    value={festival}
+                    onChange={(e) => setFestival(e.target.value)}
+                    className="input input-bordered lg:mt-4 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none hidden lg:block"
+                  >
+                    <option>--Select Festival--</option>
+                    {festivals?.map((festival, index) => (
+                      <option key={index}>{festival}</option>
+                    ))}
+                  </select>
                   </div>
 
                   <textarea
@@ -154,6 +166,17 @@ const AddGiftItems = () => {
                       <option key={index}>{brand?.name}</option>
                     ))}
                   </select>
+                  <select
+                    value={festival}
+                    onChange={(e) => setFestival(e.target.value)}
+                    className="input input-bordered lg:mt-4 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none lg:hidden"
+                  >
+                    <option>--Select Festival--</option>
+                    {festivals?.map((festival, index) => (
+                      <option key={index}>{festival}</option>
+                    ))}
+                  </select>
+
                 </div>
                 {/* Checkbox  */}
                 <div className="dropdown dropdown-end">
