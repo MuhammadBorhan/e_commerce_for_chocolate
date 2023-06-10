@@ -11,8 +11,8 @@ const AddGiftItems = () => {
   const [image, setBoxImage] = useState(null);
   const [brand, setBrandName] = useState("");
   const [price, setPrice] = useState("");
-  const [festival, setFestival] = useState("");
   const [desc, setDesc] = useState("");
+  const[festival,setFestival]=useState("")
   const [productList, setProductList] = useState([]);
 
   const [selectAll, setSelectAll] = useState(false);
@@ -22,7 +22,7 @@ const AddGiftItems = () => {
 
   const [brandProducts, setBrandProducts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/product?brand=${brand}`)
+    fetch(`http://localhost:5001/api/v1/product?brand=${brand}`)
       .then((res) => res.json())
       .then((data) => setBrandProducts(data?.data));
   }, [brand]);
@@ -60,7 +60,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/giftbox",
+        "http://localhost:5001/api/v1/giftbox",
         data,
         {
           headers: {
@@ -164,6 +164,17 @@ const AddGiftItems = () => {
                       <option key={index}>{brand?.name}</option>
                     ))}
                   </select>
+                  <select
+                    value={festival}
+                    onChange={(e) => setFestival(e.target.value)}
+                    className="input input-bordered lg:mt-4 h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none lg:hidden"
+                  >
+                    <option>--Select Festival--</option>
+                    {festivals?.map((festival, index) => (
+                      <option key={index}>{festival}</option>
+                    ))}
+                  </select>
+
                 </div>
                 {/* Checkbox  */}
                 <div className="dropdown dropdown-end">
