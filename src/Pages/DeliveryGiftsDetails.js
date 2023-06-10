@@ -21,11 +21,11 @@ import { useGetAllGiftBoxQuery } from "../features/api/GiftBoxApi";
 import { useState } from "react";
 
 const DeliveryGiftsDetails = () => {
-const [matchFestival,setMatchFestival] = useState([])
+  const [matchFestival, setMatchFestival] = useState([]);
 
   const location = useLocation();
   const data = location?.state;
- 
+
   //All product
   const { data: getProducts } = useGetAllProductsQuery(null, {
     refetchOnMountOrArgChange: true,
@@ -35,20 +35,19 @@ const [matchFestival,setMatchFestival] = useState([])
   const giftboxproduct = allProducts?.filter((product) => {
     return data?.productList?.some((p) => p === product.name);
   });
- 
+
   // fetch all gift box data
   const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
     refetchOnMountOrArgChange: true,
   });
   const allGiftbox = getGiftBox?.data;
-console.log('fes',allGiftbox?.festival)
+  console.log("fes", allGiftbox?.festival);
 
-  // handle festival 
-const handleFestival =(festival)=>{
-  const matchedFestival = allGiftbox?.filter((f)=> f?.festival === festival)
-  setMatchFestival(matchedFestival)
- 
-}
+  // handle festival
+  const handleFestival = (festival) => {
+    const matchedFestival = allGiftbox?.filter((f) => f?.festival === festival);
+    setMatchFestival(matchedFestival);
+  };
 
   // Similar Gift Box
   const similarGiftBox = allGiftbox.filter((giftbox) => {
@@ -61,12 +60,12 @@ const handleFestival =(festival)=>{
         <div className="flex justify-center">
           <img
             className="hidden lg:block"
-            src={`http://localhost:5001/${data?.image}`}
+            src={`http://localhost:5000/${data?.image}`}
             style={{ width: "400px" }}
           />
           <img
             className="block lg:hidden"
-            src={`http://localhost:5001/${data?.image}`}
+            src={`http://localhost:5000/${data?.image}`}
             style={{ width: "200px" }}
           />
         </div>
@@ -90,19 +89,29 @@ const handleFestival =(festival)=>{
               className="dropdown-content menu p-2 shadow rounded-box w-52"
             >
               <li>
-                <button onClick={()=>handleFestival('all')}>All Festival Gift</button>
+                <button onClick={() => handleFestival("all")}>
+                  All Festival Gift
+                </button>
               </li>
               <li>
-                <button onClick={()=>handleFestival('Birthday')}>BirthDay Gift</button>
+                <button onClick={() => handleFestival("Birthday")}>
+                  BirthDay Gift
+                </button>
               </li>
               <li>
-                <button onClick={()=>handleFestival('Marrige')}>Marrige Anniversary</button>
+                <button onClick={() => handleFestival("Marrige")}>
+                  Marrige Anniversary
+                </button>
               </li>
               <li>
-                <button onClick={()=>handleFestival('Christmas')}>Cristmas Gift</button>
+                <button onClick={() => handleFestival("Christmas")}>
+                  Cristmas Gift
+                </button>
               </li>
               <li>
-                <button onClick={()=>handleFestival('Valentine')}>Valentine Gift</button>
+                <button onClick={() => handleFestival("Valentine")}>
+                  Valentine Gift
+                </button>
               </li>
             </ul>
           </div>
@@ -146,7 +155,7 @@ const handleFestival =(festival)=>{
             {matchFestival?.map((data, index) => (
               <SwiperSlide className="swiper-slider">
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -156,8 +165,6 @@ const handleFestival =(festival)=>{
         </div>
       </div>
 
-
-    
       {/* // Giftbox match product  */}
 
       <div className="row py-5">
@@ -179,7 +186,7 @@ const handleFestival =(festival)=>{
             {giftboxproduct?.map((data, index) => (
               <SwiperSlide className="swiper-slider">
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -209,7 +216,7 @@ const handleFestival =(festival)=>{
             {similarGiftBox?.map((data, index) => (
               <SwiperSlide className="swiper-slider">
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
