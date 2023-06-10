@@ -64,12 +64,12 @@ const DeliveryGiftsDetails = () => {
         <div className="flex justify-center">
           <img
             className="hidden lg:block"
-            src={`http://localhost:5000/${data?.image}`}
+            src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
             style={{ width: "400px" }}
           />
           <img
             className="block lg:hidden"
-            src={`http://localhost:5000/${data?.image}`}
+            src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
             style={{ width: "200px" }}
           />
         </div>
@@ -83,7 +83,7 @@ const DeliveryGiftsDetails = () => {
 
           <div className="dropdown dropdown-bottom">
             <label tabIndex={0} className="btn m-1">
-              Chose Your Festival
+              Choose Your Festival
               <p className="mt-1 ml-2">
                 <IoMdArrowDropdown />
               </p>
@@ -163,7 +163,7 @@ const DeliveryGiftsDetails = () => {
             {matchFestival?.map((data, index) => (
               <SwiperSlide className="gboxswiper-slider py-6" key={index}>
                 <img
-                  src={`http://localhost:5000/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="w-32 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -199,7 +199,7 @@ const DeliveryGiftsDetails = () => {
             {giftboxproduct?.map((data, index) => (
               <SwiperSlide className="gboxproswiper-slider pt-4 pb-8">
                 <img
-                  src={`http://localhost:5000/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -231,7 +231,7 @@ const DeliveryGiftsDetails = () => {
             {similarGiftBox?.map((data, index) => (
               <SwiperSlide className="sgboxswiper-slider py-6 pb-8">
                 <img
-                  src={`http://localhost:5000/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
