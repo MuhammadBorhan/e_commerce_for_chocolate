@@ -1,10 +1,7 @@
 import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-    useGetAllGiftBoxQuery,
-    useGetAllSelectGiftBoxQuery,
-  } from "../../features/api/GiftBoxApi";
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,6 +12,8 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Pagination ,Navigation,Keyboard} from "swiper";
+import { useGetAllGiftBoxQuery } from '../features/api/GiftBoxApi';
+import { Link } from 'react-router-dom';
 
 
 const GiftBox = () => {
@@ -22,24 +21,16 @@ const GiftBox = () => {
         refetchOnMountOrArgChange: true,
       });
       const allGiftbox = getGiftBox?.data;
-    
-      const { data: getSelectGiftBox } = useGetAllSelectGiftBoxQuery(null, {
-        refetchOnMountOrArgChange: true,
-      });
-      const allSelectGiftBox = getSelectGiftBox?.data;
-    
-      const selectGiftBox = allSelectGiftBox?.filter(
-        // (giftBox) => giftBox?.brand === brands?.name
-      );
-      console.Console(selectGiftBox)
+
+      
 
     return (
         <div>
            < div className="row py-5">
-        <h4 className="text-center pb-3">Recommended for You</h4>
+           <h4 className="text-center pb-3">Regular Gift Box</h4>
         <div className="">
           <Swiper
-            loop={true}
+            // loop={true}
             navigation={true}
             keyboard={true}
             slidesPerView={5}
@@ -51,18 +42,17 @@ const GiftBox = () => {
             modules={[FreeMode, Pagination, Navigation, Keyboard]}
             className=" swiperr"
           >
-            {selectGiftBox.map((box, index) => (
-              <SwiperSlide className="swiper-slider">
+            {allGiftbox?.map((box, index) => (
+              <SwiperSlide className="swiper-slider py-10">
+                <Link to={`/delivery/${box?.name}`} state={box}>
                 <img
-                  src={box.image}
-                  className="d-none d-lg-block"
-                  style={{ width: "250px" }}
+                  src={`http://localhost:5001/${box.image}`}
+                  className="h-48 w-48 object-cover"
+                  
                 />
-                <img
-                  src={box.image}
-                  className="d-block d-lg-none"
-                  style={{ height: "70px" }}
-                />
+                <p>{box.name}</p>
+                </Link>
+                 
               </SwiperSlide>
             ))}
           </Swiper>
