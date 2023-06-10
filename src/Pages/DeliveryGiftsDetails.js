@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
 // Import Swiper React components
@@ -21,7 +21,12 @@ import { useGetAllGiftBoxQuery } from "../features/api/GiftBoxApi";
 import { useState } from "react";
 
 const DeliveryGiftsDetails = () => {
-  const [matchFestival, setMatchFestival] = useState([]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const location = useLocation();
   const data = location?.state;
@@ -41,19 +46,18 @@ const DeliveryGiftsDetails = () => {
     refetchOnMountOrArgChange: true,
   });
   const allGiftbox = getGiftBox?.data;
-  console.log("fes", allGiftbox?.festival);
 
   // handle festival
+  const [matchFestival, setMatchFestival] = useState([]);
   const handleFestival = (festival) => {
     const matchedFestival = allGiftbox?.filter((f) => f?.festival === festival);
     setMatchFestival(matchedFestival);
   };
 
   // Similar Gift Box
-  const similarGiftBox = allGiftbox.filter((giftbox) => {
+  const similarGiftBox = allGiftbox?.filter((giftbox) => {
     return data?._id !== giftbox?._id;
   });
-  console.log(similarGiftBox);
   return (
     <div className="">
       <div className="flex flex-col lg:flex-row lg:gap-12 p-4 lg:p-12">
@@ -87,12 +91,8 @@ const DeliveryGiftsDetails = () => {
             <ul
               tabIndex={0}
               className="dropdown-content menu p-2 shadow rounded-box w-52"
+              style={{ zIndex: "2" }}
             >
-              <li>
-                <button onClick={() => handleFestival("all")}>
-                  All Festival Gift
-                </button>
-              </li>
               <li>
                 <button onClick={() => handleFestival("Birthday")}>
                   BirthDay Gift
@@ -137,7 +137,15 @@ const DeliveryGiftsDetails = () => {
       {/* // Relatred Festival  */}
 
       <div className="row py-5">
-        <h4 className="text-center pb-3">Your Festival</h4>
+        {matchFestival.length > 0 && (
+          <h4
+            className="text-center pb-3 text-xl font-bold"
+            style={{ zIndex: "1" }}
+          >
+            {matchFestival[0]?.festival} Festival
+          </h4>
+        )}
+
         <div className="">
           <Swiper
             loop={true}
@@ -150,13 +158,13 @@ const DeliveryGiftsDetails = () => {
               clickable: true,
             }}
             modules={[FreeMode, Pagination, Navigation, Keyboard]}
-            className=" swiperr"
+            className="gboxswiperr "
           >
             {matchFestival?.map((data, index) => (
-              <SwiperSlide className="swiper-slider">
+              <SwiperSlide className="gboxswiper-slider py-6" key={index}>
                 <img
                   src={`http://localhost:5000/${data?.image}`}
-                  className="h-48 w-48 object-cover"
+                  className="w-32 object-cover"
                 />
                 <p>{data?.name}</p>
               </SwiperSlide>
@@ -168,7 +176,12 @@ const DeliveryGiftsDetails = () => {
       {/* // Giftbox match product  */}
 
       <div className="row py-5">
-        <h4 className="text-center pb-3">Gift Box Product</h4>
+        <h4
+          className="text-center pb-3 text-xl font-bold"
+          style={{ zIndex: "1" }}
+        >
+          {data?.name} Product
+        </h4>
         <div className="">
           <Swiper
             loop={true}
@@ -181,10 +194,10 @@ const DeliveryGiftsDetails = () => {
               clickable: true,
             }}
             modules={[FreeMode, Pagination, Navigation, Keyboard]}
-            className=" swiperr"
+            className="gboxproswiperr"
           >
             {giftboxproduct?.map((data, index) => (
-              <SwiperSlide className="swiper-slider">
+              <SwiperSlide className="gboxproswiper-slider pt-4 pb-8">
                 <img
                   src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"
@@ -198,7 +211,9 @@ const DeliveryGiftsDetails = () => {
 
       {/* //Simiar gift box  */}
       <div className="row py-5">
-        <h4 className="text-center pb-3">Simiar Gift Box </h4>
+        <h4 className="text-center pb-3 text-xl font-bold">
+          Similar Gift Box{" "}
+        </h4>
         <div className="">
           <Swiper
             loop={true}
@@ -211,10 +226,10 @@ const DeliveryGiftsDetails = () => {
               clickable: true,
             }}
             modules={[FreeMode, Pagination, Navigation, Keyboard]}
-            className=" swiperr"
+            className=" sgboxswiperr"
           >
             {similarGiftBox?.map((data, index) => (
-              <SwiperSlide className="swiper-slider">
+              <SwiperSlide className="sgboxswiper-slider py-6 pb-8">
                 <img
                   src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"

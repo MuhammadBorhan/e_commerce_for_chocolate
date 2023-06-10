@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   useGetAllGiftBoxQuery,
   useGetAllSelectGiftBoxQuery,
@@ -490,7 +490,7 @@ const BrandsItem = () => {
       {/* Similar Gift Box */}
 
       <div>
-        <h2 className="mt-8 text-2xl text-center lg:text-left font-bold text-[#9A583B]">
+        <h2 className="mt-8 lg:mt-16 text-2xl text-center lg:text-left font-bold text-[#9A583B]">
           Similar Gift Box
         </h2>
         <div className="grid lg:grid-cols-4 gap-10 mt-8">
@@ -498,11 +498,13 @@ const BrandsItem = () => {
             return (
               <div key={box?._id} className="card shadow-xl ">
                 <figure>
-                  <img
-                    src={`http://localhost:5000/${box?.image}`}
-                    alt="box"
-                    className="w-[200px] lg:w-[300px]"
-                  />
+                  <Link to={`/delivery/${box?.name}`} state={box}>
+                    <img
+                      src={`http://localhost:5000/${box?.image}`}
+                      alt="box"
+                      className="w-[150px] lg:w-[240px] lg:h-[240px]"
+                    />
+                  </Link>
                 </figure>
                 <h2 className="font-bold  sm:w-full text-center">
                   {box?.name}

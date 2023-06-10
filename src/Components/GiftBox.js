@@ -21,7 +21,7 @@ const GiftBox = () => {
   return (
     <div>
       <div className="row py-5">
-        <h4 className="text-center pb-3">Regular Gift Box</h4>
+        <h4 className="text-center pb-3 text-xl font-bold">Regular Gift Box</h4>
         <div className="">
           <Swiper
             // loop={true}
@@ -34,10 +34,10 @@ const GiftBox = () => {
               clickable: true,
             }}
             modules={[FreeMode, Pagination, Navigation, Keyboard]}
-            className=" swiperr"
+            className="rgboxswiperr"
           >
             {allGiftbox?.map((box, index) => (
-              <SwiperSlide className="swiper-slider py-10">
+              <SwiperSlide className="rgboxswiper-slider pt-6 pb-8">
                 <Link to={`/delivery/${box?.name}`} state={box}>
                   <img
                     src={`http://localhost:5000/${box.image}`}
