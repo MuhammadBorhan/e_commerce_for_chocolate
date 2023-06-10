@@ -16,7 +16,7 @@ const UpdateRegionDistrict = () => {
 
   const [regionDistrict, setRegionDistrict] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/region/${id}`;
+    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/region/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -60,7 +60,7 @@ const UpdateRegionDistrict = () => {
     };
     try {
       const res = await axios.patch(
-        `http://localhost:5000/api/v1/region/${id}`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/region/${id}`,
         newDistrictData
       );
       console.log(res);
