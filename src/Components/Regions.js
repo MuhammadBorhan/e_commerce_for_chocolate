@@ -191,7 +191,7 @@ const Regions = () => {
           loop={true}
           navigation={true}
           keyboard={true}
-          slidesPerView={8}
+          slidesPerView={7}
           spaceBetween={0}
           freeMode={true}
           pagination={{
@@ -224,7 +224,7 @@ const Regions = () => {
           loop={true}
           navigation={true}
           keyboard={true}
-          slidesPerView={4}
+          slidesPerView={3}
           spaceBetween={0}
           freeMode={true}
           pagination={{
@@ -239,7 +239,7 @@ const Regions = () => {
               className="swiper-slider cursor-pointer"
             >
               <div>
-                <span className="mr-2 font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-sm">
+                <span className="mr-2 font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-xs ">
                   {d}
                 </span>
               </div>
@@ -272,7 +272,7 @@ const Regions = () => {
             <SwiperSlide className="bswiper-slide" key={index}>
               <Link to={`/brands/${product?.name}`} state={product} key={index}>
                 <img
-                  src={`http://localhost:5000/uploads/${product?.image}`}
+                  src={`http://localhost:5001/uploads/${product?.image}`}
                   alt={product?.name}
                   className="h-48 w-48 object-cover"
                 />

@@ -6,6 +6,7 @@ import CategorySwiper from "./CategorySwiper/CategorySwiper";
 import SameDayDelivery from "../Components/SameDayDelivery";
 import Regions from "../Components/Regions";
 import Footer from "../Layout/Footer";
+import GiftBox from "../Components/GiftBox";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <HeroSlider />
       {/* <CategorySwiper /> */}
       <Regions />
+      <GiftBox></GiftBox>
       <SameDayDelivery />
       <Footer />
     </>

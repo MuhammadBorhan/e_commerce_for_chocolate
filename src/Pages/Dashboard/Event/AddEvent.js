@@ -47,7 +47,7 @@ const AddEvent = () => {
     console.log(data);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/event",
+        "http://localhost:5001/api/v1/event",
         data,
         {
           headers: {
