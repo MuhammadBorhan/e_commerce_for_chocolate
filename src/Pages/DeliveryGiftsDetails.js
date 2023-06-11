@@ -19,6 +19,7 @@ import { sameDayDeliveryData } from "../data";
 import { useGetAllProductsQuery } from "../features/api/productsApi";
 import { useGetAllGiftBoxQuery } from "../features/api/GiftBoxApi";
 import { useState } from "react";
+import SlickSlider from "../Components/SlickSlider/SlickSlider";
 
 const DeliveryGiftsDetails = () => {
   useEffect(() => {
@@ -91,7 +92,6 @@ const DeliveryGiftsDetails = () => {
             <ul
               tabIndex={0}
               className="dropdown-content menu p-2 shadow rounded-box w-52"
-              style={{ zIndex: "2" }}
             >
               <li>
                 <button onClick={() => handleFestival("Birthday")}>
@@ -136,12 +136,9 @@ const DeliveryGiftsDetails = () => {
       </div>
       {/* // Relatred Festival  */}
 
-      <div className="row py-5">
+      <div className="row py-5 px-4 lg:px-12">
         {matchFestival.length > 0 && (
-          <h4
-            className="text-center pb-3 text-xl font-bold"
-            style={{ zIndex: "1" }}
-          >
+          <h4 className="text-center pb-3 text-xl font-bold">
             {matchFestival[0]?.festival} Festival
           </h4>
         )}
@@ -174,12 +171,8 @@ const DeliveryGiftsDetails = () => {
       </div>
 
       {/* // Giftbox match product  */}
-
-      <div className="row py-5">
-        <h4
-          className="text-center pb-3 text-xl font-bold"
-          style={{ zIndex: "1" }}
-        >
+      <div className="row py-5 px-4 lg:px-12">
+        <h4 className="text-center pb-3 text-xl font-bold">
           {data?.name} Product
         </h4>
         <div className="">
@@ -197,7 +190,10 @@ const DeliveryGiftsDetails = () => {
             className="gboxproswiperr"
           >
             {giftboxproduct?.map((data, index) => (
-              <SwiperSlide className="gboxproswiper-slider pt-4 pb-8">
+              <SwiperSlide
+                className="gboxproswiper-slider pt-4 pb-8"
+                key={index}
+              >
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="h-48 w-48 object-cover"
@@ -209,8 +205,12 @@ const DeliveryGiftsDetails = () => {
         </div>
       </div>
 
+      {/* selected gift box product list start */}
+      <SlickSlider data={data} giftboxproduct={giftboxproduct} />
+      {/* selected gift box product list end */}
+
       {/* //Simiar gift box  */}
-      <div className="row py-5">
+      <div className="row py-5 px-4 lg:px-12">
         <h4 className="text-center pb-3 text-xl font-bold">
           Similar Gift Box{" "}
         </h4>
@@ -232,7 +232,7 @@ const DeliveryGiftsDetails = () => {
               <SwiperSlide className="sgboxswiper-slider py-6 pb-8">
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
-                  className="h-48 w-48 object-cover"
+                  className="h-36 w-36 lg:h-48 lg:w-48 object-cover"
                 />
                 <p>{data?.name}</p>
               </SwiperSlide>
