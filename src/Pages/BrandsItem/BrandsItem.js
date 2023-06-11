@@ -67,13 +67,12 @@ const BrandsItem = () => {
     );
   });
 
+  const colors = ["All", "Black", "White", "Milk"];
+  const [activeFilter, setActiveFilter] = useState("All");
   const [projects, setProjects] = useState();
   useEffect(() => {
     setProjects(selectGiftBoxProducts);
-  }, []);
-
-  const [activeFilter, setActiveFilter] = useState("All");
-  const colors = ["All", "Black", "White", "Milk"];
+  }, [setProjects]);
 
   const handleFilter = (filter) => {
     setActiveFilter(filter);
