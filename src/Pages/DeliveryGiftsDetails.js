@@ -171,8 +171,7 @@ const DeliveryGiftsDetails = () => {
       </div>
 
       {/* // Giftbox match product  */}
-
-      <div className="row py-5 px-4 lg:px-12">
+      {/* <div className="row py-5 px-4 lg:px-12">
         <h4 className="text-center pb-3 text-xl font-bold">
           {data?.name} Product
         </h4>
@@ -191,7 +190,10 @@ const DeliveryGiftsDetails = () => {
             className="gboxproswiperr"
           >
             {giftboxproduct?.map((data, index) => (
-              <SwiperSlide className="gboxproswiper-slider pt-4 pb-8">
+              <SwiperSlide
+                className="gboxproswiper-slider pt-4 pb-8"
+                key={index}
+              >
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="h-48 w-48 object-cover"
@@ -201,8 +203,11 @@ const DeliveryGiftsDetails = () => {
             ))}
           </Swiper>
         </div>
-      </div>
-      <SlickSlider />
+      </div> */}
+
+      {/* selected gift box product list start */}
+      <SlickSlider data={data} giftboxproduct={giftboxproduct} />
+      {/* selected gift box product list end */}
 
       {/* //Simiar gift box  */}
       <div className="row py-5 px-4 lg:px-12">
