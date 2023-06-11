@@ -203,6 +203,7 @@ const DeliveryGiftsDetails = () => {
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
+                <p><small>{data.desc}</small></p>
               </SwiperSlide>
             ))}
           </Swiper>
