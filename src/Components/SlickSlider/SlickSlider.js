@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SlickSlider.css";
@@ -42,6 +42,7 @@ const SlickSlider = ({ data, giftboxproduct }) => {
       },
     ],
   };
+
   return (
     <div className="slider px-4 lg:px-12">
       <h1 className="uppercase font-bold text-xl lg:text-2xl mb-6">
@@ -49,12 +50,12 @@ const SlickSlider = ({ data, giftboxproduct }) => {
       </h1>
       <Slider {...settings}>
         {giftboxproduct?.map((data, index) => (
-          <div className="card h-[200px] lg:h-[300px] bg-neutral" key={index}>
+          <div className="card cards h-[200px] lg:h-[290px] bg- " key={index}>
             <div className="card-top">
               <img
                 src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                 alt={data?.name}
-                className="w-32 h-32 lg:w-48 lg:h-48 m-auto object-cover"
+                className=" w-32 h-32 lg:w-48 lg:h-48 m-auto object-cover "
               />
               <h1 className="lg:text-xl text-center bg-[#9A583B]  text-white font-bold py-1 uppercase">
                 {data?.name}
@@ -62,9 +63,11 @@ const SlickSlider = ({ data, giftboxproduct }) => {
             </div>
             <div className="bg-neutral">
               {" "}
-              <div className="card-bottom bg-neutral">
+              <div className="card-bottom bg-neutral ">
                 {/* <h3 className="text-3xl font-bold">{item.price}</h3> */}
-                <p className="font-serif text-center">{data?.desc}</p>
+                <p className="font-serif text-center text-white">
+                  {data?.desc}
+                </p>
               </div>
             </div>
           </div>

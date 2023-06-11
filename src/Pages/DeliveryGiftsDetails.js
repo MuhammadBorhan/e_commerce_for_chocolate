@@ -136,7 +136,7 @@ const DeliveryGiftsDetails = () => {
       </div>
       {/* // Relatred Festival  */}
 
-      <div className="row py-5">
+      <div className="row py-5 px-4 lg:px-12">
         {matchFestival.length > 0 && (
           <h4 className="text-center pb-3 text-xl font-bold">
             {matchFestival[0]?.festival} Festival
@@ -171,7 +171,7 @@ const DeliveryGiftsDetails = () => {
       </div>
 
       {/* // Giftbox match product  */}
-      {/* <div className="row py-5 px-4 lg:px-12">
+      <div className="row py-5 px-4 lg:px-12">
         <h4 className="text-center pb-3 text-xl font-bold">
           {data?.name} Product
         </h4>
@@ -203,7 +203,7 @@ const DeliveryGiftsDetails = () => {
             ))}
           </Swiper>
         </div>
-      </div> */}
+      </div>
 
       {/* selected gift box product list start */}
       <SlickSlider data={data} giftboxproduct={giftboxproduct} />
