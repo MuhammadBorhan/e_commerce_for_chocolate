@@ -304,7 +304,7 @@ const DeliveryGiftsDetails = () => {
       {/* //Simiar gift box  */}
       <div className="row py-5 px-4 lg:px-12">
         <h4 className="text-center pb-3 text-xl font-bold">
-          Similar Gift Box's{" "}
+          Similar Gift Box{" "}
         </h4>
         <div className="">
           <Swiper
