@@ -20,12 +20,12 @@ import { useGetAllProductsQuery } from "../features/api/productsApi";
 import { useGetAllGiftBoxQuery } from "../features/api/GiftBoxApi";
 import { useState } from "react";
 import { CLOSING } from "ws";
+import SlickSlider from "../Components/SlickSlider/SlickSlider";
 // import SlickSlider from "../Components/SlickSlider/SlickSlider";
 
 const DeliveryGiftsDetails = () => {
   const [matchFestival, setMatchFestival] = useState([]);
   const [selectGiftBox, setSelectGiftBox] = useState("");
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     window.scrollTo({
@@ -298,13 +298,13 @@ const DeliveryGiftsDetails = () => {
       </div>
 
       {/* selected gift box product list start */}
-      {/* <SlickSlider data={data} giftboxproduct={giftboxproduct} /> */}
+      <SlickSlider data={data} giftboxproduct={giftboxproduct} />
       {/* selected gift box product list end */}
 
       {/* //Simiar gift box  */}
       <div className="row py-5 px-4 lg:px-12">
         <h4 className="text-center pb-3 text-xl font-bold">
-          Similar Gift Box{" "}
+          Similar Gift Box's{" "}
         </h4>
         <div className="">
           <Swiper
