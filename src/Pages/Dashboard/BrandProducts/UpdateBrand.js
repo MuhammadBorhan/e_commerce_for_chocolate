@@ -14,7 +14,7 @@ const UpdateBrand = () => {
 
   const [brand, setBrand] = useState({});
   useEffect(() => {
-    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/brand/${id}`;
+    const url = `http://localhost:5001/api/v1/brand/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBrand(data?.data));
@@ -35,7 +35,7 @@ const UpdateBrand = () => {
     console.log("data after update", data);
     try {
       const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/updateBrand/${id}`,
+        `http://localhost:5001/api/v1/updateBrand/${id}`,
         data,
         {
           headers: {
@@ -60,7 +60,7 @@ const UpdateBrand = () => {
     };
     try {
       const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/brand/${id}`,
+        `http://localhost:5001/api/v1/brand/${id}`,
         data
       );
       console.log(response);

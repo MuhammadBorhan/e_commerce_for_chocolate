@@ -23,7 +23,7 @@ const AddGiftItems = () => {
   const [brandProducts, setBrandProducts] = useState([]);
   useEffect(() => {
     fetch(
-      `https://andy-chocolate-productions.up.railway.app/api/v1/product?brand=${brand}`
+      `http://localhost:5001/api/v1/product?brand=${brand}`
     )
       .then((res) => res.json())
       .then((data) => setBrandProducts(data?.data));
@@ -62,7 +62,7 @@ const AddGiftItems = () => {
     };
     try {
       const response = await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/giftbox",
+        "http://localhost:5001/api/v1/giftbox",
         data,
         {
           headers: {

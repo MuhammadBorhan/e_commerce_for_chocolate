@@ -23,7 +23,7 @@ const UpdateEvent = () => {
   const [event, setEvent] = useState({});
   useEffect(() => {
     fetch(
-      `https://andy-chocolate-productions.up.railway.app/api/v1/event/${id}`
+      `http://localhost:5001/api/v1/event/${id}`
     )
       .then((res) => res.json())
       .then((data) => setEvent(data?.data));
@@ -54,7 +54,7 @@ const UpdateEvent = () => {
     };
     try {
       const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/event/${id}`,
+        `http://localhost:5001/api/v1/event/${id}`,
         data
       );
       if (response) {
