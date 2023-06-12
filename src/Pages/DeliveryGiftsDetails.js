@@ -103,7 +103,8 @@ const DeliveryGiftsDetails = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-slate-50 rounded-box w-52 z-1"
+                className="dropdown-content menu p-2 shadow bg-slate-5
+                0 rounded-box w-52 z-1"
               >
                 <li>
                   <button onClick={() => handleFestival("Birthday")}>
@@ -117,7 +118,7 @@ const DeliveryGiftsDetails = () => {
                 </li>
                 <li>
                   <button onClick={() => handleFestival("Christmas")}>
-                    Cristmas Gift
+                    Christmas Gift
                   </button>
                 </li>
                 <li>
