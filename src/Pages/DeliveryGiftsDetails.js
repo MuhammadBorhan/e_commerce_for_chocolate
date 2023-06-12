@@ -94,16 +94,17 @@ const DeliveryGiftsDetails = () => {
             <h6 className="text-xl">Description</h6>
             <p className="mb-4">{selectedGiftBox?.desc}</p>
 
-            <div className="dropdown dropdown-bottom">
+            <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn m-1">
                 Choose Your Festival
-                <p className="mt-1 ml-2">
+                <p className="mt-1 ml-2 ">
                   <IoMdArrowDropdown />
                 </p>
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow rounded-box w-52"
+                className="dropdown-content menu p-2 shadow bg-slate-5
+                0 rounded-box w-52 z-1"
               >
                 <li>
                   <button onClick={() => handleFestival("Birthday")}>
@@ -117,7 +118,7 @@ const DeliveryGiftsDetails = () => {
                 </li>
                 <li>
                   <button onClick={() => handleFestival("Christmas")}>
-                    Cristmas Gift
+                    Christmas Gift
                   </button>
                 </li>
                 <li>
@@ -168,7 +169,7 @@ const DeliveryGiftsDetails = () => {
             <h6 className="text-xl">Description</h6>
             <p className="mb-4">{data?.desc}</p>
 
-            <div className="dropdown dropdown-bottom">
+            <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn m-1">
                 Choose Your Festival
                 <p className="mt-1 ml-2">
@@ -177,7 +178,7 @@ const DeliveryGiftsDetails = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow rounded-box w-52"
+                className="dropdown-content menu p-2 shadow bg-yellow-900 rounded-box w-52 z-1"
               >
                 <li>
                   <button onClick={() => handleFestival("Birthday")}>
@@ -224,7 +225,7 @@ const DeliveryGiftsDetails = () => {
 
       {/* // Relatred Festival  */}
 
-      <div className="row py-5 px-4 lg:px-12">
+      <div className="row py-5 px-4 lg:px-12 ">
         {matchFestival.length > 0 && (
           <h4 className="text-center pb-3 text-xl font-bold">
             {matchFestival[0]?.festival} Festival
