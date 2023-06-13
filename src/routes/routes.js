@@ -32,6 +32,7 @@ import UpdateEvent from "../Pages/Dashboard/Event/UpdateEvent";
 import AllVisitors from "../Pages/Dashboard/AllUsers/AllVisitors";
 import AddToCart from "../Pages/AddToCart/AddToCart";
 import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
+import BlankBoxList from "../Pages/Dashboard/BlankBox/BlankBoxList";
 
 const routes = createBrowserRouter([
   {
@@ -164,7 +165,7 @@ const routes = createBrowserRouter([
           },
           {
             path: "/dashboard/blanklist",
-            element: <UpdateEvent />,
+            element: <BlankBoxList />,
           },
         ],
       },

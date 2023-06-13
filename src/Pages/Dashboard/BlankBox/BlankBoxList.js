@@ -8,21 +8,24 @@ import { MdUpdate } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
+import { useGetAllBlankBoxQuery, useRemoveBlankBoxMutation } from "../../../features/api/blankBoxApi";
 
 const BlankBoxList = () => {
-  const { data } = useGetAllBrandsQuery(null, {
+  
+// Blank Box 
+const { data } = useGetAllBlankBoxQuery(null, {
     refetchOnMountOrArgChange: true,
   });
-  const brands = data?.data;
+  const blankBox = data?.data;
 
-  const [removeBrand] = useRemoveBrandMutation();
+//   const [removeBrand] = useRemoveBlankBoxMutation();
 
-  const handleDelete = (id) => {
-    const confirm = window.confirm("Are You Sure?");
-    if (confirm) {
-      removeBrand(id);
-    }
-  };
+//   const handleDelete = (id) => {
+//     const confirm = window.confirm("Are You Sure?");
+//     if (confirm) {
+//       removeBrand(id);
+//     }
+//   };
 
   return (
     <div>
@@ -42,17 +45,13 @@ const BlankBoxList = () => {
               </tr>
             </thead>
             <tbody>
-              {brands?.map((brand, index) => {
+              {blankBox?.map((brand, index) => {
                 return (
                   <tr key={index}>
                     <th>{index + 1}</th>
                     <td>{brand?.name}</td>
-                    <td>
-                      <img
-                        src={`http://localhost:5001/uploads/${brand?.logo}`}
-                        className="w-16"
-                      />
-                    </td>
+                    <td>{brand?.festival}</td>
+                    
                     <td>
                       <img
                         src={`http://localhost:5001/uploads/${brand?.image}`}
@@ -71,7 +70,7 @@ const BlankBoxList = () => {
                         </Link>
                       </button>
                       <button
-                        onClick={() => handleDelete(brand?._id)}
+                        // onClick={() => handleDelete(brand?._id)}
                         className="text-red-500"
                         style={{ width: "40px", fontSize: "25px" }}
                       >
