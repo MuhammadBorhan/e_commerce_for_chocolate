@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <>
+    <div className="">
       <RouterProvider router={routes} />
       {/* <ToastContainer position="top-center" autoClose={2000} /> */}
       <ToastContainer
@@ -19,7 +19,7 @@ function App() {
         draggable
         pauseOnHover
       />
-    </>
+    </div>
   );
 }
 
