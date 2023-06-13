@@ -69,7 +69,7 @@ const BrandsItem = () => {
 
   const colors = ["All", "Black", "White", "Milk"];
   const [activeFilter, setActiveFilter] = useState("All");
-  const [projects, setProjects] = useState();
+  const [projects, setProjects] = useState(null);
   useEffect(() => {
     setProjects(selectGiftBoxProducts);
   }, [setProjects]);
