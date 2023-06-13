@@ -31,6 +31,7 @@ import UpdateGiftBox from "../Pages/Dashboard/GiftBox/UpdateGiftBox";
 import UpdateEvent from "../Pages/Dashboard/Event/UpdateEvent";
 import AllVisitors from "../Pages/Dashboard/AllUsers/AllVisitors";
 import AddToCart from "../Pages/AddToCart/AddToCart";
+import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
 
 const routes = createBrowserRouter([
   {
@@ -155,6 +156,14 @@ const routes = createBrowserRouter([
           },
           {
             path: "/dashboard/updateevent/:id",
+            element: <UpdateEvent />,
+          },
+          {
+            path: "/dashboard/addblankbox",
+            element: <AddBlankBox />,
+          },
+          {
+            path: "/dashboard/blanklist",
             element: <UpdateEvent />,
           },
         ],
