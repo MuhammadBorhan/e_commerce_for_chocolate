@@ -21,7 +21,7 @@ const SocialLogin = () => {
         console.log(user);
         axios
           .post(
-            `https://andy-chocolate-productions.up.railway.app/api/v1/signup`,
+            `http://localhost:5001/api/v1/signup`,
             gUser
           )
           .then((res) => {

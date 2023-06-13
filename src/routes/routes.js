@@ -30,6 +30,7 @@ import UpdateBrand from "../Pages/Dashboard/BrandProducts/UpdateBrand";
 import UpdateGiftBox from "../Pages/Dashboard/GiftBox/UpdateGiftBox";
 import UpdateEvent from "../Pages/Dashboard/Event/UpdateEvent";
 import AllVisitors from "../Pages/Dashboard/AllUsers/AllVisitors";
+import AddToCart from "../Pages/AddToCart/AddToCart";
 
 const routes = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const routes = createBrowserRouter([
       {
         path: "/carts",
         element: <CartProducts />,
+      },
+      {
+        path: "/addtocart/:name",
+        element: <AddToCart />,
       },
       {
         path: "/login",
