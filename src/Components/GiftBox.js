@@ -21,7 +21,7 @@ const GiftBox = () => {
   return (
     <div>
       <div className="row py-5">
-        <h4 className="text-center pb-3 text-xl font-bold">Regular Gift Box</h4>
+        <h4 className="text-center pb-3 text-xl font-bold">Gift Box</h4>
         <div className="">
           <Swiper
             // loop={true}
@@ -40,7 +40,7 @@ const GiftBox = () => {
               <SwiperSlide className="rgboxswiper-slider pt-6 pb-8">
                 <Link to={`/delivery/${box?.name}`} state={box}>
                   <img
-                    src={`http://localhost:5000/${box.image}`}
+                    src={`http://localhost:5001/${box.image}`}
                     className="h-48 w-48 object-cover"
                   />
                   <p>{box.name}</p>
