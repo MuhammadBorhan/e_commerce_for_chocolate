@@ -4,8 +4,8 @@ const AddToCart = () => {
   const location = useLocation();
   const data = location?.state?.data;
   const data1 = location?.state?.selectedBlankBox;
-  console.log('festival :',data1)
-  console.log('giftbox selected :',data)
+  console.log("festival :", data1);
+  console.log("giftbox selected :", data);
 
   const [quantity, setQuantity] = useState(1);
   const [tax, setTax] = useState(0);
@@ -24,12 +24,12 @@ const AddToCart = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
               style={{ width: "100px" }}
             />
           </div>
@@ -94,22 +94,24 @@ const AddToCart = () => {
           </button>
         </div>
       </div>
-     <div>
-      <h3 className="font-bold">Your Chosen Box</h3>
-          <div >
-          <img
-            className="hidden lg:block"
-            src={`http://localhost:5001/${data1?.image}`}
-            style={{ width: "150px" }}
-          />
-          <img
-            className="block lg:hidden"
-            src={`http://localhost:5001/${data1?.image}`}
-            style={{ width: "100px" }}
-          />
+
+      {data1 && (
+        <div>
+          <h3 className="font-bold">Your Chosen Box</h3>
+          <div>
+            <img
+              className="hidden lg:block"
+              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
+              style={{ width: "150px" }}
+            />
+            <img
+              className="block lg:hidden"
+              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
+              style={{ width: "100px" }}
+            />
+          </div>
         </div>
-      
-     </div>
+      )}
     </div>
   );
 };
