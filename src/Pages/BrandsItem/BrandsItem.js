@@ -68,27 +68,24 @@ const BrandsItem = () => {
   });
 
   const colors = ["All", "Black", "White", "Milk"];
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [projects, setProjects] = useState(null);
+  const [projects, setProjects] = useState();
   useEffect(() => {
     setProjects(selectGiftBoxProducts);
-  }, [setProjects]);
+  }, []);
 
+  const [activeFilter, setActiveFilter] = useState("All");
   const handleFilter = (filter) => {
     setActiveFilter(filter);
 
     if (filter === "All") {
       setProjects(selectGiftBoxProducts);
     } else {
-      const filteredProjects = selectGiftBoxProducts.filter(
-        (project) => project.color === filter
+      const filteredProjects = selectGiftBoxProducts?.filter(
+        (project) => project?.color === filter
       );
       setProjects(filteredProjects);
     }
   };
-
-  const [show, setShow] = useState(false);
-  const [pShow, setPShow] = useState(false);
 
   // For product lightBox
   useEffect(() => {

@@ -21,12 +21,12 @@ const AddToCart = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
               style={{ width: "100px" }}
             />
           </div>

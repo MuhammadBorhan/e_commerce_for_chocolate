@@ -8,7 +8,7 @@ const blankBoxApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["blankBox"],
     }),
-    removeBrand: builder.mutation({
+    removeBlankBox: builder.mutation({
       query: (id) => ({
         url: `/blankBox/${id}`,
         method: "DELETE",
@@ -18,4 +18,5 @@ const blankBoxApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllBlankBoxQuery, useRemoveBlankBoxMutation } = blankBoxApi;
+export const { useGetAllBlankBoxQuery, useRemoveBlankBoxMutation } =
+  blankBoxApi;
