@@ -28,7 +28,6 @@ import { useGetAllBlankBoxQuery } from "../features/api/blankBoxApi";
 const DeliveryGiftsDetails = () => {
   const [matchFestival, setMatchFestival] = useState([]);
   const [selectedBlankBox, setSelectedBlankBox] = useState();
-  console.log("blankbox", selectedBlankBox);
   const location = useLocation();
   const data = location?.state;
 
@@ -68,6 +67,7 @@ const DeliveryGiftsDetails = () => {
       (f) => f?.festival === festival
     );
     setMatchFestival(matchedFestival);
+    setSelectedBlankBox(null);
   };
 
   const [selectedGiftBox, setSelectedGiftBox] = useState(null);
@@ -278,19 +278,29 @@ const DeliveryGiftsDetails = () => {
             modules={[FreeMode, Pagination, Navigation, Keyboard]}
             className="gboxswiperr "
           >
-            {matchFestival?.map((data, index) => (
-              <SwiperSlide
-                onClick={() => setSelectedBlankBox(data)}
-                className="gboxswiper-slider py-6"
-                key={index}
-              >
+            {selectedBlankBox ? (
+              <div>
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${selectedBlankBox?.image}`}
                   className="w-32 object-cover"
                 />
-                <p>{data?.name}</p>
-              </SwiperSlide>
-            ))}
+                <p>{selectedBlankBox?.name}</p>
+              </div>
+            ) : (
+              matchFestival?.map((data, index) => (
+                <SwiperSlide
+                  onClick={() => setSelectedBlankBox(data)}
+                  className="gboxswiper-slider py-6"
+                  key={index}
+                >
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                    className="w-32 object-cover"
+                  />
+                  <p>{data?.name}</p>
+                </SwiperSlide>
+              ))
+            )}
           </Swiper>
         </div>
       </div>

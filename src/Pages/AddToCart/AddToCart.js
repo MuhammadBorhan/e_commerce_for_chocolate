@@ -94,21 +94,24 @@ const AddToCart = () => {
           </button>
         </div>
       </div>
-      <div>
-        <h3 className="font-bold">Your Chosen Box</h3>
+
+      {data1 && (
         <div>
-          <img
-            className="hidden lg:block"
-            src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
-            style={{ width: "150px" }}
-          />
-          <img
-            className="block lg:hidden"
-            src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
-            style={{ width: "100px" }}
-          />
+          <h3 className="font-bold">Your Chosen Box</h3>
+          <div>
+            <img
+              className="hidden lg:block"
+              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
+              style={{ width: "150px" }}
+            />
+            <img
+              className="block lg:hidden"
+              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
+              style={{ width: "100px" }}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
