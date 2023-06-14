@@ -73,7 +73,7 @@ const UpdateBlankBox = () => {
     }
   };
   return (
-    <div className="flex justify-center overflow-auto items-center mt-12">
+    <div className="flex justify-center overflow-auto items-center p-12 w-full">
       <div
         className="card bg-base-100 overflow-auto mb-12 rounded-none"
         style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
@@ -115,13 +115,13 @@ const UpdateBlankBox = () => {
                 <div className="w-full flex">
                   <img
                     src={`http://localhost:5000/${getData?.image}`}
-                    className="w-[7%]"
+                    className="w-[10%]"
                   />
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => setImage(e.target.files[0])}
-                    className="input input-bordered h-8 rounded-none focus:border-none w-[93%]"
+                    className="input input-bordered h-8 rounded-none focus:border-none w-[85%] ml-auto"
                   />
                 </div>
               </div>
