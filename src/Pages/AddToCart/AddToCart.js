@@ -1,19 +1,38 @@
 import React, { useState } from "react";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
+import { useGetAllBlankBoxQuery } from "../../features/api/blankBoxApi";
 const AddToCart = () => {
   const location = useLocation();
+  const selectedGiftBox = location?.state?.selectedGiftBox;
+  console.log(selectedGiftBox);
   const data = location?.state?.data;
   const data1 = location?.state?.selectedBlankBox;
-  console.log("festival :", data1);
-  console.log("giftbox selected :", data);
 
   const [quantity, setQuantity] = useState(1);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(0);
 
-  const total = data?.price * quantity;
+  const total = (data?.price || selectedGiftBox?.price) * quantity;
   const includeTax = (total * tax) / 100;
   const grandTotal = total + includeTax - discount;
+
+  // get All Blank Box
+  const { data: getAllBlankBox } = useGetAllBlankBoxQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
+  const allBlankBox = getAllBlankBox?.data;
+
+  // handle festival
+  const [matchFestival, setMatchFestival] = useState([]);
+  const [selectedBlankBox, setSelectedBlankBox] = useState();
+  const handleFestival = (festival) => {
+    const matchedFestival = allBlankBox?.filter(
+      (f) => f?.festival === festival
+    );
+    setMatchFestival(matchedFestival);
+    setSelectedBlankBox(null);
+  };
 
   return (
     <div className="p-12">
@@ -24,25 +43,34 @@ const AddToCart = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5000/${
+                data?.image || selectedGiftBox?.image
+              }`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5000/${
+                data?.image || selectedGiftBox?.image
+              }`}
               style={{ width: "100px" }}
             />
           </div>
           <div className="col-12 col-lg-6 d-flex justify-content-center pe-4 flex-row pt-3 pt-lg-0">
             <div className="flex justify-between gap-8">
               <div>
-                <p className="text-xl">{data?.name}</p>
-                <p className="mb-4 hidden lg:block">{data?.desc}</p>
+                <p className="text-xl">{data?.name || selectedGiftBox?.name}</p>
+                <p className="mb-4 hidden lg:block">
+                  {data?.desc || selectedGiftBox?.desc}
+                </p>
               </div>
 
               <div>
                 <h4 className="text-xl fony-bold">Price</h4>
-                <p className="text-yellow-500 font-bold"> ¥{data?.price}</p>
+                <p className="text-yellow-500 font-bold">
+                  {" "}
+                  ¥{data?.price || selectedGiftBox?.price}
+                </p>
               </div>
               <div>
                 <label className="mr-2">Quantity</label>
@@ -101,17 +129,51 @@ const AddToCart = () => {
           <div>
             <img
               className="hidden lg:block"
-              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
+              src={`http://localhost:5000/${data1?.image}`}
               style={{ width: "150px" }}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
+              src={`http://localhost:5000/${data1?.image}`}
               style={{ width: "100px" }}
             />
           </div>
         </div>
       )}
+
+      <div className="dropdown dropdown-hover">
+        <label tabIndex={0} className="btn m-1">
+          Choose Your Festival
+          <p className="mt-1 ml-2">
+            <IoMdArrowDropdown />
+          </p>
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-slate-50 rounded-box w-52 z-1"
+        >
+          <li>
+            <button onClick={() => handleFestival("Birthday")}>
+              BirthDay Gift
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFestival("Marriage")}>
+              Marrige Anniversary
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFestival("Christmas")}>
+              Cristmas Gift
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFestival("Valentine")}>
+              Valentine Gift
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

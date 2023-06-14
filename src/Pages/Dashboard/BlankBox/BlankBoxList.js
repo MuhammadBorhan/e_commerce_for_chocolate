@@ -12,6 +12,7 @@ import {
   useGetAllBlankBoxQuery,
   useRemoveBlankBoxMutation,
 } from "../../../features/api/blankBoxApi";
+import { toast } from "react-toastify";
 
 const BlankBoxList = () => {
   // Blank Box
@@ -26,6 +27,7 @@ const BlankBoxList = () => {
     const confirm = window.confirm("Are You Sure?");
     if (confirm) {
       removeBlankBox(id);
+      toast.success("Delete Successful!!!");
     }
   };
 
@@ -56,8 +58,8 @@ const BlankBoxList = () => {
 
                     <td>
                       <img
-                        src={`https://andy-chocolate-productions.up.railway.app/${brand?.image}`}
-                        className="w-32"
+                        src={`http://localhost:5000/${brand?.image}`}
+                        className="w-16 h-16"
                       />
                     </td>
 
