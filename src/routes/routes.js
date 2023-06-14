@@ -33,6 +33,7 @@ import AllVisitors from "../Pages/Dashboard/AllUsers/AllVisitors";
 import AddToCart from "../Pages/AddToCart/AddToCart";
 import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
 import BlankBoxList from "../Pages/Dashboard/BlankBox/BlankBoxList";
+import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
 
 const routes = createBrowserRouter([
   {
@@ -166,6 +167,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/blanklist",
             element: <BlankBoxList />,
+          },
+          {
+            path: "/dashboard/updateBlankBox/:id",
+            element: <UpdateBlankBox />,
           },
         ],
       },

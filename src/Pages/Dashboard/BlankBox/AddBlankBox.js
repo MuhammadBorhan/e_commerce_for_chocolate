@@ -29,6 +29,7 @@ const AddBlankBox = () => {
       console.log(response);
       // Reset the form inputs
       setName("");
+      setFestival("");
 
       toast.success("Successfully added");
     } catch (error) {

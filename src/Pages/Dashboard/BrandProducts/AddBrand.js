@@ -27,14 +27,16 @@ const AddBrand = () => {
         }
       );
 
-      // Reset the form inputs
-      setName("");
-      setDesc("");
+      if (response) {
+        // Reset the form inputs
+        setName("");
+        setDesc("");
 
-      toast.success("Successfully added");
+        toast.success("Successfully added");
+      }
     } catch (error) {
       console.error("Error creating product:", error.response.data);
-      toast.error(error.response.data);
+      toast.error(error?.response?.data?.error);
     }
   };
   return (

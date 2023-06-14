@@ -67,7 +67,7 @@ const BlankBoxList = () => {
                         className="text-blue-500"
                         style={{ width: "40px", fontSize: "25px" }}
                       >
-                        <Link to={`/dashboard/updatebrand/${brand?._id}`}>
+                        <Link to={`/dashboard/updateBlankBox/${brand?._id}`}>
                           <FaEdit />
                         </Link>
                       </button>
