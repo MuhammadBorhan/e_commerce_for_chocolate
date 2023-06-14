@@ -8,24 +8,26 @@ import { MdUpdate } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
-import { useGetAllBlankBoxQuery, useRemoveBlankBoxMutation } from "../../../features/api/blankBoxApi";
+import {
+  useGetAllBlankBoxQuery,
+  useRemoveBlankBoxMutation,
+} from "../../../features/api/blankBoxApi";
 
 const BlankBoxList = () => {
-  
-// Blank Box 
-const { data } = useGetAllBlankBoxQuery(null, {
+  // Blank Box
+  const { data } = useGetAllBlankBoxQuery(null, {
     refetchOnMountOrArgChange: true,
   });
   const blankBox = data?.data;
 
-//   const [removeBrand] = useRemoveBlankBoxMutation();
+  const [removeBlankBox] = useRemoveBlankBoxMutation();
 
-//   const handleDelete = (id) => {
-//     const confirm = window.confirm("Are You Sure?");
-//     if (confirm) {
-//       removeBrand(id);
-//     }
-//   };
+  const handleDelete = (id) => {
+    const confirm = window.confirm("Are You Sure?");
+    if (confirm) {
+      removeBlankBox(id);
+    }
+  };
 
   return (
     <div>
@@ -51,10 +53,10 @@ const { data } = useGetAllBlankBoxQuery(null, {
                     <th>{index + 1}</th>
                     <td>{brand?.name}</td>
                     <td>{brand?.festival}</td>
-                    
+
                     <td>
                       <img
-                        src={`http://localhost:5001/uploads/${brand?.image}`}
+                        src={`http://localhost:5000/${brand?.image}`}
                         className="w-32"
                       />
                     </td>
@@ -70,7 +72,7 @@ const { data } = useGetAllBlankBoxQuery(null, {
                         </Link>
                       </button>
                       <button
-                        // onClick={() => handleDelete(brand?._id)}
+                        onClick={() => handleDelete(brand?._id)}
                         className="text-red-500"
                         style={{ width: "40px", fontSize: "25px" }}
                       >

@@ -15,9 +15,9 @@ const AddBlankBox = () => {
       formData.append("name", name);
       formData.append("festival", festival);
       formData.append("image", image);
-      
+
       const response = await axios.post(
-        "http://localhost:5001/api/v1/blankBox",
+        "http://localhost:5000/api/v1/blankBox",
         formData,
         {
           headers: {
@@ -26,7 +26,7 @@ const AddBlankBox = () => {
         }
       );
 
-      console.log(response)
+      console.log(response);
       // Reset the form inputs
       setName("");
 
@@ -60,18 +60,17 @@ const AddBlankBox = () => {
                   />
                 </div>
                 <select
-                    value={festival}
-                    onChange={(e) => setFestival(e.target.value)}
-                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
-                  >
-                    <option>--Select Festival--</option>
-                    {festivals?.map((fest, index) => (
-                      <option key={index}>{fest}</option>
-                    ))}
-                  </select>
-               
+                  value={festival}
+                  onChange={(e) => setFestival(e.target.value)}
+                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                >
+                  <option>--Select Festival--</option>
+                  {festivals?.map((fest, index) => (
+                    <option key={index}>{fest}</option>
+                  ))}
+                </select>
+
                 <div>
-                 
                   <input
                     type="file"
                     accept="image/*"
