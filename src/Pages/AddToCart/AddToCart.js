@@ -4,9 +4,9 @@ const AddToCart = () => {
     const location = useLocation();
     const data = location?.state;
     
-    const [quantity,setQuantity] = useState('1')
-    const [tax,setTax] = useState('0')
-    const [discount,setDiscount] = useState('0')
+    const [quantity,setQuantity] = useState(1)
+    const [tax,setTax] = useState(0)
+    const [discount,setDiscount] = useState(0)
 
     const total = data?.price * quantity
     const includeTax = total * tax / 100
