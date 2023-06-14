@@ -40,7 +40,7 @@ const GiftBox = () => {
               <SwiperSlide className="rgboxswiper-slider pt-6 pb-8">
                 <Link to={`/delivery/${box?.name}`} state={box}>
                   <img
-                    src={`http://localhost:5001/${box.image}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/${box.image}`}
                     className="h-48 w-48 object-cover"
                   />
                   <p>{box.name}</p>

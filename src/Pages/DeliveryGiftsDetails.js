@@ -28,7 +28,6 @@ import { useGetAllBlankBoxQuery } from "../features/api/blankBoxApi";
 const DeliveryGiftsDetails = () => {
   const [matchFestival, setMatchFestival] = useState([]);
   const [selectedBlankBox, setSelectedBlankBox] = useState();
-  console.log('blankbox',selectedBlankBox)
   const location = useLocation();
   const data = location?.state;
 
@@ -38,7 +37,6 @@ const DeliveryGiftsDetails = () => {
       behavior: "smooth",
     });
   }, []);
-
 
   //All product
   const { data: getProducts } = useGetAllProductsQuery(null, {
@@ -69,6 +67,7 @@ const DeliveryGiftsDetails = () => {
       (f) => f?.festival === festival
     );
     setMatchFestival(matchedFestival);
+    setSelectedBlankBox(null);
   };
 
   const [selectedGiftBox, setSelectedGiftBox] = useState(null);
@@ -89,12 +88,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5001/${selectedGiftBox?.image}`}
+              src={`https://andy-chocolate-productions.up.railway.app/${selectedGiftBox?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5001/${selectedGiftBox?.image}`}
+              src={`https://andy-chocolate-productions.up.railway.app/${selectedGiftBox?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -112,11 +111,9 @@ const DeliveryGiftsDetails = () => {
             <Link
               to={`/addtocart/${selectedGiftBox?.name}`}
               state={{
-               selectedGiftBox: selectedGiftBox,
-               selectedBlankBox: selectedBlankBox,
-
+                selectedGiftBox: selectedGiftBox,
+                selectedBlankBox: selectedBlankBox,
               }}
-              
             >
               <button className="btn bg-yellow-900">Add To Cart</button>
             </Link>
@@ -178,12 +175,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -195,13 +192,13 @@ const DeliveryGiftsDetails = () => {
             <h6 className="text-xl">Description</h6>
             <p className="mb-4">{data?.desc}</p>
             <h5 className="mb-4">Price: {data?.price}</h5>
-            <Link 
-           to={`/addtocart/${data?.name}`}
-           state={{
-            data: data,
-            selectedBlankBox: selectedBlankBox,
-
-           }}>
+            <Link
+              to={`/addtocart/${data?.name}`}
+              state={{
+                data: data,
+                selectedBlankBox: selectedBlankBox,
+              }}
+            >
               <button className="btn bg-yellow-900">Add To Cart</button>
             </Link>
             <div className="dropdown dropdown-hover">
@@ -281,18 +278,29 @@ const DeliveryGiftsDetails = () => {
             modules={[FreeMode, Pagination, Navigation, Keyboard]}
             className="gboxswiperr "
           >
-            {matchFestival?.map((data, index) => (
-              <SwiperSlide
-              onClick={()=>setSelectedBlankBox(data)}
-               className="gboxswiper-slider py-6 cursor-pointer"
-                key={index}>
+            {selectedBlankBox ? (
+              <div>
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${selectedBlankBox?.image}`}
                   className="w-32 object-cover"
                 />
-                <p>{data?.name}</p>
-              </SwiperSlide>
-            ))}
+                <p>{selectedBlankBox?.name}</p>
+              </div>
+            ) : (
+              matchFestival?.map((data, index) => (
+                <SwiperSlide
+                  onClick={() => setSelectedBlankBox(data)}
+                  className="gboxswiper-slider py-6"
+                  key={index}
+                >
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                    className="w-32 object-cover"
+                  />
+                  <p>{data?.name}</p>
+                </SwiperSlide>
+              ))
+            )}
           </Swiper>
         </div>
       </div>
@@ -322,7 +330,7 @@ const DeliveryGiftsDetails = () => {
                 key={index}
               >
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -364,7 +372,7 @@ const DeliveryGiftsDetails = () => {
                 className="sgboxswiper-slider py-6 pb-8 cursor-pointer"
               >
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="h-36 w-36 lg:h-48 lg:w-48 object-cover"
                 />
                 <p>{data?.name}</p>

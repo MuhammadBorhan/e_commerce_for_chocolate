@@ -56,7 +56,7 @@ const BlankBoxList = () => {
 
                     <td>
                       <img
-                        src={`http://localhost:5001/${brand?.image}`}
+                        src={`https://andy-chocolate-productions.up.railway.app/${brand?.image}`}
                         className="w-32"
                       />
                     </td>
@@ -67,7 +67,7 @@ const BlankBoxList = () => {
                         className="text-blue-500"
                         style={{ width: "40px", fontSize: "25px" }}
                       >
-                        <Link to={`/dashboard/updatebrand/${brand?._id}`}>
+                        <Link to={`/dashboard/updateBlankBox/${brand?._id}`}>
                           <FaEdit />
                         </Link>
                       </button>

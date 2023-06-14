@@ -17,7 +17,7 @@ const AddBlankBox = () => {
       formData.append("image", image);
 
       const response = await axios.post(
-        "http://localhost:5001/api/v1/blankBox",
+        "https://andy-chocolate-productions.up.railway.app/api/v1/blankBox",
         formData,
         {
           headers: {
@@ -29,6 +29,7 @@ const AddBlankBox = () => {
       console.log(response);
       // Reset the form inputs
       setName("");
+      setFestival("");
 
       toast.success("Successfully added");
     } catch (error) {
