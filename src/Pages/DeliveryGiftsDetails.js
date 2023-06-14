@@ -284,7 +284,7 @@ const DeliveryGiftsDetails = () => {
             {matchFestival?.map((data, index) => (
               <SwiperSlide
               onClick={()=>setSelectedBlankBox(data)}
-               className="gboxswiper-slider py-6"
+               className="gboxswiper-slider py-6 cursor-pointer"
                 key={index}>
                 <img
                   src={`http://localhost:5001/${data?.image}`}
@@ -361,7 +361,7 @@ const DeliveryGiftsDetails = () => {
             {similarGiftBox?.map((data, index) => (
               <SwiperSlide
                 onClick={() => handleGiftBox(data.name)}
-                className="sgboxswiper-slider py-6 pb-8"
+                className="sgboxswiper-slider py-6 pb-8 cursor-pointer"
               >
                 <img
                   src={`http://localhost:5001/${data?.image}`}
