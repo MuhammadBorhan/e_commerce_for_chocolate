@@ -27,6 +27,10 @@ import { useGetAllBlankBoxQuery } from "../features/api/blankBoxApi";
 
 const DeliveryGiftsDetails = () => {
   const [matchFestival, setMatchFestival] = useState([]);
+  const [selectedBlankBox, setSelectedBlankBox] = useState();
+  console.log('blankbox',selectedBlankBox)
+  const location = useLocation();
+  const data = location?.state;
 
   useEffect(() => {
     window.scrollTo({
@@ -35,8 +39,6 @@ const DeliveryGiftsDetails = () => {
     });
   }, []);
 
-  const location = useLocation();
-  const data = location?.state;
 
   //All product
   const { data: getProducts } = useGetAllProductsQuery(null, {
@@ -87,12 +89,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5000/${selectedGiftBox?.image}`}
+              src={`http://localhost:5001/${selectedGiftBox?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5000/${selectedGiftBox?.image}`}
+              src={`http://localhost:5001/${selectedGiftBox?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -109,7 +111,12 @@ const DeliveryGiftsDetails = () => {
             </h5>
             <Link
               to={`/addtocart/${selectedGiftBox?.name}`}
-              state={selectedGiftBox}
+              state={{
+               selectedGiftBox: selectedGiftBox,
+               selectedBlankBox: selectedBlankBox,
+
+              }}
+              
             >
               <button className="btn bg-yellow-900">Add To Cart</button>
             </Link>
@@ -171,12 +178,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5000/${data?.image}`}
+              src={`http://localhost:5001/${data?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5000/${data?.image}`}
+              src={`http://localhost:5001/${data?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -188,7 +195,13 @@ const DeliveryGiftsDetails = () => {
             <h6 className="text-xl">Description</h6>
             <p className="mb-4">{data?.desc}</p>
             <h5 className="mb-4">Price: {data?.price}</h5>
-            <Link to={`/addtocart/${data?.name}`} state={data}>
+            <Link 
+           to={`/addtocart/${data?.name}`}
+           state={{
+            data: data,
+            selectedBlankBox: selectedBlankBox,
+
+           }}>
               <button className="btn bg-yellow-900">Add To Cart</button>
             </Link>
             <div className="dropdown dropdown-hover">
@@ -269,9 +282,12 @@ const DeliveryGiftsDetails = () => {
             className="gboxswiperr "
           >
             {matchFestival?.map((data, index) => (
-              <SwiperSlide className="gboxswiper-slider py-6" key={index}>
+              <SwiperSlide
+              onClick={()=>setSelectedBlankBox(data)}
+               className="gboxswiper-slider py-6"
+                key={index}>
                 <img
-                  src={`http://localhost:5000/${data?.image}`}
+                  src={`http://localhost:5001/${data?.image}`}
                   className="w-32 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -306,7 +322,7 @@ const DeliveryGiftsDetails = () => {
                 key={index}
               >
                 <img
-                  src={`http://localhost:5000/${data?.image}`}
+                  src={`http://localhost:5001/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -348,7 +364,7 @@ const DeliveryGiftsDetails = () => {
                 className="sgboxswiper-slider py-6 pb-8"
               >
                 <img
-                  src={`http://localhost:5000/${data?.image}`}
+                  src={`http://localhost:5001/${data?.image}`}
                   className="h-36 w-36 lg:h-48 lg:w-48 object-cover"
                 />
                 <p>{data?.name}</p>

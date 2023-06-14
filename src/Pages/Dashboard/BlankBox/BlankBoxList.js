@@ -56,7 +56,7 @@ const BlankBoxList = () => {
 
                     <td>
                       <img
-                        src={`http://localhost:5000/${brand?.image}`}
+                        src={`http://localhost:5001/${brand?.image}`}
                         className="w-32"
                       />
                     </td>
