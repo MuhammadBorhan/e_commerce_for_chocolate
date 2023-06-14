@@ -32,7 +32,6 @@ const UpdateBrand = () => {
       image: image ? image : brand?.image,
       logo: logo ? logo : brand?.logo,
     };
-    console.log("data after update", data);
     try {
       const response = await axios.patch(
         `http://localhost:5000/api/v1/brand/${id}`,
