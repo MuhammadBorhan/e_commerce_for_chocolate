@@ -22,6 +22,7 @@ import { useState } from "react";
 import { CLOSING } from "ws";
 import SlickSlider from "../Components/SlickSlider/SlickSlider";
 import { Link } from "react-router-dom/dist";
+import { useGetAllBlankBoxQuery } from "../features/api/blankBoxApi";
 // import SlickSlider from "../Components/SlickSlider/SlickSlider";
 
 const DeliveryGiftsDetails = () => {
@@ -43,6 +44,13 @@ const DeliveryGiftsDetails = () => {
   });
   const allProducts = getProducts?.data;
 
+  // Blank Box
+  const { data: getAllBlankBox } = useGetAllBlankBoxQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
+  const allBlankBox = getAllBlankBox?.data;
+  console.log("test", allBlankBox);
+
   const giftboxproduct = allProducts?.filter((product) => {
     return data?.productList?.some((p) => p === product.name);
   });
@@ -55,7 +63,9 @@ const DeliveryGiftsDetails = () => {
 
   // handle festival
   const handleFestival = (festival) => {
-    const matchedFestival = allGiftbox?.filter((f) => f?.festival === festival);
+    const matchedFestival = allBlankBox?.filter(
+      (f) => f?.festival === festival
+    );
     setMatchFestival(matchedFestival);
   };
 
@@ -93,7 +103,10 @@ const DeliveryGiftsDetails = () => {
           </h4> */}
             <h6 className="text-xl">Description</h6>
             <p className="mb-4">{selectedGiftBox?.desc}</p>
-            <h5 className="mb-4">Price: ¥{selectedGiftBox?.price}</h5>
+            <h5 className="mb-4">
+              Price: ¥0
+              {selectedGiftBox?.price}
+            </h5>
             <Link
               to={`/addtocart/${selectedGiftBox?.name}`}
               state={selectedGiftBox}

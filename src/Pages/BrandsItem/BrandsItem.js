@@ -392,7 +392,7 @@ const BrandsItem = () => {
                               </span>
                             </button>
                           </p> */}
-                          <p className="text-sm font-light">{product?.desc}</p>
+                          {/* <p className="text-sm font-light">{product?.desc}</p> */}
                           {/* <p className="text-xl font-bold">¥{product?.price}</p> */}
                         </div>
                       </a>

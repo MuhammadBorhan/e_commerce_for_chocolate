@@ -20,6 +20,7 @@ const DashboardLayout = () => {
   const [trShow, setTrShow] = useState(false);
   const [eShow, setEShow] = useState(false);
   const [uShow, setUShow] = useState(false);
+  const [blankShow, setBlankShow] = useState(false);
 
   const handleRegion = () => {
     setRShow(!rShow);
@@ -29,6 +30,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleProduct = () => {
     setPShow(!pShow);
@@ -38,6 +40,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleBrand = () => {
     setBShow(!bShow);
@@ -47,6 +50,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleGiftBox = () => {
     setGShow(!gShow);
@@ -56,6 +60,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleTrending = () => {
     setTrShow(!trShow);
@@ -65,9 +70,21 @@ const DashboardLayout = () => {
     setRShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleEvent = () => {
     setEShow(!eShow);
+    setTrShow(false);
+    setGShow(false);
+    setBShow(false);
+    setPShow(false);
+    setRShow(false);
+    setUShow(false);
+    setBlankShow(false);
+  };
+  const handleBlankBox = () => {
+    setBlankShow(!blankShow);
+    setEShow(false);
     setTrShow(false);
     setGShow(false);
     setBShow(false);
@@ -83,7 +100,9 @@ const DashboardLayout = () => {
     setBShow(false);
     setPShow(false);
     setRShow(false);
+    setBlankShow(false);
   };
+  
 
   const { data } = useGetUserQuery();
   const users = data?.data;
@@ -356,11 +375,52 @@ const DashboardLayout = () => {
             )}
           </div>
 
+           {/* BlankBox  */}
+
+           <div
+            onClick={handleBlankBox}
+            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
+              eShow ? "mt-24" : "mt-0"
+            }`}
+          >
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/addblankbox"
+                  ? "active"
+                  : pathname === "/dashboard/blanklist"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <BsCalendarEvent />
+              </div>
+              <div className="ml-2">Blank Box</div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
+            </label>
+            {blankShow && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu shadow bg-slate-200  w-50"
+              >
+                <li>
+                  <Link to="/dashboard/addblankbox">Add Blank Box</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/blanklist">Blank Box List</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+
           {/* users */}
           <div
             onClick={handleUsers}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              eShow ? "mt-24" : "mt-0"
+              blankShow ? "mt-24" : "mt-0"
             }`}
           >
             <label
