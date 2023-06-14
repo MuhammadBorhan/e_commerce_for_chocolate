@@ -26,7 +26,6 @@ import { Link } from "react-router-dom/dist";
 
 const DeliveryGiftsDetails = () => {
   const [matchFestival, setMatchFestival] = useState([]);
- 
 
   useEffect(() => {
     window.scrollTo({
@@ -78,12 +77,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5001/${selectedGiftBox?.image}`}
+              src={`http://localhost:5000/${selectedGiftBox?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5001/${selectedGiftBox?.image}`}
+              src={`http://localhost:5000/${selectedGiftBox?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -95,7 +94,12 @@ const DeliveryGiftsDetails = () => {
             <h6 className="text-xl">Description</h6>
             <p className="mb-4">{selectedGiftBox?.desc}</p>
             <h5 className="mb-4">Price: ¥{selectedGiftBox?.price}</h5>
-            <Link to={`/addtocart/${selectedGiftBox?.name}`} state={selectedGiftBox}><button className="btn bg-yellow-900" >Add To Cart</button></Link>
+            <Link
+              to={`/addtocart/${selectedGiftBox?.name}`}
+              state={selectedGiftBox}
+            >
+              <button className="btn bg-yellow-900">Add To Cart</button>
+            </Link>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn m-1">
                 Choose Your Festival
@@ -154,12 +158,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -170,8 +174,10 @@ const DeliveryGiftsDetails = () => {
           </h4> */}
             <h6 className="text-xl">Description</h6>
             <p className="mb-4">{data?.desc}</p>
-          <h5 className="mb-4">Price: {data?.price}</h5>
-            <Link to={`/addtocart/${data?.name}`} state={data}><button className="btn bg-yellow-900" >Add To Cart</button></Link>
+            <h5 className="mb-4">Price: {data?.price}</h5>
+            <Link to={`/addtocart/${data?.name}`} state={data}>
+              <button className="btn bg-yellow-900">Add To Cart</button>
+            </Link>
             <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="btn m-1">
                 Choose Your Festival
@@ -252,7 +258,7 @@ const DeliveryGiftsDetails = () => {
             {matchFestival?.map((data, index) => (
               <SwiperSlide className="gboxswiper-slider py-6" key={index}>
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="w-32 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -287,7 +293,7 @@ const DeliveryGiftsDetails = () => {
                 key={index}
               >
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -329,7 +335,7 @@ const DeliveryGiftsDetails = () => {
                 className="sgboxswiper-slider py-6 pb-8"
               >
                 <img
-                  src={`http://localhost:5001/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-36 w-36 lg:h-48 lg:w-48 object-cover"
                 />
                 <p>{data?.name}</p>
