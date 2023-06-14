@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { useGetAllBlankBoxQuery } from "../../features/api/blankBoxApi";
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+// import required modules
+import { FreeMode, Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+
 const AddToCart = () => {
   const location = useLocation();
   const selectedGiftBox = location?.state?.selectedGiftBox;
-  console.log(selectedGiftBox);
   const data = location?.state?.data;
   const data1 = location?.state?.selectedBlankBox;
 
@@ -25,13 +35,26 @@ const AddToCart = () => {
 
   // handle festival
   const [matchFestival, setMatchFestival] = useState([]);
-  const [selectedBlankBox, setSelectedBlankBox] = useState();
   const handleFestival = (festival) => {
     const matchedFestival = allBlankBox?.filter(
       (f) => f?.festival === festival
     );
     setMatchFestival(matchedFestival);
-    setSelectedBlankBox(null);
+    // setSelectedBlankBox(null);
+  };
+
+  const [selectedBox, setSelectedBox] = useState([]);
+  const chooseGiftBox = (box) => {
+    const isBoxExists = selectedBox?.some((item) => item.name === box.name);
+
+    if (!isBoxExists) {
+      setSelectedBox([...selectedBox, box]);
+    }
+  };
+
+  const handleRemove = (box) => {
+    const rest = selectedBox?.filter((item) => item?.name !== box?.name);
+    setSelectedBox(rest);
   };
 
   return (
@@ -56,7 +79,7 @@ const AddToCart = () => {
               style={{ width: "100px" }}
             />
           </div>
-          <div className="col-12 col-lg-6 d-flex justify-content-center pe-4 flex-row pt-3 pt-lg-0">
+          <div className="">
             <div className="flex justify-between gap-8">
               <div>
                 <p className="text-xl">{data?.name || selectedGiftBox?.name}</p>
@@ -86,6 +109,17 @@ const AddToCart = () => {
                 <h4 className="text-xl fony-bold">Total</h4>
                 <p className="text-yellow-500 font-bold"> ¥{total}</p>
               </div>
+            </div>
+            <div className="grid grid-cols-6 gap-1">
+              {selectedBox?.map((box) => (
+                <div>
+                  <img
+                    src={`http://localhost:5000/${box?.image}`}
+                    className="w-12 h-12"
+                    onClick={() => handleRemove(box)}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -142,7 +176,10 @@ const AddToCart = () => {
       )}
 
       <div className="dropdown dropdown-hover">
-        <label tabIndex={0} className="btn m-1">
+        <label
+          tabIndex={0}
+          className="flex items-center bg-yellow-800 py-1 px-2 text-white font-bold"
+        >
           Choose Your Festival
           <p className="mt-1 ml-2">
             <IoMdArrowDropdown />
@@ -173,6 +210,43 @@ const AddToCart = () => {
             </button>
           </li>
         </ul>
+      </div>
+      <div className="row py-5 px-4 lg:px-12 ">
+        {matchFestival.length > 0 && (
+          <h4 className="text-center pb-3 text-xl font-bold">
+            {matchFestival[0]?.festival} Festival
+          </h4>
+        )}
+
+        <div className="">
+          <Swiper
+            loop={true}
+            navigation={true}
+            keyboard={true}
+            slidesPerView={4}
+            spaceBetween={2}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination, Navigation, Keyboard]}
+            className="gboxswiperr "
+          >
+            {matchFestival?.map((data, index) => (
+              <SwiperSlide
+                onClick={() => chooseGiftBox(data)}
+                className="gboxswiper-slider py-6"
+                key={index}
+              >
+                <img
+                  src={`http://localhost:5000/${data?.image}`}
+                  className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
+                />
+                <p className="text-xs lg:text-sm">{data?.name}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
