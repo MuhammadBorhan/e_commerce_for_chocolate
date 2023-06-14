@@ -49,7 +49,6 @@ const DeliveryGiftsDetails = () => {
     refetchOnMountOrArgChange: true,
   });
   const allBlankBox = getAllBlankBox?.data;
-  console.log("test", allBlankBox);
 
   const giftboxproduct = allProducts?.filter((product) => {
     return data?.productList?.some((p) => p === product.name);
@@ -75,7 +74,6 @@ const DeliveryGiftsDetails = () => {
     const rest = similarGiftBox?.find((box) => box?.name === boxName);
     setSelectedGiftBox(rest);
   };
-  console.log("selected box", selectedGiftBox);
 
   // Similar Gift Box
   const similarGiftBox = allGiftbox?.filter((giftbox) => {
@@ -88,12 +86,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`https://andy-chocolate-productions.up.railway.app/${selectedGiftBox?.image}`}
+              src={`http://localhost:5000/${selectedGiftBox?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${selectedGiftBox?.image}`}
+              src={`http://localhost:5000/${selectedGiftBox?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -102,8 +100,7 @@ const DeliveryGiftsDetails = () => {
             {/* <h4 className="text-orange-500 font-bold text-3xl py-2">
             {data.price}$
           </h4> */}
-            <h6 className="text-xl">Description</h6>
-            <p className="mb-4">{selectedGiftBox?.desc}</p>
+            <p className="mb-2">{selectedGiftBox?.desc}</p>
             <h5 className="mb-4">
               Price: ¥0
               {selectedGiftBox?.price}
@@ -135,7 +132,7 @@ const DeliveryGiftsDetails = () => {
                   </button>
                 </li>
                 <li>
-                  <button onClick={() => handleFestival("Marrige")}>
+                  <button onClick={() => handleFestival("Marriage")}>
                     Marrige Anniversary
                   </button>
                 </li>
@@ -175,12 +172,12 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
               style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -189,13 +186,12 @@ const DeliveryGiftsDetails = () => {
             {/* <h4 className="text-orange-500 font-bold text-3xl py-2">
             {data.price}$
           </h4> */}
-            <h6 className="text-xl">Description</h6>
-            <p className="mb-4">{data?.desc}</p>
+            <p className="mb-2">{data?.desc}</p>
             <h5 className="mb-4">Price: {data?.price}</h5>
             <Link
               to={`/addtocart/${data?.name}`}
               state={{
-                data: data,
+                data: selectedGiftBox ? selectedGiftBox : data,
                 selectedBlankBox: selectedBlankBox,
               }}
             >
@@ -218,7 +214,7 @@ const DeliveryGiftsDetails = () => {
                   </button>
                 </li>
                 <li>
-                  <button onClick={() => handleFestival("Marrige")}>
+                  <button onClick={() => handleFestival("Marriage")}>
                     Marrige Anniversary
                   </button>
                 </li>
@@ -281,8 +277,8 @@ const DeliveryGiftsDetails = () => {
             {selectedBlankBox ? (
               <div>
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${selectedBlankBox?.image}`}
-                  className="w-32 object-cover"
+                  src={`http://localhost:5000/${selectedBlankBox?.image}`}
+                  className="w-32 h-32 object-cover"
                 />
                 <p>{selectedBlankBox?.name}</p>
               </div>
@@ -294,8 +290,8 @@ const DeliveryGiftsDetails = () => {
                   key={index}
                 >
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
-                    className="w-32 object-cover"
+                    src={`http://localhost:5000/${data?.image}`}
+                    className="w-32 h-32 object-cover"
                   />
                   <p>{data?.name}</p>
                 </SwiperSlide>
@@ -330,7 +326,7 @@ const DeliveryGiftsDetails = () => {
                 key={index}
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -372,7 +368,7 @@ const DeliveryGiftsDetails = () => {
                 className="sgboxswiper-slider py-6 pb-8"
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-36 w-36 lg:h-48 lg:w-48 object-cover"
                 />
                 <p>{data?.name}</p>

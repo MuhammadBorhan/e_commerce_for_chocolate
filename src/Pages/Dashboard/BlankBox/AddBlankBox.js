@@ -17,7 +17,7 @@ const AddBlankBox = () => {
       formData.append("image", image);
 
       const response = await axios.post(
-        "https://andy-chocolate-productions.up.railway.app/api/v1/blankBox",
+        "http://localhost:5000/api/v1/blankBox",
         formData,
         {
           headers: {
@@ -26,15 +26,14 @@ const AddBlankBox = () => {
         }
       );
 
-      console.log(response);
-      // Reset the form inputs
-      setName("");
-      setFestival("");
+      if (response) {
+        setName("");
+        setFestival("");
 
-      toast.success("Successfully added");
+        toast.success("Successfully added");
+      }
     } catch (error) {
-      console.error("Error creating product:", error.response.data);
-      toast.error(error.response.data);
+      toast.error(error.response?.data?.error);
     }
   };
   return (
