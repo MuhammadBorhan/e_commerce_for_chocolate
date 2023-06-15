@@ -1,25 +1,61 @@
 import React, { useState } from "react";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
+import { useGetAllBlankBoxQuery } from "../../features/api/blankBoxApi";
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+// import required modules
+import { FreeMode, Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+
 const AddToCart = () => {
   const location = useLocation();
+  const selectedGiftBox = location?.state?.selectedGiftBox;
   const data = location?.state?.data;
   const data1 = location?.state?.selectedBlankBox;
-  console.log('festival :',data1)
-  console.log('giftbox selected :',data)
+
   const [quantity, setQuantity] = useState(1);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(0);
-  
-  const handleQuantityChange =(e)=>{
-    const {value} = e.target
-    if(value < 0){
-      return
-    }
-    setQuantity(value)
-  }
-  const total = data?.price * quantity;
+
+  const total = (data?.price || selectedGiftBox?.price) * quantity;
   const includeTax = (total * tax) / 100;
   const grandTotal = total + includeTax - discount;
+
+  // get All Blank Box
+  const { data: getAllBlankBox } = useGetAllBlankBoxQuery(null, {
+    refetchOnMountOrArgChange: true,
+  });
+  const allBlankBox = getAllBlankBox?.data;
+
+  // handle festival
+  const [matchFestival, setMatchFestival] = useState([]);
+  const handleFestival = (festival) => {
+    const matchedFestival = allBlankBox?.filter(
+      (f) => f?.festival === festival
+    );
+    setMatchFestival(matchedFestival);
+    // setSelectedBlankBox(null);
+  };
+
+  const [selectedBox, setSelectedBox] = useState([]);
+  const chooseGiftBox = (box) => {
+    const isBoxExists = selectedBox?.some((item) => item.name === box.name);
+
+    if (!isBoxExists) {
+      setSelectedBox([...selectedBox, box]);
+    }
+  };
+
+  const handleRemove = (box) => {
+    const rest = selectedBox?.filter((item) => item?.name !== box?.name);
+    setSelectedBox(rest);
+  };
 
   return (
     <div className="p-12">
@@ -30,25 +66,34 @@ const AddToCart = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`http://localhost:5000/${
+                data?.image || selectedGiftBox?.image
+              }`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5001/${data?.image}`}
+              src={`http://localhost:5000/${
+                data?.image || selectedGiftBox?.image
+              }`}
               style={{ width: "100px" }}
             />
           </div>
-          <div className="col-12 col-lg-6 d-flex justify-content-center pe-4 flex-row pt-3 pt-lg-0">
+          <div className="">
             <div className="flex justify-between gap-8">
               <div>
-                <p className="text-xl">{data?.name}</p>
-                <p className="mb-4 hidden lg:block">{data?.desc}</p>
+                <p className="text-xl">{data?.name || selectedGiftBox?.name}</p>
+                <p className="mb-4 hidden lg:block">
+                  {data?.desc || selectedGiftBox?.desc}
+                </p>
               </div>
 
               <div>
                 <h4 className="text-xl fony-bold">Price</h4>
-                <p className="text-yellow-500 font-bold"> ¥{data?.price}</p>
+                <p className="text-yellow-500 font-bold">
+                  {" "}
+                  ¥{data?.price || selectedGiftBox?.price}
+                </p>
               </div>
               <div>
                 <label className="mr-2">Quantity</label>
@@ -66,6 +111,17 @@ const AddToCart = () => {
                 <h4 className="text-xl fony-bold">Total</h4>
                 <p className="text-yellow-500 font-bold"> ¥{total}</p>
               </div>
+            </div>
+            <div className="grid grid-cols-6 gap-1">
+              {selectedBox?.map((box) => (
+                <div>
+                  <img
+                    src={`http://localhost:5000/${box?.image}`}
+                    className="w-12 h-12"
+                    onClick={() => handleRemove(box)}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -104,22 +160,98 @@ const AddToCart = () => {
           </button>
         </div>
       </div>
-     <div>
-      <h3 className="font-bold">Your Chosen Box</h3>
-          <div >
-          <img
-            className="hidden lg:block"
-            src={`http://localhost:5001/${data1?.image}`}
-            style={{ width: "150px" }}
-          />
-          <img
-            className="block lg:hidden"
-            src={`http://localhost:5001/${data1?.image}`}
-            style={{ width: "100px" }}
-          />
+
+      {data1 && (
+        <div>
+          <h3 className="font-bold">Your Chosen Box</h3>
+          <div>
+            <img
+              className="hidden lg:block"
+              src={`http://localhost:5000/${data1?.image}`}
+              style={{ width: "150px" }}
+            />
+            <img
+              className="block lg:hidden"
+              src={`http://localhost:5000/${data1?.image}`}
+              style={{ width: "100px" }}
+            />
+          </div>
         </div>
-      
-     </div>
+      )}
+
+      <div className="dropdown dropdown-hover">
+        <label
+          tabIndex={0}
+          className="flex items-center bg-yellow-800 py-1 px-2 text-white font-bold"
+        >
+          Choose Your Festival
+          <p className="mt-1 ml-2">
+            <IoMdArrowDropdown />
+          </p>
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-slate-50 rounded-box w-52 z-1"
+        >
+          <li>
+            <button onClick={() => handleFestival("Birthday")}>
+              BirthDay Gift
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFestival("Marriage")}>
+              Marrige Anniversary
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFestival("Christmas")}>
+              Cristmas Gift
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleFestival("Valentine")}>
+              Valentine Gift
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div className="row py-5 px-4 lg:px-12 ">
+        {matchFestival.length > 0 && (
+          <h4 className="text-center pb-3 text-xl font-bold">
+            {matchFestival[0]?.festival} Festival
+          </h4>
+        )}
+
+        <div className="">
+          <Swiper
+            loop={true}
+            navigation={true}
+            keyboard={true}
+            slidesPerView={4}
+            spaceBetween={2}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination, Navigation, Keyboard]}
+            className="gboxswiperr "
+          >
+            {matchFestival?.map((data, index) => (
+              <SwiperSlide
+                onClick={() => chooseGiftBox(data)}
+                className="gboxswiper-slider py-6"
+                key={index}
+              >
+                <img
+                  src={`http://localhost:5000/${data?.image}`}
+                  className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
+                />
+                <p className="text-xs lg:text-sm">{data?.name}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
     </div>
   );
 };
