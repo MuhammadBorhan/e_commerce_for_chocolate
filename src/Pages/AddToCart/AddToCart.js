@@ -4,13 +4,19 @@ const AddToCart = () => {
   const location = useLocation();
   const data = location?.state?.data;
   const data1 = location?.state?.selectedBlankBox;
-  console.log("festival :", data1);
-  console.log("giftbox selected :", data);
-
+  console.log('festival :',data1)
+  console.log('giftbox selected :',data)
   const [quantity, setQuantity] = useState(1);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(0);
-
+  
+  const handleQuantityChange =(e)=>{
+    const {value} = e.target
+    if(value < 0){
+      return
+    }
+    setQuantity(value)
+  }
   const total = data?.price * quantity;
   const includeTax = (total * tax) / 100;
   const grandTotal = total + includeTax - discount;
@@ -24,12 +30,12 @@ const AddToCart = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5001/${data?.image}`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5001/${data?.image}`}
               style={{ width: "100px" }}
             />
           </div>
@@ -48,8 +54,10 @@ const AddToCart = () => {
                 <label className="mr-2">Quantity</label>
                 <input
                   type="number"
-                  defaultValue={quantity}
-                  onChange={(e) => setQuantity(+e.target.value)}
+                  min={1}
+                  value={quantity}
+        
+                  onChange={handleQuantityChange}
                   placeholder="Quantity"
                   className="input input-bordered mb-2 w-16 h-8 rounded-none focus:border-none "
                 />
@@ -68,6 +76,7 @@ const AddToCart = () => {
             <label className="font-bold mr-12"> Tax</label>
             <input
               type="number"
+              min={0}
               defaultValue={tax}
               onChange={(e) => setTax(+e.target.value)}
               placeholder="tax"
@@ -79,6 +88,7 @@ const AddToCart = () => {
             <label className="font-bold mr-1">Discount:</label>
             <input
               type="number"
+              min={0}
               defaultValue={discount}
               onChange={(e) => setDiscount(+e.target.value)}
               placeholder="Discount"
@@ -94,24 +104,22 @@ const AddToCart = () => {
           </button>
         </div>
       </div>
-
-      {data1 && (
-        <div>
-          <h3 className="font-bold">Your Chosen Box</h3>
-          <div>
-            <img
-              className="hidden lg:block"
-              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
-              style={{ width: "150px" }}
-            />
-            <img
-              className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${data1?.image}`}
-              style={{ width: "100px" }}
-            />
-          </div>
+     <div>
+      <h3 className="font-bold">Your Chosen Box</h3>
+          <div >
+          <img
+            className="hidden lg:block"
+            src={`http://localhost:5001/${data1?.image}`}
+            style={{ width: "150px" }}
+          />
+          <img
+            className="block lg:hidden"
+            src={`http://localhost:5001/${data1?.image}`}
+            style={{ width: "100px" }}
+          />
         </div>
-      )}
+      
+     </div>
     </div>
   );
 };
