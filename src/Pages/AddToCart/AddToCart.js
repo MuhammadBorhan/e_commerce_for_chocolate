@@ -57,6 +57,13 @@ const AddToCart = () => {
     setSelectedBox(rest);
   };
 
+  const sendStateToCheckout = {
+    selectedBox,
+    grandTotal,
+    data,
+    selectedGiftBox,
+  };
+
   return (
     <div className="p-12">
       <h2 className="text-2xl font-bold text-center">My Cart</h2>
@@ -151,9 +158,13 @@ const AddToCart = () => {
             {" "}
             Grand Total: ¥{grandTotal.toFixed(2)}
           </p>
-          <button className="btn bg-yellow-900 hover:bg-yellow-900 border-none px-6 block m-auto mt-6">
-            CheckOut
-          </button>
+          <Link
+            to={"/checkout"}
+            state={sendStateToCheckout}
+            className="btn bg-yellow-900 hover:bg-yellow-900 border-none w-full text-xl font-bold mt-6"
+          >
+            <button>Checkout</button>
+          </Link>
         </div>
       </div>
 

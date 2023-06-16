@@ -34,6 +34,7 @@ import AddToCart from "../Pages/AddToCart/AddToCart";
 import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
 import BlankBoxList from "../Pages/Dashboard/BlankBox/BlankBoxList";
 import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
+import Checkout from "../Components/Checkout";
 
 const routes = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const routes = createBrowserRouter([
       {
         path: "/addtocart/:name",
         element: <AddToCart />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
       {
         path: "/login",
