@@ -13,10 +13,13 @@ const Login = () => {
         `http://localhost:5000/api/v1/login`,
         data
       );
+      console.log(response?.data?.data?.user?.role);
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
-      if (response) {
+      if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
+      } else {
+        navigate("/");
       }
     } catch (error) {
       toast.error(error.response?.data?.error);
