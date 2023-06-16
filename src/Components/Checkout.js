@@ -31,19 +31,19 @@ const Checkout = () => {
 
   return (
     <div className="p-12">
-      <div className="flex justify-around">
+      <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 justify-around">
         {/* Left Side */}
         <div className="">
-          <div className="flex gap-x-12">
+          <div className="flex gap-x-4 lg:gap-x-12">
             <div className="relative">
               {image ? (
                 <img
-                  className="w-[300px] h-[300px] "
+                  className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
                   src={`http://localhost:5000/${image?.image}`}
                 />
               ) : (
                 <img
-                  className="w-[300px] h-[300px] "
+                  className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
                   src={`http://localhost:5000/${
                     giftBox?.image || selectedGiftBox?.image
                   }`}
@@ -64,7 +64,7 @@ const Checkout = () => {
               </div>
             </div>
 
-            <p className="font-bold text-2xl">Total: ${amount}</p>
+            <p className="font-bold text-xl lg:text-2xl">Total: ${amount}</p>
           </div>
         </div>
 
