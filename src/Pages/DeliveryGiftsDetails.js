@@ -85,9 +85,8 @@ const DeliveryGiftsDetails = () => {
         <div className="flex flex-col lg:flex-row lg:gap-12 p-4 lg:p-12">
           <div className="flex justify-center">
             <img
-              className="hidden lg:block"
+              className="hidden lg:block w-[300px] h-[300px]"
               src={`http://localhost:5000/${selectedGiftBox?.image}`}
-              style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
@@ -171,9 +170,8 @@ const DeliveryGiftsDetails = () => {
         <div className="flex flex-col lg:flex-row lg:gap-12 p-4 lg:p-12">
           <div className="flex justify-center">
             <img
-              className="hidden lg:block"
+              className="hidden lg:block w-[300px] h-[300px]"
               src={`http://localhost:5000/${data?.image}`}
-              style={{ width: "400px" }}
             />
             <img
               className="block lg:hidden"
