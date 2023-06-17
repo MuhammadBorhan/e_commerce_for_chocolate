@@ -35,6 +35,9 @@ import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
 import BlankBoxList from "../Pages/Dashboard/BlankBox/BlankBoxList";
 import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
 import Checkout from "../Components/Checkout";
+import UserDashboard from "../Pages/UserDashboard/UserDashboard";
+import DashbordHome from "../Pages/UserDashboard/DashbordHome";
+import Order from "../Pages/UserDashboard/Order/Order";
 
 const routes = createBrowserRouter([
   {
@@ -176,6 +179,20 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/updateBlankBox/:id",
             element: <UpdateBlankBox />,
+          },
+        ],
+      },
+      {
+        path: "/user/dashboard",
+        element: <UserDashboard />,
+        children: [
+          {
+            path: "/user/dashboard",
+            element: <DashbordHome />,
+          },
+          {
+            path: "/user/dashboard/order-history",
+            element: <Order />,
           },
         ],
       },
