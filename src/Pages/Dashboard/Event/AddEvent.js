@@ -1,8 +1,6 @@
 import axios from "axios";
-import { format } from "date-fns";
 import { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { DayPicker } from "react-day-picker";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
@@ -18,7 +16,9 @@ const AddEvent = () => {
   const [brand, setBrand] = useState("");
   const [status, setStatus] = useState("");
   const [gmeet, setGMeet] = useState("");
+  const [image, setImage] = useState(null);
   const [desc, setDesc] = useState("");
+  const [capacity, setCapacity] = useState("");
 
   const { data: getbrand } = useGetAllBrandsQuery();
   const allBrand = getbrand?.data;
@@ -40,13 +40,20 @@ const AddEvent = () => {
       brand,
       status,
       gmeet,
+      image,
+      capacity,
       desc,
     };
     console.log(data);
     try {
-      await axios.post(
-        "http://localhost:5003/api/v1/event",
-        data
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/event",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       // Reset the form inputs
@@ -56,9 +63,13 @@ const AddEvent = () => {
       setDistrict("");
       setBrand("");
       setGMeet("");
+      setImage("");
       setDesc("");
+      setCapacity("");
 
-      toast.success("Succeessfully Added");
+      if (response) {
+        toast.success("Succeessfully Added");
+      }
     } catch (error) {
       toast.error(error?.response?.data?.error);
     }
@@ -130,7 +141,7 @@ const AddEvent = () => {
                     </option>
                     <option>Pending</option>
                     <option>Cancel</option>
-                    <option>Join Now</option>
+                    <option>Start</option>
                     <option>Finish</option>
                   </select>
 
@@ -140,27 +151,32 @@ const AddEvent = () => {
                     placeholder="Google Meet Link"
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
                   />
+
+                  <DateTimePicker
+                    value={dateTime}
+                    onChange={setDateTime}
+                    className="h-8"
+                  />
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+                  />
+                  <input
+                    type="number"
+                    value={capacity}
+                    onChange={(e) => setCapacity(e.target.value)}
+                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2"
+                  />
                 </div>
 
-                <div className="hero">
-                  <div className="hero-content flex-col">
-                    {/* <DayPicker
-                    mode="single"
-                    selected={selected}
-                    onSelect={setSelected}
-                    onChange={(e) => handleDate(e)}
-                  />
-                  <p className="text-red-700 text-center text-2xl mt-2">
-                    Our Event Date is: {format(selected, "PPpp")}
-                  </p> */}
-                    <DateTimePicker value={dateTime} onChange={setDateTime} />
-                  </div>
-                </div>
                 <textarea
                   onChange={(e) => setDesc(e.target.value)}
                   rows="4"
                   // value="desc"
-                  className="block input-bordered border mb-2 mx-auto w-full  p-1 text-sm rounded-none focus:border-none"
+                  className=" block input-bordered border mb-2 mx-auto w-full  p-1 text-sm rounded-none focus:border-none"
                   placeholder="Description..."
                   required
                 ></textarea>

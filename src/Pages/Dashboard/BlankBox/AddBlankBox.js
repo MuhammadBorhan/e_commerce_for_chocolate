@@ -2,23 +2,22 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const AddBrand = () => {
+const AddBlankBox = () => {
   const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
-  const [image, setImg] = useState(null);
-  const [logo, setLogo] = useState(null);
-
-  const handleSubmitBrand = async (e) => {
+  const [festival, setFestival] = useState("");
+  const [image, setImage] = useState(null);
+  const festivals = ["Valentine", "Christmas", "Marriage", "Birthday"];
+  const handleSubmitBlankBox = async (e) => {
     e.preventDefault();
 
     try {
       const formData = new FormData();
       formData.append("name", name);
-      formData.append("desc", desc);
+      formData.append("festival", festival);
       formData.append("image", image);
-      formData.append("logo", logo);
+
       const response = await axios.post(
-        "http://localhost:5000/api/v1/brand",
+        "http://localhost:5000/api/v1/blankBox",
         formData,
         {
           headers: {
@@ -28,15 +27,13 @@ const AddBrand = () => {
       );
 
       if (response) {
-        // Reset the form inputs
         setName("");
-        setDesc("");
+        setFestival("");
 
         toast.success("Successfully added");
       }
     } catch (error) {
-      console.error("Error creating product:", error.response.data);
-      toast.error(error?.response?.data?.error);
+      toast.error(error.response?.data?.error);
     }
   };
   return (
@@ -47,10 +44,10 @@ const AddBrand = () => {
       >
         <div className="card-body">
           <div className="text-center">
-            <h2 className="text-xl font-bold">Add Brand</h2>
+            <h2 className="text-xl font-bold">Add Blank Box</h2>
           </div>
           {
-            <form onSubmit={handleSubmitBrand} className="text-center">
+            <form onSubmit={handleSubmitBlankBox} className="text-center">
               <div className="grid grid-cols-1 gap-4 my-2  ">
                 <div>
                   <label>Name</label>
@@ -62,32 +59,22 @@ const AddBrand = () => {
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none mb-2 mx-auto"
                   />
                 </div>
+                <select
+                  value={festival}
+                  onChange={(e) => setFestival(e.target.value)}
+                  className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
+                >
+                  <option>--Select Festival--</option>
+                  {festivals?.map((fest, index) => (
+                    <option key={index}>{fest}</option>
+                  ))}
+                </select>
+
                 <div>
-                  <label>Description</label>
-                  <textarea
-                    onChange={(e) => setDesc(e.target.value)}
-                    rows="4"
-                    value={desc}
-                    className="block input-bordered border mx-auto mb-2 w-full p-1 text-sm rounded-none focus:border-none"
-                    placeholder="Description..."
-                    required
-                  ></textarea>
-                </div>
-                <div>
-                  <label>Cover Image</label>
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setImg(e.target.files[0])}
-                    className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
-                  />
-                </div>
-                <div>
-                  <label>Logo</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setLogo(e.target.files[0])}
+                    onChange={(e) => setImage(e.target.files[0])}
                     className="input input-bordered h-8 rounded-none focus:border-none w-full max-w-xs lg:max-w-none"
                   />
                 </div>
@@ -109,4 +96,4 @@ const AddBrand = () => {
   );
 };
 
-export default AddBrand;
+export default AddBlankBox;

@@ -1,0 +1,23 @@
+.slider {
+  width: 100%;
+  margin: 0 auto;
+  margin: 30px 0 50px 0;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+
+.cards {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.card-bottom {
+  margin: 0px 20px;
+}

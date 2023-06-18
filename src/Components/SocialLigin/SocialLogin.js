@@ -19,6 +19,7 @@ const SocialLogin = () => {
         };
 
         console.log(user);
+<<<<<<< HEAD
         axios
           .post(
             `http://localhost:5003/api/v1/signup`,
@@ -32,6 +33,16 @@ const SocialLogin = () => {
               navigate("/dashboard");
             }
           });
+=======
+        axios.post(`http://localhost:5000/api/v1/signup`, gUser).then((res) => {
+          console.log(res?.data?.token);
+          const accessToken = res?.data?.token;
+          localStorage.setItem("accessToken", accessToken);
+          if (res.status === 200) {
+            navigate("/dashboard");
+          }
+        });
+>>>>>>> c8536acc1c1fa8414dece3eae8dcb738c60023ad
       })
       .catch((error) => {
         console.log("error", error);

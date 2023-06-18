@@ -7,6 +7,7 @@ import {
 } from "../../../features/api/eventApi";
 import { toast } from "react-toastify";
 import { useGetUserQuery } from "../../../features/api/loginApi";
+import { Link } from "react-router-dom";
 
 const EventList = () => {
   const { data } = useGetAllEventQuery(null, {
@@ -34,11 +35,13 @@ const EventList = () => {
           <thead>
             <tr>
               <th>SL. No</th>
+              <th>Image</th>
               <th>Title</th>
               <th>Date</th>
               <th>Region</th>
               <th>District</th>
               <th>G_meet Link</th>
+              <th>Brand</th>
               <th>Status</th>
               <th>Host</th>
               <th>Action</th>
@@ -48,6 +51,12 @@ const EventList = () => {
             {events?.map((even, index) => (
               <tr>
                 <th>{index + 1}</th>
+                <th>
+                  <img
+                    src={`http://localhost:5000/${even?.image}`}
+                    className="w-16"
+                  />
+                </th>
                 <th>{even?.title}</th>
                 <th>{new Date(even.dateTime).toLocaleString()}</th>
                 <th>{even?.region}</th>
@@ -55,16 +64,18 @@ const EventList = () => {
                 <th className="text-blue-500 underline font-bold text-sm">
                   {even?.gmeet}
                 </th>
-
+                <td>{even?.brand}</td>
                 <td>{even?.status}</td>
                 <td>{user?.firstName}</td>
                 <td>
-                  <button
+                  <Link
+                    to={`/dashboard/updateevent/${even?._id}`}
                     className="text-blue-500"
-                    style={{ width: "40px", fontSize: "25px" }}
                   >
-                    <FaEdit />
-                  </button>
+                    <button style={{ width: "40px", fontSize: "25px" }}>
+                      <FaEdit />
+                    </button>
+                  </Link>
                   <button
                     onClick={(e) => handleDelete(even?._id)}
                     className="text-red-500"

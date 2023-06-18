@@ -28,6 +28,16 @@ import UpdateProducts from "../Pages/Dashboard/UpdateProducts/UpdateProducts";
 import UpdateRegionDistrict from "../Pages/Dashboard/UpdateRegionDistrict/UpdateRegionDistrict";
 import UpdateBrand from "../Pages/Dashboard/BrandProducts/UpdateBrand";
 import UpdateGiftBox from "../Pages/Dashboard/GiftBox/UpdateGiftBox";
+import UpdateEvent from "../Pages/Dashboard/Event/UpdateEvent";
+import AllVisitors from "../Pages/Dashboard/AllUsers/AllVisitors";
+import AddToCart from "../Pages/AddToCart/AddToCart";
+import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
+import BlankBoxList from "../Pages/Dashboard/BlankBox/BlankBoxList";
+import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
+import Checkout from "../Components/Checkout";
+import UserDashboard from "../Pages/UserDashboard/UserDashboard";
+import DashbordHome from "../Pages/UserDashboard/DashbordHome";
+import Order from "../Pages/UserDashboard/Order/Order";
 
 const routes = createBrowserRouter([
   {
@@ -57,6 +67,14 @@ const routes = createBrowserRouter([
       {
         path: "/carts",
         element: <CartProducts />,
+      },
+      {
+        path: "/addtocart/:name",
+        element: <AddToCart />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
       {
         path: "/login",
@@ -89,6 +107,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/alluser",
             element: <AllUsers />,
+          },
+          {
+            path: "/dashboard/visitor",
+            element: <AllVisitors />,
           },
           {
             path: "/dashboard/addbrand",
@@ -141,6 +163,36 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/eventlist",
             element: <EventList />,
+          },
+          {
+            path: "/dashboard/updateevent/:id",
+            element: <UpdateEvent />,
+          },
+          {
+            path: "/dashboard/addblankbox",
+            element: <AddBlankBox />,
+          },
+          {
+            path: "/dashboard/blanklist",
+            element: <BlankBoxList />,
+          },
+          {
+            path: "/dashboard/updateBlankBox/:id",
+            element: <UpdateBlankBox />,
+          },
+        ],
+      },
+      {
+        path: "/user/dashboard",
+        element: <UserDashboard />,
+        children: [
+          {
+            path: "/user/dashboard",
+            element: <DashbordHome />,
+          },
+          {
+            path: "/user/dashboard/order-history",
+            element: <Order />,
           },
         ],
       },

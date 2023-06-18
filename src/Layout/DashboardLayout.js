@@ -20,6 +20,7 @@ const DashboardLayout = () => {
   const [trShow, setTrShow] = useState(false);
   const [eShow, setEShow] = useState(false);
   const [uShow, setUShow] = useState(false);
+  const [blankShow, setBlankShow] = useState(false);
 
   const handleRegion = () => {
     setRShow(!rShow);
@@ -29,6 +30,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleProduct = () => {
     setPShow(!pShow);
@@ -38,6 +40,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleBrand = () => {
     setBShow(!bShow);
@@ -47,6 +50,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleGiftBox = () => {
     setGShow(!gShow);
@@ -56,6 +60,7 @@ const DashboardLayout = () => {
     setTrShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleTrending = () => {
     setTrShow(!trShow);
@@ -65,9 +70,21 @@ const DashboardLayout = () => {
     setRShow(false);
     setEShow(false);
     setUShow(false);
+    setBlankShow(false);
   };
   const handleEvent = () => {
     setEShow(!eShow);
+    setTrShow(false);
+    setGShow(false);
+    setBShow(false);
+    setPShow(false);
+    setRShow(false);
+    setUShow(false);
+    setBlankShow(false);
+  };
+  const handleBlankBox = () => {
+    setBlankShow(!blankShow);
+    setEShow(false);
     setTrShow(false);
     setGShow(false);
     setBShow(false);
@@ -83,7 +100,9 @@ const DashboardLayout = () => {
     setBShow(false);
     setPShow(false);
     setRShow(false);
+    setBlankShow(false);
   };
+  
 
   const { data } = useGetUserQuery();
   const users = data?.data;
@@ -103,7 +122,7 @@ const DashboardLayout = () => {
         <ul className="menu p-4 w-60 bg-slate-50 border-t-[1px] text-yellow-800">
           <Link to="/dashboard">
             <div className="menu bg-[#9A583B]  rounded-md shadow-xl mb-4 p-4 border-t-[1px]">
-              <div className=" flex justify-between justify-items-center ">
+              <div className=" flex justify-between items-center ">
                 <p className="text-xl text-gray-50">
                   <MdDashboard />
                 </p>
@@ -116,8 +135,8 @@ const DashboardLayout = () => {
           </Link>
           {/* region and district */}
           <div
-            className="dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md"
             onClick={handleRegion}
+            className="dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md"
           >
             <label
               tabIndex={0}
@@ -132,10 +151,10 @@ const DashboardLayout = () => {
               <div className="mt-1 ml-2">
                 <CiLocationOn />
               </div>
-              <div className="ml-2">Region & District</div>
-              <div className="mt-1 ml-2">
+              <p className="ml-2">Region & District</p>
+              <p className="mt-1 ml-2">
                 <IoMdArrowDropdown />
-              </div>
+              </p>
             </label>
 
             {rShow && (
@@ -143,7 +162,7 @@ const DashboardLayout = () => {
                 tabIndex={0}
                 className="dropdown-content menu shadow bg-slate-200 w-50"
               >
-                <li>
+                <li htmlFor="dashboard-drawer">
                   <Link to="/dashboard/addregion">Add Region & District</Link>
                 </li>
                 <li>
@@ -153,53 +172,11 @@ const DashboardLayout = () => {
             )}
           </div>
 
-          {/* Products  */}
-
-          <div
-            onClick={handleProduct}
-            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              rShow ? "mt-24" : "mt-0"
-            }`}
-          >
-            <label
-              tabIndex={0}
-              className={`ml-2 cursor-pointer flex ${
-                pathname === "/dashboard/allproduct"
-                  ? "active"
-                  : pathname === "/dashboard/addproduct"
-                  ? "active"
-                  : ""
-              }`}
-            >
-              <div className="mt-1 ml-2">
-                <RiProductHuntLine />
-              </div>
-              <div className="ml-2">Products</div>
-              <div className="mt-1 ml-2">
-                <IoMdArrowDropdown />
-              </div>
-            </label>
-            {pShow && (
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu shadow bg-slate-200  w-50"
-              >
-                <li>
-                  <Link to="/dashboard/addproduct">Add Products</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/allproduct">All Products</Link>
-                </li>
-              </ul>
-            )}
-          </div>
-
           {/* Brand  */}
-
           <div
             onClick={handleBrand}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              pShow ? "mt-24" : "mt-0"
+              rShow ? "mt-24" : "mt-0"
             }`}
           >
             <label
@@ -235,11 +212,52 @@ const DashboardLayout = () => {
             )}
           </div>
 
+          {/* Products  */}
+
+          <div
+            onClick={handleProduct}
+            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
+              bShow ? "mt-24" : "mt-0"
+            }`}
+          >
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/allproduct"
+                  ? "active"
+                  : pathname === "/dashboard/addproduct"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <RiProductHuntLine />
+              </div>
+              <div className="ml-2">Products</div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
+            </label>
+            {pShow && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu shadow bg-slate-200  w-50"
+              >
+                <li>
+                  <Link to="/dashboard/addproduct">Add Products</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/allproduct">All Products</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+
           {/* Add Gift Items  */}
           <div
             onClick={handleGiftBox}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              bShow ? "mt-24" : "mt-0"
+              pShow ? "mt-24" : "mt-0"
             }`}
           >
             <label
@@ -357,11 +375,52 @@ const DashboardLayout = () => {
             )}
           </div>
 
+           {/* BlankBox  */}
+
+           <div
+            onClick={handleBlankBox}
+            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
+              eShow ? "mt-24" : "mt-0"
+            }`}
+          >
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/addblankbox"
+                  ? "active"
+                  : pathname === "/dashboard/blanklist"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <BsCalendarEvent />
+              </div>
+              <div className="ml-2">Blank Box</div>
+              <div className="mt-1 ml-2">
+                <IoMdArrowDropdown />
+              </div>
+            </label>
+            {blankShow && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu shadow bg-slate-200  w-50"
+              >
+                <li>
+                  <Link to="/dashboard/addblankbox">Add Blank Box</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/blanklist">Blank Box List</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+
           {/* users */}
           <div
             onClick={handleUsers}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              eShow ? "mt-24" : "mt-0"
+              blankShow ? "mt-24" : "mt-0"
             }`}
           >
             <label
@@ -385,6 +444,9 @@ const DashboardLayout = () => {
               >
                 <li>
                   <Link to="/dashboard/alluser">Manage User</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/visitor">Visitor's</Link>
                 </li>
               </ul>
             )}

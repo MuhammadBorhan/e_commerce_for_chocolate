@@ -8,19 +8,26 @@ import { MdUpdate } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
+import {
+  useGetAllBlankBoxQuery,
+  useRemoveBlankBoxMutation,
+} from "../../../features/api/blankBoxApi";
+import { toast } from "react-toastify";
 
-const BrandList = () => {
-  const { data } = useGetAllBrandsQuery(null, {
+const BlankBoxList = () => {
+  // Blank Box
+  const { data } = useGetAllBlankBoxQuery(null, {
     refetchOnMountOrArgChange: true,
   });
-  const brands = data?.data;
+  const blankBox = data?.data;
 
-  const [removeBrand] = useRemoveBrandMutation();
+  const [removeBlankBox] = useRemoveBlankBoxMutation();
 
   const handleDelete = (id) => {
     const confirm = window.confirm("Are You Sure?");
     if (confirm) {
-      removeBrand(id);
+      removeBlankBox(id);
+      toast.success("Delete Successful!!!");
     }
   };
 
@@ -29,34 +36,30 @@ const BrandList = () => {
       <DashBoardMenu></DashBoardMenu>
       <div className="p-8">
         <div className="overflow-x-auto">
-          <h2 className="text-xl font-bold mt-2">All Brand</h2>
+          <h2 className="text-xl font-bold mt-2">All Blank Box</h2>
           <table className="table w-full mt-2">
             {/* head */}
             <thead>
               <tr>
                 <th>Sl No.</th>
                 <th>Name</th>
-                <th>Logo</th>
-                <th>Cover Image</th>
+                <th>Festival</th>
+                <th>Image</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {brands?.map((brand, index) => {
+              {blankBox?.map((brand, index) => {
                 return (
                   <tr key={index}>
                     <th>{index + 1}</th>
                     <td>{brand?.name}</td>
-                    <td>
-                      <img
-                        src={`http://localhost:5000/${brand?.logo}`}
-                        className="w-16"
-                      />
-                    </td>
+                    <td>{brand?.festival}</td>
+
                     <td>
                       <img
                         src={`http://localhost:5000/${brand?.image}`}
-                        className="w-32"
+                        className="w-16 h-16"
                       />
                     </td>
 
@@ -66,7 +69,7 @@ const BrandList = () => {
                         className="text-blue-500"
                         style={{ width: "40px", fontSize: "25px" }}
                       >
-                        <Link to={`/dashboard/updatebrand/${brand?._id}`}>
+                        <Link to={`/dashboard/updateBlankBox/${brand?._id}`}>
                           <FaEdit />
                         </Link>
                       </button>
@@ -89,4 +92,4 @@ const BrandList = () => {
   );
 };
 
-export default BrandList;
+export default BlankBoxList;

@@ -10,13 +10,20 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         `http://localhost:5003/api/v1/login`,
+=======
+        `http://localhost:5000/api/v1/login`,
+>>>>>>> c8536acc1c1fa8414dece3eae8dcb738c60023ad
         data
       );
+      console.log(response?.data?.data?.user?.role);
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
-      if (response) {
+      if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
+      } else {
+        navigate("/");
       }
     } catch (error) {
       toast.error(error.response?.data?.error);
