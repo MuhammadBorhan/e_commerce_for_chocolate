@@ -96,9 +96,7 @@ const DeliveryGiftsDetails = () => {
           </div>
           <div className="col-12 col-lg-6 d-flex justify-content-center pe-4 flex-column pt-3 pt-lg-0">
             <p className="text-xl font-bold">{selectedGiftBox?.name}</p>
-            {/* <h4 className="text-orange-500 font-bold text-3xl py-2">
-            {data.price}$
-          </h4> */}
+
             <p className="mb-2">{selectedGiftBox?.desc}</p>
             <h5 className="mb-4">
               Price: ¥0
@@ -113,57 +111,6 @@ const DeliveryGiftsDetails = () => {
             >
               <button className="btn bg-yellow-900">Add To Cart</button>
             </Link>
-            <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn m-1">
-                Choose Your Festival
-                <p className="mt-1 ml-2 ">
-                  <IoMdArrowDropdown />
-                </p>
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-slate-5
-                0 rounded-box w-52 z-1"
-              >
-                <li>
-                  <button onClick={() => handleFestival("Birthday")}>
-                    BirthDay Gift
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleFestival("Marriage")}>
-                    Marrige Anniversary
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleFestival("Christmas")}>
-                    Christmas Gift
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleFestival("Valentine")}>
-                    Valentine Gift
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            {/* <div>
-            <h6
-              className="text-xl"
-              style={{
-                borderBottom: "1px solid lightblue",
-                paddingBottom: "8px",
-              }}
-            >
-              Key Attributes :
-            </h6>
-            <ol>
-              {data?.attiribute.map((attb, index) => (
-                <li key={index}>{attb}</li>
-              ))}
-            </ol>
-          </div> */}
           </div>
         </div>
       ) : (
@@ -181,11 +128,8 @@ const DeliveryGiftsDetails = () => {
           </div>
           <div className="col-12 col-lg-6 d-flex justify-content-center pe-4 flex-column pt-3 pt-lg-0">
             <p className="text-xl font-bold">{data?.name}</p>
-            {/* <h4 className="text-orange-500 font-bold text-3xl py-2">
-            {data.price}$
-          </h4> */}
-            <p className="mb-2">{data?.desc}</p>
-            <h5 className="mb-4">Price: {data?.price}</h5>
+            <p className="mb-2"> {data?.desc}</p>
+            <h5 className="mb-4">Price: ${data?.price}</h5>
             <Link
               to={`/addtocart/${data?.name}`}
               state={{
@@ -195,56 +139,6 @@ const DeliveryGiftsDetails = () => {
             >
               <button className="btn bg-yellow-900">Add To Cart</button>
             </Link>
-            <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="btn m-1">
-                Choose Your Festival
-                <p className="mt-1 ml-2">
-                  <IoMdArrowDropdown />
-                </p>
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-slate-50 rounded-box w-52 z-1"
-              >
-                <li>
-                  <button onClick={() => handleFestival("Birthday")}>
-                    BirthDay Gift
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleFestival("Marriage")}>
-                    Marrige Anniversary
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleFestival("Christmas")}>
-                    Cristmas Gift
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleFestival("Valentine")}>
-                    Valentine Gift
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            {/* <div>
-            <h6
-              className="text-xl"
-              style={{
-                borderBottom: "1px solid lightblue",
-                paddingBottom: "8px",
-              }}
-            >
-              Key Attributes :
-            </h6>
-            <ol>
-              {data?.attiribute.map((attb, index) => (
-                <li key={index}>{attb}</li>
-              ))}
-            </ol>
-          </div> */}
           </div>
         </div>
       )}

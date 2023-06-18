@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 import { toast } from "react-toastify";
@@ -44,8 +44,12 @@ const SignUp = () => {
       );
       const accessToken = response?.data?.token;
       localStorage.setItem("accessToken", accessToken);
-      if (response) {
+
+      const from = location.state?.from?.pathname || "/user/dashboard";
+      if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
+      } else {
+        navigate(from, { replace: true });
       }
     } catch (error) {
       toast.error(error?.response?.data?.error);

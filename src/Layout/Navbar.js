@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineMenu,
+  AiOutlineShoppingCart,
+  AiOutlineCaretDown,
+} from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../features/api/loginApi";
 
 const Navbar = () => {
-  const { pathname } = useLocation();
-
   const { data } = useGetUserQuery();
   const user = data?.data;
   console.log('navbar',user)
@@ -160,8 +162,8 @@ const Navbar = () => {
               className="btn bg-transparent hover:bg-transparent border-none -mr-4"
             >
               {user ? (
-                <span className="text-sm">
-                  {user?.firstName} ({user?.role})
+                <span className="text-sm flex items-center">
+                  {user?.firstName} ({user?.role}) <AiOutlineCaretDown />
                 </span>
               ) : (
                 <Link to={"/login"} className="bg-transparent">

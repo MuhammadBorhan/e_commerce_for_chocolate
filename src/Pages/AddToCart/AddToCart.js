@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { useGetAllBlankBoxQuery } from "../../features/api/blankBoxApi";
-
+import { RxCrossCircled } from "react-icons/rx";
+import ChooseFestival from "./ChooseFestival";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -62,6 +62,7 @@ const AddToCart = () => {
     grandTotal,
     data,
     selectedGiftBox,
+    quantity,
   };
 
   return (
@@ -86,7 +87,7 @@ const AddToCart = () => {
               style={{ width: "100px" }}
             />
           </div>
-          <div className="">
+          <div className="mt-4 lg:mt-0">
             <div className="flex justify-between gap-8">
               <div>
                 <p className="text-xl">{data?.name || selectedGiftBox?.name}</p>
@@ -117,17 +118,93 @@ const AddToCart = () => {
                 <p className="text-yellow-500 font-bold"> ¥{total}</p>
               </div>
             </div>
+
+            {/*  selected blank box */}
             <div className="grid grid-cols-6 gap-1">
               {selectedBox?.map((box) => (
-                <div>
+                <div className="relative">
                   <img
+<<<<<<< HEAD
                     src={`http://localhost:5003/${box?.image}`}
                     className="w-12 h-12"
                     onClick={() => handleRemove(box)}
+=======
+                    src={`http://localhost:5000/${box?.image}`}
+                    className="w-12 h-12 "
+>>>>>>> c0c5b1f5a4faabaae20157684fb3ff30caa8a24a
                   />
+                  <span
+                    onClick={() => handleRemove(box)}
+                    className="absolute top-0 right-0 lg:right-7 bg-white bg-opacity-80 rounded-full cursor-pointer text-red-700"
+                  >
+                    <RxCrossCircled />
+                  </span>
                 </div>
               ))}
             </div>
+
+            {/* choose your festival for mobile device start*/}
+            <div className="dropdown dropdown-hover inline-block lg:hidden mt-6 ml-16">
+              <label
+                tabIndex={0}
+                className="flex items-center bg-yellow-800 py-1 px-2 text-white font-bold"
+              >
+                Choose Your Festival
+                <p className="mt-1 ml-2">
+                  <IoMdArrowDropdown />
+                </p>
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-slate-50 rounded-box w-52 z-1"
+              >
+                <li>
+                  <button onClick={() => handleFestival("Birthday")}>
+                    BirthDay Gift
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => handleFestival("Marriage")}>
+                    Marrige Anniversary
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => handleFestival("Christmas")}>
+                    Cristmas Gift
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => handleFestival("Valentine")}>
+                    Valentine Gift
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div className="row py-5 px-4 lg:px-12 block md:hidden">
+              {matchFestival?.length > 0 && (
+                <h4 className="text-center pb-3 text-xl font-bold">
+                  Select Your {matchFestival[0]?.festival} Festival Box
+                </h4>
+              )}
+
+              <div className="flex gap-x-2 overflow-auto">
+                {matchFestival?.map((data, index) => (
+                  <div
+                    onClick={() => chooseGiftBox(data)}
+                    className="gboxswiper-slider py-6"
+                    key={index}
+                  >
+                    <img
+                      src={`http://localhost:5000/${data?.image}`}
+                      className="w-16 h-16 lg:w-32 lg:h-32 object-cover cursor-pointer"
+                    />
+                    <p className="text-xs lg:text-sm">{data?.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* choose your festival for mobile device end */}
           </div>
         </div>
 
@@ -168,6 +245,7 @@ const AddToCart = () => {
         </div>
       </div>
 
+<<<<<<< HEAD
       {data1 && (
         <div>
           <h3 className="font-bold">Your Chosen Box</h3>
@@ -187,6 +265,10 @@ const AddToCart = () => {
       )}
 
       <div className="dropdown dropdown-hover">
+=======
+      {/* Choose your festival for desktop device */}
+      <div className="dropdown dropdown-hover hidden lg:inline-block">
+>>>>>>> c0c5b1f5a4faabaae20157684fb3ff30caa8a24a
         <label
           tabIndex={0}
           className="flex items-center bg-yellow-800 py-1 px-2 text-white font-bold"
@@ -222,10 +304,11 @@ const AddToCart = () => {
           </li>
         </ul>
       </div>
-      <div className="row py-5 px-4 lg:px-12 ">
-        {matchFestival.length > 0 && (
+
+      <div className="row py-5 px-4 lg:px-12 hidden md:block">
+        {matchFestival?.length > 0 && (
           <h4 className="text-center pb-3 text-xl font-bold">
-            {matchFestival[0]?.festival} Festival
+            Select Your {matchFestival[0]?.festival} Festival Box
           </h4>
         )}
 
@@ -250,8 +333,13 @@ const AddToCart = () => {
                 key={index}
               >
                 <img
+<<<<<<< HEAD
                   src={`http://localhost:5003/${data?.image}`}
                   className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
+=======
+                  src={`http://localhost:5000/${data?.image}`}
+                  className="w-16 h-16 lg:w-32 lg:h-32 object-cover cursor-pointer"
+>>>>>>> c0c5b1f5a4faabaae20157684fb3ff30caa8a24a
                 />
                 <p className="text-xs lg:text-sm">{data?.name}</p>
               </SwiperSlide>

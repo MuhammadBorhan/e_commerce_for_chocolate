@@ -26,9 +26,11 @@ const Login = () => {
         `http://localhost:5003/api/v1/login`,
         data
       );
-      console.log(response?.data?.data?.user?.role);
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
+
+      const from = location.state?.path || "/user/dashboard";
+      console.log(from);
       if (response?.data?.data?.user?.role === "admin") {
         navigate(from, {replace: true})
         // navigate('/dashboard')

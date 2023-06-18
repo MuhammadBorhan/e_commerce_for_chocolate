@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import CheckoutPage from "./CheckoutPage";
 
 const Checkout = () => {
   const location = useLocation();
   const giftBox = location?.state?.data;
+  const quantity = location?.state?.quantity;
   const selectedGiftBox = location?.state?.selectedGiftBox;
   const amount = location?.state?.grandTotal;
   const selectBox = location?.state?.selectedBox;
+  console.log(giftBox, selectedGiftBox, amount, quantity);
 
-  //   console.log("blankBox", selectBox);
   const [image, setImage] = useState();
-  console.log(image);
   const handleSelect = (img) => {
     const rest = selectBox?.find((box) => box?.image === img);
     setImage(rest);
@@ -31,9 +32,9 @@ const Checkout = () => {
 
   return (
     <div className="p-12">
-      <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 justify-around">
+      <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 justify-between">
         {/* Left Side */}
-        <div className="">
+        <div className="flex-1">
           <div className="flex gap-x-4 lg:gap-x-12">
             <div className="relative">
               {image ? (
@@ -69,32 +70,13 @@ const Checkout = () => {
         </div>
 
         {/* Right side */}
-        <div>
-          <form>
-            <div>
-              <input
-                type="radio"
-                id="cod"
-                value="cod"
-                checked={selectedPaymentMethod === "cod"}
-                onChange={handlePaymentMethodChange}
-              />
-              <label htmlFor="cod">Cash on Delivery</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="online"
-                value="online"
-                checked={selectedPaymentMethod === "online"}
-                onChange={handlePaymentMethodChange}
-              />
-              <label htmlFor="online">Online Payment</label>
-            </div>
-            <button type="button" onClick={handleCheckout}>
-              Place Order
-            </button>
-          </form>
+        <div className="flex-1">
+          <CheckoutPage
+            giftBox={giftBox}
+            selectedGiftBox={selectedGiftBox}
+            amount={amount}
+            quantity={quantity}
+          />
         </div>
       </div>
     </div>
