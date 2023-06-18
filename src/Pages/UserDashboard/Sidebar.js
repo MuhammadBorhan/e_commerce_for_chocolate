@@ -1,6 +1,10 @@
 import React from "react";
-import { MdDashboard } from "react-icons/md";
+import { CiLocationOn } from "react-icons/ci";
+import { MdDashboard, MdOutlineWorkHistory, MdPayment } from "react-icons/md";
+import { FaRegAddressCard } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AiOutlineUnorderedList } from "react-icons/ai";
+import { RiCustomerService2Fill } from "react-icons/ri";
 
 const Sidebar = () => {
   return (
@@ -14,19 +18,29 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/user/dashboard/order-history">Order History</Link>
+          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+            <MdOutlineWorkHistory /> <span>Order History</span>
+          </Link>
         </li>
         <li>
-          <Link to="/shipping-addresses">Shipping Addresses</Link>
+          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+            <FaRegAddressCard /> <span>Shipping Address</span>
+          </Link>
         </li>
         <li>
-          <Link to="/payment-methods">Payment Methods</Link>
+          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+            <MdPayment /> <span>Payment Method</span>
+          </Link>
         </li>
         <li>
-          <Link to="/wish-list">Wish List</Link>
+          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+            <AiOutlineUnorderedList /> <span>Wish List</span>
+          </Link>
         </li>
         <li>
-          <Link to="/customer-support">Customer Support</Link>
+          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+            <RiCustomerService2Fill /> <span>Customer Support</span>
+          </Link>
         </li>
       </ul>
     </div>

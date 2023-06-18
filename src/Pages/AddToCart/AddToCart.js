@@ -73,14 +73,14 @@ const AddToCart = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5000/${
+              src={`http://localhost:5003/${
                 data?.image || selectedGiftBox?.image
               }`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5000/${
+              src={`http://localhost:5003/${
                 data?.image || selectedGiftBox?.image
               }`}
               style={{ width: "100px" }}
@@ -121,7 +121,7 @@ const AddToCart = () => {
               {selectedBox?.map((box) => (
                 <div>
                   <img
-                    src={`http://localhost:5000/${box?.image}`}
+                    src={`http://localhost:5003/${box?.image}`}
                     className="w-12 h-12"
                     onClick={() => handleRemove(box)}
                   />
@@ -174,12 +174,12 @@ const AddToCart = () => {
           <div>
             <img
               className="hidden lg:block"
-              src={`http://localhost:5000/${data1?.image}`}
+              src={`http://localhost:5003/${data1?.image}`}
               style={{ width: "150px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5000/${data1?.image}`}
+              src={`http://localhost:5003/${data1?.image}`}
               style={{ width: "100px" }}
             />
           </div>
@@ -250,7 +250,7 @@ const AddToCart = () => {
                 key={index}
               >
                 <img
-                  src={`http://localhost:5000/${data?.image}`}
+                  src={`http://localhost:5003/${data?.image}`}
                   className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
                 />
                 <p className="text-xs lg:text-sm">{data?.name}</p>

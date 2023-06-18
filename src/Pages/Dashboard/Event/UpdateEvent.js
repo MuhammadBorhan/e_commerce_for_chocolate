@@ -22,7 +22,7 @@ const UpdateEvent = () => {
 
   const [event, setEvent] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/event/${id}`)
+    fetch(`http://localhost:5003/api/v1/event/${id}`)
       .then((res) => res.json())
       .then((data) => setEvent(data?.data));
   }, [id]);
@@ -52,7 +52,7 @@ const UpdateEvent = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/event/${id}`,
+        `http://localhost:5003/api/v1/event/${id}`,
         data
       );
       if (response) {

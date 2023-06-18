@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
-import Marquee from "react-fast-marquee";
 import { GiModernCity } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -248,37 +247,6 @@ const Regions = () => {
         </Swiper>
       </div>
 
-<<<<<<< HEAD
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        // loop={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2,
-          slideShadows: true,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper bswiper"
-      >
-        {trendingBrands?.map((product, index) => (
-          <SwiperSlide className="bswiper-slide" key={index}>
-            <Link to={`/brands/${product?.name}`} state={product} key={index}>
-              <img
-                src={`http://localhost:5003/uploads/${product?.logo}`}
-                alt={product?.name}
-              />
-              <p>{product?.name}</p>
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-=======
       {/* Show available brand  */}
       <div className="mt-4">
         <Swiper
@@ -303,7 +271,7 @@ const Regions = () => {
             <SwiperSlide className="bswiper-slide" key={index}>
               <Link to={`/brands/${product?.name}`} state={product} key={index}>
                 <img
-                  src={`http://localhost:5000/uploads/${product?.image}`}
+                  src={`http://localhost:5003/uploads/${product?.image}`}
                   alt={product?.name}
                   className="h-48 w-48 object-cover"
                 />
@@ -313,7 +281,6 @@ const Regions = () => {
           ))}
         </Swiper>
       </div>
->>>>>>> c8536acc1c1fa8414dece3eae8dcb738c60023ad
     </div>
   );
 };

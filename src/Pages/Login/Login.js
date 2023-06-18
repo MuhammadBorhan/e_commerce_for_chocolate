@@ -1,29 +1,40 @@
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 import { toast } from "react-toastify";
+import { useGetUserQuery } from "../../features/api/loginApi";
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
   const { register, handleSubmit } = useForm();
+  const { data,isLoading } = useGetUserQuery();
+    
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center mt-12">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+        {/* <p className="mt-4 text-gray-900">Loading...</p> */}
+      </div>
+    );
+  }
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-<<<<<<< HEAD
         `http://localhost:5003/api/v1/login`,
-=======
-        `http://localhost:5000/api/v1/login`,
->>>>>>> c8536acc1c1fa8414dece3eae8dcb738c60023ad
         data
       );
       console.log(response?.data?.data?.user?.role);
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
       if (response?.data?.data?.user?.role === "admin") {
-        navigate("/dashboard");
+        navigate(from, {replace: true})
+        // navigate('/dashboard')
       } else {
-        navigate("/");
+        navigate(from, {replace: true})
+        // navigate('/dashboard')
       }
     } catch (error) {
       toast.error(error.response?.data?.error);

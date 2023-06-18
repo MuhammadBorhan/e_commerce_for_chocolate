@@ -12,16 +12,12 @@ const Navbar = () => {
 
   const { data } = useGetUserQuery();
   const user = data?.data;
-
+  console.log('navbar',user)
   // let { pathname } = useLocation();
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
-<<<<<<< HEAD
   //   fetch("http://localhost:5003/api/v1/me", {
-=======
-  //   fetch("http://localhost:5000/api/v1/me", {
->>>>>>> c8536acc1c1fa8414dece3eae8dcb738c60023ad
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
