@@ -1,8 +1,11 @@
 import React from "react";
 import { FaUsers, FaYenSign } from "react-icons/fa";
 import { AiOutlineUserAdd } from "react-icons/ai";
+import { useGetAllUserQuery } from "../../features/api/loginApi";
 
 const DashbordHome = () => {
+  const { data, isLoading } = useGetAllUserQuery();
+  const users = data?.data;
   return (
     <div className="bg-[#9a573bc4] h-screen p-4 pt-10 lg:pt-4">
       <h2 className="text-2xl text-white font-bold mb-4 text-center md:text-left">

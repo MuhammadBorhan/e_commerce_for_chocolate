@@ -34,10 +34,11 @@ import AddToCart from "../Pages/AddToCart/AddToCart";
 import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
 import BlankBoxList from "../Pages/Dashboard/BlankBox/BlankBoxList";
 import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
-import Checkout from "../Components/Checkout";
 import UserDashboard from "../Pages/UserDashboard/UserDashboard";
 import DashbordHome from "../Pages/UserDashboard/DashbordHome";
 import Order from "../Pages/UserDashboard/Order/Order";
+import RequireAuth from "../Components/RequireAuth";
+import Checkout from "../Pages/Checkout/Checkout";
 
 const routes = createBrowserRouter([
   {
@@ -70,11 +71,21 @@ const routes = createBrowserRouter([
       },
       {
         path: "/addtocart/:name",
+        // element: (
+        //   <RequireAuth>
+        //     <AddToCart />
+        //   </RequireAuth>
+        // ),
         element: <AddToCart />,
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: (
+          <RequireAuth>
+            <Checkout />
+          </RequireAuth>
+        ),
+        // element: <Checkout />,
       },
       {
         path: "/login",

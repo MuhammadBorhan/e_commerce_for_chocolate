@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import bg from "../../assets/images/loginBg.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 import { toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     try {
@@ -13,13 +14,15 @@ const Login = () => {
         `http://localhost:5000/api/v1/login`,
         data
       );
-      console.log(response?.data?.data?.user?.role);
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
+
+      const from = location.state?.path || "/user/dashboard";
+      console.log(from);
       if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
-      } else {
-        navigate("/");
+      } else if (response?.data?.data?.user?.role === "user") {
+        navigate(from, { replace: true });
       }
     } catch (error) {
       toast.error(error.response?.data?.error);
