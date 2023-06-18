@@ -38,6 +38,7 @@ import Checkout from "../Components/Checkout";
 import UserDashboard from "../Pages/UserDashboard/UserDashboard";
 import DashbordHome from "../Pages/UserDashboard/DashbordHome";
 import Order from "../Pages/UserDashboard/Order/Order";
+import RequireAuth from "../Components/RequireAuth";
 
 const routes = createBrowserRouter([
   {
@@ -74,7 +75,12 @@ const routes = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: (
+          <RequireAuth>
+            <Checkout />
+          </RequireAuth>
+        ),
+        // element: <Checkout />,
       },
       {
         path: "/login",

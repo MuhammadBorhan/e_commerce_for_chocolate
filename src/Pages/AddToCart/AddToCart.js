@@ -12,6 +12,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 // import required modules
 import { FreeMode, Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+import { RxCrossCircled } from "react-icons/rx";
 
 const AddToCart = () => {
   const location = useLocation();
@@ -117,14 +118,21 @@ const AddToCart = () => {
                 <p className="text-yellow-500 font-bold"> ¥{total}</p>
               </div>
             </div>
+
+            {/*  selected blank box */}
             <div className="grid grid-cols-6 gap-1">
               {selectedBox?.map((box) => (
-                <div>
+                <div className="relative">
                   <img
                     src={`http://localhost:5000/${box?.image}`}
-                    className="w-12 h-12"
-                    onClick={() => handleRemove(box)}
+                    className="w-12 h-12 relative"
                   />
+                  <span
+                    onClick={() => handleRemove(box)}
+                    className="absolute top-0 right-4 bg-white bg-opacity-80 rounded-full cursor-pointer text-red-700"
+                  >
+                    <RxCrossCircled />
+                  </span>
                 </div>
               ))}
             </div>
@@ -167,24 +175,6 @@ const AddToCart = () => {
           </Link>
         </div>
       </div>
-
-      {data1 && (
-        <div>
-          <h3 className="font-bold">Your Chosen Box</h3>
-          <div>
-            <img
-              className="hidden lg:block"
-              src={`http://localhost:5000/${data1?.image}`}
-              style={{ width: "150px" }}
-            />
-            <img
-              className="block lg:hidden"
-              src={`http://localhost:5000/${data1?.image}`}
-              style={{ width: "100px" }}
-            />
-          </div>
-        </div>
-      )}
 
       <div className="dropdown dropdown-hover">
         <label

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo/logo.png";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../features/api/loginApi";
 
 const Navbar = () => {
-  const { pathname } = useLocation();
-
   const { data } = useGetUserQuery();
   const user = data?.data;
 
