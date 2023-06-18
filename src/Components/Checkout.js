@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import CheckoutPage from "./CheckoutPage";
 
 const Checkout = () => {
   const location = useLocation();
@@ -70,31 +71,7 @@ const Checkout = () => {
 
         {/* Right side */}
         <div>
-          <form>
-            <div>
-              <input
-                type="radio"
-                id="cod"
-                value="cod"
-                checked={selectedPaymentMethod === "cod"}
-                onChange={handlePaymentMethodChange}
-              />
-              <label htmlFor="cod">Cash on Delivery</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="online"
-                value="online"
-                checked={selectedPaymentMethod === "online"}
-                onChange={handlePaymentMethodChange}
-              />
-              <label htmlFor="online">Online Payment</label>
-            </div>
-            <button type="button" onClick={handleCheckout}>
-              Place Order
-            </button>
-          </form>
+          <CheckoutPage />
         </div>
       </div>
     </div>
