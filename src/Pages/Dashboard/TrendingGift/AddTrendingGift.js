@@ -29,7 +29,7 @@ const AddTrendingGift = () => {
     console.log(data);
     try {
       await axios.post(
-        "https://andy-chocolate-productions.up.railway.app//api/v1/trendgift",
+        "http://localhost:5003/api/v1/trendgift",
         data
       );
 

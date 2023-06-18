@@ -33,7 +33,7 @@ const NewAddRegion = () => {
     };
     try {
       await axios.post(
-        "https://andy-chocolate-productions.up.railway.app//api/v1/region",
+        "http://localhost:5003/api/v1/region",
         newDistrictData
       );
 

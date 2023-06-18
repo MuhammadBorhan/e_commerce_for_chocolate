@@ -29,7 +29,7 @@ const GiftItemList = () => {
   const handleSave = async (data) => {
     try {
       await axios.post(
-        "https://andy-chocolate-productions.up.railway.app//api/v1/selectgiftbox",
+        "http://localhost:5003/api/v1/selectgiftbox",
         data
       );
       toast.success("Gift-Box Added Succfess!!!");
@@ -54,7 +54,7 @@ const GiftItemList = () => {
 
   const handleCancel = (id) => {
     fetch(
-      `https://andy-chocolate-productions.up.railway.app//api/v1/selectgiftbox/${id}`,
+      `http://localhost:5003/api/v1/selectgiftbox/${id}`,
       {
         method: "DELETE",
       }
@@ -92,7 +92,7 @@ const GiftItemList = () => {
                   <td>{box?.name}</td>
                   <td>
                     <img
-                      src={`https://andy-chocolate-productions.up.railway.app//${box?.image}`}
+                      src={`http://localhost:5003/${box?.image}`}
                       className="w-16"
                     />
                   </td>
