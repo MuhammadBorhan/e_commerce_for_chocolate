@@ -125,11 +125,11 @@ const AddToCart = () => {
                 <div className="relative">
                   <img
                     src={`http://localhost:5000/${box?.image}`}
-                    className="w-12 h-12 relative"
+                    className="w-12 h-12 "
                   />
                   <span
                     onClick={() => handleRemove(box)}
-                    className="absolute top-0 right-4 bg-white bg-opacity-80 rounded-full cursor-pointer text-red-700"
+                    className="absolute top-0 right-0 lg:right-7 bg-white bg-opacity-80 rounded-full cursor-pointer text-red-700"
                   >
                     <RxCrossCircled />
                   </span>

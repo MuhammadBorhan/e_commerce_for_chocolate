@@ -4,14 +4,18 @@ import { useGetUserQuery } from "../features/api/loginApi";
 
 const RequireAuth = ({ children }) => {
   const location = useLocation();
-  const { data } = useGetUserQuery();
+  const { data, isLoading } = useGetUserQuery();
   const user = data?.data;
 
-  // if (loading) {
-  //     return <p className='text-center text-danger fs-1 fw-bold loading-issue'>Loading...</p>
-  // }
+  if (isLoading) {
+    return (
+      <p className="text-center text-danger fs-1 fw-bold loading-issue">
+        Loading...
+      </p>
+    );
+  }
   if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ path: location.pathname }} replace />;
   }
   return children;
 };

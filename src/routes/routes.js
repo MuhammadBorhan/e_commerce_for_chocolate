@@ -71,6 +71,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/addtocart/:name",
+        // element: (
+        //   <RequireAuth>
+        //     <AddToCart />
+        //   </RequireAuth>
+        // ),
         element: <AddToCart />,
       },
       {

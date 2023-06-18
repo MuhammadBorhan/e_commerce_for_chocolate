@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineMenu,
+  AiOutlineShoppingCart,
+  AiOutlineCaretDown,
+} from "react-icons/ai";
 import { ImCross } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -158,8 +162,8 @@ const Navbar = () => {
               className="btn bg-transparent hover:bg-transparent border-none -mr-4"
             >
               {user ? (
-                <span className="text-sm">
-                  {user?.firstName} ({user?.role})
+                <span className="text-sm flex items-center">
+                  {user?.firstName} ({user?.role}) <AiOutlineCaretDown />
                 </span>
               ) : (
                 <Link to={"/login"} className="bg-transparent">
