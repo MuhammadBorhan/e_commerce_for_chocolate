@@ -3,7 +3,6 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 import { useGetAllBlankBoxQuery } from "../../features/api/blankBoxApi";
 import { RxCrossCircled } from "react-icons/rx";
-import ChooseFestival from "./ChooseFestival";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles

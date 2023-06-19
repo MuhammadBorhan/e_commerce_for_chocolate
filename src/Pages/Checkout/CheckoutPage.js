@@ -172,7 +172,7 @@ const CheckoutPage = ({ giftBox, selectedGiftBox, amount, quantity }) => {
           <div className="border p-4 max-w-sm m-auto">
             <h1 className="text-center font-bold text-xl">Checkout</h1>
             <h2 className="font-bold text-center my-2">
-              Step 3: Your Review Order
+              Step 3: Review Your Order
             </h2>
             <div>
               <h2 className="text-xl font-extralight">Order Summary</h2>
