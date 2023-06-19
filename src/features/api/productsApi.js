@@ -12,6 +12,9 @@ const productsApi = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/products/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       }),
       invalidatesTags: ["product"],
     }),
