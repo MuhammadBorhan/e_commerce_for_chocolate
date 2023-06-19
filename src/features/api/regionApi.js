@@ -12,6 +12,9 @@ const regionApi = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/region/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       }),
       invalidatesTags: ["regions"],
     }),

@@ -5,6 +5,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import { useNavigate, useParams } from "react-router-dom";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
 import { FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const UpdateRegionDistrict = () => {
   const { id } = useParams();
@@ -59,17 +60,22 @@ const UpdateRegionDistrict = () => {
       district: [...getDistrict, ...newDistrict],
     };
     try {
-      const res = await axios.patch(
+      const response = await axios.patch(
         `http://localhost:5000/api/v1/region/${id}`,
-        newDistrictData
+        newDistrictData,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
-      console.log(res);
 
-      if (res) {
+      if (response) {
         navigate("/dashboard/regionlist");
       }
     } catch (error) {
       console.log(error);
+      toast.error(error?.response?.data?.error);
     }
   };
 

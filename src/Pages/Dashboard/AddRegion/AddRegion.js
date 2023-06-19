@@ -35,20 +35,26 @@ const NewAddRegion = () => {
       district,
     };
     try {
-      const res = await axios.post(
+      const response = await axios.post(
         "http://localhost:5000/api/v1/region",
-        newDistrictData
+        newDistrictData,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
+      console.log(response);
 
       // Reset the form inputs
       setRegion("");
       setDistricts([]);
 
-      if (res) {
+      if (response) {
         toast.success("Successfully Added!!");
       }
     } catch (error) {
-      toast.error(error?.res?.data?.error);
+      toast.error(error?.message);
     }
   };
 
