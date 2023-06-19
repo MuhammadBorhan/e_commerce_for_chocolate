@@ -45,11 +45,11 @@ const SignUp = () => {
       const accessToken = response?.data?.token;
       localStorage.setItem("accessToken", accessToken);
 
-      const from = location.state?.from?.pathname || "/user/dashboard";
+      // const from = location.state?.from?.pathname || "/user/dashboard";
       if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
       } else {
-        navigate(from, { replace: true });
+        navigate('/dashboard');
       }
     } catch (error) {
       toast.error(error?.response?.data?.error);

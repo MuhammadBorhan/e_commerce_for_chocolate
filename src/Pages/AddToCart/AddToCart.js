@@ -124,14 +124,9 @@ const AddToCart = () => {
               {selectedBox?.map((box) => (
                 <div className="relative">
                   <img
-<<<<<<< HEAD
                     src={`http://localhost:5003/${box?.image}`}
                     className="w-12 h-12"
                     onClick={() => handleRemove(box)}
-=======
-                    src={`http://localhost:5000/${box?.image}`}
-                    className="w-12 h-12 "
->>>>>>> c0c5b1f5a4faabaae20157684fb3ff30caa8a24a
                   />
                   <span
                     onClick={() => handleRemove(box)}
@@ -245,30 +240,8 @@ const AddToCart = () => {
         </div>
       </div>
 
-<<<<<<< HEAD
-      {data1 && (
-        <div>
-          <h3 className="font-bold">Your Chosen Box</h3>
-          <div>
-            <img
-              className="hidden lg:block"
-              src={`http://localhost:5003/${data1?.image}`}
-              style={{ width: "150px" }}
-            />
-            <img
-              className="block lg:hidden"
-              src={`http://localhost:5003/${data1?.image}`}
-              style={{ width: "100px" }}
-            />
-          </div>
-        </div>
-      )}
-
-      <div className="dropdown dropdown-hover">
-=======
       {/* Choose your festival for desktop device */}
       <div className="dropdown dropdown-hover hidden lg:inline-block">
->>>>>>> c0c5b1f5a4faabaae20157684fb3ff30caa8a24a
         <label
           tabIndex={0}
           className="flex items-center bg-yellow-800 py-1 px-2 text-white font-bold"
@@ -333,13 +306,8 @@ const AddToCart = () => {
                 key={index}
               >
                 <img
-<<<<<<< HEAD
                   src={`http://localhost:5003/${data?.image}`}
                   className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
-=======
-                  src={`http://localhost:5000/${data?.image}`}
-                  className="w-16 h-16 lg:w-32 lg:h-32 object-cover cursor-pointer"
->>>>>>> c0c5b1f5a4faabaae20157684fb3ff30caa8a24a
                 />
                 <p className="text-xs lg:text-sm">{data?.name}</p>
               </SwiperSlide>

@@ -40,12 +40,12 @@ const Checkout = () => {
               {image ? (
                 <img
                   className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
-                  src={`http://localhost:5003/${image?.image}`}
+                  src={`http://localhost:5000/${image?.image}`}
                 />
               ) : (
                 <img
                   className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
-                  src={`http://localhost:5003/${
+                  src={`http://localhost:5000/${
                     giftBox?.image || selectedGiftBox?.image
                   }`}
                 />
@@ -57,7 +57,7 @@ const Checkout = () => {
               >
                 {selectBox?.map((box) => (
                   <img
-                    src={`http://localhost:5003/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                     className="w-12 h-12 cursor-pointer"
                     onClick={() => handleSelect(box?.image)}
                   />
