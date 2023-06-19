@@ -23,6 +23,7 @@ const AddBrand = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         }
       );
