@@ -28,7 +28,7 @@ const UpdateProducts = () => {
     e.preventDefault();
   };
 
-  const handleUpdateProductWithImage = async () => {
+  const handleUpdateProduct = async () => {
     const data = {
       name: name ? name : product?.name,
       brand: brand ? brand : product?.brand,
@@ -43,6 +43,7 @@ const UpdateProducts = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         }
       );
@@ -55,34 +56,9 @@ const UpdateProducts = () => {
     }
   };
 
-  const handleUpdateProduct = async () => {
-    const data = {
-      name: name ? name : product?.name,
-      brand: brand ? brand : product?.brand,
-      desc: desc ? desc : product?.desc,
-      price: price ? price : product?.price,
-    };
-    try {
-      const response = await axios.patch(
-        `http://localhost:5000/api/v1/product/${id}`,
-        data
-      );
-      console.log(response);
-      if (response) {
-        navigate("/dashboard/allproduct");
-      }
-    } catch (error) {
-      toast.error(error?.response?.data?.error);
-    }
-  };
-
-  const [term1, setTerm1] = useState(false);
-  const [term2, setTerm2] = useState(false);
-  const handleTerm1 = () => {
-    setTerm1(!term1);
-  };
-  const handleTerm2 = () => {
-    setTerm2(!term2);
+  const [term, setTerm] = useState(false);
+  const handleTerm = () => {
+    setTerm(!term);
   };
 
   const { data } = useGetAllBrandsQuery();
@@ -159,49 +135,24 @@ const UpdateProducts = () => {
                       <input
                         type="checkbox"
                         className="form-checkbox text-indigo-600 h-5 w-5"
-                        checked={term1}
-                        onChange={handleTerm1}
+                        checked={term}
+                        onChange={handleTerm}
                       />
                       <span className="ml-2 text-gray-900">
-                        Update Without Image
+                        I agree to the term
                       </span>
                     </label>
                     <button
                       onClick={handleUpdateProduct}
                       type="submit"
                       className={`mt-4 px-4 py-2 rounded ${
-                        term1
+                        term
                           ? "bg-[#5e2006] text-white cursor-pointer"
                           : "bg-gray-400 text-gray-700 cursor-not-allowed"
                       }`}
-                      disabled={!term1}
+                      disabled={!term}
                     >
-                      Update Without Image
-                    </button>
-                  </div>
-                  <div className="flex flex-col gap-y-4">
-                    <label className="inline-flex items-center">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox text-indigo-600 h-5 w-5"
-                        checked={term2}
-                        onChange={handleTerm2}
-                      />
-                      <span className="ml-2 text-gray-900">
-                        Update With Image
-                      </span>
-                    </label>
-                    <button
-                      onClick={handleUpdateProductWithImage}
-                      type="submit"
-                      className={`mt-4 px-4 py-2 rounded ${
-                        term2
-                          ? "bg-[#5e2006] text-white cursor-pointer"
-                          : "bg-gray-400 text-gray-700 cursor-not-allowed"
-                      }`}
-                      disabled={!term2}
-                    >
-                      Update With Image
+                      Update
                     </button>
                   </div>
                 </div>
