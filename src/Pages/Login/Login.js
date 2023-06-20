@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     try {
@@ -18,7 +19,6 @@ const Login = () => {
       localStorage.setItem("accessToken", accessToken);
 
       const from = location.state?.path || "/user/dashboard";
-      console.log(from);
       if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
       } else if (response?.data?.data?.user?.role === "user") {

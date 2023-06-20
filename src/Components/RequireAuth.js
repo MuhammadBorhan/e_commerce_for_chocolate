@@ -6,6 +6,8 @@ const RequireAuth = ({ children }) => {
   const location = useLocation();
   const { data, isLoading } = useGetUserQuery();
   const user = data?.data;
+  const isAuthenticated = localStorage.getItem("accessToken");
+  console.log(isAuthenticated);
 
   if (isLoading) {
     return (
@@ -14,7 +16,7 @@ const RequireAuth = ({ children }) => {
       </p>
     );
   }
-  if (!user) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" state={{ path: location.pathname }} replace />;
   }
   return children;
