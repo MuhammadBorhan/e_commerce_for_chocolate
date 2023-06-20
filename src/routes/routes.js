@@ -37,8 +37,9 @@ import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
 import UserDashboard from "../Pages/UserDashboard/UserDashboard";
 import DashbordHome from "../Pages/UserDashboard/DashbordHome";
 import Order from "../Pages/UserDashboard/Order/Order";
-import RequireAuth from "../Components/RequireAuth";
 import Checkout from "../Pages/Checkout/Checkout";
+import PrivateRoute from "./PrivateRoute";
+// import RequireAuth from "../Components/RequireAuth";
 
 const routes = createBrowserRouter([
   {
@@ -80,11 +81,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: (
-          <RequireAuth>
+        element: 
+          <PrivateRoute>
             <Checkout />
-          </RequireAuth>
-        ),
+          </PrivateRoute>
+        
         // element: <Checkout />,
       },
       {

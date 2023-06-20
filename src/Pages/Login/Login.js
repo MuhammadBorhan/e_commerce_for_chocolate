@@ -9,6 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation()
   const from = location.state?.from?.pathname || '/'
+  console.log(from,location)
   const { register, handleSubmit } = useForm();
   const { data,isLoading } = useGetUserQuery();
     
@@ -29,12 +30,14 @@ const Login = () => {
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
 
-      const from = location.state?.path || "/user/dashboard";
-      console.log(from);
+      // const from = location.state?.path || "/user/dashboard";
+      console.log(response)
+      // console.log(from);
       if (response?.data?.data?.user?.role === "admin") {
-        navigate(from, {replace: true})
-        // navigate('/dashboard')
+        // navigate(from,{replace:true})
+        navigate('/dashboard')
       } else {
+        console.log('else',from)
         navigate(from, {replace: true})
         // navigate('/dashboard')
       }

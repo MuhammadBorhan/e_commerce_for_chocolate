@@ -5,8 +5,8 @@ import { Navigate, useLocation } from 'react-router-dom';
 const PrivateRoute = ({children}) => {
     const { data,isLoading } = useGetUserQuery();
     const user = data?.data;
+    console.log('private route',user)
     const location = useLocation()
-
     if (isLoading) {
         return (
           <div className="flex flex-col items-center mt-12">

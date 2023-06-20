@@ -229,39 +229,39 @@ const BrandsItem = () => {
             <h2 className="text-[#9A583B] mt-4 font-bold lg:hidden ">
               Products
             </h2>
-            <div className="flex flex-col absolute right-0 mt-20 bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+            <div className="flex flex-col absolute right-8 mt-20 bg-slate-500 text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
               <button
                 onClick={() => handleFilter("All")}
                 title="All Products"
                 className={
-                  activeFilter === "All" ? "text-green-500 font-bold" : ""
+                  activeFilter === "All" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 A
               </button>
               <button
                 onClick={() => handleFilter("Black")}
-                title="Black"
+                title="Black Chocolate"
                 className={
-                  activeFilter === "Black" ? "text-green-500 font-bold" : ""
+                  activeFilter === "Black" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 B
               </button>
               <button
                 onClick={() => handleFilter("White")}
-                title="White"
+                title="White Chocolate"
                 className={
-                  activeFilter === "White" ? "text-green-500 font-bold" : ""
+                  activeFilter === "White" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 W
               </button>
               <button
                 onClick={() => handleFilter("Milk")}
-                title="Milk"
+                title="Milk Chocolate"
                 className={
-                  activeFilter === "Milk" ? "text-green-500 font-bold" : ""
+                  activeFilter === "Milk" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 M
