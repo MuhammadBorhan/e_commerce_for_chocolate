@@ -39,16 +39,17 @@ const NewAddRegion = () => {
         "http://localhost:5003/api/v1/region",
         newDistrictData
       );
+      console.log(response);
 
       // Reset the form inputs
       setRegion("");
       setDistricts([]);
 
-      if (res) {
+      if (response) {
         toast.success("Successfully Added!!");
       }
     } catch (error) {
-      toast.error(error?.res?.data?.error);
+      toast.error(error?.message);
     }
   };
 

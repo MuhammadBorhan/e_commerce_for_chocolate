@@ -1,11 +1,18 @@
 import { useState } from "react";
 import NextBackButton from "./NextBackButton";
-import { InputText } from "primereact/inputtext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const CheckoutPage = ({ giftBox, selectedGiftBox, amount, quantity }) => {
+const CheckoutPage = ({
+  giftBox,
+  selectedGiftBox,
+  amount,
+  quantity,
+  selectBox,
+}) => {
+  const boxName = selectBox?.map((box) => box?.name);
+
   const [step, setStep] = useState(1);
-  const [shippingAddress, setShippingAddress] = useState("");
-  const [paymentDetails, setPaymentDetails] = useState("");
 
   const handleNextStep = () => {
     setStep(step + 1);
@@ -13,11 +20,6 @@ const CheckoutPage = ({ giftBox, selectedGiftBox, amount, quantity }) => {
 
   const handlePrevStep = () => {
     setStep(step - 1);
-  };
-
-  const handlePlaceOrder = () => {
-    setStep(step + 1);
-    console.log(shippingAddress, paymentDetails);
   };
 
   const renderStepContent = () => {
@@ -36,6 +38,55 @@ const CheckoutPage = ({ giftBox, selectedGiftBox, amount, quantity }) => {
     const [cardNumber, setCardNumber] = useState("");
     const [expiry, setExpiryDate] = useState("");
     const [cvv, setCVV] = useState("");
+    const [cod, setCod] = useState("");
+
+    const [term, setTerm] = useState(false);
+    const handleChecked = (e) => {
+      setTerm(!term);
+      if (cod === "Cash on Delivery") {
+        setCod("");
+      } else {
+        setCod("Cash on Delivery");
+      }
+    };
+
+    const handlePlaceOrder = async () => {
+      setStep(step + 1);
+
+      // save order data
+      const data = {
+        firstName,
+        lastName,
+        address1,
+        address2,
+        region,
+        district,
+        state,
+        zip,
+        cod,
+        quantity,
+        amount,
+        product: giftBox?.name || selectedGiftBox?.name,
+        boxName,
+      };
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/v1/orders",
+          data
+          // {
+          //   headers: {
+          //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          //   },
+          // }
+        );
+        console.log(response);
+        if (response) {
+          toast.success(response?.data?.message);
+        }
+      } catch (error) {
+        toast.error(error.response?.data?.error);
+      }
+    };
     switch (step) {
       case 1:
         return (
@@ -159,6 +210,19 @@ const CheckoutPage = ({ giftBox, selectedGiftBox, amount, quantity }) => {
                 required
               />
             </form>
+            <div className="flex flex-col border-opacity-50">
+              <div className="divider">OR</div>
+              <label className="label cursor-pointer w-40 mx-auto">
+                <span className="label-text">Cash on Delivery</span>
+                <input
+                  onClick={handleChecked}
+                  type="radio"
+                  name="radio-10"
+                  className="radio checked:bg-blue-500"
+                  checked={term}
+                />
+              </label>
+            </div>
             <NextBackButton
               handlePrevStep={handlePrevStep}
               handleNextStep={handleNextStep}
@@ -209,8 +273,9 @@ const CheckoutPage = ({ giftBox, selectedGiftBox, amount, quantity }) => {
                   </div>
                   <div className="flex-1">
                     <h2 className="font-bold">Payment Details</h2>
-                    {`${cardName}, ${cardNumber},`}
-                    {` ${expiry}, ${cvv}`}
+                    {/* {`${cardName}, ${cardNumber},`}
+                    {` ${expiry}, ${cvv}`} */}
+                    {cod}
                   </div>
                 </div>
               </div>

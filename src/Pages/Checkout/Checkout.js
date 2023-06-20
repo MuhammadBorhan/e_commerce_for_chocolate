@@ -9,7 +9,6 @@ const Checkout = () => {
   const selectedGiftBox = location?.state?.selectedGiftBox;
   const amount = location?.state?.grandTotal;
   const selectBox = location?.state?.selectedBox;
-  console.log(giftBox, selectedGiftBox, amount, quantity);
 
   const [image, setImage] = useState();
   const handleSelect = (img) => {
@@ -76,6 +75,7 @@ const Checkout = () => {
             selectedGiftBox={selectedGiftBox}
             amount={amount}
             quantity={quantity}
+            selectBox={selectBox}
           />
         </div>
       </div>
