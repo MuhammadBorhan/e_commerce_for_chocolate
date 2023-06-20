@@ -18,17 +18,17 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+          <Link to="/user/dashboard/order-history" className="flex items-center gap-x-1">
             <MdOutlineWorkHistory /> <span>Order History</span>
           </Link>
         </li>
         <li>
-          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+          <Link to="/user/dashboard/shipping-address" className="flex items-center gap-x-1">
             <FaRegAddressCard /> <span>Shipping Address</span>
           </Link>
         </li>
         <li>
-          <Link to="/dashboard/order-history" className="flex items-center gap-x-1">
+          <Link to="/user/dashboard/payment" className="flex items-center gap-x-1">
             <MdPayment /> <span>Payment Method</span>
           </Link>
         </li>

@@ -39,6 +39,9 @@ import DashbordHome from "../Pages/UserDashboard/DashbordHome";
 import Order from "../Pages/UserDashboard/Order/Order";
 import Checkout from "../Pages/Checkout/Checkout";
 import PrivateRoute from "./PrivateRoute";
+import ShippingAddress from "../Pages/UserDashboard/ShippingAddress/ShippingAddress";
+import Payment from "../Pages/UserDashboard/Payment/Payment";
+import UpdateShippingAddress from "../Pages/UserDashboard/ShippingAddress/UpdateShippingAddress";
 // import RequireAuth from "../Components/RequireAuth";
 
 const routes = createBrowserRouter([
@@ -205,6 +208,18 @@ const routes = createBrowserRouter([
           {
             path: "/user/dashboard/order-history",
             element: <Order />,
+          },
+          {
+            path: "/user/dashboard/shipping-address",
+            element: <ShippingAddress />,
+          },
+          {
+            path: "/user/dashboard/shipping-address/:id",
+            element: <UpdateShippingAddress />,
+          },
+          {
+            path: "/user/dashboard/payment",
+            element: <Payment />,
           },
         ],
       },
