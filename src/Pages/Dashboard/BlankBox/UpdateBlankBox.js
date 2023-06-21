@@ -15,7 +15,7 @@ const UpdateBlankBox = () => {
 
   const [getData, setGetData] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/blankBox/${id}`)
+    fetch(`http://localhost:5003/api/v1/blankBox/${id}`)
       .then((res) => res.json())
       .then((data) => setGetData(data?.data));
   }, []);
@@ -30,7 +30,7 @@ const UpdateBlankBox = () => {
     //   formData.append("image", image);
 
     //   const response = await axios.patch(
-    //     `http://localhost:5000/api/v1/blankBox/${id}`,
+    //     `http://localhost:5003/api/v1/blankBox/${id}`,
     //     formData,
     //     {
     //       headers: {
@@ -57,7 +57,7 @@ const UpdateBlankBox = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/blankBox/${id}`,
+        `http://localhost:5003/api/v1/blankBox/${id}`,
         data,
         {
           headers: {
@@ -114,7 +114,7 @@ const UpdateBlankBox = () => {
 
                 <div className="w-full flex">
                   <img
-                    src={`http://localhost:5000/${getData?.image}`}
+                    src={`http://localhost:5003/${getData?.image}`}
                     className="w-[10%]"
                   />
                   <input

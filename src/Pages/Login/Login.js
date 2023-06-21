@@ -4,25 +4,42 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 import { toast } from "react-toastify";
+import { useGetUserQuery } from "../../features/api/loginApi";
 const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
+  console.log(from,location)
   const { register, handleSubmit } = useForm();
+  const { data,isLoading } = useGetUserQuery();
+    
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center mt-12">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+        {/* <p className="mt-4 text-gray-900">Loading...</p> */}
+      </div>
+    );
+  }
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/login`,
+        `http://localhost:5003/api/v1/login`,
         data
       );
       const accessToken = await response?.data?.data?.token;
       localStorage.setItem("accessToken", accessToken);
 
-      const from = location.state?.path || "/user/dashboard";
-      console.log(from);
+      // const from = location.state?.path || "/user/dashboard";
+      console.log(response)
+      // console.log(from);
       if (response?.data?.data?.user?.role === "admin") {
-        navigate("/dashboard");
-      } else if (response?.data?.data?.user?.role === "user") {
-        navigate(from, { replace: true });
+        // navigate(from,{replace:true})
+        navigate('/dashboard')
+      } else {
+        console.log('else',from)
+        navigate(from, {replace: true})
+        // navigate('/dashboard')
       }
     } catch (error) {
       toast.error(error.response?.data?.error);

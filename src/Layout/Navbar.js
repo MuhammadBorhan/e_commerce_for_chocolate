@@ -14,12 +14,12 @@ import { useGetUserQuery } from "../features/api/loginApi";
 const Navbar = () => {
   const { data } = useGetUserQuery();
   const user = data?.data;
-
+  console.log('navbar',user)
   // let { pathname } = useLocation();
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
-  //   fetch("http://localhost:5000/api/v1/me", {
+  //   fetch("http://localhost:5003/api/v1/me", {
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -17,7 +17,7 @@ const UpdateRegionDistrict = () => {
 
   const [regionDistrict, setRegionDistrict] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/region/${id}`;
+    const url = `http://localhost:5003/api/v1/region/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -60,14 +60,9 @@ const UpdateRegionDistrict = () => {
       district: [...getDistrict, ...newDistrict],
     };
     try {
-      const response = await axios.patch(
-        `http://localhost:5000/api/v1/region/${id}`,
-        newDistrictData,
-        {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
+      const res = await axios.patch(
+        `http://localhost:5003/api/v1/region/${id}`,
+        newDistrictData
       );
 
       if (response) {

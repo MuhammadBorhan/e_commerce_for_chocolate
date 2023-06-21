@@ -106,7 +106,7 @@ const BrandsItem = () => {
         <div
           className="h-48 bg-cover bg-center bg-no-repeat w-full relative -mt-10"
           style={{
-            backgroundImage: `url(${`http://localhost:5000/uploads/${brands?.image}`})`,
+            backgroundImage: `url(${`http://localhost:5003/uploads/${brands?.image}`})`,
           }}
         >
           <div
@@ -114,7 +114,7 @@ const BrandsItem = () => {
             style={{ zIndex: "2" }}
           >
             <img
-              src={`http://localhost:5000/uploads/${brands?.logo}`}
+              src={`http://localhost:5003/uploads/${brands?.logo}`}
               alt="Logo"
               className="w-full h-full object-center "
             />
@@ -135,7 +135,7 @@ const BrandsItem = () => {
               >
                 <div className="flex-1 flex justify-center">
                   <img
-                    src={`http://localhost:5000/${box?.image}`}
+                    src={`http://localhost:5003/${box?.image}`}
                     alt=""
                     className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                   />
@@ -169,7 +169,7 @@ const BrandsItem = () => {
             <div className="card hidden lg:block">
               <figure className="px-10 pt-10">
                 <img
-                  src={`http://localhost:5000/${box?.image}`}
+                  src={`http://localhost:5003/${box?.image}`}
                   alt=""
                   className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                 />
@@ -189,7 +189,7 @@ const BrandsItem = () => {
             <div className="mt-4 card shadow-xl lg:hidden ">
               <figure>
                 <img
-                  src={`http://localhost:5000/${box?.image}`}
+                  src={`http://localhost:5003/${box?.image}`}
                   alt={box?.name}
                   classNmae="w-[200px]"
                 />
@@ -229,39 +229,39 @@ const BrandsItem = () => {
             <h2 className="text-[#9A583B] mt-4 font-bold lg:hidden ">
               Products
             </h2>
-            <div className="flex flex-col absolute right-0 mt-20 bg-[#9A583B] text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+            <div className="flex flex-col absolute right-8 mt-20 bg-slate-500 text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
               <button
                 onClick={() => handleFilter("All")}
                 title="All Products"
                 className={
-                  activeFilter === "All" ? "text-green-500 font-bold" : ""
+                  activeFilter === "All" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 A
               </button>
               <button
                 onClick={() => handleFilter("Black")}
-                title="Black"
+                title="Black Chocolate"
                 className={
-                  activeFilter === "Black" ? "text-green-500 font-bold" : ""
+                  activeFilter === "Black" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 B
               </button>
               <button
                 onClick={() => handleFilter("White")}
-                title="White"
+                title="White Chocolate"
                 className={
-                  activeFilter === "White" ? "text-green-500 font-bold" : ""
+                  activeFilter === "White" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 W
               </button>
               <button
                 onClick={() => handleFilter("Milk")}
-                title="Milk"
+                title="Milk Chocolate"
                 className={
-                  activeFilter === "Milk" ? "text-green-500 font-bold" : ""
+                  activeFilter === "Milk" ? "text-yellow-800 font-bold" : ""
                 }
               >
                 M
@@ -281,7 +281,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`http://localhost:5000/${product?.image}`}
+                          src={`http://localhost:5003/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -304,7 +304,7 @@ const BrandsItem = () => {
                     >
                       <figure>
                         <img
-                          src={`http://localhost:5000/${product?.image}`}
+                          src={`http://localhost:5003/${product?.image}`}
                           alt="Product"
                           className="w-[70px]"
                         />
@@ -349,10 +349,10 @@ const BrandsItem = () => {
                       <a
                         key={index}
                         className="glightbox card shadow-xl"
-                        href={`http://localhost:5000/${product?.image}`}
+                        href={`http://localhost:5003/${product?.image}`}
                       >
                         <img
-                          src={`http://localhost:5000/${product?.image}`}
+                          src={`http://localhost:5003/${product?.image}`}
                           alt="Image"
                           className="w-[150px] m-auto"
                         />
@@ -368,10 +368,10 @@ const BrandsItem = () => {
                       <a
                         key={index}
                         className="glightbox card shadow-xl"
-                        href={`http://localhost:5000/${product?.image}`}
+                        href={`http://localhost:5003/${product?.image}`}
                       >
                         <img
-                          src={`http://localhost:5000/${product?.image}`}
+                          src={`http://localhost:5003/${product?.image}`}
                           alt="Image"
                           className="w-[150px] m-auto"
                         />
@@ -420,7 +420,7 @@ const BrandsItem = () => {
                 >
                   <figure className=" ">
                     <img
-                      src={`http://localhost:5000/${event?.image}`}
+                      src={`http://localhost:5003/${event?.image}`}
                       alt={brands?.name}
                       className="h-[250px] w-full mt-1"
                       style={{ borderRadius: "25px 25px 0 0" }}
@@ -496,7 +496,7 @@ const BrandsItem = () => {
                 <figure>
                   <Link to={`/delivery/${box?.name}`} state={box}>
                     <img
-                      src={`http://localhost:5000/${box?.image}`}
+                      src={`http://localhost:5003/${box?.image}`}
                       alt="box"
                       className="w-[150px] lg:w-[240px] lg:h-[240px]"
                     />

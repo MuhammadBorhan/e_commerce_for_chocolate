@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
-import Marquee from "react-fast-marquee";
 import { GiModernCity } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -272,7 +271,7 @@ const Regions = () => {
             <SwiperSlide className="bswiper-slide" key={index}>
               <Link to={`/brands/${product?.name}`} state={product} key={index}>
                 <img
-                  src={`http://localhost:5000/uploads/${product?.image}`}
+                  src={`http://localhost:5003/uploads/${product?.image}`}
                   alt={product?.name}
                   className="h-48 w-48 object-cover"
                 />

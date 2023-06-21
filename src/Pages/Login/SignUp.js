@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const location = useLocation();
+  
 
   const onSubmit = async (data) => {
     // const { confirmPassword: cfw, ...others } = data;
@@ -21,7 +21,7 @@ const SignUp = () => {
     // } else {
     //   try {
     //     const response = await axios.post(
-    //       `http://localhost:5000/api/v1/signup`,
+    //       `http://localhost:5003/api/v1/signup`,
     //       others
     //     );
     //     const accessToken = response?.data?.token;
@@ -39,17 +39,17 @@ const SignUp = () => {
     try {
       const { confirmPassword: cfw, ...others } = data;
       const response = await axios.post(
-        `http://localhost:5000/api/v1/signup`,
+        `http://localhost:5003/api/v1/signup`,
         others
       );
       const accessToken = response?.data?.token;
       localStorage.setItem("accessToken", accessToken);
 
-      const from = location.state?.from?.pathname || "/user/dashboard";
+      // const from = location.state?.from?.pathname || "/user/dashboard";
       if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
       } else {
-        navigate(from, { replace: true });
+        navigate('/dashboard');
       }
     } catch (error) {
       toast.error(error?.response?.data?.error);

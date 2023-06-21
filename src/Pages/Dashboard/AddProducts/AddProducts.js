@@ -25,7 +25,7 @@ const AddProdusts = () => {
       formData.append("desc", desc);
       formData.append("image", image);
       const response = await axios.post(
-        "http://localhost:5000/api/v1/products",
+        "http://localhost:5003/api/v1/products",
         formData,
         {
           headers: {
