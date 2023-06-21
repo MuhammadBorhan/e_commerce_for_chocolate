@@ -181,8 +181,8 @@ const Navbar = () => {
                 <li className={user?.role === "user" && "hidden"}>
                   <Link to="/dashboard">Dashborad</Link>
                 </li>
-                <li>
-                  <Link to="/user/dashboard">User Dashborad</Link>
+                <li className={user?.role === "admin" && "hidden"}>
+                  <Link to="/user/dashboard">Dashborad</Link>
                 </li>
 
                 <li>
