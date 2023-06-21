@@ -3,6 +3,7 @@ import NextBackButton from "./NextBackButton";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useGetUserQuery } from "../../features/api/loginApi";
+import { v4 as uuidv4 } from "uuid";
 
 const CheckoutPage = ({
   giftBox,
@@ -13,7 +14,15 @@ const CheckoutPage = ({
 }) => {
   const boxName = selectBox?.map((box) => box?.name);
 
-  // get login user
+  // genereate order number by uuid
+  function generateOrderNumber() {
+    const uuid = uuidv4();
+    const truncatedOrderNumber = uuid.substr(0, 6);
+    return truncatedOrderNumber;
+  }
+  const orderNumber = generateOrderNumber();
+
+  // get login user email
   const { data, isLoading } = useGetUserQuery();
   const email = data?.data?.email;
 
@@ -74,6 +83,7 @@ const CheckoutPage = ({
         product: giftBox?.name || selectedGiftBox?.name,
         boxName,
         email,
+        orderNumber,
       };
       try {
         const response = await axios.post(
@@ -266,7 +276,7 @@ const CheckoutPage = ({
                   <span className="">Total:</span>{" "}
                   <span className="text-xl ">${amount}</span>
                 </p>
-                <div className="flex justify-between py-4">
+                <div className="flex justify-between gap-x-2 py-4">
                   <div className="flex-1">
                     <h2 className="font-bold">Shipping Info</h2>
                     {`${firstName} ${lastName}`}
@@ -295,8 +305,14 @@ const CheckoutPage = ({
             <h2 className="text-xl font-bold">Order Success</h2>
             <div>
               <h3>
-                Thank You {firstName} {lastName} For Your Order
+                Thank You {firstName} {lastName} For Your Order.
               </h3>
+              <p className="text-justify" style={{ lineHeight: "30px" }}>
+                We have emailed your order confirmation. If you have not
+                received your order confirmation mail, please contact us on this{" "}
+                <b>+8801620101010</b> or by
+                <b> chocolate@gmail.com</b> <br /> Thank You
+              </p>
             </div>
           </div>
         );
