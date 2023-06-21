@@ -1,12 +1,26 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useGetUserQuery } from "../../../features/api/loginApi";
 
 const Order = () => {
+  const { data } = useGetUserQuery();
+  const user = data?.data;
+
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/orders")
-      .then((res) => res.json())
-      .then((data) => setOrders(data?.data));
-  }, []);
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
+        );
+        setOrders(response?.data);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, [user?.role, user?.email]);
 
   return (
     <div>
@@ -29,7 +43,7 @@ const Order = () => {
               {orders?.map((order, index) => {
                 return (
                   <tr key={index}>
-                    <th>#OR00{index + 1}</th>
+                    <th>#OR{order?.orderNumber}</th>
                     {/* <td>#OR{order?.orderNumber}</td> */}
                     <td>{order?.amount}</td>
                     <td>{order?.quantity}</td>

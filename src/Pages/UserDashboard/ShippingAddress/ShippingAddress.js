@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGetUserQuery } from "../../../features/api/loginApi";
+import axios from "axios";
 
 const ShippingAddress = () => {
+  const { data } = useGetUserQuery();
+  const user = data?.data;
+
   const [addresses, setAddresses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/orders")
-      .then((res) => res.json())
-      .then((data) => setAddresses(data?.data));
-  }, []);
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
+        );
+        setAddresses(response?.data);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, [user?.role, user?.email]);
   return (
     <div>
       <div className="p-8">
