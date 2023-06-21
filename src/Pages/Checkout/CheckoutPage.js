@@ -40,8 +40,8 @@ const CheckoutPage = ({
     // Shipping Address
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [address1, setAddress1] = useState("");
-    const [address2, setAddress2] = useState("");
+    const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
     const [region, setRegion] = useState();
     const [district, setDistrict] = useState("");
     const [state, setState] = useState("");
@@ -71,8 +71,8 @@ const CheckoutPage = ({
       const data = {
         firstName,
         lastName,
-        address1,
-        address2,
+        address,
+        phone,
         region,
         district,
         state,
@@ -126,17 +126,17 @@ const CheckoutPage = ({
               />
               <input
                 type="text"
-                value={address1}
-                onChange={(e) => setAddress1(e.target.value)}
-                placeholder="Address 1 *"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Address *"
                 className="border-b focus:outline-none"
                 required
               />
               <input
                 type="text"
-                value={address2}
-                onChange={(e) => setAddress2(e.target.value)}
-                placeholder="Address 2"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone Number *"
                 className="border-b focus:outline-none"
                 required
               />
@@ -281,8 +281,10 @@ const CheckoutPage = ({
                 <div className="flex justify-between gap-x-2 py-4">
                   <div className="flex-1">
                     <h2 className="font-bold">Shipping Info</h2>
-                    {`${firstName} ${lastName}`}
-                    {`${zip}, ${state}, ${district}, ${region}`}
+                    {firstName} {lastName} <br />
+                    {phone} <br />
+                    {region ? region + "," : ""}{" "}
+                    {district ? district + "," : ""}
                   </div>
                   <div className="flex-1">
                     <h2 className="font-bold">Payment Details</h2>

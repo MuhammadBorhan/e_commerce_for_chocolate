@@ -51,6 +51,7 @@ const UpdateGiftBox = () => {
           },
         }
       );
+      console.log(response);
       if (response) {
         navigate("/dashboard/giftitemlist");
       }

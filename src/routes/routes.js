@@ -39,6 +39,7 @@ import DashbordHome from "../Pages/UserDashboard/DashbordHome";
 import Order from "../Pages/UserDashboard/Order/Order";
 import RequireAuth from "../Components/RequireAuth";
 import Checkout from "../Pages/Checkout/Checkout";
+import ShippingAddress from "../Pages/UserDashboard/ShippingAddress/ShippingAddress";
 
 const routes = createBrowserRouter([
   {
@@ -204,6 +205,10 @@ const routes = createBrowserRouter([
           {
             path: "/user/dashboard/order-history",
             element: <Order />,
+          },
+          {
+            path: "/user/dashboard/shipping-address",
+            element: <ShippingAddress />,
           },
         ],
       },

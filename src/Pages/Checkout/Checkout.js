@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import CheckoutPage from "./CheckoutPage";
 
 const Checkout = () => {
-  const location = useLocation();
-
   const getData = JSON.parse(localStorage.getItem("checkout"));
-  console.log("from localstorage", getData);
-
   const choosegiftBox = getData?.data;
   const selectedGiftBox = getData?.selectedGiftBox;
   const quantity = getData?.quantity;

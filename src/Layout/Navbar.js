@@ -178,9 +178,13 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-52"
               >
-                <li>
+                <li className={user?.role === "user" && "hidden"}>
                   <Link to="/dashboard">Dashborad</Link>
                 </li>
+                <li>
+                  <Link to="/user/dashboard">User Dashborad</Link>
+                </li>
+
                 <li>
                   {" "}
                   <button onClick={logOut} className="">

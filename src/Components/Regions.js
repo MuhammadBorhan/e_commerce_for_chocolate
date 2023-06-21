@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useGetAllRegionQuery } from "../features/api/regionApi";
 import { useGetAllTrendGiftQuery } from "../features/api/trendingGift";
 import { useGetAllBrandsQuery } from "../features/api/brandApi";
-import Marquee from "react-fast-marquee";
 import { GiModernCity } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
 

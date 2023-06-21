@@ -125,7 +125,8 @@ const AddToCart = () => {
                 <div className="relative">
                   <img
                     src={`http://localhost:5000/${box?.image}`}
-                    className="w-12 h-12 "
+                    className="w-12 h-12"
+                    onClick={() => handleRemove(box)}
                   />
                   <span
                     onClick={() => handleRemove(box)}
@@ -306,7 +307,7 @@ const AddToCart = () => {
               >
                 <img
                   src={`http://localhost:5000/${data?.image}`}
-                  className="w-16 h-16 lg:w-32 lg:h-32 object-cover cursor-pointer"
+                  className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
                 />
                 <p className="text-xs lg:text-sm">{data?.name}</p>
               </SwiperSlide>
