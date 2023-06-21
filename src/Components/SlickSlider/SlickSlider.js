@@ -53,7 +53,7 @@ const SlickSlider = ({ data, giftboxproduct }) => {
           <div className="card cards h-[200px] lg:h-[290px] bg- " key={index}>
             <div className="card-top">
               <img
-                src={`http://localhost:5003/${data?.image}`}
+                src={`http://localhost:5000/${data?.image}`}
                 alt={data?.name}
                 className=" w-32 h-32 lg:w-48 lg:h-48 m-auto object-cover "
               />

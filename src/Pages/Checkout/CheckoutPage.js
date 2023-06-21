@@ -2,15 +2,29 @@ import { useState } from "react";
 import NextBackButton from "./NextBackButton";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useGetUserQuery } from "../../features/api/loginApi";
+import { v4 as uuidv4 } from "uuid";
 
 const CheckoutPage = ({
-  giftBox,
+  choosegiftBox,
   selectedGiftBox,
   amount,
   quantity,
   selectBox,
 }) => {
   const boxName = selectBox?.map((box) => box?.name);
+
+  // genereate order number by uuid
+  function generateOrderNumber() {
+    const uuid = uuidv4();
+    const truncatedOrderNumber = uuid.substr(0, 6);
+    return truncatedOrderNumber;
+  }
+  const orderNumber = generateOrderNumber();
+
+  // get login user email
+  const { data, isLoading } = useGetUserQuery();
+  const email = data?.data?.email;
 
   const [step, setStep] = useState(1);
 
@@ -26,8 +40,8 @@ const CheckoutPage = ({
     // Shipping Address
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [address1, setAddress1] = useState("");
-    const [address2, setAddress2] = useState("");
+    const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
     const [region, setRegion] = useState();
     const [district, setDistrict] = useState("");
     const [state, setState] = useState("");
@@ -57,8 +71,8 @@ const CheckoutPage = ({
       const data = {
         firstName,
         lastName,
-        address1,
-        address2,
+        address,
+        phone,
         region,
         district,
         state,
@@ -66,22 +80,20 @@ const CheckoutPage = ({
         cod,
         quantity,
         amount,
-        product: giftBox?.name || selectedGiftBox?.name,
+        product: choosegiftBox?.name || selectedGiftBox?.name,
         boxName,
+        email,
+        orderNumber,
       };
       try {
         const response = await axios.post(
           "http://localhost:5000/api/v1/orders",
           data
-          // {
-          //   headers: {
-          //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          //   },
-          // }
         );
         console.log(response);
         if (response) {
           toast.success(response?.data?.message);
+          localStorage.removeItem("checkout");
         }
       } catch (error) {
         toast.error(error.response?.data?.error);
@@ -114,17 +126,17 @@ const CheckoutPage = ({
               />
               <input
                 type="text"
-                value={address1}
-                onChange={(e) => setAddress1(e.target.value)}
-                placeholder="Address 1 *"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Address *"
                 className="border-b focus:outline-none"
                 required
               />
               <input
                 type="text"
-                value={address2}
-                onChange={(e) => setAddress2(e.target.value)}
-                placeholder="Address 2"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone Number *"
                 className="border-b focus:outline-none"
                 required
               />
@@ -166,6 +178,7 @@ const CheckoutPage = ({
               handleNextStep={handleNextStep}
               handlePlaceOrder={handlePlaceOrder}
               step={step}
+              firstName={firstName}
             />
           </div>
         );
@@ -244,13 +257,13 @@ const CheckoutPage = ({
                 <p className="flex justify-between pb-2">
                   <span className="">Product: </span>{" "}
                   <span className="">
-                    {giftBox?.name || selectedGiftBox?.name}
+                    {choosegiftBox?.name || selectedGiftBox?.name}
                   </span>
                 </p>
                 <p className="flex justify-between py-2">
                   <span className="">Price:</span>{" "}
                   <span className="text-2xl ">
-                    ${giftBox?.price || selectedGiftBox?.price}
+                    ${choosegiftBox?.price || selectedGiftBox?.price}
                   </span>
                 </p>
                 <p className="flex justify-between">
@@ -265,11 +278,13 @@ const CheckoutPage = ({
                   <span className="">Total:</span>{" "}
                   <span className="text-xl ">${amount}</span>
                 </p>
-                <div className="flex justify-between py-4">
+                <div className="flex justify-between gap-x-2 py-4">
                   <div className="flex-1">
                     <h2 className="font-bold">Shipping Info</h2>
-                    {`${firstName} ${lastName}`}
-                    {`${zip}, ${state}, ${district}, ${region}`}
+                    {firstName} {lastName} <br />
+                    {phone} <br />
+                    {region ? region + "," : ""}{" "}
+                    {district ? district + "," : ""}
                   </div>
                   <div className="flex-1">
                     <h2 className="font-bold">Payment Details</h2>
@@ -294,8 +309,14 @@ const CheckoutPage = ({
             <h2 className="text-xl font-bold">Order Success</h2>
             <div>
               <h3>
-                Thank You {firstName} {lastName} For Your Order
+                Thank You {firstName} {lastName} For Your Order.
               </h3>
+              <p className="text-justify" style={{ lineHeight: "30px" }}>
+                We have emailed your order confirmation. If you have not
+                received your order confirmation mail, please contact us on this{" "}
+                <b>+8801620101010</b> or by
+                <b> chocolate@gmail.com</b> <br /> Thank You
+              </p>
             </div>
           </div>
         );

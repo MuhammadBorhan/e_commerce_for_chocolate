@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import CheckoutPage from "./CheckoutPage";
 
 const Checkout = () => {
-  const location = useLocation();
-  const giftBox = location?.state?.data;
-  const quantity = location?.state?.quantity;
-  const selectedGiftBox = location?.state?.selectedGiftBox;
-  const amount = location?.state?.grandTotal;
-  const selectBox = location?.state?.selectedBox;
+  const getData = JSON.parse(localStorage.getItem("checkout"));
+  const choosegiftBox = getData?.data;
+  const selectedGiftBox = getData?.selectedGiftBox;
+  const quantity = getData?.quantity;
+  const amount = getData?.grandTotal;
+  const selectBox = getData?.selectedBox;
 
   const [image, setImage] = useState();
   const handleSelect = (img) => {
@@ -39,13 +38,13 @@ const Checkout = () => {
               {image ? (
                 <img
                   className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
-                  src={`http://localhost:5003/${image?.image}`}
+                  src={`http://localhost:5000/${image?.image}`}
                 />
               ) : (
                 <img
                   className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
-                  src={`http://localhost:5003/${
-                    giftBox?.image || selectedGiftBox?.image
+                  src={`http://localhost:5000/${
+                    choosegiftBox?.image || selectedGiftBox?.image
                   }`}
                 />
               )}
@@ -56,7 +55,7 @@ const Checkout = () => {
               >
                 {selectBox?.map((box) => (
                   <img
-                    src={`http://localhost:5003/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                     className="w-12 h-12 cursor-pointer"
                     onClick={() => handleSelect(box?.image)}
                   />
@@ -71,7 +70,7 @@ const Checkout = () => {
         {/* Right side */}
         <div className="flex-1">
           <CheckoutPage
-            giftBox={giftBox}
+            choosegiftBox={choosegiftBox}
             selectedGiftBox={selectedGiftBox}
             amount={amount}
             quantity={quantity}

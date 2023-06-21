@@ -17,7 +17,7 @@ const AddBlankBox = () => {
       formData.append("image", image);
 
       const response = await axios.post(
-        "http://localhost:5003/api/v1/blankBox",
+        "http://localhost:5000/api/v1/blankBox",
         formData,
         {
           headers: {

@@ -14,12 +14,12 @@ import { useGetUserQuery } from "../features/api/loginApi";
 const Navbar = () => {
   const { data } = useGetUserQuery();
   const user = data?.data;
-  console.log('navbar',user)
+
   // let { pathname } = useLocation();
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
-  //   fetch("http://localhost:5003/api/v1/me", {
+  //   fetch("http://localhost:5000/api/v1/me", {
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -148,7 +148,7 @@ const Navbar = () => {
 
         {/* icon */}
         <div className="flex lg:gap-5 text-white items-center text-xl lg:text-3xl">
-          <p className="relative mr-6 lg:mr-0">
+          <p className="relative mr-6 lg:mr-0 hidden">
             <Link to="/carts">
               <AiOutlineShoppingCart />
               <span className="absolute top-[-15px] text-sm bg-blue-600 p-1 w-6 h-6 flex justify-center items-center rounded-full left-[12px] lg:left-[20px]">
@@ -156,6 +156,7 @@ const Navbar = () => {
               </span>
             </Link>
           </p>
+
           <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
@@ -177,9 +178,13 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-52"
               >
-                <li>
+                <li className={user?.role === "user" && "hidden"}>
                   <Link to="/dashboard">Dashborad</Link>
                 </li>
+                <li>
+                  <Link to="/user/dashboard">User Dashborad</Link>
+                </li>
+
                 <li>
                   {" "}
                   <button onClick={logOut} className="">
@@ -189,6 +194,11 @@ const Navbar = () => {
               </ul>
             )}
           </div>
+          {!user && (
+            <p className="text-xl">
+              <Link to="/signup">Signup</Link>
+            </p>
+          )}
         </div>
 
         {/* {pathname === "/dashboard" && (

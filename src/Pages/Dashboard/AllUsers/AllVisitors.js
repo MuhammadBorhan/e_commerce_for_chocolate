@@ -7,7 +7,7 @@ const AllVisitors = () => {
   const unique = [...new Map(visitors.map((v) => [v.isp, v])).values()];
 
   useEffect(() => {
-    fetch("http://localhost:5003/api/v1/visitors")
+    fetch("http://localhost:5000/api/v1/visitors")
       .then((res) => res.json())
       .then((data) => setVisitors(data?.data));
   }, []);

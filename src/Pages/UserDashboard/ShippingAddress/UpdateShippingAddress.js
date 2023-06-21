@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UpdateShippingAddress = () => {
-    const { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -19,15 +19,15 @@ const UpdateShippingAddress = () => {
 
   const [shippingAddresses, setShippingAddresses] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5003/api/v1/order/${id}`;
+    const url = `http://localhost:5000/api/v1/order/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setShippingAddresses(data?.data)
+        setShippingAddresses(data?.data);
         setBoxName(data?.data?.boxName);
       });
   }, [id]);
-console.log(shippingAddresses)
+  console.log(shippingAddresses);
   const handleGiftBoxChange = (index, value) => {
     setBoxName[index] = value;
   };
@@ -40,18 +40,17 @@ console.log(shippingAddresses)
     const data = {
       firstName: firstName ? firstName : shippingAddresses?.firstName,
       lastName: lastName ? lastName : shippingAddresses?.lastName,
-      address1 :address1 ? address1 : shippingAddresses?.address1,
-      address2 : address2 ? address2 : shippingAddresses?.address2,
+      address1: address1 ? address1 : shippingAddresses?.address1,
+      address2: address2 ? address2 : shippingAddresses?.address2,
       region: region ? region : shippingAddresses?.region,
       district: district ? district : shippingAddresses?.district,
       state: state ? state : shippingAddresses?.state,
-      zip: zip ? zip: shippingAddresses?.zip,
+      zip: zip ? zip : shippingAddresses?.zip,
       boxName: boxName ? boxName : boxName?.boxName,
-
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5003/api/v1/order/${id}`,
+        `http://localhost:5000/api/v1/order/${id}`,
         data,
         {
           headers: {
@@ -59,7 +58,7 @@ console.log(shippingAddresses)
           },
         }
       );
-      console.log(response)
+      console.log(response);
       if (response) {
         navigate("/user/dashboard/shipping-address");
       }
@@ -74,8 +73,8 @@ console.log(shippingAddresses)
   const handleterm = () => {
     setTerm(!term);
   };
-    return (
-       <div className="flex justify-center overflow-auto items-center mt-12">
+  return (
+    <div className="flex justify-center overflow-auto items-center mt-12">
       <div
         className="card bg-base-100 overflow-auto mb-12 rounded-none"
         style={{ boxShadow: "1px 0px 3px 1px lightblue" }}
@@ -87,7 +86,7 @@ console.log(shippingAddresses)
           {
             <form onSubmit={handleSubmit} className="text-center">
               <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 my-2  ">
-              <div>
+                <div>
                   <h1 className="text-xl font-bold my-2">Box Name</h1>
                   {boxName?.map((box, index) => (
                     <div
@@ -98,8 +97,8 @@ console.log(shippingAddresses)
                         type="text"
                         defaultValue={box}
                         onChange={(e) =>
-                            handleGiftBoxChange(index, e.target.value)
-                          }
+                          handleGiftBoxChange(index, e.target.value)
+                        }
                         className="input input-bordered h-8 rounded-none focus:border-none mt-2 w-full max-w-xs"
                       />
                     </div>
@@ -232,7 +231,7 @@ console.log(shippingAddresses)
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default UpdateShippingAddress;
