@@ -5,6 +5,7 @@ const NextBackButton = ({
   handleNextStep,
   handlePlaceOrder,
   step,
+  firstName,
 }) => {
   return (
     <div className="">

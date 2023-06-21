@@ -63,6 +63,7 @@ const AddToCart = () => {
     selectedGiftBox,
     quantity,
   };
+  localStorage.setItem("checkout", JSON.stringify(sendStateToCheckout));
 
   return (
     <div className="p-12">

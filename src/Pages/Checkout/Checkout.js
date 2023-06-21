@@ -4,11 +4,15 @@ import CheckoutPage from "./CheckoutPage";
 
 const Checkout = () => {
   const location = useLocation();
-  const giftBox = location?.state?.data;
-  const quantity = location?.state?.quantity;
-  const selectedGiftBox = location?.state?.selectedGiftBox;
-  const amount = location?.state?.grandTotal;
-  const selectBox = location?.state?.selectedBox;
+
+  const getData = JSON.parse(localStorage.getItem("checkout"));
+  console.log("from localstorage", getData);
+
+  const choosegiftBox = getData?.data;
+  const selectedGiftBox = getData?.selectedGiftBox;
+  const quantity = getData?.quantity;
+  const amount = getData?.grandTotal;
+  const selectBox = getData?.selectedBox;
 
   const [image, setImage] = useState();
   const handleSelect = (img) => {
@@ -45,7 +49,7 @@ const Checkout = () => {
                 <img
                   className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
                   src={`http://localhost:5000/${
-                    giftBox?.image || selectedGiftBox?.image
+                    choosegiftBox?.image || selectedGiftBox?.image
                   }`}
                 />
               )}
@@ -71,7 +75,7 @@ const Checkout = () => {
         {/* Right side */}
         <div className="flex-1">
           <CheckoutPage
-            giftBox={giftBox}
+            choosegiftBox={choosegiftBox}
             selectedGiftBox={selectedGiftBox}
             amount={amount}
             quantity={quantity}

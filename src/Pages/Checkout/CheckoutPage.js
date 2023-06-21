@@ -6,7 +6,7 @@ import { useGetUserQuery } from "../../features/api/loginApi";
 import { v4 as uuidv4 } from "uuid";
 
 const CheckoutPage = ({
-  giftBox,
+  choosegiftBox,
   selectedGiftBox,
   amount,
   quantity,
@@ -80,7 +80,7 @@ const CheckoutPage = ({
         cod,
         quantity,
         amount,
-        product: giftBox?.name || selectedGiftBox?.name,
+        product: choosegiftBox?.name || selectedGiftBox?.name,
         boxName,
         email,
         orderNumber,
@@ -93,6 +93,7 @@ const CheckoutPage = ({
         console.log(response);
         if (response) {
           toast.success(response?.data?.message);
+          localStorage.removeItem("checkout");
         }
       } catch (error) {
         toast.error(error.response?.data?.error);
@@ -177,6 +178,7 @@ const CheckoutPage = ({
               handleNextStep={handleNextStep}
               handlePlaceOrder={handlePlaceOrder}
               step={step}
+              firstName={firstName}
             />
           </div>
         );
@@ -255,13 +257,13 @@ const CheckoutPage = ({
                 <p className="flex justify-between pb-2">
                   <span className="">Product: </span>{" "}
                   <span className="">
-                    {giftBox?.name || selectedGiftBox?.name}
+                    {choosegiftBox?.name || selectedGiftBox?.name}
                   </span>
                 </p>
                 <p className="flex justify-between py-2">
                   <span className="">Price:</span>{" "}
                   <span className="text-2xl ">
-                    ${giftBox?.price || selectedGiftBox?.price}
+                    ${choosegiftBox?.price || selectedGiftBox?.price}
                   </span>
                 </p>
                 <p className="flex justify-between">

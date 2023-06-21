@@ -148,7 +148,7 @@ const Navbar = () => {
 
         {/* icon */}
         <div className="flex lg:gap-5 text-white items-center text-xl lg:text-3xl">
-          <p className="relative mr-6 lg:mr-0">
+          <p className="relative mr-6 lg:mr-0 hidden">
             <Link to="/carts">
               <AiOutlineShoppingCart />
               <span className="absolute top-[-15px] text-sm bg-blue-600 p-1 w-6 h-6 flex justify-center items-center rounded-full left-[12px] lg:left-[20px]">
@@ -156,6 +156,7 @@ const Navbar = () => {
               </span>
             </Link>
           </p>
+
           <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
@@ -189,6 +190,11 @@ const Navbar = () => {
               </ul>
             )}
           </div>
+          {!user && (
+            <p className="text-xl">
+              <Link to="/signup">Signup</Link>
+            </p>
+          )}
         </div>
 
         {/* {pathname === "/dashboard" && (
