@@ -6,8 +6,8 @@ const RequireAuth = ({ children }) => {
   const location = useLocation();
   const { data, isLoading } = useGetUserQuery();
   const user = data?.data;
+
   const isAuthenticated = localStorage.getItem("accessToken");
-  console.log(isAuthenticated);
 
   if (isLoading) {
     return (

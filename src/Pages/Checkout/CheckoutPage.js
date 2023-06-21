@@ -2,6 +2,7 @@ import { useState } from "react";
 import NextBackButton from "./NextBackButton";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useGetUserQuery } from "../../features/api/loginApi";
 
 const CheckoutPage = ({
   giftBox,
@@ -11,6 +12,10 @@ const CheckoutPage = ({
   selectBox,
 }) => {
   const boxName = selectBox?.map((box) => box?.name);
+
+  // get login user
+  const { data, isLoading } = useGetUserQuery();
+  const email = data?.data?.email;
 
   const [step, setStep] = useState(1);
 
@@ -68,16 +73,12 @@ const CheckoutPage = ({
         amount,
         product: giftBox?.name || selectedGiftBox?.name,
         boxName,
+        email,
       };
       try {
         const response = await axios.post(
           "http://localhost:5000/api/v1/orders",
           data
-          // {
-          //   headers: {
-          //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          //   },
-          // }
         );
         console.log(response);
         if (response) {

@@ -19,6 +19,7 @@ const Login = () => {
       localStorage.setItem("accessToken", accessToken);
 
       const from = location.state?.path || "/user/dashboard";
+      console.log(from);
       if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
       } else if (response?.data?.data?.user?.role === "user") {
