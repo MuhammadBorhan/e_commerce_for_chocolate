@@ -17,7 +17,7 @@ const Order = () => {
             {/* head */}
             <thead>
               <tr>
-                <th>Sl No.</th>
+                <th>Order No.</th>
                 <th>Amount</th>
                 <th>Quantity</th>
                 <th>Gift Box Image</th>
@@ -29,7 +29,8 @@ const Order = () => {
               {orders?.map((order, index) => {
                 return (
                   <tr key={index}>
-                    <th>{index + 1}</th>
+                    <th>#OR00{index + 1}</th>
+                    {/* <td>#OR{order?.orderNumber}</td> */}
                     <td>{order?.amount}</td>
                     <td>{order?.quantity}</td>
                     <td>
