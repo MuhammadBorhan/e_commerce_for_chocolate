@@ -23,12 +23,10 @@ const ShippingAddress = () => {
             <thead>
               <tr>
                 <th>Sl No.</th>
-                <th>Selected Box</th>
                 <th>Name</th>
                 <th>Local Address</th>
                 <th>Region & District</th>
                 <th>State & Zip</th>
-                {/* <th>Brand</th> */}
                 <th>Action</th>
               </tr>
             </thead>
@@ -36,31 +34,19 @@ const ShippingAddress = () => {
               {addresses?.map((address, i) => (
                 <tr key={address._id}>
                   <th>{i + 1}</th>
-                  {/* <th>
-                    {" "}
-                    <img
-                      src={`http://localhost:5003/${product?.image}`}
-                      className="w-16"
-                    />{" "}
-                  </th> */}
-                  <td>
-                    <select className="  rounded-none focus:border-none ">
-                      {address?.boxName?.map((box, index) => (
-                        <option key={index}>{box}</option>
-                      ))}
-                    </select>
-                  </td>
                   <td>
                     {address?.firstName} {address?.lastName}
                   </td>
+                  <td>{address?.address}</td>
                   <td>
-                    {address?.address1},{address?.address2}
+                    {address?.region ? address?.region : "Not Found"}
+                    {address?.district
+                      ? ", " + address?.district
+                      : ", Not Found"}
                   </td>
                   <td>
-                    {address?.region},{address?.district}
-                  </td>
-                  <td>
-                    {address?.state},{address?.zip}
+                    {address?.state ? address?.state : "Not Found"}
+                    {address?.zip ? ", " + address?.zip : ", Not Found"}
                   </td>
                   <td className="">
                     <Link
@@ -72,7 +58,7 @@ const ShippingAddress = () => {
                     </Link>
                     <button
                       //   onClick={() => handleDelete(product?._id)}
-                      className="px-2 bg-red-600 text-white"
+                      className="px-2 bg-red-600 text-white hidden"
                     >
                       Delete
                     </button>

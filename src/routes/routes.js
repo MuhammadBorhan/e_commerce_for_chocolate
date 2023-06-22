@@ -37,10 +37,11 @@ import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
 import UserDashboard from "../Pages/UserDashboard/UserDashboard";
 import DashbordHome from "../Pages/UserDashboard/DashbordHome";
 import Order from "../Pages/UserDashboard/Order/Order";
-import RequireAuth from "../Components/RequireAuth";
+import RequireAuth from "../Components/PrivateRoute/RequireAuth";
 import Checkout from "../Pages/Checkout/Checkout";
 import ShippingAddress from "../Pages/UserDashboard/ShippingAddress/ShippingAddress";
 import Payment from "../Pages/UserDashboard/Payment/Payment";
+import DashboardAuth from "../Components/PrivateRoute/DashboardAuth/DashboardAuth";
 
 const routes = createBrowserRouter([
   {
@@ -73,11 +74,6 @@ const routes = createBrowserRouter([
       },
       {
         path: "/addtocart/:name",
-        // element: (
-        //   <RequireAuth>
-        //     <AddToCart />
-        //   </RequireAuth>
-        // ),
         element: <AddToCart />,
       },
       {
@@ -87,7 +83,6 @@ const routes = createBrowserRouter([
             <Checkout />
           </RequireAuth>
         ),
-        // element: <Checkout />,
       },
       {
         path: "/login",
@@ -103,7 +98,11 @@ const routes = createBrowserRouter([
         children: [
           {
             path: "/dashboard",
-            element: <Dashboard />,
+            element: (
+              <DashboardAuth allowedRoles={["admin"]}>
+                <Dashboard />
+              </DashboardAuth>
+            ),
           },
           {
             path: "/dashboard/addregion",
@@ -197,7 +196,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/user/dashboard",
-        element: <UserDashboard />,
+        element: (
+          <DashboardAuth allowedRoles={["user"]}>
+            <UserDashboard />
+          </DashboardAuth>
+        ),
         children: [
           {
             path: "/user/dashboard",

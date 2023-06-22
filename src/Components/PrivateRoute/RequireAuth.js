@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useGetUserQuery } from "../features/api/loginApi";
+import { useGetUserQuery } from "../../features/api/loginApi";
 
 const RequireAuth = ({ children }) => {
   const location = useLocation();
