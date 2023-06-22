@@ -32,23 +32,18 @@ const SidebarMobile = ({ isOpen, toggleSidebar }) => {
           </Link>
         </li>
         <li>
-          <Link to="/shipping-addresses" onClick={toggleSidebar}>
+          <Link to="/user/dashboard/shipping-address" onClick={toggleSidebar}>
             Shipping Addresses
           </Link>
         </li>
         <li>
-          <Link to="/payment-methods" onClick={toggleSidebar}>
+          <Link to="/user/dashboard/payment" onClick={toggleSidebar}>
             Payment Methods
           </Link>
         </li>
         <li>
           <Link to="/wish-list" onClick={toggleSidebar}>
             Wish List
-          </Link>
-        </li>
-        <li>
-          <Link to="/customer-support" onClick={toggleSidebar}>
-            Customer Support
           </Link>
         </li>
       </ul>
