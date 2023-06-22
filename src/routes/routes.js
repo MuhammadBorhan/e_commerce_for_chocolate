@@ -42,6 +42,8 @@ import Checkout from "../Pages/Checkout/Checkout";
 import ShippingAddress from "../Pages/UserDashboard/ShippingAddress/ShippingAddress";
 import Payment from "../Pages/UserDashboard/Payment/Payment";
 import DashboardAuth from "../Components/PrivateRoute/DashboardAuth/DashboardAuth";
+import Orders from "../Pages/Dashboard/Orders/Orders";
+import Delivered from "../Pages/Dashboard/Orders/Delivered";
 
 const routes = createBrowserRouter([
   {
@@ -191,6 +193,14 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/updateBlankBox/:id",
             element: <UpdateBlankBox />,
+          },
+          {
+            path: "/dashboard/orders",
+            element: <Orders />,
+          },
+          {
+            path: "/dashboard/delivered",
+            element: <Delivered />,
           },
         ],
       },
