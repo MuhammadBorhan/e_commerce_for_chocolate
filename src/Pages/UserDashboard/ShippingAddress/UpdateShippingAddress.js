@@ -19,7 +19,7 @@ const UpdateShippingAddress = () => {
 
   const [shippingAddresses, setShippingAddresses] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/order/${id}`;
+    const url = `http://localhost:5003/api/v1/order/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -50,7 +50,7 @@ const UpdateShippingAddress = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/order/${id}`,
+        `http://localhost:5003/api/v1/order/${id}`,
         data,
         {
           headers: {

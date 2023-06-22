@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ShippingAddress = () => {
   const [addresses, setAddresses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/orders")
+    fetch("http://localhost:5003/api/v1/orders")
       .then((res) => res.json())
       .then((data) => setAddresses(data?.data));
   }, []);
@@ -34,7 +34,7 @@ const ShippingAddress = () => {
                   {/* <th>
                     {" "}
                     <img
-                      src={`http://localhost:5000/${product?.image}`}
+                      src={`http://localhost:5003/${product?.image}`}
                       className="w-16"
                     />{" "}
                   </th> */}

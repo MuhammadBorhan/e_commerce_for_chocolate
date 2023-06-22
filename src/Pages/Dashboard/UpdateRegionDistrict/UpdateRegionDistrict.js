@@ -17,7 +17,7 @@ const UpdateRegionDistrict = () => {
 
   const [regionDistrict, setRegionDistrict] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/api/v1/region/${id}`;
+    const url = `http://localhost:5003/api/v1/region/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -61,7 +61,7 @@ const UpdateRegionDistrict = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/region/${id}`,
+        `http://localhost:5003/api/v1/region/${id}`,
         newDistrictData,
         {
           headers: {

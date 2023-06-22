@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const Order = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/orders")
+    fetch("http://localhost:5003/api/v1/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data?.data));
   }, []);
@@ -35,13 +35,13 @@ const Order = () => {
                     <td>{order?.quantity}</td>
                     <td>
                       <img
-                        src={`http://localhost:5000/${order?.logo}`}
+                        src={`http://localhost:5003/${order?.logo}`}
                         className="w-16"
                       />
                     </td>
                     <td>
                       <img
-                        src={`http://localhost:5000/${order?.image}`}
+                        src={`http://localhost:5003/${order?.image}`}
                         className="w-32"
                       />
                     </td>
