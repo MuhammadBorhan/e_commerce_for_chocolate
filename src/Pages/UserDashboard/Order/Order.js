@@ -1,6 +1,11 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useGetUserQuery } from "../../../features/api/loginApi";
 
 const Order = () => {
+  const { data } = useGetUserQuery();
+  const user = data?.data;
+
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5003/api/v1/orders")
@@ -29,7 +34,7 @@ const Order = () => {
               {orders?.map((order, index) => {
                 return (
                   <tr key={index}>
-                    <th>#OR00{index + 1}</th>
+                    <th>#OR{order?.orderNumber}</th>
                     {/* <td>#OR{order?.orderNumber}</td> */}
                     <td>{order?.amount}</td>
                     <td>{order?.quantity}</td>

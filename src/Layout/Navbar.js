@@ -164,7 +164,7 @@ const Navbar = () => {
             >
               {user ? (
                 <span className="text-sm flex items-center">
-                  {user?.firstName} ({user?.role}) <AiOutlineCaretDown />
+                  {user?.email} ({user?.role}) <AiOutlineCaretDown />
                 </span>
               ) : (
                 <Link to={"/login"} className="bg-transparent">

@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGetUserQuery } from "../../../features/api/loginApi";
+import axios from "axios";
 
 const ShippingAddress = () => {
+  const { data } = useGetUserQuery();
+  const user = data?.data;
+
   const [addresses, setAddresses] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5003/api/v1/orders")

@@ -40,6 +40,7 @@ import Order from "../Pages/UserDashboard/Order/Order";
 import RequireAuth from "../Components/RequireAuth";
 import Checkout from "../Pages/Checkout/Checkout";
 import ShippingAddress from "../Pages/UserDashboard/ShippingAddress/ShippingAddress";
+import Payment from "../Pages/UserDashboard/Payment/Payment";
 
 const routes = createBrowserRouter([
   {
@@ -209,6 +210,10 @@ const routes = createBrowserRouter([
           {
             path: "/user/dashboard/shipping-address",
             element: <ShippingAddress />,
+          },
+          {
+            path: "/user/dashboard/payment",
+            element: <Payment />,
           },
         ],
       },
