@@ -12,9 +12,9 @@ const DashboardAuth = ({ children, allowedRoles }) => {
 
   if (isLoading) {
     return (
-      <p className="text-center text-danger fs-1 fw-bold loading-issue">
-        Loading...
-      </p>
+      <div className="flex flex-col items-center mt-[20%]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+      </div>
     );
   }
 

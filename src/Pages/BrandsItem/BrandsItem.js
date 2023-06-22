@@ -448,7 +448,7 @@ const BrandsItem = () => {
                     </div>
                   </div>
                   <h3
-                    className=" italic font-bold text-slate-700 mt-6 text-center p-2 text-justify"
+                    className=" italic font-bold text-slate-700 mt-6 p-2 text-justify"
                     // style={{ borderRadius: "0 30px 30px 0" }}
                   >
                     {event?.title}
