@@ -20,6 +20,7 @@ const DashboardLayout = () => {
   const [trShow, setTrShow] = useState(false);
   const [eShow, setEShow] = useState(false);
   const [uShow, setUShow] = useState(false);
+  const [orShow, setOrUShow] = useState(false);
   const [blankShow, setBlankShow] = useState(false);
 
   const handleRegion = () => {
@@ -31,6 +32,7 @@ const DashboardLayout = () => {
     setEShow(false);
     setUShow(false);
     setBlankShow(false);
+    setOrUShow(false);
   };
   const handleProduct = () => {
     setPShow(!pShow);
@@ -41,6 +43,7 @@ const DashboardLayout = () => {
     setEShow(false);
     setUShow(false);
     setBlankShow(false);
+    setOrUShow(false);
   };
   const handleBrand = () => {
     setBShow(!bShow);
@@ -51,6 +54,7 @@ const DashboardLayout = () => {
     setEShow(false);
     setUShow(false);
     setBlankShow(false);
+    setOrUShow(false);
   };
   const handleGiftBox = () => {
     setGShow(!gShow);
@@ -61,6 +65,7 @@ const DashboardLayout = () => {
     setEShow(false);
     setUShow(false);
     setBlankShow(false);
+    setOrUShow(false);
   };
   const handleTrending = () => {
     setTrShow(!trShow);
@@ -71,6 +76,7 @@ const DashboardLayout = () => {
     setEShow(false);
     setUShow(false);
     setBlankShow(false);
+    setOrUShow(false);
   };
   const handleEvent = () => {
     setEShow(!eShow);
@@ -81,6 +87,7 @@ const DashboardLayout = () => {
     setRShow(false);
     setUShow(false);
     setBlankShow(false);
+    setOrUShow(false);
   };
   const handleBlankBox = () => {
     setBlankShow(!blankShow);
@@ -91,6 +98,7 @@ const DashboardLayout = () => {
     setPShow(false);
     setRShow(false);
     setUShow(false);
+    setOrUShow(false);
   };
   const handleUsers = () => {
     setUShow(!uShow);
@@ -101,8 +109,19 @@ const DashboardLayout = () => {
     setPShow(false);
     setRShow(false);
     setBlankShow(false);
+    setOrUShow(false);
   };
-  
+  const handleOrders = () => {
+    setOrUShow(!orShow);
+    setUShow(false);
+    setEShow(false);
+    setTrShow(false);
+    setGShow(false);
+    setBShow(false);
+    setPShow(false);
+    setRShow(false);
+    setBlankShow(false);
+  };
 
   const { data } = useGetUserQuery();
   const users = data?.data;
@@ -375,9 +394,9 @@ const DashboardLayout = () => {
             )}
           </div>
 
-           {/* BlankBox  */}
+          {/* BlankBox  */}
 
-           <div
+          <div
             onClick={handleBlankBox}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
               eShow ? "mt-24" : "mt-0"
@@ -416,11 +435,51 @@ const DashboardLayout = () => {
             )}
           </div>
 
+          {/* orders */}
+          <div
+            onClick={handleOrders}
+            className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
+              blankShow ? "mt-24" : "mt-0"
+            }`}
+          >
+            <label
+              tabIndex={0}
+              className={`ml-2 cursor-pointer flex ${
+                pathname === "/dashboard/orders"
+                  ? "active"
+                  : pathname === "/dashboard/delivered"
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <div className="mt-1 ml-2">
+                <HiOutlineUsers />
+              </div>
+              <div className="ml-2">Orders</div>
+              <div className=" mt-1 ml-2 ">
+                <IoMdArrowDropdown />
+              </div>
+            </label>
+            {orShow && (
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu shadow bg-slate-200  w-50"
+              >
+                <li>
+                  <Link to="/dashboard/orders">Manage Order</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/delivered">Order Delivered</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+
           {/* users */}
           <div
             onClick={handleUsers}
             className={`dropdown dropdown-bottom mb-3 mt-1 shadow-md p-2 rounded-md ${
-              blankShow ? "mt-24" : "mt-0"
+              orShow ? "mt-24" : "mt-0"
             }`}
           >
             <label
@@ -444,6 +503,9 @@ const DashboardLayout = () => {
               >
                 <li>
                   <Link to="/dashboard/alluser">Manage User</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/level_user">Level User</Link>
                 </li>
                 <li>
                   <Link to="/dashboard/visitor">Visitor's</Link>
