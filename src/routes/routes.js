@@ -44,6 +44,7 @@ import Payment from "../Pages/UserDashboard/Payment/Payment";
 import DashboardAuth from "../Components/PrivateRoute/DashboardAuth/DashboardAuth";
 import Orders from "../Pages/Dashboard/Orders/Orders";
 import Delivered from "../Pages/Dashboard/Orders/Delivered";
+import PositionWithLevel from "../Pages/Dashboard/AllUsers/PositionWithLevel";
 
 const routes = createBrowserRouter([
   {
@@ -121,6 +122,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/alluser",
             element: <AllUsers />,
+          },
+          {
+            path: "/dashboard/level_user",
+            element: <PositionWithLevel />,
           },
           {
             path: "/dashboard/visitor",
