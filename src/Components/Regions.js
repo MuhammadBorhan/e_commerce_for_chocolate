@@ -24,6 +24,7 @@ import {
   Mousewheel,
   Keyboard,
 } from "swiper";
+import Container from "./Container";
 
 const Regions = () => {
   const [show, setShow] = useState(false);
@@ -89,7 +90,8 @@ const Regions = () => {
   }
 
   return (
-    <div className="p-12">
+    <Container>
+      <div className="py-12">
       <div className="pb-6 text-center">
         <h3 className="text-xl lg:text-2xl font-bold">Trending Gifts</h3>
         <p>Handpicked for your gifting needs</p>
@@ -282,6 +284,7 @@ const Regions = () => {
         </Swiper>
       </div>
     </div>
+    </Container>
   );
 };
 
