@@ -45,6 +45,8 @@ import DashboardAuth from "../Components/PrivateRoute/DashboardAuth/DashboardAut
 import Orders from "../Pages/Dashboard/Orders/Orders";
 import Delivered from "../Pages/Dashboard/Orders/Delivered";
 import PositionWithLevel from "../Pages/Dashboard/AllUsers/PositionWithLevel";
+import Subscription from "../Pages/UserDashboard/Subscription";
+import SubscriptionUser from "../Pages/Dashboard/AllUsers/SubscriptionUser";
 
 const routes = createBrowserRouter([
   {
@@ -130,6 +132,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/visitor",
             element: <AllVisitors />,
+          },
+          {
+            path: "/dashboard/subscrioption",
+            element: <SubscriptionUser />,
           },
           {
             path: "/dashboard/addbrand",
@@ -232,6 +238,10 @@ const routes = createBrowserRouter([
           {
             path: "/user/dashboard/payment",
             element: <Payment />,
+          },
+          {
+            path: "/user/dashboard/subscription",
+            element: <Subscription />,
           },
         ],
       },

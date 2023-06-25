@@ -505,6 +505,9 @@ const DashboardLayout = () => {
                   <Link to="/dashboard/alluser">Manage User</Link>
                 </li>
                 <li>
+                  <Link to="/dashboard/subscrioption">Subscription</Link>
+                </li>
+                <li>
                   <Link to="/dashboard/level_user">Level User</Link>
                 </li>
                 <li>
