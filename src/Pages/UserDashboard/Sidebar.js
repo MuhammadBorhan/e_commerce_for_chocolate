@@ -1,10 +1,11 @@
 import React from "react";
 import { MdDashboard, MdOutlineWorkHistory, MdPayment } from "react-icons/md";
 import { FaRegAddressCard } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 
 const Sidebar = () => {
+  const { pathname } = useLocation();
   return (
     <div
       className={`bg-[#914221] text-white h-screen p-4 hidden md:block shrink-0 w-[230px]`}
@@ -49,7 +50,13 @@ const Sidebar = () => {
         </li>
       </ul>
       <Link to="/user/dashboard/subscription">
-        <button className=" mt-2 btn btn-outline bg-slate-100 text-yellow-900">
+        <button
+          className={`${
+            pathname === "/user/dashboard/subscription"
+              ? "bg-blue-600 text-white"
+              : "bg-slate-100 text-yellow-900"
+          } mt-2 btn btn-outline hover:bg-slate-100 outline-none hover:outline-none hover:text-yellow-900 hover:border-none border-none `}
+        >
           Add Subscription
         </button>
       </Link>

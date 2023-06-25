@@ -73,7 +73,7 @@ const PositionWithLevel = () => {
     const position = level + ":" + positionWithinLevel;
     return position;
   }
-  getPosition();
+  //   getPosition();
 
   if (isLoading) {
     return (

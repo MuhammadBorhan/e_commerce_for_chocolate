@@ -45,8 +45,8 @@ import DashboardAuth from "../Components/PrivateRoute/DashboardAuth/DashboardAut
 import Orders from "../Pages/Dashboard/Orders/Orders";
 import Delivered from "../Pages/Dashboard/Orders/Delivered";
 import PositionWithLevel from "../Pages/Dashboard/AllUsers/PositionWithLevel";
-import SubscriptionUser from "../Pages/Dashboard/AllUsers/SubscriptionUser";
 import Subscription from "../Pages/UserDashboard/Subscription";
+import SubscriptionUser from "../Pages/Dashboard/AllUsers/SubscriptionUser";
 
 const routes = createBrowserRouter([
   {
