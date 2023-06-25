@@ -48,6 +48,11 @@ const Sidebar = () => {
           </Link>
         </li>
       </ul>
+      <Link to="/user/dashboard/subscription">
+        <button className=" mt-2 btn btn-outline bg-slate-100 text-yellow-900">
+          Add Subscription
+        </button>
+      </Link>
     </div>
   );
 };
