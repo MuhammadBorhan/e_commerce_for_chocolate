@@ -38,12 +38,12 @@ const Checkout = () => {
               {image ? (
                 <img
                   className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
-                  src={`http://localhost:5000/${image?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${image?.image}`}
                 />
               ) : (
                 <img
                   className="w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]"
-                  src={`http://localhost:5000/${
+                  src={`https://andy-chocolate-productions.up.railway.app/${
                     choosegiftBox?.image || selectedGiftBox?.image
                   }`}
                 />
@@ -55,7 +55,7 @@ const Checkout = () => {
               >
                 {selectBox?.map((box) => (
                   <img
-                    src={`http://localhost:5000/${box?.image}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                     className="w-12 h-12 cursor-pointer"
                     onClick={() => handleSelect(box?.image)}
                   />
