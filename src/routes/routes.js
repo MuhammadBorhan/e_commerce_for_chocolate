@@ -47,6 +47,7 @@ import Delivered from "../Pages/Dashboard/Orders/Delivered";
 import PositionWithLevel from "../Pages/Dashboard/AllUsers/PositionWithLevel";
 import Subscription from "../Pages/UserDashboard/Subscription";
 import SubscriptionUser from "../Pages/Dashboard/AllUsers/SubscriptionUser";
+import Affiliate from "../Pages/Dashboard/AllUsers/Affiliate";
 
 const routes = createBrowserRouter([
   {
@@ -136,6 +137,10 @@ const routes = createBrowserRouter([
           {
             path: "/dashboard/subscrioption",
             element: <SubscriptionUser />,
+          },
+          {
+            path: "/dashboard/affiliate",
+            element: <Affiliate />,
           },
           {
             path: "/dashboard/addbrand",

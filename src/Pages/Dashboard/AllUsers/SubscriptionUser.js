@@ -39,7 +39,7 @@ const SubscriptionUser = () => {
       <DashBoardMenu></DashBoardMenu>
       <div className="p-8">
         <div className="overflow-x-auto">
-          <h2 className="text-xl font-bold mt-2">All User</h2>
+          <h2 className="text-xl font-bold mt-2">Add Subscription User</h2>
           <table className="table w-full mt-2">
             {/* head */}
             <thead>
