@@ -14,7 +14,7 @@ const Subscription = () => {
       </h2>
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {packages?.map((pcg) => (
-          <div className="rounded bg-slate-50" key={pcg?._id}>
+          <div className="rounded bg-slate-50 shadow-lg" key={pcg?._id}>
             <div className="card-body items-center text-center ">
               <h2 className="card-title text-2xl font-mono">{pcg?.name}</h2>
               <h2 className="card-title text-xl font-serif">

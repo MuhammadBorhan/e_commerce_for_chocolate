@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useGetUserQuery } from "../../features/api/loginApi";
 
 const SubsCriptionPayment = ({ pcg }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +15,27 @@ const SubsCriptionPayment = ({ pcg }) => {
     document.body.style.overflow = "auto";
   };
 
+  const { data } = useGetUserQuery();
+  const user = data?.data;
+
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCVV] = useState("");
-  const onSubmit = async (data) => {
+  const name = pcg?.name;
+  const handleConfirm = async () => {
     try {
-      const response = await axios.patch(
-        `http://localhost:5000/api/v1//`,
+      const data = {
+        cardName,
+        cardNumber,
+        expiryDate,
+        cvv,
+        name,
+        userName: user?.firstName + " " + user?.lastName,
+        email: user?.email,
+      };
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/subscribe`,
         data
       );
       if (response) {
@@ -86,7 +100,10 @@ const SubsCriptionPayment = ({ pcg }) => {
                     required
                   />
                 </form>
-                <button className="bg-green-600 text-white font-bold px-4 py-1 rounded block mx-auto">
+                <button
+                  onClick={() => handleConfirm()}
+                  className="bg-green-600 text-white font-bold px-4 py-1 rounded block mx-auto"
+                >
                   Confirm
                 </button>
               </div>
