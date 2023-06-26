@@ -21,7 +21,7 @@ const SignUp = () => {
     // } else {
     //   try {
     //     const response = await axios.post(
-    //       `http://localhost:5000/api/v1/signup`,
+    //       `https://andy-chocolate-productions.up.railway.app/api/v1/signup`,
     //       others
     //     );
     //     const accessToken = response?.data?.token;
@@ -39,7 +39,7 @@ const SignUp = () => {
     try {
       const { confirmPassword: cfw, ...others } = data;
       const response = await axios.post(
-        `http://localhost:5000/api/v1/signup`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/signup`,
         others
       );
       const accessToken = response?.data?.token;

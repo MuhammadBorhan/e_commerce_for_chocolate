@@ -19,7 +19,7 @@ const Navbar = () => {
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
-  //   fetch("http://localhost:5000/api/v1/me", {
+  //   fetch("https://andy-chocolate-productions.up.railway.app/api/v1/me", {
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,

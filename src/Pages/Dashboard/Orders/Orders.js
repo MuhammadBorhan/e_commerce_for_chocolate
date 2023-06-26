@@ -8,7 +8,9 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/v1/orders`);
+        const response = await axios.get(
+          `https://andy-chocolate-productions.up.railway.app/api/v1/orders`
+        );
         setOrders(response?.data?.data);
       } catch (error) {
         console.error("Error fetching orders:", error);

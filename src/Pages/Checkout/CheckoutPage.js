@@ -87,7 +87,7 @@ const CheckoutPage = ({
       };
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/orders",
+          "https://andy-chocolate-productions.up.railway.app/api/v1/orders",
           data
         );
         console.log(response);

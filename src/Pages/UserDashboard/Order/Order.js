@@ -20,7 +20,7 @@ const Order = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
+          `https://andy-chocolate-productions.up.railway.app/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
         );
         setOrders(response?.data);
       } catch (error) {
@@ -67,14 +67,14 @@ const Order = () => {
                     <td>${order?.amount}</td>
                     <td>
                       <img
-                        src={`http://localhost:5000/${giftBoxImage[0]?.image}`}
+                        src={`https://andy-chocolate-productions.up.railway.app/${giftBoxImage[0]?.image}`}
                         className="w-16"
                       />
                     </td>
                     <td className="flex gap-x-1 w-28 overflow-x-auto">
                       {blankBoxImage?.map((img) => (
                         <img
-                          src={`http://localhost:5000/${img?.image}`}
+                          src={`https://andy-chocolate-productions.up.railway.app/${img?.image}`}
                           className="w-8"
                         />
                       ))}
