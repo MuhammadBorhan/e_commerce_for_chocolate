@@ -17,10 +17,19 @@ const Order = () => {
   // fetch all order
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5003/api/v1/orders")
-      .then((res) => res.json())
-      .then((data) => setOrders(data?.data));
-  }, []);
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(
+          `https://andy-chocolate-productions.up.railway.app/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
+        );
+        setOrders(response?.data);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, [user?.role, user?.email]);
 
   return (
     <div>
@@ -58,14 +67,14 @@ const Order = () => {
                     <td>${order?.amount}</td>
                     <td>
                       <img
-                        src={`http://localhost:5003/${giftBoxImage[0]?.image}`}
+                        src={`https://andy-chocolate-productions.up.railway.app/${giftBoxImage[0]?.image}`}
                         className="w-16"
                       />
                     </td>
                     <td className="flex gap-x-1 w-28 overflow-x-auto">
                       {blankBoxImage?.map((img) => (
                         <img
-                          src={`http://localhost:5003/${img?.image}`}
+                          src={`https://andy-chocolate-productions.up.railway.app/${img?.image}`}
                           className="w-8"
                         />
                       ))}

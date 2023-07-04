@@ -9,10 +9,19 @@ const ShippingAddress = () => {
 
   const [addresses, setAddresses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5003/api/v1/orders")
-      .then((res) => res.json())
-      .then((data) => setAddresses(data?.data));
-  }, []);
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(
+          `https://andy-chocolate-productions.up.railway.app/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
+        );
+        setAddresses(response?.data);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, [user?.role, user?.email]);
   return (
     <div>
       <div className="p-8">

@@ -15,7 +15,9 @@ const UpdateBlankBox = () => {
 
   const [getData, setGetData] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5003/api/v1/blankBox/${id}`)
+    fetch(
+      `https://andy-chocolate-productions.up.railway.app/api/v1/blankBox/${id}`
+    )
       .then((res) => res.json())
       .then((data) => setGetData(data?.data));
   }, []);
@@ -30,7 +32,7 @@ const UpdateBlankBox = () => {
     //   formData.append("image", image);
 
     //   const response = await axios.patch(
-    //     `http://localhost:5003/api/v1/blankBox/${id}`,
+    //     `https://andy-chocolate-productions.up.railway.app/api/v1/blankBox/${id}`,
     //     formData,
     //     {
     //       headers: {
@@ -57,7 +59,7 @@ const UpdateBlankBox = () => {
     };
     try {
       const response = await axios.patch(
-        `http://localhost:5003/api/v1/blankBox/${id}`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/blankBox/${id}`,
         data,
         {
           headers: {
@@ -114,7 +116,7 @@ const UpdateBlankBox = () => {
 
                 <div className="w-full flex">
                   <img
-                    src={`http://localhost:5003/${getData?.image}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/${getData?.image}`}
                     className="w-[10%]"
                   />
                   <input

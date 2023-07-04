@@ -20,38 +20,40 @@ const GiftBox = () => {
   const allGiftbox = getGiftBox?.data;
 
   return (
-    <Container><div className="container-new">
-    <div className="row py-5">
-      <h4 className="text-center pb-3 text-xl font-bold">Gift Box</h4>
-      <div className="">
-        <Swiper
-          // loop={true}
-          navigation={true}
-          keyboard={true}
-          slidesPerView={5}
-          spaceBetween={10}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination, Navigation, Keyboard]}
-          className="rgboxswiperr"
-        >
-          {allGiftbox?.map((box, index) => (
-            <SwiperSlide className="rgboxswiper-slider pt-6 pb-8">
-              <Link to={`/delivery/${box?.name}`} state={box}>
-                <img
-                  src={`http://localhost:5003/${box.image}`}
-                  className="h-48 w-48 object-cover"
-                />
-                <p>{box.name}</p>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+    <div>
+      <div className="row py-5">
+        <h4 className="text-center pb-3 text-xl font-bold">Gift Box</h4>
+        <div className="">
+          <Swiper
+            // loop={true}
+            navigation={true}
+            keyboard={true}
+            slidesPerView={5}
+            spaceBetween={10}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination, Navigation, Keyboard]}
+            className="rgboxswiperr"
+          >
+            {allGiftbox?.map((box, index) => (
+              <SwiperSlide className="rgboxswiper-slider pt-6 pb-8">
+                <Link to={`/delivery/${box?.name}`} state={box}>
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${box.image}`}
+                    className="h-48 w-48 object-cover"
+                  />
+                  <p>{box.name}</p>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
-  </div></Container>
+  
+  
   );
 };
 

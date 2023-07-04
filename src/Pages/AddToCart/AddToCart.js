@@ -128,14 +128,14 @@ console.log(newDiscount)
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`http://localhost:5003/${
+              src={`https://andy-chocolate-productions.up.railway.app/${
                 data?.image || selectedGiftBox?.image
               }`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`http://localhost:5003/${
+              src={`https://andy-chocolate-productions.up.railway.app/${
                 data?.image || selectedGiftBox?.image
               }`}
               style={{ width: "100px" }}
@@ -178,7 +178,7 @@ console.log(newDiscount)
               {selectedBox?.map((box) => (
                 <div className="relative">
                   <img
-                    src={`http://localhost:5003/${box?.image}`}
+                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                     className="w-12 h-12"
                     onClick={() => handleRemove(box)}
                   />
@@ -245,7 +245,7 @@ console.log(newDiscount)
                     key={index}
                   >
                     <img
-                      src={`http://localhost:5003/${data?.image}`}
+                      src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                       className="w-16 h-16 lg:w-32 lg:h-32 object-cover cursor-pointer"
                     />
                     <p className="text-xs lg:text-sm">{data?.name}</p>
@@ -361,7 +361,7 @@ console.log(newDiscount)
                 key={index}
               >
                 <img
-                  src={`http://localhost:5003/${data?.image}`}
+                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
                   className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
                 />
                 <p className="text-xs lg:text-sm">{data?.name}</p>

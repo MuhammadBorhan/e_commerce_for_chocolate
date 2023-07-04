@@ -47,7 +47,7 @@ const AddEvent = () => {
     console.log(data);
     try {
       const response = await axios.post(
-        "http://localhost:5003/api/v1/event",
+        "https://andy-chocolate-productions.up.railway.app/api/v1/event",
         data,
         {
           headers: {
