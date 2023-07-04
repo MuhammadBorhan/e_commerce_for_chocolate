@@ -21,7 +21,7 @@ const UpdatePackage = ({ pcg }) => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/v1/package/${pcg?._id}`,
+        `https://andy-chocolate-productions.up.railway.app/api/v1/package/${pcg?._id}`,
         data
       );
       if (response) {
