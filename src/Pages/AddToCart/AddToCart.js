@@ -27,42 +27,42 @@ const AddToCart = () => {
     {
       _id: 1,
       couponCode: "PBGTY8",
-      amount: "10",
+      amount: 10,
     },
     {
       _id: 2,
       couponCode: "SAIFUR02",
-      amount: "15",
+      amount: 15,
     },
     {
       _id: 3,
       couponCode: "BORHAN",
-      amount: "30",
+      amount: 30,
     },
     {
       _id: 4,
       couponCode: "FAHAD",
-      amount: "5",
+      amount: 5,
     },
     {
       _id: 5,
       couponCode: "MESSI",
-      amount: "40",
+      amount: 40,
     },
     {
       _id: 6,
       couponCode: "ODD6H",
-      amount: "50",
+      amount: 50,
     },
     {
       _id: 7,
       couponCode: "HYDFF",
-      amount: "75",
+      amount: 75,
     },
     {
       _id: 8,
       couponCode: "ANDY",
-      amount: "100",
+      amount: 100,
     },
   ];
  const handleDiscountCoupon = (coupon)=>{
@@ -72,12 +72,13 @@ const AddToCart = () => {
   
 }
 console.log(discount)
-let newDiscount = parseInt(discount?.amount)
+
+let newDiscount = (discount?.amount)
 console.log(newDiscount)
   const total = (data?.price || selectedGiftBox?.price) * quantity;
   const includeTax = (total * tax) / 100;
   const incudeDiscount = (total + includeTax ) * newDiscount / 100;
-  const grandTotal = (total + includeTax ) - incudeDiscount
+  const grandTotal = (+total + +includeTax ) - +incudeDiscount
 
   // get All Blank Box
   const { data: getAllBlankBox } = useGetAllBlankBoxQuery(null, {
@@ -282,7 +283,7 @@ console.log(newDiscount)
           </div>
           <p className="my-2 font-bold">
             {" "}
-            Grand Total: ¥{grandTotal.toFixed(2)}
+            Grand Total: ¥{grandTotal ?grandTotal.toFixed(2) : +grandTotal}
           </p>
           <Link
             to={"/checkout"}
