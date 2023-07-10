@@ -6,9 +6,7 @@ const RequireAuth = ({ children }) => {
   const location = useLocation();
   const { data, isLoading } = useGetUserQuery();
   const user = data?.data;
-
   const isAuthenticated = localStorage.getItem("accessToken");
-
   if (isLoading) {
     return (
       <p className="text-center text-danger fs-1 fw-bold loading-issue">

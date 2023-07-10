@@ -19,9 +19,13 @@ const Login = () => {
       localStorage.setItem("accessToken", accessToken);
 
       const from = location.state?.path || "/user/dashboard";
+      // const { from } = location.state || {
+      //   from: { pathname: "/user/dashboard" },
+      // };
       if (response?.data?.data?.user?.role === "admin") {
         navigate("/dashboard");
       } else if (response?.data?.data?.user?.role === "user") {
+        // navigate(from);
         navigate(from, { replace: true });
       }
     } catch (error) {
