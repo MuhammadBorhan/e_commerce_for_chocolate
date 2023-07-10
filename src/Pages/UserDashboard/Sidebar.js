@@ -12,7 +12,11 @@ import {
 import { Cog6ToothIcon, PowerIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { MdDashboard, MdOutlineSubscriptions,MdOutlineLocalShipping } from "react-icons/md";
+import {
+  MdDashboard,
+  MdOutlineSubscriptions,
+  MdOutlineLocalShipping,
+} from "react-icons/md";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { RiFileList3Line, RiMoneyCnyBoxLine } from "react-icons/ri";
 
@@ -48,6 +52,14 @@ const Sidebar = () => {
             </ListItem> */}
 
             {/* Order History  */}
+            <Link to="/user/dashboard" className="flex items-center gap-x-1">
+              <ListItem>
+                <ListItemPrefix>
+                  <MdDashboard className="h-5 w-5" />
+                </ListItemPrefix>
+                Dashborad
+              </ListItem>
+            </Link>
             <Link
               to="/user/dashboard/order-history"
               className="flex items-center gap-x-1"
@@ -140,9 +152,7 @@ const Sidebar = () => {
                       <ListItemPrefix>
                         <ChevronDownIcon strokeWidth={3} className="h-3 w-5" />
                       </ListItemPrefix>
-                      <button>
-                      Add Subscription
-                      </button>
+                      <button>Add Subscription</button>
                     </ListItem>
                   </Link>
                 </List>
