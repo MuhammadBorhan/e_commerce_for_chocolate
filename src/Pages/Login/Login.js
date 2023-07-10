@@ -46,11 +46,11 @@ const Login = () => {
     >
       <div className="card  bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="text-xl font-bold">Sign in to complete your order</h2>
+          <h2 className="text-xl font-bold">Sign-in to complete your order</h2>
           <p>
             Don't have an account?{" "}
             <Link className="text-primary" to="/signup">
-              Sign up
+              Sign-up
             </Link>
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
