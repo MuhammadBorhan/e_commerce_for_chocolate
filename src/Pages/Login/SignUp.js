@@ -146,7 +146,7 @@ const SignUp = () => {
               className="btn mt-6 block m-auto w-full border-none text-white"
               style={{ backgroundColor: "#9A583B" }}
               type="submit"
-              value="Login"
+              value="Sign Up"
             />
           </form>
           <div className="divider ">OR</div>

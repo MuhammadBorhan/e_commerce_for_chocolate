@@ -92,10 +92,10 @@ const Regions = () => {
   return (
     <Container>
       <div className="py-12">
-      <div className="pb-6 text-center">
+      {/* <div className="pb-6 text-center">
         <h3 className="text-xl lg:text-2xl font-bold">Trending Gifts</h3>
         <p>Handpicked for your gifting needs</p>
-      </div>
+      </div> */}
 
       {/* Region list */}
 
@@ -108,7 +108,7 @@ const Regions = () => {
               onClick={() => setSelectedRegion(null)}
             >
               <div className="">
-                <div className="py-2 flex items-center justify-between">
+                <div className="py-2 flex items-center justify-evenly">
                   <div className=" text-xl">
                     <span className=" ">
                       <GiModernCity></GiModernCity>
@@ -128,10 +128,10 @@ const Regions = () => {
             regions?.map((r, index) => (
               <div
                 onClick={() => handleRegionClick(r, index)}
-                className=" border-2 hover:border-gray-400 shadow-xl rounded-xl cursor-pointer"
+                className=" border-2 border-none hover:border-gray-400 shadow-xl rounded-xl cursor-pointer"
                 key={index}
               >
-                <div className=" text center px-0 py-2 flex items-center justify-evenly ">
+                <div className=" text center px-1 py-2 flex items-center justify-evenly ">
                   <div className="">
                     <div className="  lg:text-xl">
                       <span className=" ">

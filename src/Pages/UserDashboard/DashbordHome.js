@@ -32,13 +32,14 @@ const DashbordHome = () => {
       <h2 className="text-2xl text-white font-bold mb-4 text-center md:text-left">
         User Dashboard
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+      <div className="sm:grid grid-cols-1 md:grid-cols-3 gap-6 ">
         <div className="flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">
           <AiOutlineShoppingCart className="text-3xl rounded-full bg-white p-1 text-black" />
           <div>
             <h2>{orders?.length}</h2>
             <p>Number of Order</p>
           </div>
+  
         </div>
         <div className="flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">
           <AiOutlineUserAdd className="text-3xl rounded-full bg-white p-1 text-black" />
@@ -51,8 +52,24 @@ const DashbordHome = () => {
           <div>
             <h2>{totalAmount}</h2>
             <p>Total Order Amount</p>
+            
           </div>
         </div>
+        <div>
+          <p className="flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>
+        </div>
+        <div>
+          <p className="flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>
+        </div>
+        <div className="row-span-2 flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">
+          <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>
+          <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>
+        </div>
+        <div className="col-span-2 flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">
+          <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>
+        </div>
+        
+       
       </div>
     </div>
   );

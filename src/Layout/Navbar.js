@@ -3,6 +3,7 @@ import {
   AiOutlineMenu,
   AiOutlineShoppingCart,
   AiOutlineCaretDown,
+  AiOutlineLogin,
 } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo/logo.png";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../features/api/loginApi";
+import { SiGnuprivacyguard } from "react-icons/si";
 
 const Navbar = () => {
   const { data } = useGetUserQuery();
@@ -167,9 +169,11 @@ const Navbar = () => {
                   {user?.email} ({user?.role}) <AiOutlineCaretDown />
                 </span>
               ) : (
-                <Link to={"/login"} className="bg-transparent">
-                  {" "}
+                 <Link to={"/login"} className="bg-transparent text-sm">
+               <span className="flex items-center ">
+                <AiOutlineLogin className="mr-1"/>
                   Login
+               </span>
                 </Link>
               )}
             </label>
@@ -195,9 +199,17 @@ const Navbar = () => {
             )}
           </div>
           {!user && (
-            <p className="text-xl">
-              <Link to="/signup">Signup</Link>
-            </p>
+            <label
+            tabIndex={0}
+            className="btn bg-transparent hover:bg-transparent border-none -mr-4"
+          >
+            <Link to="/signup" className="bg-transparent text-sm">
+            <span className="flex items-center">
+                <SiGnuprivacyguard className="mr-1"/>
+                Signup 
+               </span>
+               </Link>
+          </label>
           )}
         </div>
 

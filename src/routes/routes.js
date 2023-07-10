@@ -33,6 +33,7 @@ import AllVisitors from "../Pages/Dashboard/AllUsers/AllVisitors";
 import AddToCart from "../Pages/AddToCart/AddToCart";
 import AddBlankBox from "../Pages/Dashboard/BlankBox/AddBlankBox";
 import BlankBoxList from "../Pages/Dashboard/BlankBox/BlankBoxList";
+import NewDashboard from "../Pages/Dashboard/NewDashboard";
 import UpdateBlankBox from "../Pages/Dashboard/BlankBox/UpdateBlankBox";
 import UserDashboard from "../Pages/UserDashboard/UserDashboard";
 import DashbordHome from "../Pages/UserDashboard/DashbordHome";
@@ -48,6 +49,7 @@ import PositionWithLevel from "../Pages/Dashboard/AllUsers/PositionWithLevel";
 import Subscription from "../Pages/UserDashboard/Subscription";
 import SubscriptionUser from "../Pages/Dashboard/AllUsers/PackageSubscription/SubscriptionUser";
 import Affiliate from "../Pages/Dashboard/AllUsers/Affiliate";
+
 
 const routes = createBrowserRouter([
   {
@@ -99,6 +101,12 @@ const routes = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/newdashboard",
+        element: <NewDashboard />,
+        
+      },
+     
+      {
         path: "/dashboard",
         element: <DashboardLayout />,
         children: [
@@ -135,7 +143,7 @@ const routes = createBrowserRouter([
             element: <AllVisitors />,
           },
           {
-            path: "/dashboard/subscrioption",
+            path: "/dashboard/subscription",
             element: <SubscriptionUser />,
           },
           {
@@ -179,7 +187,7 @@ const routes = createBrowserRouter([
             element: <UpdateGiftBox />,
           },
           {
-            path: "/dashboard/addtgift",
+            path: "/dashboard/addgift",
             element: <AddTrendingGift />,
           },
           {

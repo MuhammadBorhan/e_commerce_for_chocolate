@@ -66,15 +66,12 @@ const AddToCart = () => {
     },
   ];
  const handleDiscountCoupon = (coupon)=>{
- const searchCoupon = coupons.find((c)=>c?.couponCode ===coupon )
+ const searchCoupon = coupons.find((c)=>c?.couponCode === coupon )
  setDiscount(searchCoupon)
-    
-  
 }
-console.log(discount)
 
 let newDiscount = (discount?.amount)
-console.log(newDiscount)
+
   const total = (data?.price || selectedGiftBox?.price) * quantity;
   const includeTax = (total * tax) / 100;
   const incudeDiscount = (total + includeTax ) * newDiscount / 100;
@@ -162,6 +159,7 @@ console.log(newDiscount)
                 <input
                   type="number"
                   defaultValue={quantity}
+                  min={0}
                   onChange={(e) => setQuantity(+e.target.value)}
                   placeholder="Quantity"
                   className="input input-bordered mb-2 w-16 h-8 rounded-none focus:border-none "
@@ -264,6 +262,7 @@ console.log(newDiscount)
             <input
               type="number"
               defaultValue={tax}
+              min={0}
               onChange={(e) => setTax(+e.target.value)}
               placeholder="tax"
               className="input input-bordered mb-2 w-[100px] h-8 rounded-none focus:border-none "

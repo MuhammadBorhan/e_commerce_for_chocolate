@@ -135,11 +135,7 @@ const BrandsItem = () => {
               >
                 <div className="flex-1 flex justify-center">
                   <img
-<<<<<<< HEAD
-                    src={`http://localhost:5003/${box?.image}`}
-=======
                     src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
->>>>>>> 077a7b945487552961594540ecbf19fd4bf8b883
                     alt=""
                     className="w-[250px] lg:w-[400px] h-[250px] lg:h-[400px]  rounded-lg shadow-2xl"
                   />
