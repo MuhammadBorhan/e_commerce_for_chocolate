@@ -1,9 +1,11 @@
 import React from "react";
 import "./HeaderMenu.css";
+import Container from "./Container";
 
 const HeaderMenu = () => {
   return (
-    <div className="px-4 lg:px-12 mb-8">
+   <Container>
+     <div className="mb-8">
       <div className="grid grid-cols-4 lg:grid-cols-8 gap-4">
         <div className="flex flex-col justify-center items-center text-center p-2 menu_icon">
           <span>
@@ -81,6 +83,7 @@ const HeaderMenu = () => {
         </div>
       </div>
     </div>
+   </Container>
   );
 };
 

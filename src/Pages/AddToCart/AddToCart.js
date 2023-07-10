@@ -21,10 +21,61 @@ const AddToCart = () => {
   const [quantity, setQuantity] = useState(1);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(0);
+  // const [newDiscount, setNewDiscount] = useState(0);
+
+  const coupons = [
+    {
+      _id: 1,
+      couponCode: "PBGTY8",
+      amount: 10,
+    },
+    {
+      _id: 2,
+      couponCode: "SAIFUR02",
+      amount: 15,
+    },
+    {
+      _id: 3,
+      couponCode: "BORHAN",
+      amount: 30,
+    },
+    {
+      _id: 4,
+      couponCode: "FAHAD",
+      amount: 5,
+    },
+    {
+      _id: 5,
+      couponCode: "MESSI",
+      amount: 40,
+    },
+    {
+      _id: 6,
+      couponCode: "ODD6H",
+      amount: 50,
+    },
+    {
+      _id: 7,
+      couponCode: "HYDFF",
+      amount: 75,
+    },
+    {
+      _id: 8,
+      couponCode: "ANDY",
+      amount: 100,
+    },
+  ];
+ const handleDiscountCoupon = (coupon)=>{
+ const searchCoupon = coupons.find((c)=>c?.couponCode === coupon )
+ setDiscount(searchCoupon)
+}
+
+let newDiscount = (discount?.amount)
 
   const total = (data?.price || selectedGiftBox?.price) * quantity;
   const includeTax = (total * tax) / 100;
-  const grandTotal = total + includeTax - discount;
+  const incudeDiscount = (total + includeTax ) * newDiscount / 100;
+  const grandTotal = (+total + +includeTax ) - +incudeDiscount
 
   // get All Blank Box
   const { data: getAllBlankBox } = useGetAllBlankBoxQuery(null, {
@@ -108,6 +159,7 @@ const AddToCart = () => {
                 <input
                   type="number"
                   defaultValue={quantity}
+                  min={0}
                   onChange={(e) => setQuantity(+e.target.value)}
                   placeholder="Quantity"
                   className="input input-bordered mb-2 w-16 h-8 rounded-none focus:border-none "
@@ -210,6 +262,7 @@ const AddToCart = () => {
             <input
               type="number"
               defaultValue={tax}
+              min={0}
               onChange={(e) => setTax(+e.target.value)}
               placeholder="tax"
               className="input input-bordered mb-2 w-[100px] h-8 rounded-none focus:border-none "
@@ -219,16 +272,17 @@ const AddToCart = () => {
           <div className="">
             <label className="font-bold mr-1">Discount:</label>
             <input
-              type="number"
-              defaultValue={discount}
-              onChange={(e) => setDiscount(+e.target.value)}
-              placeholder="Discount"
+              type="text"
+              // defaultValue={discount}
+              onChange={(e) => handleDiscountCoupon(e.target.value)}
+              placeholder="CCode"
               className="input input-bordered mb-2 w-[100px] h-8 rounded-none focus:border-none "
             />
+            <span className="font-bold ml-1">%</span>
           </div>
           <p className="my-2 font-bold">
             {" "}
-            Grand Total: ¥{grandTotal.toFixed(2)}
+            Grand Total: ¥{grandTotal ?grandTotal.toFixed(2) : +grandTotal}
           </p>
           <Link
             to={"/checkout"}

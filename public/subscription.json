@@ -1,0 +1,27 @@
+[
+    {
+      "_id": 1,
+      "packageName": "Basic Level",
+      "type":"Free",
+      "price": "Free"
+    },
+    {
+      "_id": 2,
+      "packageName": "Weekly",
+      "type":"Payment",
+      "price": "¥30"
+    },
+    {
+      "_id": 3,
+      "packageName": "Monthly",
+      "type":"Paymnet",
+      "price": "¥100"
+    },
+    {
+      "_id": 4,
+      "packageName": "Yearly",
+      "type":"Payment",
+      "price": "¥300"
+    }
+    
+  ]

@@ -23,9 +23,9 @@ const UserDashboard = () => {
       )}
       <Sidebar className="" />
       <SidebarMobile isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className=" z-10  flex-1">
+      {/* <div className=" z-10  flex-1">
         <Outlet />
-      </div>
+      </div> */}
     </div>
   );
 };
