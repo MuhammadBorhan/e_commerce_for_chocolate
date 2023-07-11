@@ -12,8 +12,13 @@ import {
 import { Cog6ToothIcon, PowerIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { MdDashboard, MdOutlineSubscriptions,MdOutlineLocalShipping } from "react-icons/md";
+import {
+  MdDashboard,
+  MdOutlineSubscriptions,
+  MdOutlineLocalShipping,
+} from "react-icons/md";
 import { AiOutlineUnorderedList } from "react-icons/ai";
+import { TbLogout } from "react-icons/tb";
 import { RiFileList3Line, RiMoneyCnyBoxLine } from "react-icons/ri";
 
 // import { useGetUserQuery } from "../../features/api/loginApi";
@@ -40,6 +45,20 @@ const Sidebar = () => {
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
         <Card className=" menu p-4 w-60 bg-slate-50 text-yellow-800">
           <List>
+           <Link to='/user/dashboard'>
+           <ListItem
+              className={`${
+                pathname === "/user/dashboard"
+                  ? "bg-[#9A583B] text-white font-bold"
+                  : ""
+              }`}
+            >
+              <ListItemPrefix>
+                <MdDashboard className="h-5 w-5" />
+              </ListItemPrefix>
+              Dashboard
+            </ListItem>
+           </Link>
             {/* <ListItem className="  menu bg-[#9A583B]  rounded-md shadow-xl mb-4 p-4 border-t-[1px]">
               <ListItemPrefix className="flex justify-between items-center text-white">
                 <MdDashboard className="h-5 w-5" />
@@ -52,7 +71,13 @@ const Sidebar = () => {
               to="/user/dashboard/order-history"
               className="flex items-center gap-x-1"
             >
-              <ListItem>
+              <ListItem
+                className={`${
+                  pathname === "/user/dashboard/order-history"
+                    ? "bg-[#9A583B] text-white font-bold"
+                    : ""
+                }`}
+              >
                 <ListItemPrefix>
                   <AiOutlineUnorderedList className="h-5 w-5" />
                 </ListItemPrefix>
@@ -65,7 +90,13 @@ const Sidebar = () => {
               to="/user/dashboard/shipping-address"
               className="flex items-center gap-x-1"
             >
-              <ListItem>
+              <ListItem
+                className={`${
+                  pathname === "/user/dashboard/shipping-address"
+                    ? "bg-[#9A583B] text-white font-bold"
+                    : ""
+                }`}
+              >
                 <ListItemPrefix>
                   <MdOutlineLocalShipping className="h-5 w-5" />
                 </ListItemPrefix>
@@ -78,7 +109,13 @@ const Sidebar = () => {
               to="/user/dashboard/payment"
               className="flex items-center gap-x-1"
             >
-              <ListItem>
+              <ListItem
+              className={`${
+                pathname === "/user/dashboard/payment"
+                  ? "bg-[#9A583B] text-white font-bold"
+                  : ""
+              }`} 
+              >
                 <ListItemPrefix>
                   <RiMoneyCnyBoxLine className="h-5 w-5" />
                 </ListItemPrefix>
@@ -86,10 +123,16 @@ const Sidebar = () => {
               </ListItem>
             </Link>
             <Link
-              to="/dashboard/order-history"
+              to="/user/dashboard/order-history"
               className="flex items-center gap-x-1"
             >
-              <ListItem>
+              <ListItem 
+              className={`${
+                pathname === "/user/dashboard/wishlist"
+                  ? "bg-[#9A583B] text-white font-bold"
+                  : ""
+              }`}
+              >
                 <ListItemPrefix>
                   <RiFileList3Line className="h-5 w-5" />
                 </ListItemPrefix>
@@ -140,9 +183,7 @@ const Sidebar = () => {
                       <ListItemPrefix>
                         <ChevronDownIcon strokeWidth={3} className="h-3 w-5" />
                       </ListItemPrefix>
-                      <button>
-                      Add Subscription
-                      </button>
+                      <button>Add Subscription</button>
                     </ListItem>
                   </Link>
                 </List>
@@ -157,7 +198,7 @@ const Sidebar = () => {
 
             <ListItem>
               <ListItemPrefix>
-                <PowerIcon className="h-5 w-5" />
+                <TbLogout className="h-5 w-5" />
               </ListItemPrefix>
               Log Out
             </ListItem>

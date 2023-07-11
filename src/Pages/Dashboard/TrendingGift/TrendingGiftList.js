@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import {
@@ -7,7 +7,7 @@ import {
 } from "../../../features/api/trendingGift";
 import { toast } from "react-toastify";
 import DashBoardMenu from "../../../Components/DashBoardMenu/DashBoardMenu";
-
+import DataTable from "react-data-table-component";
 const TrendingGiftList = () => {
   const { data } = useGetAllTrendGiftQuery(null, {
     refetchOnMountOrArgChange: true,
@@ -23,49 +23,112 @@ const TrendingGiftList = () => {
       toast.success("Delete Successfull!!");
     }
   };
+  const [searchText, setSearchText] = useState("");
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortDirection, setSortDirection] = useState(null);
+
+  const handleSort = (column, direction) => {
+    setSortColumn(column.selector);
+    setSortDirection(direction);
+  };
+
+  const filteredTrendingGifts = searchText
+    ? trendingGift.filter((gift) =>
+        gift?.brand.toLowerCase().includes(searchText.toLowerCase())
+      )
+    : trendingGift;
+
+  const sortedTrendingGift =
+    sortColumn && sortDirection
+      ? [...filteredTrendingGifts].sort((a, b) => {
+          if (sortDirection === "asc") {
+            return a[sortColumn] > b[sortColumn] ? 1 : -1;
+          } else if (sortDirection === "desc") {
+            return a[sortColumn] < b[sortColumn] ? 1 : -1;
+          }
+          return 0;
+        })
+      : filteredTrendingGifts;
+
+  const columns = [
+    {
+      name: "Sl No.",
+      selector: (row, index) => index + 1,
+      sortable: false,
+    },
+
+    {
+      name: "Brand Name",
+      selector: "brand",
+      sortable: true,
+    },
+    {
+      name: "Region",
+      selector: "region",
+      sortable: true,
+    },
+    {
+      name: "District",
+      selector: "district",
+      sortable: true,
+    },
+
+    {
+      name: "Action",
+      cell: (row) => (
+        <>
+          <button
+            className="text-blue-500"
+            style={{ width: "40px", fontSize: "25px" }}
+          >
+            <FaEdit />
+          </button>
+          <button
+            onClick={(e) => handleDelete(row?._id)}
+            className="text-red-500"
+            style={{ width: "40px", fontSize: "25px" }}
+          >
+            <AiTwotoneDelete />
+          </button>
+        </>
+      ),
+      sortable: false,
+    },
+  ];
+
+  const sortIconStyles = {
+    base: "mr-1",
+    sortNone: "hidden",
+    sortAsc: "text-green-500",
+    sortDesc: "text-red-500",
+  };
+
   return (
     <div>
       <DashBoardMenu></DashBoardMenu>
       <div className="p-8">
-        <h1 className="mb-4 text-blue-500 font-bold">Trending Gift List</h1>
         <div className="overflow-x-auto">
-          <table className="table w-full">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>SL. No</th>
-                <th>Brand</th>
-                <th>Region</th>
-                <th>District</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {trendingGift?.map((trend, i) => (
-                <tr>
-                  <td>{i + 1}</td>
-                  <td>{trend?.brand}</td>
-                  <td>{trend?.region}</td>
-                  <td>{trend?.district}</td>
-                  <td>
-                    <button
-                      className="text-blue-500"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <FaEdit />
-                    </button>
-                    <button
-                      onClick={(e) => handleDelete(trend?._id)}
-                      className="text-red-500"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <AiTwotoneDelete />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h2 className="text-xl font-bold mt-2">All Trending Gift</h2>
+          <div className="text-end">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              className=" mb-4 px-4 py-2 border border-gray-300 rounded"
+            />
+          </div>
+          <DataTable
+            columns={columns}
+            data={sortedTrendingGift}
+            pagination
+            highlightOnHover
+            sortServer
+            fixedHeader
+            responsive
+            sortIconStyles={sortIconStyles}
+            onSort={handleSort}
+          />
         </div>
       </div>
     </div>
