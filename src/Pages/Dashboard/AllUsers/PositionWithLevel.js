@@ -17,62 +17,81 @@ const PositionWithLevel = () => {
   const getUserLevel = (users) => {
     if (users <= 10) {
       return 1;
-    } else if (users <= 100) {
+    } else if (users <= 110) {
       return 2;
-    } else if (users <= 1000) {
+    } else if (users <= 1110) {
       return 3;
-    } else if (users <= 10000) {
+    } else if (users <= 11110) {
       return 4;
-    } else if (users <= 100000) {
+    } else if (users <= 111110) {
       return 5;
-    } else if (users <= 1000000) {
+    } else if (users <= 1111110) {
       return 6;
     } else {
       return 0;
     }
   };
 
+  const getPosition = (userCount) => {
+    const level = getUserLevel(userCount);
+    if (level === 1) {
+      return `1:${userCount}`;
+    } else if (level === 2) {
+      return `2:${userCount - 10}`;
+    } else if (level === 3) {
+      return `3:${userCount - 110}`;
+    } else if (level === 4) {
+      return `4:${userCount - 1110}`;
+    } else if (level === 5) {
+      return `5:${userCount - 11110}`;
+    } else if (level === 6) {
+      return `6:${userCount - 111110}`;
+    } else {
+      return "0";
+    }
+  };
+
   // Function to determine the position based on the serial number
-  function getPosition(serialNumber) {
-    const level = getUserLevel(serialNumber);
-    let positionWithinLevel;
+  // function getPosition(serialNumber) {
+  //   const level = getUserLevel(serialNumber);
+  //   let positionWithinLevel;
 
-    if (level == 1) {
-      positionWithinLevel = ((serialNumber - 1) % 10) + 1;
-    } else if (level == 2) {
-      positionWithinLevel = ((serialNumber - 11) % 90) + 11;
-    } else if (level == 3) {
-      positionWithinLevel = ((serialNumber - 101) % 900) + 101;
-    } else if (level == 4) {
-      positionWithinLevel = ((serialNumber - 1001) % 9000) + 1001;
-    } else if (level == 5) {
-      positionWithinLevel = ((serialNumber - 10001) % 90000) + 10001;
-    } else if (level == 6) {
-      positionWithinLevel = ((serialNumber - 100001) % 900000) + 100001;
-    }
+  //   if (level == 1) {
+  //     positionWithinLevel = ((serialNumber - 1) % 10) + 1;
+  //   } else if (level == 2) {
+  //     positionWithinLevel = ((serialNumber - 11) % 90) + 11;
+  //   } else if (level == 3) {
+  //     positionWithinLevel = ((serialNumber - 101) % 900) + 101;
+  //   } else if (level == 4) {
+  //     positionWithinLevel = ((serialNumber - 1001) % 9000) + 1001;
+  //   } else if (level == 5) {
+  //     positionWithinLevel = ((serialNumber - 10001) % 90000) + 10001;
+  //   } else if (level == 6) {
+  //     positionWithinLevel = ((serialNumber - 100001) % 900000) + 100001;
+  //   }
 
-    if (
-      positionWithinLevel > 100 &&
-      level != 3 &&
-      level != 4 &&
-      level != 5 &&
-      level != 6
-    ) {
-      level++;
-      positionWithinLevel = 1;
-    }
+  //   if (
+  //     positionWithinLevel > 100 &&
+  //     level != 3 &&
+  //     level != 4 &&
+  //     level != 5 &&
+  //     level != 6
+  //   ) {
+  //     level++;
+  //     positionWithinLevel = 1;
+  //   }
 
-    if (level > 1 && level != 3 && level != 4 && level != 5 && level != 6) {
-      positionWithinLevel += (level - 2) * 100;
-    }
+  //   if (level > 1 && level != 3 && level != 4 && level != 5 && level != 6) {
+  //     positionWithinLevel += (level - 2) * 100;
+  //   }
 
-    if (level > 6) {
-      positionWithinLevel += (level - 6) * 900000 + 100001;
-    }
+  //   if (level > 6) {
+  //     positionWithinLevel += (level - 6) * 900000 + 100001;
+  //   }
 
-    const position = level + ":" + positionWithinLevel;
-    return position;
-  }
+  //   const position = level + ":" + positionWithinLevel;
+  //   return position;
+  // }
   //   getPosition();
 
   if (isLoading) {
