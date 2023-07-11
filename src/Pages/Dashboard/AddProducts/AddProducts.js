@@ -127,7 +127,7 @@ const AddProdusts = () => {
                 <div className="flex justify-around pt-6">
                   <button
                     type="submit"
-                    className="bg-[#5e2006] px-2 py-1 font-bold text-white "
+                    className="bg-[#9A583B] px-2 py-1 font-bold text-white "
                   >
                     Save
                   </button>

@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import { FreeMode, Pagination, Navigation, Keyboard } from "swiper";
 import { useGetAllGiftBoxQuery } from "../features/api/GiftBoxApi";
 import { Link } from "react-router-dom";
+import Container from "./Container";
 
 const GiftBox = () => {
   const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
@@ -19,8 +20,9 @@ const GiftBox = () => {
   const allGiftbox = getGiftBox?.data;
 
   return (
-    <div>
-      <div className="row py-5">
+    
+   <Container>
+    <div className="row py-8">
         <h4 className="text-center pb-3 text-xl font-bold">Gift Box</h4>
         <div className="">
           <Swiper
@@ -50,7 +52,9 @@ const GiftBox = () => {
           </Swiper>
         </div>
       </div>
-    </div>
+   </Container>
+  
+  
   );
 };
 
