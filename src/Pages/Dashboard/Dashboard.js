@@ -47,6 +47,8 @@ const Dashboard = () => {
   const { data: trenitem } = useGetAllTrendGiftQuery();
   const trendItem = trenitem?.data;
 
+  const [open, setOpen] = React.useState(0);
+
   return (
     <div>
       <div className="flex justify-end">

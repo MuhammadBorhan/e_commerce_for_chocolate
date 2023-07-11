@@ -46,14 +46,22 @@ const DashboardLayout = () => {
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
         <Card className=" menu p-4 w-60 bg-slate-50 border-t-[1px] text-yellow-800">
           <List>
-            <ListItem className="  menu bg-[#9A583B]  rounded-md shadow-xl mb-4 p-4 border-t-[1px]">
-              <ListItemPrefix className="flex justify-between items-center text-white">
-                <MdDashboard className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="/dashboard">
-                <div className="text-white font-bold">Dashborad</div>
-              </Link>
-            </ListItem>
+            <Link to="/dashboard">
+              <ListItem
+                selected={open === 15}
+                onClick={() => handleOpen(15)}
+                className={`${
+                  pathname === "/dashboard"
+                    ? "bg-[#9A583B] text-white font-bold"
+                    : ""
+                }`}
+              >
+                <ListItemPrefix>
+                  <MdDashboard className="h-5 w-5" />
+                </ListItemPrefix>
+                Dashboard
+              </ListItem>
+            </Link>
 
             <div className="overflow-auto">
               <Accordion
@@ -67,7 +75,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 1}>
+                <ListItem
+                  selected={open === 1}
+                  className={`p-0 ${
+                    pathname === "/dashboard/addregion"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/regionlist"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(1)}
                     className="border-b-0 p-3"
@@ -86,7 +103,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/addregion">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/addregion"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronDownIcon
                             strokeWidth={3}
@@ -98,14 +121,20 @@ const DashboardLayout = () => {
                     </Link>
 
                     <Link to="/dashboard/regionlist">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/regionlist"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
                             className="h-3 w-5"
                           />
                         </ListItemPrefix>
-                        All Region & District
+                        Total Regions
                       </ListItem>
                     </Link>
                   </List>
@@ -124,7 +153,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 2}>
+                <ListItem
+                  selected={open === 2}
+                  className={`p-0 ${
+                    pathname === "/dashboard/addbrand"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/brandlist"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(2)}
                     className="border-b-0 p-3"
@@ -143,7 +181,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/addbrand">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/addbrand"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -154,14 +198,20 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/brandlist">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/brandlist"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
                             className="h-3 w-5"
                           />
                         </ListItemPrefix>
-                        All Brand
+                        Total Brand
                       </ListItem>
                     </Link>
                   </List>
@@ -180,7 +230,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 3}>
+                <ListItem
+                  selected={open === 3}
+                  className={`p-0 ${
+                    pathname === "/dashboard/addproduct"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/allproduct"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(3)}
                     className="border-b-0 p-3"
@@ -199,7 +258,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/addproduct">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/addproduct"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -210,14 +275,20 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/allproduct">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/allproduct"
+                            ? "text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
                             className="h-3 w-5"
                           />
                         </ListItemPrefix>
-                        All Products
+                        Total Product
                       </ListItem>
                     </Link>
                   </List>
@@ -236,7 +307,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 4}>
+                <ListItem
+                  selected={open === 4}
+                  className={`p-0 ${
+                    pathname === "/dashboard/addgiftitem"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/giftitemlist"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(4)}
                     className="border-b-0 p-3"
@@ -255,7 +335,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/addgiftitem">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/addgiftitem"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -266,14 +352,20 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/giftitemlist">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/giftitemlist"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
                             className="h-3 w-5"
                           />
                         </ListItemPrefix>
-                        All Gift Box
+                        Total Gift Box
                       </ListItem>
                     </Link>
                   </List>
@@ -292,7 +384,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 5}>
+                <ListItem
+                  selected={open === 5}
+                  className={`p-0 ${
+                    pathname === "/dashboard/addgift"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/trendgiftlist"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(5)}
                     className="border-b-0 p-3"
@@ -311,7 +412,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/addgift">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/addgift"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -322,7 +429,13 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/trendgiftlist">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/trendgiftlist"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -348,7 +461,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 6}>
+                <ListItem
+                  selected={open === 6}
+                  className={`p-0 ${
+                    pathname === "/dashboard/addevent"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/eventlist"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(6)}
                     className="border-b-0 p-3"
@@ -367,7 +489,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/addevent">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/addevent"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -378,14 +506,20 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/eventlist">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/eventlist"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
                             className="h-3 w-5"
                           />
                         </ListItemPrefix>
-                        All Events
+                        Total Event
                       </ListItem>
                     </Link>
                   </List>
@@ -404,7 +538,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 7}>
+                <ListItem
+                  selected={open === 7}
+                  className={`p-0 ${
+                    pathname === "/dashboard/addblankbox"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/blanklist"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(7)}
                     className="border-b-0 p-3"
@@ -423,7 +566,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/addblankbox">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/addblankbox"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -434,14 +583,20 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/blanklist">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/blanklist"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
                             className="h-3 w-5"
                           />
                         </ListItemPrefix>
-                        All Blank Box
+                        Total Blank Box
                       </ListItem>
                     </Link>
                   </List>
@@ -460,7 +615,16 @@ const DashboardLayout = () => {
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 8}>
+                <ListItem
+                  selected={open === 8}
+                  className={`p-0 ${
+                    pathname === "/dashboard/orders"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/delivered"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(8)}
                     className="border-b-0 p-3"
@@ -479,7 +643,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/orders">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/orders"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -490,7 +660,13 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/delivered">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/delivered"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -509,14 +685,27 @@ const DashboardLayout = () => {
                 open={open === 9}
                 icon={
                   <ChevronDownIcon
-                    // strokeWidth={2.5}
+                    strokeWidth={2.5}
                     className={`mx-auto h-4 w-4 transition-transform ${
                       open === 9 ? "rotate-180" : ""
                     }`}
                   />
                 }
               >
-                <ListItem className="p-0" selected={open === 9}>
+                <ListItem
+                  selected={open === 2}
+                  className={`p-0 ${
+                    pathname === "/dashboard/alluser"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/subscription"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/affiliate"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : pathname === "/dashboard/visitor"
+                      ? "bg-[#9A583B] text-white font-bold"
+                      : ""
+                  }`}
+                >
                   <AccordionHeader
                     onClick={() => handleOpen(9)}
                     className="border-b-0 p-3"
@@ -535,7 +724,13 @@ const DashboardLayout = () => {
                 <AccordionBody className="py-1 overflow-hidden">
                   <List className="p-0">
                     <Link to="/dashboard/alluser">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/alluser"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -546,7 +741,13 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/subscription">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/subscription"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -557,7 +758,13 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/affiliate">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/affiliate"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -568,7 +775,13 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/level_user">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/level_user"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}
@@ -579,7 +792,13 @@ const DashboardLayout = () => {
                       </ListItem>
                     </Link>
                     <Link to="/dashboard/visitor">
-                      <ListItem>
+                      <ListItem
+                        className={`${
+                          pathname === "/dashboard/visitor"
+                            ? " text-[#e08761]"
+                            : ""
+                        }`}
+                      >
                         <ListItemPrefix>
                           <ChevronRightIcon
                             strokeWidth={3}

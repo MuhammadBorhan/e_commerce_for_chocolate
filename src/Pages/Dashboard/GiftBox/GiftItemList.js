@@ -66,10 +66,10 @@ const GiftItemList = () => {
   };
 
   const filteredGiftBoxs = searchText
-    ? giftBoxs.filter((giftBox) =>
+    ? allGiftBox.filter((giftBox) =>
         giftBox?.name.toLowerCase().includes(searchText.toLowerCase())
       )
-    : giftBoxs;
+    : allGiftBox;
 
   const sortedGiftBoxs =
     sortColumn && sortDirection
