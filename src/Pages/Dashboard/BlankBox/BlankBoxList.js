@@ -73,12 +73,11 @@ const BlankBoxList = () => {
       sortable: true,
     },
 
-    
     {
       name: "Image",
       cell: (row) => (
         <img
-          src={`https://andy-chocolate-productions.up.railway.app/${row?.image}`}
+          src={`http://localhost:5000/${row?.image}`}
           className="w-16"
           alt="Image"
         />

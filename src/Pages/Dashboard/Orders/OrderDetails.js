@@ -1,8 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useGetAllUserQuery } from "../../../features/api/loginApi";
 
 const OrderDetails = ({ order }) => {
+  const { data: getAllUsers } = useGetAllUserQuery();
+  const allUsers = getAllUsers?.data;
+
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -18,7 +22,7 @@ const OrderDetails = ({ order }) => {
   const handleToggle = async (id, isEnabled) => {
     try {
       const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/order/${id}`,
+        `http://localhost:5000/api/v1/order/${id}`,
         {
           isEnabled: !isEnabled,
         }
@@ -60,7 +64,9 @@ const OrderDetails = ({ order }) => {
                 >
                   <p>
                     Name: {order?.firstName} {order?.lastName}
+                    {allUsers?.length}
                   </p>
+                  <p>Email: {order?.email}</p>
                   <p>Address: {order?.address}</p>
                   <p>Phone: {order?.phone}</p>
                   <p>Region : {order?.region}</p>
@@ -68,15 +74,19 @@ const OrderDetails = ({ order }) => {
                 </div>
                 <button
                   onClick={() => handleToggle(order?._id, order?.isEnabled)}
-                  className="  "
                 >
-                  {order?.isEnabled === false ? (
+                  {/* {order?.isEnabled === false ? (
                     <p className="px-4 py-2 bg-green-500 text-white font-bold">
-                      Delivery
+                      Confirm
                     </p>
                   ) : (
                     <p className="px-4 py-2 bg-red-500 text-white font-bold">
                       Delivered
+                    </p>
+                  )} */}
+                  {order?.isEnabled === false && (
+                    <p className="px-4 py-2 bg-green-500 text-white font-bold">
+                      Confirm
                     </p>
                   )}
                 </button>

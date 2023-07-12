@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const Payment = () => {
   const [payments, setPayments] = useState([]);
   useEffect(() => {
-    fetch("https://andy-chocolate-productions.up.railway.app/api/v1/orders")
+    fetch("http://localhost:5000/api/v1/orders")
       .then((res) => res.json())
       .then((data) => setPayments(data?.data));
   }, []);

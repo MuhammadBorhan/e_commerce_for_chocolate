@@ -86,11 +86,11 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block w-[300px] h-[300px]"
-              src={`https://andy-chocolate-productions.up.railway.app/${selectedGiftBox?.image}`}
+              src={`http://localhost:5000/${selectedGiftBox?.image}`}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${selectedGiftBox?.image}`}
+              src={`http://localhost:5000/${selectedGiftBox?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -118,11 +118,11 @@ const DeliveryGiftsDetails = () => {
           <div className="flex justify-center">
             <img
               className="hidden lg:block w-[300px] h-[300px]"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+              src={`http://localhost:5000/${data?.image}`}
               style={{ width: "200px" }}
             />
           </div>
@@ -169,7 +169,7 @@ const DeliveryGiftsDetails = () => {
             {selectedBlankBox ? (
               <div>
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${selectedBlankBox?.image}`}
+                  src={`http://localhost:5000/${selectedBlankBox?.image}`}
                   className="w-32 h-32 object-cover"
                 />
                 <p>{selectedBlankBox?.name}</p>
@@ -182,7 +182,7 @@ const DeliveryGiftsDetails = () => {
                   key={index}
                 >
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                    src={`http://localhost:5000/${data?.image}`}
                     className="w-32 h-32 object-cover"
                   />
                   <p>{data?.name}</p>
@@ -218,7 +218,7 @@ const DeliveryGiftsDetails = () => {
                 key={index}
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-48 w-48 object-cover"
                 />
                 <p>{data?.name}</p>
@@ -260,7 +260,7 @@ const DeliveryGiftsDetails = () => {
                 className="sgboxswiper-slider py-6 pb-8"
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="h-36 w-36 lg:h-48 lg:w-48 object-cover"
                 />
                 <p>{data?.name}</p>

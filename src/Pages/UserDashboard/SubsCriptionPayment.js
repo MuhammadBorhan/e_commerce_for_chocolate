@@ -35,7 +35,7 @@ const SubsCriptionPayment = ({ pcg }) => {
         email: user?.email,
       };
       const response = await axios.post(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/subscribe`,
+        `http://localhost:5000/api/v1/subscribe`,
         data
       );
       if (response) {

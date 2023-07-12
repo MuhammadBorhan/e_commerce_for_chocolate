@@ -92,66 +92,66 @@ const Regions = () => {
   return (
     <Container>
       <div className="py-12">
-      {/* <div className="pb-6 text-center">
+        {/* <div className="pb-6 text-center">
         <h3 className="text-xl lg:text-2xl font-bold">Trending Gifts</h3>
         <p>Handpicked for your gifting needs</p>
       </div> */}
 
-      {/* Region list */}
+        {/* Region list */}
 
-      <div>
-        <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6  ">
-          {selectedRegion ? (
-            <div
-              className=" bg-cover rounded-r-full cursor-pointer border hover:border-gray-400 shadow-xl"
-              onClick={() => setSelectedRegion(null)}
-            >
-              <div className="">
-                <div className="py-2 flex items-center justify-evenly">
-                  <div className=" text-xl">
-                    <span className=" ">
-                      <GiModernCity></GiModernCity>
-                    </span>
-                  </div>
-
-                  <div className="  text-xl font-bold ">
-                    {selectedRegion?.region}
-                  </div>
-                  <div className="text-xl text-slate-300">
-                    <IoIosArrowDown style={{ fontSize: "30px" }} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            regions?.map((r, index) => (
+        <div>
+          <h4 className="text-2xl font-bold mb-4">Choose Region</h4>
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 lg:gap-6  ">
+            {selectedRegion ? (
               <div
-                onClick={() => handleRegionClick(r, index)}
-                className=" border-2 border-none hover:border-gray-400 shadow-xl rounded-xl cursor-pointer"
-                key={index}
+                className=" bg-cover rounded-r-full cursor-pointer border hover:border-gray-400 shadow-xl"
+                onClick={() => setSelectedRegion(null)}
               >
-                <div className=" text center px-1 py-2 flex items-center justify-evenly ">
-                  <div className="">
-                    <div className="  lg:text-xl">
+                <div className="">
+                  <div className="py-2 flex items-center justify-evenly">
+                    <div className=" text-xl">
                       <span className=" ">
                         <GiModernCity></GiModernCity>
                       </span>
                     </div>
-                  </div>
-                  <div className=" text-center text-xl font-bold ">
-                    {r.region}
+
+                    <div className="  text-xl font-bold ">
+                      {selectedRegion?.region}
+                    </div>
+                    <div className="text-xl text-slate-300">
+                      <IoIosArrowDown style={{ fontSize: "30px" }} />
+                    </div>
                   </div>
                 </div>
               </div>
-            ))
-          )}
+            ) : (
+              regions?.map((r, index) => (
+                <div
+                  onClick={() => handleRegionClick(r, index)}
+                  className=" border-2 border-none hover:border-gray-400 shadow-xl rounded-xl cursor-pointer"
+                  key={index}
+                >
+                  <div className=" text center px-1 py-2 flex items-center justify-evenly ">
+                    <div className="">
+                      <div className="  lg:text-xl">
+                        <span className=" ">
+                          <GiModernCity></GiModernCity>
+                        </span>
+                      </div>
+                    </div>
+                    <div className=" text-center text-xl font-bold ">
+                      {r.region}
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* District List  old show more version- - ***ayta thakuk kew delete korish nah****/}
+        {/* District List  old show more version- - ***ayta thakuk kew delete korish nah****/}
 
-      {/* <div className="">
+        {/* <div className="">
         {selectedRegion && (
           <h4 className="text-2xl font-bold mt-2 mb-4">Choose District</h4>
         )}
@@ -183,107 +183,111 @@ const Regions = () => {
         )}
       </div> */}
 
-      {/*New District for destop  */}
-      <div className=" hidden lg:block">
-        {selectedRegion && (
-          <h4 className="text-2xl font-bold mt-2 mb-4">Choose District</h4>
-        )}
-        <Swiper
-          loop={true}
-          navigation={true}
-          keyboard={true}
-          slidesPerView={7}
-          spaceBetween={0}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Navigation, Keyboard]}
-          className=" swiper"
-        >
-          {selectedRegion?.district?.map((d, index) => (
-            <SwiperSlide
-              onClick={() => handleBrand(d, index)}
-              className="swiper-slider cursor-pointer"
-            >
-              <div className="lg:text-xl text-wrap text-gray-800">
-                <span className="font-mono italic  border-r shadow-xl border-yellow-700 pr-4">
-                  {d}
-                </span>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/*New District for destop  */}
+        <div className=" hidden lg:block">
+          {selectedRegion && (
+            <h4 className="text-2xl font-bold mt-2 mb-4">Choose District</h4>
+          )}
+          <Swiper
+            loop={true}
+            navigation={true}
+            keyboard={true}
+            slidesPerView={7}
+            spaceBetween={0}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Navigation, Keyboard]}
+            className=" swiper"
+          >
+            {selectedRegion?.district?.map((d, index) => (
+              <SwiperSlide
+                onClick={() => handleBrand(d, index)}
+                className="swiper-slider cursor-pointer"
+              >
+                <div className="lg:text-xl text-wrap text-gray-800">
+                  <span className="font-mono italic  border-r shadow-xl border-yellow-700 pr-4">
+                    {d}
+                  </span>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-        {/* District for Mobile */}
-      </div>
-      <div className="lg:hidden">
-        {selectedRegion && (
-          <h4 className="text-xl font-bold mt-2 mb-4">Choose District</h4>
-        )}
-        <Swiper
-          loop={true}
-          navigation={true}
-          keyboard={true}
-          slidesPerView={3}
-          spaceBetween={0}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Navigation, Keyboard]}
-          className=" swipermobile "
-        >
-          {selectedRegion?.district?.map((d, index) => (
-            <SwiperSlide
-              onClick={() => handleBrand(d, index)}
-              className="swiper-slider cursor-pointer"
-            >
-              <div>
-                <span className="mr-2 font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-xs ">
-                  {d}
-                </span>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+          {/* District for Mobile */}
+        </div>
+        <div className="lg:hidden">
+          {selectedRegion && (
+            <h4 className="text-xl font-bold mt-2 mb-4">Choose District</h4>
+          )}
+          <Swiper
+            loop={true}
+            navigation={true}
+            keyboard={true}
+            slidesPerView={3}
+            spaceBetween={0}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Navigation, Keyboard]}
+            className=" swipermobile "
+          >
+            {selectedRegion?.district?.map((d, index) => (
+              <SwiperSlide
+                onClick={() => handleBrand(d, index)}
+                className="swiper-slider cursor-pointer"
+              >
+                <div>
+                  <span className="mr-2 font-mono italic  border-r border-spacing-2  shadow-xl border-yellow-700 text-wrap text-xs ">
+                    {d}
+                  </span>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-      {/* Show available brand  */}
-      <div className="mt-4">
-        <Swiper
-          effect={"coverflow"}
-          grabCursor={true}
-          centeredSlides={true}
-          // loop={true}
-          slidesPerView={"auto"}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2,
-            slideShadows: true,
-          }}
-          pagination={true}
-          modules={[EffectCoverflow, Pagination]}
-          className="mySwiper bswiper"
-        >
-          {trendingBrands?.map((product, index) => (
-            // consoe.log(product)
-            <SwiperSlide className="bswiper-slide" key={index}>
-              <Link to={`/brands/${product?.name}`} state={product} key={index}>
-                <img
-                  src={`https://andy-chocolate-productions.up.railway.app/uploads/${product?.image}`}
-                  alt={product?.name}
-                  className="h-48 w-48 object-cover"
-                />
-                <p className="font-bold text-[#9A583B]">{product?.name}</p>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/* Show available brand  */}
+        <div className="mt-4">
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            // loop={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2,
+              slideShadows: true,
+            }}
+            pagination={true}
+            modules={[EffectCoverflow, Pagination]}
+            className="mySwiper bswiper"
+          >
+            {trendingBrands?.map((product, index) => (
+              // consoe.log(product)
+              <SwiperSlide className="bswiper-slide" key={index}>
+                <Link
+                  to={`/brands/${product?.name}`}
+                  state={product}
+                  key={index}
+                >
+                  <img
+                    src={`http://localhost:5000/uploads/${product?.image}`}
+                    alt={product?.name}
+                    className="h-48 w-48 object-cover"
+                  />
+                  <p className="font-bold text-[#9A583B]">{product?.name}</p>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
-    </div>
     </Container>
   );
 };

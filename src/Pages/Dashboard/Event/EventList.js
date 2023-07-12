@@ -53,7 +53,7 @@ const EventList = () => {
                 <th>{index + 1}</th>
                 <th>
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${even?.image}`}
+                    src={`http://localhost:5000/${even?.image}`}
                     className="w-16"
                   />
                 </th>

@@ -56,13 +56,12 @@ const ProductList = () => {
       name: "Sl No.",
       selector: (row, index) => index + 1,
       sortable: false,
-      
     },
     {
       name: "Image",
       cell: (row) => (
         <img
-          src={`https://andy-chocolate-productions.up.railway.app/${row?.image}`}
+          src={`http://localhost:5000/${row?.image}`}
           className="w-16"
           alt="Product"
         />
@@ -122,13 +121,13 @@ const ProductList = () => {
         <div className="overflow-x-auto">
           <h2 className="text-xl font-bold mt-2">All Products</h2>
           <div className="text-end">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            className=" mb-4 px-4 py-2 border border-gray-300 rounded"
-          />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              className=" mb-4 px-4 py-2 border border-gray-300 rounded"
+            />
           </div>
           <DataTable
             columns={columns}

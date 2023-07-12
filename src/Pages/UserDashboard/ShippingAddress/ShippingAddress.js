@@ -12,7 +12,7 @@ const ShippingAddress = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `https://andy-chocolate-productions.up.railway.app/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
+          `http://localhost:5000/api/v1/orderlist?role=${user?.role}&email=${user?.email}`
         );
         setAddresses(response?.data);
       } catch (error) {

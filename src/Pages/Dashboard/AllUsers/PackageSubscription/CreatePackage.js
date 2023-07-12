@@ -20,7 +20,7 @@ const CreatePackage = ({ eventId }) => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/package`,
+        `http://localhost:5000/api/v1/package`,
         data
       );
       if (response) {

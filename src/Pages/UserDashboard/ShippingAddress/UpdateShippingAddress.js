@@ -22,7 +22,7 @@ const UpdateShippingAddress = () => {
 <<<<<<< HEAD
     const url = `http://localhost:5003/api/v1/order/${id}`;
 =======
-    const url = `https://andy-chocolate-productions.up.railway.app/api/v1/order/${id}`;
+    const url = `http://localhost:5000/api/v1/order/${id}`;
 >>>>>>> 077a7b945487552961594540ecbf19fd4bf8b883
     fetch(url)
       .then((res) => res.json())
@@ -57,7 +57,7 @@ const UpdateShippingAddress = () => {
 <<<<<<< HEAD
         `http://localhost:5003/api/v1/order/${id}`,
 =======
-        `https://andy-chocolate-productions.up.railway.app/api/v1/order/${id}`,
+        `http://localhost:5000/api/v1/order/${id}`,
 >>>>>>> 077a7b945487552961594540ecbf19fd4bf8b883
         data,
         {

@@ -42,7 +42,7 @@ const GiftItemList = () => {
   const handleToggle = async (id, isEnabled) => {
     try {
       const response = await axios.patch(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/selectgiftbox/${id}`,
+        `http://localhost:5000/api/v1/selectgiftbox/${id}`,
         {
           isEnabled: !isEnabled,
         }
@@ -98,27 +98,22 @@ const GiftItemList = () => {
     {
       name: "Box Image",
       cell: (row) => (
-        <img
-          src={`https://andy-chocolate-productions.up.railway.app/${row?.image}`}
-          className="w-16"
-        />
+        <img src={`http://localhost:5000/${row?.image}`} className="w-16" />
       ),
       sortable: false,
     },
     {
       name: "Products",
       cell: (row) => (
-      
         <select className="rounded-none focus:border-none ">
-          {row?.productList?.map((product,index) => (
+          {row?.productList?.map((product, index) => (
             <option key={index}>{product}</option>
           ))}
         </select>
-    
       ),
       sortable: true,
     },
-  
+
     {
       name: "Festival",
       selector: "festival",

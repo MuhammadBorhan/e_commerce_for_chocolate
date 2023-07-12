@@ -14,7 +14,7 @@ const SubscriptionUser = () => {
     if (confirm) {
       try {
         const response = await axios.delete(
-          `https://andy-chocolate-productions.up.railway.app/api/v1/package/${id}`
+          `http://localhost:5000/api/v1/package/${id}`
         );
 
         if (response) {

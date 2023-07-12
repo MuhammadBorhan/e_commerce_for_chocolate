@@ -63,12 +63,12 @@ const BrandList = () => {
       selector: "name",
       sortable: true,
     },
-   
+
     {
       name: "Logo",
       cell: (row) => (
         <img
-          src={`https://andy-chocolate-productions.up.railway.app/${row?.logo}`}
+          src={`http://localhost:5000/${row?.logo}`}
           className="w-16"
           alt="Brand Logo"
         />
@@ -79,7 +79,7 @@ const BrandList = () => {
       name: "Cover Image",
       cell: (row) => (
         <img
-          src={`https://andy-chocolate-productions.up.railway.app/${row?.image}`}
+          src={`http://localhost:5000/${row?.image}`}
           className="w-16"
           alt="Brand Cover"
         />

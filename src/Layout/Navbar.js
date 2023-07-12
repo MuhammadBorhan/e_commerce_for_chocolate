@@ -21,7 +21,7 @@ const Navbar = () => {
 
   // const [user, setUser] = useState({});
   // useEffect(() => {
-  //   fetch("https://andy-chocolate-productions.up.railway.app/api/v1/me", {
+  //   fetch("http://localhost:5000/api/v1/me", {
   //     method: "GET",
   //     headers: {
   //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -169,11 +169,11 @@ const Navbar = () => {
                   {user?.email} ({user?.role}) <AiOutlineCaretDown />
                 </span>
               ) : (
-                 <Link to={"/login"} className="bg-transparent text-sm">
-               <span className="flex items-center ">
-                <AiOutlineLogin className="mr-1"/>
-                  Login
-               </span>
+                <Link to={"/login"} className="bg-transparent text-sm">
+                  <span className="flex items-center ">
+                    <AiOutlineLogin className="mr-1" />
+                    Login
+                  </span>
                 </Link>
               )}
             </label>
@@ -200,16 +200,16 @@ const Navbar = () => {
           </div>
           {!user && (
             <label
-            tabIndex={0}
-            className="btn bg-transparent hover:bg-transparent border-none -mr-4"
-          >
-            <Link to="/signup" className="bg-transparent text-sm">
-            <span className="flex items-center">
-                <SiGnuprivacyguard className="mr-1"/>
-                Signup 
-               </span>
-               </Link>
-          </label>
+              tabIndex={0}
+              className="btn bg-transparent hover:bg-transparent border-none -mr-4"
+            >
+              <Link to="/signup" className="bg-transparent text-sm">
+                <span className="flex items-center">
+                  <SiGnuprivacyguard className="mr-1" />
+                  Signup
+                </span>
+              </Link>
+            </label>
           )}
         </div>
 

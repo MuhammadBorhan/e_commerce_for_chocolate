@@ -8,12 +8,11 @@ const AllVisitors = () => {
   const unique = [...new Map(visitors.map((v) => [v.isp, v])).values()];
 
   useEffect(() => {
-    fetch("https://andy-chocolate-productions.up.railway.app/api/v1/visitors")
+    fetch("http://localhost:5000/api/v1/visitors")
       .then((res) => res.json())
       .then((data) => setVisitors(data?.data));
   }, []);
 
- 
   const [searchText, setSearchText] = useState("");
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
@@ -46,9 +45,8 @@ const AllVisitors = () => {
       name: "Sl No.",
       selector: (row, index) => index + 1,
       sortable: false,
-      
     },
-   
+
     {
       name: "Country",
       selector: "country",
@@ -71,14 +69,14 @@ const AllVisitors = () => {
     },
     {
       name: "Action",
-      cell: row=> (
+      cell: (row) => (
         <>
-         <button
-                      className="text-red-500 flex justify-center"
-                      style={{ width: "40px", fontSize: "25px" }}
-                    >
-                      <AiTwotoneDelete></AiTwotoneDelete>
-                    </button>
+          <button
+            className="text-red-500 flex justify-center"
+            style={{ width: "40px", fontSize: "25px" }}
+          >
+            <AiTwotoneDelete></AiTwotoneDelete>
+          </button>
         </>
       ),
       sortable: false,
@@ -99,13 +97,13 @@ const AllVisitors = () => {
         <div className="overflow-x-auto">
           <h2 className="text-xl font-bold mt-2">All Visitorss</h2>
           <div className="text-end">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            className=" mb-4 px-4 py-2 border border-gray-300 rounded"
-          />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              className=" mb-4 px-4 py-2 border border-gray-300 rounded"
+            />
           </div>
           <DataTable
             columns={columns}

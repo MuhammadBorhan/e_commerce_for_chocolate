@@ -65,17 +65,17 @@ const AddToCart = () => {
       amount: 100,
     },
   ];
- const handleDiscountCoupon = (coupon)=>{
- const searchCoupon = coupons.find((c)=>c?.couponCode === coupon )
- setDiscount(searchCoupon)
-}
+  const handleDiscountCoupon = (coupon) => {
+    const searchCoupon = coupons.find((c) => c?.couponCode === coupon);
+    setDiscount(searchCoupon);
+  };
 
-let newDiscount = (discount?.amount)
+  let newDiscount = discount?.amount;
 
   const total = (data?.price || selectedGiftBox?.price) * quantity;
   const includeTax = (total * tax) / 100;
-  const incudeDiscount = (total + includeTax ) * newDiscount / 100;
-  const grandTotal = (+total + +includeTax ) - +incudeDiscount
+  const incudeDiscount = ((total + includeTax) * newDiscount) / 100;
+  const grandTotal = +total + +includeTax - +incudeDiscount;
 
   // get All Blank Box
   const { data: getAllBlankBox } = useGetAllBlankBoxQuery(null, {
@@ -125,14 +125,14 @@ let newDiscount = (discount?.amount)
           <div className="flex justify-center">
             <img
               className="hidden lg:block"
-              src={`https://andy-chocolate-productions.up.railway.app/${
+              src={`http://localhost:5000/${
                 data?.image || selectedGiftBox?.image
               }`}
               style={{ width: "200px" }}
             />
             <img
               className="block lg:hidden"
-              src={`https://andy-chocolate-productions.up.railway.app/${
+              src={`http://localhost:5000/${
                 data?.image || selectedGiftBox?.image
               }`}
               style={{ width: "100px" }}
@@ -176,7 +176,7 @@ let newDiscount = (discount?.amount)
               {selectedBox?.map((box) => (
                 <div className="relative">
                   <img
-                    src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                    src={`http://localhost:5000/${box?.image}`}
                     className="w-12 h-12"
                     onClick={() => handleRemove(box)}
                   />
@@ -243,7 +243,7 @@ let newDiscount = (discount?.amount)
                     key={index}
                   >
                     <img
-                      src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                      src={`http://localhost:5000/${data?.image}`}
                       className="w-16 h-16 lg:w-32 lg:h-32 object-cover cursor-pointer"
                     />
                     <p className="text-xs lg:text-sm">{data?.name}</p>
@@ -282,7 +282,7 @@ let newDiscount = (discount?.amount)
           </div>
           <p className="my-2 font-bold">
             {" "}
-            Grand Total: ¥{grandTotal ?grandTotal.toFixed(2) : +grandTotal}
+            Grand Total: ¥{grandTotal ? grandTotal.toFixed(2) : +grandTotal}
           </p>
           <Link
             to={"/checkout"}
@@ -360,7 +360,7 @@ let newDiscount = (discount?.amount)
                 key={index}
               >
                 <img
-                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                  src={`http://localhost:5000/${data?.image}`}
                   className="w-16 h-16 lg:w-32 lg:h-32 object-cover"
                 />
                 <p className="text-xs lg:text-sm">{data?.name}</p>

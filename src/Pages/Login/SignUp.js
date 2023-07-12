@@ -5,11 +5,42 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SocialLogin from "../../Components/SocialLigin/SocialLogin";
 import { toast } from "react-toastify";
+import { useGetAllUserQuery } from "../../features/api/loginApi";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { data: getAllUsers } = useGetAllUserQuery();
+  const users = getAllUsers?.data;
+  const srl = String(users?.length + 1);
+  const level =
+    srl <= 10
+      ? "1"
+      : srl <= 110
+      ? "2"
+      : srl <= 1110
+      ? "3"
+      : srl <= 11110
+      ? "4"
+      : srl <= 111110
+      ? "5"
+      : "6";
+  const position =
+    srl <= 10
+      ? `1:${srl}`
+      : srl <= 110
+      ? `2:${srl - 10}`
+      : srl <= 1110
+      ? `3:${srl - 110}`
+      : srl <= 11110
+      ? `4:${srl - 1110}`
+      : srl <= 111110
+      ? `5:${srl - 11110}`
+      : srl <= 1111110
+      ? `6:${srl - 111110}`
+      : `7:${srl}`;
 
   const onSubmit = async (data) => {
     // const { confirmPassword: cfw, ...others } = data;
@@ -21,7 +52,7 @@ const SignUp = () => {
     // } else {
     //   try {
     //     const response = await axios.post(
-    //       `https://andy-chocolate-productions.up.railway.app/api/v1/signup`,
+    //       `http://localhost:5000/api/v1/signup`,
     //       others
     //     );
     //     const accessToken = response?.data?.token;
@@ -38,9 +69,15 @@ const SignUp = () => {
 
     try {
       const { confirmPassword: cfw, ...others } = data;
+      const datas = {
+        ...others,
+        serial: srl,
+        level: level,
+        position: position,
+      };
       const response = await axios.post(
-        `https://andy-chocolate-productions.up.railway.app/api/v1/signup`,
-        others
+        `http://localhost:5000/api/v1/signup`,
+        datas
       );
       const accessToken = response?.data?.token;
       localStorage.setItem("accessToken", accessToken);
