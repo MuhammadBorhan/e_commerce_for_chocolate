@@ -6,22 +6,62 @@ import { useGetAllUserQuery } from "../../../features/api/loginApi";
 const OrderDetails = ({ order }) => {
   const { data: getAllUsers } = useGetAllUserQuery();
   const allUsers = getAllUsers?.data;
-  const mlm = allUsers?.filter((user) => user?.email === order?.email);
-  const findMlm = mlm?.find((data) => data);
+  const filters = allUsers?.filter((user) => user?.email === order?.email);
+  const finding = filters?.find((user) => user);
+  const index = allUsers?.findIndex((user) => user?.email === order?.email);
+  const userPosition = index + 1;
 
-  const coins = 200;
+  const getUserLevel = (position) => {
+    if (position <= 10) {
+      return 1;
+    } else if (position <= 110) {
+      return 2;
+    } else if (position <= 1110) {
+      return 3;
+    } else if (position <= 11110) {
+      return 4;
+    } else if (position <= 111110) {
+      return 5;
+    } else if (position <= 1111110) {
+      return 6;
+    } else {
+      return 0;
+    }
+  };
+  const level = getUserLevel(userPosition);
+
+  const getPosition = (count) => {
+    const level = getUserLevel(count);
+    if (level === 1) {
+      return `1:${count}`;
+    } else if (level === 2) {
+      return `2:${count - 10}`;
+    } else if (level === 3) {
+      return `3:${count - 110}`;
+    } else if (level === 4) {
+      return `4:${count - 1110}`;
+    } else if (level === 5) {
+      return `5:${count - 11110}`;
+    } else if (level === 6) {
+      return `6:${count - 111110}`;
+    } else {
+      return "0";
+    }
+  };
+  const position = getPosition(userPosition);
+
   let getCoin;
-  if (findMlm?.level == 1) {
+  if (level == 1) {
     getCoin = 100;
-  } else if (findMlm?.level == 2) {
+  } else if (level == 2) {
     getCoin = 50;
-  } else if (findMlm?.level == 3) {
+  } else if (level == 3) {
     getCoin = 30;
-  } else if (findMlm?.level == 4) {
+  } else if (level == 4) {
     getCoin = 12;
-  } else if (findMlm?.level == 5) {
+  } else if (level == 5) {
     getCoin = 6;
-  } else if (findMlm?.level == 6) {
+  } else if (level == 6) {
     getCoin = 2;
   }
 
@@ -34,7 +74,7 @@ const OrderDetails = ({ order }) => {
         }
       );
       const response2 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${findMlm?._id}`,
+        `http://localhost:5000/api/v1/user/${finding?._id}`,
         {
           earnedCoin: getCoin,
         }
@@ -92,6 +132,9 @@ const OrderDetails = ({ order }) => {
                   <p>Phone: {order?.phone}</p>
                   <p>Region : {order?.region}</p>
                   <p>District: {order?.district}</p>
+                  <p>serial: {userPosition}</p>
+                  <p>level: {level}</p>
+                  <p>position: {position}</p>
                 </div>
                 <button
                   onClick={() => handleToggle(order?._id, order?.isEnabled)}
