@@ -1,6 +1,7 @@
 import React from "react";
 import { FaYenSign } from "react-icons/fa";
 import { AiOutlineUserAdd, AiOutlineShoppingCart } from "react-icons/ai";
+import { ImCoinYen } from "react-icons/im";
 import { useGetUserQuery } from "../../features/api/loginApi";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -41,9 +42,10 @@ const DashbordHome = () => {
           </div>
         </div>
         <div className="flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">
-          <AiOutlineUserAdd className="text-3xl rounded-full bg-white p-1 text-black" />
+          <ImCoinYen className="text-3xl rounded-full bg-white p-1 text-black" />
           <div>
-            <p>{orders[0]?.cod}</p>
+            <p>{user?.earnedCoin}</p>
+            <p>Earning Points</p>
           </div>
         </div>
         <div className="flex items-center px-4 py-4 bg-black text-white rounded-2xl justify-between bg-opacity-30">

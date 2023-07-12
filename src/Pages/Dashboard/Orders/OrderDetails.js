@@ -6,25 +6,37 @@ import { useGetAllUserQuery } from "../../../features/api/loginApi";
 const OrderDetails = ({ order }) => {
   const { data: getAllUsers } = useGetAllUserQuery();
   const allUsers = getAllUsers?.data;
+  const mlm = allUsers?.filter((user) => user?.email === order?.email);
+  const findMlm = mlm?.find((data) => data);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => {
-    setIsOpen(true);
-    document.body.style.overflow = "hidden";
-  };
+  const coins = 200;
+  let getCoin;
+  if (findMlm?.level == 1) {
+    getCoin = 100;
+  } else if (findMlm?.level == 2) {
+    getCoin = 50;
+  } else if (findMlm?.level == 3) {
+    getCoin = 30;
+  } else if (findMlm?.level == 4) {
+    getCoin = 12;
+  } else if (findMlm?.level == 5) {
+    getCoin = 6;
+  } else if (findMlm?.level == 6) {
+    getCoin = 2;
+  }
 
-  const closeModal = () => {
-    setIsOpen(false);
-    document.body.style.overflow = "auto";
-  };
-
-  // delivery
   const handleToggle = async (id, isEnabled) => {
     try {
       const response = await axios.patch(
         `http://localhost:5000/api/v1/order/${id}`,
         {
           isEnabled: !isEnabled,
+        }
+      );
+      const response2 = await axios.patch(
+        `http://localhost:5000/api/v1/user/${findMlm?._id}`,
+        {
+          earnedCoin: getCoin,
         }
       );
       if (response) {
@@ -39,6 +51,16 @@ const OrderDetails = ({ order }) => {
     }
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    document.body.style.overflow = "auto";
+  };
   return (
     <div>
       <button
@@ -64,7 +86,6 @@ const OrderDetails = ({ order }) => {
                 >
                   <p>
                     Name: {order?.firstName} {order?.lastName}
-                    {allUsers?.length}
                   </p>
                   <p>Email: {order?.email}</p>
                   <p>Address: {order?.address}</p>
