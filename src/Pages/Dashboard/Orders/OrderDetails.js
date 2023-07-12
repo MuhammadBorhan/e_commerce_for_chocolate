@@ -51,6 +51,7 @@ const OrderDetails = ({ order }) => {
   const position = getPosition(userPosition);
 
   let getCoin;
+  let parentCoin;
   if (level == 1) {
     getCoin = 100;
   } else if (level == 2) {
