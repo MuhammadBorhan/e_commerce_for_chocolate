@@ -14,6 +14,8 @@ import "glightbox/dist/css/glightbox.min.css";
 import Glightbox from "glightbox";
 import Modal from "../../Components/Modal";
 import { useGetAllEventUserQuery } from "../../features/api/eventUserApi";
+import Description from "../../Components/Description";
+import DescriptionMobile from "../../Components/DescriptionMobile";
 
 const BrandsItem = () => {
   const location = useLocation();
@@ -226,10 +228,8 @@ const BrandsItem = () => {
         <div>
           {/* sidebar menu and color wise scroll selected product for mobile device */}
           <div>
-            <h2 className="text-[#9A583B] mt-4 font-bold lg:hidden ">
-              Products
-            </h2>
-            <div className="flex flex-col absolute right-8 mt-20 bg-slate-500 text-white gap-y-10 z-50 m-auto w-[20px] lg:hidden">
+            <DescriptionMobile>Products</DescriptionMobile>
+            <div className="flex flex-col absolute right-8 mt-20 bg-slate-500 text-white gap-y-10 z-49 m-auto w-[20px] lg:hidden">
               <button
                 onClick={() => handleFilter("All")}
                 title="All Products"
@@ -323,9 +323,7 @@ const BrandsItem = () => {
 
           {/* tab and color wise selected product for desktop version */}
           <div>
-            <h2 className="hidden lg:block text-[#9A583B] text-xl font-bold mt-4 ">
-              Products
-            </h2>
+            <Description>Products</Description>
             <div className="hidden lg:block">
               <div className="tabs hidden lg:block">
                 {colors?.map((color, index) => (
@@ -402,9 +400,12 @@ const BrandsItem = () => {
 
       {/* event */}
       <div className="mt-8 lg:mt-16 ">
-        <h2 className="text-center mb-4 font-mono text-xl">
+        <Description>
           Event will be start this time. If you are interested please join
-        </h2>
+        </Description>
+        <DescriptionMobile>
+          Event will be start this time. If you are interested please join
+        </DescriptionMobile>
         <div className="grid lg:grid-cols-3 gap-10 mt-12">
           {filterEvent?.map((event) => {
             const remUser = allEventUser?.filter(
@@ -485,23 +486,37 @@ const BrandsItem = () => {
 
       {/* Similar Gift Box */}
 
-      <div>
-        <h2 className="mt-8 lg:mt-16 text-2xl text-center lg:text-left font-bold text-[#9A583B]">
-          Similar Gift Box
-        </h2>
-        <div className="grid lg:grid-cols-4 gap-10 mt-8">
+      <div className="mt-12">
+        <Description>Similar Gift Box</Description>
+        <DescriptionMobile>Similar Gift Box</DescriptionMobile>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 mt-8">
           {similarGiftBox?.map((box) => {
             return (
               <div key={box?._id} className="card shadow-xl ">
+                {/* For desktop  */}
                 <figure>
                   <Link to={`/delivery/${box?.name}`} state={box}>
                     <img
                       src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
                       alt="box"
-                      className="w-[150px] lg:w-[240px] lg:h-[240px]"
+                      className="hidden lg:block"
+                      style={{ width: "150px", height: "150px" }}
                     />
                   </Link>
                 </figure>
+                {/* For Mobile  */}
+
+                <figure>
+                  <Link to={`/delivery/${box?.name}`} state={box}>
+                    <img
+                      src={`https://andy-chocolate-productions.up.railway.app/${box?.image}`}
+                      alt="box"
+                      className="lg:hidden"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </Link>
+                </figure>
+
                 <h2 className="font-bold  sm:w-full text-center">
                   {box?.name}
                 </h2>

@@ -12,6 +12,8 @@ import { FreeMode, Pagination, Navigation, Keyboard } from "swiper";
 import { useGetAllGiftBoxQuery } from "../features/api/GiftBoxApi";
 import { Link } from "react-router-dom";
 import Container from "./Container";
+import Description from "./Description";
+import DescriptionMobile from "./DescriptionMobile";
 
 const GiftBox = () => {
   const { data: getGiftBox } = useGetAllGiftBoxQuery(null, {
@@ -23,8 +25,11 @@ const GiftBox = () => {
     
    <Container>
     <div className="row py-8">
-        <h4 className="text-center pb-3 text-xl font-bold">Gift Box</h4>
-        <div className="">
+      {/* DeskTop device  */}
+
+        <Description>Gift Box</Description>
+        <DescriptionMobile>Gift Box</DescriptionMobile>
+        <div className="hidden md:block">
           <Swiper
             // loop={true}
             navigation={true}
@@ -44,6 +49,35 @@ const GiftBox = () => {
                   <img
                     src={`https://andy-chocolate-productions.up.railway.app/${box.image}`}
                     className="h-48 w-48 object-cover"
+                  />
+                  <p>{box.name}</p>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Mobile Device  */}
+        <div className="lg:hidden">
+          <Swiper
+            // loop={true}
+            navigation={true}
+            keyboard={true}
+            slidesPerView={3}
+            spaceBetween={5}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination, Navigation, Keyboard]}
+            className="rgboxswiperr"
+          >
+            {allGiftbox?.map((box, index) => (
+              <SwiperSlide className="rgboxswiper-slider pt-6 pb-8">
+                <Link to={`/delivery/${box?.name}`} state={box}>
+                  <img
+                    src={`https://andy-chocolate-productions.up.railway.app/${box.image}`}
+                    className="h-32 w-32 object-cover"
                   />
                   <p>{box.name}</p>
                 </Link>

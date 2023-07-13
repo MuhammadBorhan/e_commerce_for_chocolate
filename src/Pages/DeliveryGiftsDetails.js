@@ -23,6 +23,8 @@ import { CLOSING } from "ws";
 import SlickSlider from "../Components/SlickSlider/SlickSlider";
 import { Link } from "react-router-dom/dist";
 import { useGetAllBlankBoxQuery } from "../features/api/blankBoxApi";
+import DescriptionMobile from "../Components/DescriptionMobile";
+import Description from "../Components/Description";
 // import SlickSlider from "../Components/SlickSlider/SlickSlider";
 
 const DeliveryGiftsDetails = () => {
@@ -194,10 +196,8 @@ const DeliveryGiftsDetails = () => {
       </div>
 
       {/* // Giftbox match product  */}
-      <div className="row py-5 px-4 lg:px-12">
-        <h4 className="text-center pb-3 text-xl font-bold">
-          {data?.name} Product
-        </h4>
+      {/* <div className="row py-5 px-4 lg:px-12">
+        <Description>{data.name} Productuy</Description>
         <div className="">
           <Swiper
             loop={true}
@@ -229,18 +229,17 @@ const DeliveryGiftsDetails = () => {
             ))}
           </Swiper>
         </div>
-      </div>
+      </div> */}
 
       {/* selected gift box product list start */}
       <SlickSlider data={data} giftboxproduct={giftboxproduct} />
+
       {/* selected gift box product list end */}
 
-      {/* //Simiar gift box  */}
+      {/* //Simiar gift box  DeskTop Device */}
       <div className="row py-5 px-4 lg:px-12">
-        <h4 className="text-center pb-3 text-xl font-bold">
-          Similar Gift Box{" "}
-        </h4>
-        <div className="">
+      <Description>Similar Gift Box</Description>
+        <div className="hidden md:block">
           <Swiper
             loop={true}
             navigation={true}
@@ -261,7 +260,38 @@ const DeliveryGiftsDetails = () => {
               >
                 <img
                   src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
-                  className="h-36 w-36 lg:h-48 lg:w-48 object-cover"
+                  className="h-36 w-36 lg:h-48 lg:w-48 object-cover cursor-pointer"
+                />
+                <p>{data?.name}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* For MobileDevice  */}
+        <DescriptionMobile>Similar Gift Box</DescriptionMobile>
+        <div className="lg:hidden">
+          <Swiper
+            loop={true}
+            navigation={true}
+            keyboard={true}
+            slidesPerView={3}
+            spaceBetween={5}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination, Navigation, Keyboard]}
+            className=" sgboxswiperr"
+          >
+            {similarGiftBox?.map((data, index) => (
+              <SwiperSlide
+                onClick={() => handleGiftBox(data.name)}
+                className="sgboxswiper-slider py-6 pb-8"
+              >
+                <img
+                  src={`https://andy-chocolate-productions.up.railway.app/${data?.image}`}
+                  className="h-36 w-36 lg:h-48 lg:w-48 object-cover cursor-pointer"
                 />
                 <p>{data?.name}</p>
               </SwiperSlide>

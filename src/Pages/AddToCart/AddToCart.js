@@ -51,12 +51,12 @@ const AddToCart = () => {
     },
     {
       _id: 6,
-      couponCode: "ODD6H",
+      couponCode: "Mamur",
       amount: 50,
     },
     {
       _id: 7,
-      couponCode: "HYDFF",
+      couponCode: "AluBorta",
       amount: 75,
     },
     {
@@ -66,16 +66,18 @@ const AddToCart = () => {
     },
   ];
  const handleDiscountCoupon = (coupon)=>{
- const searchCoupon = coupons.find((c)=>c?.couponCode === coupon )
+ const searchCoupon = coupons.find((c)=>c?.couponCode.toLocaleLowerCase() === coupon )
  setDiscount(searchCoupon)
 }
 
-let newDiscount = (discount?.amount)
+let newDiscount =  discount?.amount ? discount?.amount : 0
+console.log((newDiscount))
 
   const total = (data?.price || selectedGiftBox?.price) * quantity;
   const includeTax = (total * tax) / 100;
-  const incudeDiscount = (total + includeTax ) * newDiscount / 100;
-  const grandTotal = (+total + +includeTax ) - +incudeDiscount
+  const includeDiscount = (total + includeTax ) * newDiscount / 100;
+  console.log(includeDiscount)
+  const grandTotal = (total + includeTax ) - includeDiscount
 
   // get All Blank Box
   const { data: getAllBlankBox } = useGetAllBlankBoxQuery(null, {
@@ -274,7 +276,7 @@ let newDiscount = (discount?.amount)
             <input
               type="text"
               // defaultValue={discount}
-              onChange={(e) => handleDiscountCoupon(e.target.value)}
+              onChange={(e) => handleDiscountCoupon(e.target.value.toLocaleLowerCase())}
               placeholder="CCode"
               className="input input-bordered mb-2 w-[100px] h-8 rounded-none focus:border-none "
             />
@@ -282,7 +284,7 @@ let newDiscount = (discount?.amount)
           </div>
           <p className="my-2 font-bold">
             {" "}
-            Grand Total: ¥{grandTotal ?grandTotal.toFixed(2) : +grandTotal}
+            Grand Total: ¥{grandTotal}
           </p>
           <Link
             to={"/checkout"}
