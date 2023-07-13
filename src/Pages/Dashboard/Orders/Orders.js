@@ -16,9 +16,26 @@ const Orders = () => {
 
     fetchOrders();
   }, []);
+
+  // const userPosition = "6:100000";
+
+  // const [userLevel, userPositionIndex] = userPosition.split(":").map(Number);
+  // let parentLevels = [];
+  // let parentPositions = [];
+
+  // for (let level = userLevel - 1; level >= 1; level--) {
+  //   const levelMultiplier = Math.ceil(
+  //     userPositionIndex / 10 ** (userLevel - level)
+  //   );
+  //   parentLevels.push(level);
+  //   parentPositions.push(`${level}:${levelMultiplier}`);
+  // }
   return (
     <div className="p-6 bg-[#F4F6F9]">
       <h1 className="text-xl font-bold mb-4">Total Orders {orders?.length}</h1>
+      {/* <p>user position: {userPosition}</p>
+      <p>Parent Levels: {parentLevels.join(", ")}</p>
+      <p>Parent Positions: {parentPositions.join(", ")}</p> */}
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-2">
         {orders?.map((order, index) => (
           <div className="p-4 bg-white shadow-md text-center" key={index}>

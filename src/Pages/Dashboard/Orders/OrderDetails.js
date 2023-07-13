@@ -66,7 +66,35 @@ const OrderDetails = ({ order }) => {
   }
 
   // try to find parent level and position
-  const [parentLevel, parentPosition] = calculateParent(position);
+  const [userLevel, userPositionIndex] = position.split(":").map(Number);
+  let parentLevels = [];
+  let parentPositions = [];
+
+  for (let level = userLevel - 1; level >= 1; level--) {
+    const levelMultiplier = Math.ceil(
+      userPositionIndex / 10 ** (userLevel - level)
+    );
+    parentLevels.push(level);
+    parentPositions.push(`${level}:${levelMultiplier}`);
+  }
+
+  // get users by users position
+  const parentUsers = parentPositions?.map((parentPosition) => {
+    const [parentLevel, parentPositionIndex] = parentPosition
+      .split(":")
+      .map(Number);
+    const parentUserIndex = parentPositionIndex - 1;
+
+    const filteredUsers = allUsers?.filter((user) => {
+      const [level, positionts] = position.split(":").map(Number);
+      return level > parentLevel;
+    });
+
+    return filteredUsers[parentUserIndex];
+  });
+  console.log(parentUsers);
+  console.log(parentUsers[0]?._id);
+  /*   const [parentLevel, parentPosition] = calculateParent(position);
   function calculateParent(uPosition) {
     let parentLevel, parentPosition;
 
@@ -83,29 +111,50 @@ const OrderDetails = ({ order }) => {
     }
 
     return [parentLevel, parentPosition];
-  }
+  } */
 
   // Find parent user
-  const parentUser = parentPosition
-    ? allUsers?.find((user) => {
-        const [level, uPosition] = position.split(":").map(Number);
-        const [parentLevel, parentPositionIndex] = parentPosition
-          .split(":")
-          .map(Number);
-        return (
-          level > parentLevel &&
-          uPosition >= parentPositionIndex &&
-          uPosition < parentPositionIndex + 10
-        );
-      })
-    : null;
-  // console.log(parentUser?._id);
+  // const parentUser = parentPosition
+  //   ? allUsers?.find((user) => {
+  //       const [level, uPosition] = position.split(":").map(Number);
+  //       const [parentLevel, parentPositionIndex] = parentPosition
+  //         .split(":")
+  //         .map(Number);
+  //       return (
+  //         level > parentLevel &&
+  //         uPosition >= parentPositionIndex &&
+  //         uPosition < parentPositionIndex + 10
+  //       );
+  //     })
+  //   : null;
 
-  let parentCoin;
+  let p1, p2, p3, p4, p5;
   if (level == 1) {
-    parentCoin = 0;
-  } else if (level > 1) {
-    parentCoin = 100;
+    p1 = p2 = p3 = p4 = p5 = 0;
+  } else if (level == 2) {
+    p1 = 100;
+    p2 = p3 = p4 = p5 = 0;
+  } else if (level == 3) {
+    p2 = 100;
+    p1 = 50;
+    p3 = p4 = p5 = 0;
+  } else if (level == 4) {
+    p3 = 100;
+    p2 = 50;
+    p1 = 30;
+    p4 = p5 = 0;
+  } else if (level == 5) {
+    p4 = 100;
+    p3 = 50;
+    p2 = 30;
+    p1 = 12;
+    p5 = 0;
+  } else if (level == 6) {
+    p5 = 100;
+    p4 = 50;
+    p3 = 30;
+    p2 = 12;
+    p1 = 6;
   }
 
   const handleToggle = async (id, isEnabled) => {
@@ -123,9 +172,33 @@ const OrderDetails = ({ order }) => {
         }
       );
       const response3 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${parentUser?._id}`,
+        `http://localhost:5000/api/v1/user/${parentUsers[0]?._id}`,
         {
-          earnedCoin: parentCoin,
+          earnedCoin: p1,
+        }
+      );
+      const response4 = await axios.patch(
+        `http://localhost:5000/api/v1/user/${parentUsers[1]?._id}`,
+        {
+          earnedCoin: p2,
+        }
+      );
+      const response5 = await axios.patch(
+        `http://localhost:5000/api/v1/user/${parentUsers[2]?._id}`,
+        {
+          earnedCoin: p3,
+        }
+      );
+      const response6 = await axios.patch(
+        `http://localhost:5000/api/v1/user/${parentUsers[3]?._id}`,
+        {
+          earnedCoin: p4,
+        }
+      );
+      const response7 = await axios.patch(
+        `http://localhost:5000/api/v1/user/${parentUsers[4]?._id}`,
+        {
+          earnedCoin: p5,
         }
       );
       if (response) {
@@ -184,8 +257,8 @@ const OrderDetails = ({ order }) => {
                   <p>serial: {userPosition}</p>
                   <p>level: {level}</p>
                   <p>position: {position}</p>
-                  <p>pLevel: {parentLevel}</p>
-                  <p>pPosition: {parentPosition}</p>
+                  <p>Parent Levels: {parentLevels.join(", ")}</p>
+                  <p>Parent Positions: {parentPositions.join(", ")}</p>
                 </div>
                 <button
                   onClick={() => handleToggle(order?._id, order?.isEnabled)}
