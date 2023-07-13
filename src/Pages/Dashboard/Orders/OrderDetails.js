@@ -99,21 +99,13 @@ const OrderDetails = ({ order }) => {
         );
       })
     : null;
-  console.log(parentUser?._id);
+  // console.log(parentUser?._id);
 
   let parentCoin;
   if (level == 1) {
     parentCoin = 0;
-  } else if (level == 2) {
+  } else if (level > 1) {
     parentCoin = 100;
-  } else if (level == 3) {
-    parentCoin = 30;
-  } else if (level == 4) {
-    parentCoin = 12;
-  } else if (level == 5) {
-    parentCoin = 6;
-  } else if (level == 6) {
-    parentCoin = 2;
   }
 
   const handleToggle = async (id, isEnabled) => {
@@ -128,6 +120,12 @@ const OrderDetails = ({ order }) => {
         `http://localhost:5000/api/v1/user/${finding?._id}`,
         {
           earnedCoin: getCoin,
+        }
+      );
+      const response3 = await axios.patch(
+        `http://localhost:5000/api/v1/user/${parentUser?._id}`,
+        {
+          earnedCoin: parentCoin,
         }
       );
       if (response) {
