@@ -4,7 +4,6 @@ import OrderDetails from "./OrderDetails";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  console.log(orders);
   useEffect(() => {
     const fetchOrders = async () => {
       try {

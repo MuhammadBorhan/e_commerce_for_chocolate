@@ -51,7 +51,6 @@ const OrderDetails = ({ order }) => {
   const position = getPosition(userPosition);
 
   let getCoin;
-  let parentCoin;
   if (level == 1) {
     getCoin = 100;
   } else if (level == 2) {
@@ -64,6 +63,57 @@ const OrderDetails = ({ order }) => {
     getCoin = 6;
   } else if (level == 6) {
     getCoin = 2;
+  }
+
+  // try to find parent level and position
+  const [parentLevel, parentPosition] = calculateParent(position);
+  function calculateParent(uPosition) {
+    let parentLevel, parentPosition;
+
+    const [level, position] = uPosition.split(":").map(Number);
+
+    if (level === 1) {
+      parentLevel = null; // no parent for level 1
+      parentPosition = null; // no parent for position 1:1
+    } else {
+      parentLevel = level - 1;
+
+      const parentPositions = Math.ceil(position / 10);
+      parentPosition = `${parentLevel}:${parentPositions}`;
+    }
+
+    return [parentLevel, parentPosition];
+  }
+
+  // Find parent user
+  const parentUser = parentPosition
+    ? allUsers?.find((user) => {
+        const [level, uPosition] = position.split(":").map(Number);
+        const [parentLevel, parentPositionIndex] = parentPosition
+          .split(":")
+          .map(Number);
+        return (
+          level > parentLevel &&
+          uPosition >= parentPositionIndex &&
+          uPosition < parentPositionIndex + 10
+        );
+      })
+    : null;
+  console.log(parentUser?._id);
+
+  let parentCoin;
+  if (level == 1) {
+    parentCoin = 0;
+  } else if (level == 2) {
+    parentCoin = 100;
+  } else if (level == 3) {
+    parentCoin = 30;
+  } else if (level == 4) {
+    parentCoin = 12;
+  } else if (level == 5) {
+    parentCoin = 6;
+  } else if (level == 6) {
+    parentCoin = 2;
   }
 
   const handleToggle = async (id, isEnabled) => {
@@ -136,6 +186,8 @@ const OrderDetails = ({ order }) => {
                   <p>serial: {userPosition}</p>
                   <p>level: {level}</p>
                   <p>position: {position}</p>
+                  <p>pLevel: {parentLevel}</p>
+                  <p>pPosition: {parentPosition}</p>
                 </div>
                 <button
                   onClick={() => handleToggle(order?._id, order?.isEnabled)}
@@ -171,3 +223,6 @@ const OrderDetails = ({ order }) => {
 };
 
 export default OrderDetails;
+
+// I have many users on my website. So I have divided them into 6 levels. First 10 users in level 1, next 100 users in level 2, next 1000 users in level 3, next 10000 users in level 4, next 100000 users in level 5, next 100000 users in level 6. Where user position of level 1 is 1:1 to 1:10, level 2 is 2:1 to 2:100, level 3 is 3:1 to 3:1000, level 4 is 4:1 to 4:10000, level 5 is 5:1 to 5:100000, level 6 is 6:1 to 6:100000. 1:1 means position number 1 of level 1, 1:6 means position number 6 of level 1, 1:10 means position number 10 of level 1, 2:45 means position number 45 of level 2, 6:3333 means position number 3333 of level 6. Here, each user has 10 children. That means for example 2:1 position to 2:10 position is child of 1:1, 2:11 position to 2:20 position is child of 1:2, 3:31 position to 3:40 position is child of 2:4 and same process will the rest position.
+// Now if the user's position is 2:8 it means this user's parent level 1 and position is 1:1.
