@@ -165,42 +165,44 @@ const OrderDetails = ({ order }) => {
           isEnabled: !isEnabled,
         }
       );
-      const response2 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${finding?._id}`,
-        {
-          earnedCoin: getCoin,
-        }
-      );
-      const response3 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${parentUsers[0]?._id}`,
-        {
-          earnedCoin: p1,
-        }
-      );
-      const response4 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${parentUsers[1]?._id}`,
-        {
-          earnedCoin: p2,
-        }
-      );
-      const response5 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${parentUsers[2]?._id}`,
-        {
-          earnedCoin: p3,
-        }
-      );
-      const response6 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${parentUsers[3]?._id}`,
-        {
-          earnedCoin: p4,
-        }
-      );
-      const response7 = await axios.patch(
-        `http://localhost:5000/api/v1/user/${parentUsers[4]?._id}`,
-        {
-          earnedCoin: p5,
-        }
-      );
+      await axios.patch(`http://localhost:5000/api/v1/user/${finding?._id}`, {
+        earnedCoin: getCoin,
+      });
+      parentUsers[0] &&
+        (await axios.patch(
+          `http://localhost:5000/api/v1/user/${parentUsers[0]?._id}`,
+          {
+            earnedCoin: p1,
+          }
+        ));
+      parentUsers[1] &&
+        (await axios.patch(
+          `http://localhost:5000/api/v1/user/${parentUsers[1]?._id}`,
+          {
+            earnedCoin: p2,
+          }
+        ));
+      parentUsers[2] &&
+        (await axios.patch(
+          `http://localhost:5000/api/v1/user/${parentUsers[2]?._id}`,
+          {
+            earnedCoin: p3,
+          }
+        ));
+      parentUsers[3] &&
+        (await axios.patch(
+          `http://localhost:5000/api/v1/user/${parentUsers[3]?._id}`,
+          {
+            earnedCoin: p4,
+          }
+        ));
+      parentUsers[4] &&
+        (await axios.patch(
+          `http://localhost:5000/api/v1/user/${parentUsers[4]?._id}`,
+          {
+            earnedCoin: p5,
+          }
+        ));
       if (response) {
         setTimeout(() => {
           window.location.reload();
